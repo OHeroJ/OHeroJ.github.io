@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -84,34 +84,61 @@
 
 
 
-<meta name="description" content="纸上得来终觉浅， 绝知此事要躬行
+<meta name="description" content="模式匹配进阶
+通配符模式
+ 通配符模式会忽略需要匹配的值， _
 
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
+标示模式
+ 匹配具体的值
 
-对于CNAME和README文件，我们应该把他们放在source文件夹中">
+值绑定模式
+switch (4, 5) {
+    case let (x, y): print(&amp;quot;\(x) \(y)&amp;quot;)
+}
+
+元组模式
+let age = 23
+let job: String? = &amp;quot;Operator&amp;quot;
+let payload: AnyObje">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo Use">
-<meta property="og:url" content="http://www.oheroj.com/2016/05/24/Hexo-Use/index.html">
+<meta property="og:title" content="Swift 模式匹配">
+<meta property="og:url" content="http://www.oheroj.com/2016/05/25/Swift-模式匹配/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description" content="纸上得来终觉浅， 绝知此事要躬行
+<meta property="og:description" content="模式匹配进阶
+通配符模式
+ 通配符模式会忽略需要匹配的值， _
 
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
+标示模式
+ 匹配具体的值
 
-对于CNAME和README文件，我们应该把他们放在source文件夹中">
-<meta property="og:updated_time" content="2016-05-24T08:26:17.000Z">
+值绑定模式
+switch (4, 5) {
+    case let (x, y): print(&amp;quot;\(x) \(y)&amp;quot;)
+}
+
+元组模式
+let age = 23
+let job: String? = &amp;quot;Operator&amp;quot;
+let payload: AnyObje">
+<meta property="og:updated_time" content="2016-05-25T01:37:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo Use">
-<meta name="twitter:description" content="纸上得来终觉浅， 绝知此事要躬行
+<meta name="twitter:title" content="Swift 模式匹配">
+<meta name="twitter:description" content="模式匹配进阶
+通配符模式
+ 通配符模式会忽略需要匹配的值， _
 
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
+标示模式
+ 匹配具体的值
 
-对于CNAME和README文件，我们应该把他们放在source文件夹中">
+值绑定模式
+switch (4, 5) {
+    case let (x, y): print(&amp;quot;\(x) \(y)&amp;quot;)
+}
+
+元组模式
+let age = 23
+let job: String? = &amp;quot;Operator&amp;quot;
+let payload: AnyObje">
 
 
 
@@ -129,7 +156,7 @@
   };
 </script>
 
-  <title> Hexo Use | OHeroJ </title>
+  <title> Swift 模式匹配 | OHeroJ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -249,7 +276,7 @@
             
             
               
-                Hexo Use
+                Swift 模式匹配
               
             
           </h1>
@@ -261,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
+              2016-05-25
             </time>
           </span>
 
@@ -289,15 +316,47 @@
       
 
       
-        <blockquote>
-<p>纸上得来终觉浅， 绝知此事要躬行</p>
-</blockquote>
-<h3 id="新建博文："><a href="#新建博文：" class="headerlink" title="新建博文："></a>新建博文：</h3><p>  hexo new “文章题目”</p>
-<h3 id="新建页面："><a href="#新建页面：" class="headerlink" title="新建页面："></a>新建页面：</h3><p>  hexo new page “页面名称”</p>
-<h3 id="发布博文："><a href="#发布博文：" class="headerlink" title="发布博文："></a>发布博文：</h3><p>  hexo clean<br>  hexo generate<br>  hexo deploy</p>
-<blockquote>
-<p>对于CNAME和README文件，我们应该把他们放在source文件夹中</p>
-</blockquote>
+        <h3 id="模式匹配进阶"><a href="#模式匹配进阶" class="headerlink" title="模式匹配进阶"></a>模式匹配进阶</h3><ol>
+<li><p>通配符模式</p>
+<p> 通配符模式会忽略需要匹配的值， <code>_</code></p>
+</li>
+<li><p>标示模式</p>
+<p> 匹配具体的值</p>
+</li>
+<li><p>值绑定模式</p>
+<pre><code>switch (4, 5) {
+    case let (x, y): print(&quot;\(x) \(y)&quot;)
+}
+</code></pre></li>
+<li><p>元组模式</p>
+<pre><code>let age = 23
+let job: String? = &quot;Operator&quot;
+let payload: AnyObject = NSDictionary()
+
+switch (age, job, payload) {
+  case (let age, _?, _ as NSDictionary):
+  print(age)
+  default: ()
+}
+</code></pre></li>
+<li><p>枚举Case模式</p>
+</li>
+<li><p>类型转换模式</p>
+<ul>
+<li>is 类型：匹配右手边内容的运行时类型（或者类型的子类）。它会做类型转换但是不关注返回值。所以你的 case 块不知道所匹配的类型是什么。</li>
+<li><p>模式 as 类型：和 is 模式做同样的匹配操作，但是如果成功的话会把类型转换到左侧指定的模式中。</p>
+<p>  let a: Any = 5<br>  switch a {</p>
+<pre><code>// 这会失败因为它的类型仍然是 `Any`
+// 错误: binary operator &apos;+&apos; cannot be applied to operands of type &apos;Any&apos; and &apos;Int&apos;
+case is Int: print (a + 1)
+// 有效并返回 &apos;6&apos;
+case let n as Int: print (n + 1)
+default: ()
+</code></pre><p>  }</p>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -319,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
           
         </div>
       
@@ -328,17 +387,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/24/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/05/24/Hexo-Use/" rel="next" title="Hexo Use">
+                <i class="fa fa-chevron-left"></i> Hexo Use
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/25/Swift-模式匹配/" rel="prev" title="Swift 模式匹配">
-                Swift 模式匹配 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,7 +500,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建博文："><span class="nav-number">1.</span> <span class="nav-text">新建博文：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建页面："><span class="nav-number">2.</span> <span class="nav-text">新建页面：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布博文："><span class="nav-number">3.</span> <span class="nav-text">发布博文：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式匹配进阶"><span class="nav-number">1.</span> <span class="nav-text">模式匹配进阶</span></a></li></ol></div>
             
           </div>
         </section>
