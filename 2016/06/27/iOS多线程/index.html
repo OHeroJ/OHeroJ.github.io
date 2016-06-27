@@ -98,7 +98,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
 
 在当前线程中执行方法：
 - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(">
-<meta property="og:updated_time" content="2016-06-27T04:29:59.000Z">
+<meta property="og:updated_time" content="2016-06-27T04:34:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS多线程">
 <meta name="twitter:description" content="1. Objective-C中实现多线程performSelectors:
@@ -283,7 +283,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
       
 
       
-        <h4 id="1-Objective-C中实现多线程"><a href="#1-Objective-C中实现多线程" class="headerlink" title="1. Objective-C中实现多线程"></a>1. Objective-C中实现多线程</h4><p><code>performSelectors</code>:</p>
+        <h2 id="1-Objective-C中实现多线程"><a href="#1-Objective-C中实现多线程" class="headerlink" title="1. Objective-C中实现多线程"></a>1. Objective-C中实现多线程</h2><p><code>performSelectors</code>:</p>
 <p>NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
 <ol>
 <li><p>在当前线程中执行方法：</p>
@@ -308,7 +308,7 @@ modes:(NSArray *)array
 <pre><code>-(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
 </code></pre></li>
 </ol>
-<h4 id="2-NSThread-pthread"><a href="#2-NSThread-pthread" class="headerlink" title="2. NSThread / pthread"></a>2. NSThread / pthread</h4><ul>
+<h2 id="2-NSThread-pthread"><a href="#2-NSThread-pthread" class="headerlink" title="2. NSThread / pthread"></a>2. NSThread / pthread</h2><ul>
 <li><p>三种实现开启线程的方式：</p>
 <ol>
 <li><p>动态实例化</p>
@@ -335,7 +335,7 @@ thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
 [self performSelector:@selector(run) withObject:nil];
 </code></pre></li>
 </ul>
-<h4 id="3-NSOperation"><a href="#3-NSOperation" class="headerlink" title="3. NSOperation"></a>3. NSOperation</h4><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
+<h2 id="3-NSOperation"><a href="#3-NSOperation" class="headerlink" title="3. NSOperation"></a>3. NSOperation</h2><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
 <p>NSOperation是个抽象类，但同时也提供了两个可以直接使用的子类： NSInvocationOperation 和NSBlockOperation.[任务的封装方式]</p>
 <p>NSOperationQueue则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation被添加到NSOperationQueue中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象被自动执行。</p>
 <ul>
@@ -359,7 +359,7 @@ isFinished
 <li><p>NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</p>
 </li>
 </ul>
-<h4 id="4-GCD"><a href="#4-GCD" class="headerlink" title="4. GCD"></a>4. GCD</h4><ul>
+<h2 id="4-GCD"><a href="#4-GCD" class="headerlink" title="4. GCD"></a>4. GCD</h2><ul>
 <li><p>GCD的分发队列：</p>
 <ol>
 <li><p><code>串行队列</code> Serial dispatch queue</p>
@@ -381,7 +381,7 @@ isFinished
 </ol>
 </li>
 </ul>
-<h4 id="5-iOS多线程对比"><a href="#5-iOS多线程对比" class="headerlink" title="5. iOS多线程对比"></a>5. iOS多线程对比</h4><table>
+<h2 id="5-iOS多线程对比"><a href="#5-iOS多线程对比" class="headerlink" title="5. iOS多线程对比"></a>5. iOS多线程对比</h2><table>
 <thead>
 <tr>
 <th>采用技术</th>
@@ -411,7 +411,7 @@ isFinished
 </tr>
 </tbody>
 </table>
-<h4 id="6-实际开发中的选择-（GCD-or-NSOperation）"><a href="#6-实际开发中的选择-（GCD-or-NSOperation）" class="headerlink" title="6. 实际开发中的选择 （GCD or NSOperation）"></a>6. 实际开发中的选择 （GCD or NSOperation）</h4><p>GCD 虽然在很多地方值得提倡，但并不是任务管理和多线程地唯一解决方案，并不是说所有的地方都应该使用 GCD。GCD 是一个纯 C API，NSOperation 是 Objective-C 类，在一些地方对象编程是有优势的。NSOperation 也提供了一些 GCD 无法实现，或者 GCD 所没有的功能。</p>
+<h2 id="6-实际开发中的选择-（GCD-or-NSOperation）"><a href="#6-实际开发中的选择-（GCD-or-NSOperation）" class="headerlink" title="6. 实际开发中的选择 （GCD or NSOperation）"></a>6. 实际开发中的选择 （GCD or NSOperation）</h2><p>GCD 虽然在很多地方值得提倡，但并不是任务管理和多线程地唯一解决方案，并不是说所有的地方都应该使用 GCD。GCD 是一个纯 C API，NSOperation 是 Objective-C 类，在一些地方对象编程是有优势的。NSOperation 也提供了一些 GCD 无法实现，或者 GCD 所没有的功能。</p>
 <p>考略使用NSOperation的一些：</p>
 <ul>
 <li>当你需要取消线程任务时，GCD 无法提供取消任务的操作。而 NSOperation 提供了取消任务的操作;</li>
@@ -565,7 +565,7 @@ isFinished
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Objective-C中实现多线程"><span class="nav-number">1.</span> <span class="nav-text">1. Objective-C中实现多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-NSThread-pthread"><span class="nav-number">2.</span> <span class="nav-text">2. NSThread / pthread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-NSOperation"><span class="nav-number">3.</span> <span class="nav-text">3. NSOperation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-GCD"><span class="nav-number">4.</span> <span class="nav-text">4. GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-iOS多线程对比"><span class="nav-number">5.</span> <span class="nav-text">5. iOS多线程对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">6.</span> <span class="nav-text">6. 实际开发中的选择 （GCD or NSOperation）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Objective-C中实现多线程"><span class="nav-number">1.</span> <span class="nav-text">1. Objective-C中实现多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-NSThread-pthread"><span class="nav-number">2.</span> <span class="nav-text">2. NSThread / pthread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-NSOperation"><span class="nav-number">3.</span> <span class="nav-text">3. NSOperation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-GCD"><span class="nav-number">4.</span> <span class="nav-text">4. GCD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-iOS多线程对比"><span class="nav-number">5.</span> <span class="nav-text">5. iOS多线程对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">6.</span> <span class="nav-text">6. 实际开发中的选择 （GCD or NSOperation）</span></a></li></ol></div>
             
           </div>
         </section>
