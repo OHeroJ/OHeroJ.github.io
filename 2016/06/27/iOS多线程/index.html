@@ -96,15 +96,15 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
 缺点: 每开启一条线程需要占用一定的内存空间，那么可想而知，如果开启大量的线程就会消耗大量的内存空间，从而降低程序的性能。
 Objective-C中实现多线程performSelectors:
 NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-27T14:44:06.000Z">
+<meta property="og:image" content="http://www.oheroj.com/images/sisuo.png">
+<meta property="og:updated_time" content="2016-06-27T14:50:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS多线程">
 <meta name="twitter:description" content="多线程的优缺点优点: 多线程能够适当提高程序的执行效率，适当提高资源利用率(CPU、内存利用率)。
 缺点: 每开启一条线程需要占用一定的内存空间，那么可想而知，如果开启大量的线程就会消耗大量的内存空间，从而降低程序的性能。
 Objective-C中实现多线程performSelectors:
 NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://www.oheroj.com/images/sisuo.png">
 
 
 
@@ -180,7 +180,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -190,7 +190,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -210,7 +210,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            A propos
+            Über
           </a>
         </li>
       
@@ -263,7 +263,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -438,7 +438,7 @@ isFinished
 <pre><code>1.每条线程都有唯一的一个与之对应的RunLoop对象
 2.主线程的RunLoop已经自动创建好了，子线程的RunLoop需要主动创建
 3.RunLoop在第一次获取时创建，在线程结束时销毁
-</code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="/images/sisuo.png" alt=""></p>
 <p>在串行队列中，当线程开始执行block1时，必须要执行里面的block2,而由于是串行队列， block2只能等block1执行完才能执行, 这样block1和block2线程的执行就会互相等待，造成死锁。</p>
 <h3 id="死锁举例："><a href="#死锁举例：" class="headerlink" title="死锁举例："></a>死锁举例：</h3><h4 id="主队列死锁："><a href="#主队列死锁：" class="headerlink" title="主队列死锁："></a>主队列死锁：</h4><pre><code>dispatch_sync(dispatch_get_main_queue(), ^{
     // 发生死锁下面的代码不会执行
@@ -567,10 +567,10 @@ dispatch_async(serialQueue, ^{
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Des Matières
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ensemble
+            Übersicht
           </li>
         </ul>
       
@@ -587,7 +587,7 @@ dispatch_async(serialQueue, ^{
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -597,7 +597,7 @@ dispatch_async(serialQueue, ^{
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -663,11 +663,11 @@ dispatch_async(serialQueue, ^{
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

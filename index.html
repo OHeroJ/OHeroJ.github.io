@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            A propos
+            Über
           </a>
         </li>
       
@@ -256,7 +256,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -433,7 +433,7 @@ isFinished
 <pre><code>1.每条线程都有唯一的一个与之对应的RunLoop对象
 2.主线程的RunLoop已经自动创建好了，子线程的RunLoop需要主动创建
 3.RunLoop在第一次获取时创建，在线程结束时销毁
-</code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="/images/sisuo.png" alt=""></p>
 <p>在串行队列中，当线程开始执行block1时，必须要执行里面的block2,而由于是串行队列， block2只能等block1执行完才能执行, 这样block1和block2线程的执行就会互相等待，造成死锁。</p>
 <h3 id="死锁举例："><a href="#死锁举例：" class="headerlink" title="死锁举例："></a>死锁举例：</h3><h4 id="主队列死锁："><a href="#主队列死锁：" class="headerlink" title="主队列死锁："></a>主队列死锁：</h4><pre><code>dispatch_sync(dispatch_get_main_queue(), ^{
     // 发生死锁下面的代码不会执行
@@ -512,7 +512,7 @@ dispatch_async(serialQueue, ^{
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
               2016-05-25
             </time>
@@ -653,7 +653,7 @@ default: ()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -771,7 +771,7 @@ tags:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-24T10:11:23+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -888,7 +888,7 @@ tags:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -898,7 +898,7 @@ tags:
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -953,11 +953,11 @@ tags:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
