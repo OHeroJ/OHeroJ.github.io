@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS  多线程," />
 
 
 
@@ -84,15 +84,28 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="OHeroJ">
-<meta property="og:url" content="http://www.oheroj.com/index.html">
+<meta name="description" content="Objective-C中实现多线程 performSelectors:
+   NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用
+
+在当前线程中执行方法：
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS多线程">
+<meta property="og:url" content="http://www.oheroj.com/2016/06/27/iOS多线程/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description">
+<meta property="og:description" content="Objective-C中实现多线程 performSelectors:
+   NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用
+
+在当前线程中执行方法：
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay">
+<meta property="og:updated_time" content="2016-06-27T03:50:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OHeroJ">
-<meta name="twitter:description">
+<meta name="twitter:title" content="iOS多线程">
+<meta name="twitter:description" content="Objective-C中实现多线程 performSelectors:
+   NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用
+
+在当前线程中执行方法：
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay">
 
 
 
@@ -110,7 +123,7 @@
   };
 </script>
 
-  <title> OHeroJ </title>
+  <title> iOS多线程 | OHeroJ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -131,9 +144,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -210,9 +221,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -232,10 +243,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/06/27/iOS多线程/" itemprop="url">
-                  iOS多线程
-                </a>
+                iOS多线程
               
             
           </h1>
@@ -275,9 +283,7 @@
       
 
       
-        
-          
-            <ol>
+        <ol>
 <li><h4 id="Objective-C中实现多线程"><a href="#Objective-C中实现多线程" class="headerlink" title="Objective-C中实现多线程"></a>Objective-C中实现多线程</h4><p> <code>performSelectors</code>:</p>
 <p>   NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
 <ol>
@@ -409,374 +415,58 @@ isFinished
 * 能够使用 GCD 的地方，尽量使用 GCD
 * 在需要更细粒度控制线程时，考虑 NSOperation
 </code></pre>
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/25/Swift-模式匹配/" itemprop="url">
-                  Swift 模式匹配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
-              2016-05-25
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/iOS-多线程/" rel="tag">#iOS  多线程</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="模式匹配进阶"><a href="#模式匹配进阶" class="headerlink" title="模式匹配进阶"></a>模式匹配进阶</h3><ol>
-<li><p>通配符模式</p>
-<p> 通配符模式会忽略需要匹配的值， <code>_</code></p>
-</li>
-<li><p>标示模式</p>
-<p> 匹配具体的值</p>
-</li>
-<li><p>值绑定模式</p>
-<pre><code>switch (4, 5) {
-    case let (x, y): print(&quot;\(x) \(y)&quot;)
-}
-</code></pre></li>
-<li><p>元组模式</p>
-<pre><code>let age = 23
-let job: String? = &quot;Operator&quot;
-let payload: AnyObject = NSDictionary()
-
-switch (age, job, payload) {
-  case (let age, _?, _ as NSDictionary):
-  print(age)
-  default: ()
-}
-</code></pre></li>
-<li><p>枚举Case模式</p>
-</li>
-<li><p>类型转换模式</p>
-<ul>
-<li>is 类型：匹配右手边内容的运行时类型（或者类型的子类）。它会做类型转换但是不关注返回值。所以你的 case 块不知道所匹配的类型是什么。</li>
-<li><p>模式 as 类型：和 is 模式做同样的匹配操作，但是如果成功的话会把类型转换到左侧指定的模式中。</p>
-<p>  let a: Any = 5<br>  switch a {</p>
-<pre><code>// 这会失败因为它的类型仍然是 `Any`
-// 错误: binary operator &apos;+&apos; cannot be applied to operands of type &apos;Any&apos; and &apos;Int&apos;
-case is Int: print (a + 1)
-// 有效并返回 &apos;6&apos;
-case let n as Int: print (n + 1)
-default: ()
-</code></pre><p>  }</p>
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/25/Swift-模式匹配/" rel="next" title="Swift 模式匹配">
+                <i class="fa fa-chevron-left"></i> Swift 模式匹配
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/05/24/Hexo-Use/" itemprop="url">
-                  Hexo Use
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
-              2016-05-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <blockquote>
-<p>纸上得来终觉浅， 绝知此事要躬行</p>
-</blockquote>
-<h3 id="新建博文："><a href="#新建博文：" class="headerlink" title="新建博文："></a>新建博文：</h3><p>  hexo new “文章题目”</p>
-<h3 id="新建页面："><a href="#新建页面：" class="headerlink" title="新建页面："></a>新建页面：</h3><p>  hexo new page “页面名称”</p>
-<h3 id="发布博文："><a href="#发布博文：" class="headerlink" title="发布博文："></a>发布博文：</h3><p>  hexo clean<br>  hexo generate<br>  hexo deploy</p>
-<blockquote>
-<p>对于CNAME和README文件，我们应该把他们放在source文件夹中</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/24/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T10:11:23+08:00" content="2016-05-24">
-              2016-05-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -784,6 +474,10 @@ default: ()
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -803,8 +497,17 @@ default: ()
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -847,6 +550,17 @@ default: ()
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Objective-C中实现多线程"><span class="nav-number">1.</span> <span class="nav-text">Objective-C中实现多线程</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -943,6 +657,10 @@ default: ()
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
