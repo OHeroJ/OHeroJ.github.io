@@ -97,7 +97,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
 Objective-C中实现多线程performSelectors:
 NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-27T14:38:08.000Z">
+<meta property="og:updated_time" content="2016-06-27T14:44:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS多线程">
 <meta name="twitter:description" content="多线程的优缺点优点: 多线程能够适当提高程序的执行效率，适当提高资源利用率(CPU、内存利用率)。
@@ -180,7 +180,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -190,7 +190,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -210,7 +210,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            A propos
           </a>
         </li>
       
@@ -263,7 +263,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -303,129 +303,93 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
 <p><code>缺点</code>: 每开启一条线程需要占用一定的内存空间，那么可想而知，如果开启大量的线程就会消耗大量的内存空间，从而降低程序的性能。</p>
 <h2 id="Objective-C中实现多线程"><a href="#Objective-C中实现多线程" class="headerlink" title="Objective-C中实现多线程"></a>Objective-C中实现多线程</h2><p><code>performSelectors</code>:</p>
 <p>NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
-<ol>
-<li><p>在当前线程中执行方法：</p>
-<pre><code>- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
+<h3 id="在当前线程中执行方法："><a href="#在当前线程中执行方法：" class="headerlink" title="在当前线程中执行方法："></a>在当前线程中执行方法：</h3><pre><code>- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
 
 - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray *)modes
-</code></pre></li>
-<li><p>在指定线程中执行方法：</p>
-<pre><code>- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait
+</code></pre><h3 id="在指定线程中执行方法："><a href="#在指定线程中执行方法：" class="headerlink" title="在指定线程中执行方法："></a>在指定线程中执行方法：</h3><pre><code>- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait
 
 - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
-</code></pre></li>
-<li><p>在主线程中执行方法：</p>
-<pre><code>-(void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument
+</code></pre><h3 id="在主线程中执行方法："><a href="#在主线程中执行方法：" class="headerlink" title="在主线程中执行方法："></a>在主线程中执行方法：</h3><pre><code>-(void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument
 waitUntilDone:(BOOL)wait
 
 -(void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg
 waitUntilDone:(BOOL)wait
 modes:(NSArray *)array
-</code></pre></li>
-<li><p>在后台线程中执行方法：</p>
-<pre><code>-(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
-</code></pre></li>
-</ol>
-<h2 id="NSThread-pthread"><a href="#NSThread-pthread" class="headerlink" title="NSThread / pthread"></a>NSThread / pthread</h2><p>pthread_t 和 NSThread是一一对应的。</p>
-<ul>
-<li><p>三种实现开启线程的方式：</p>
-<ol>
-<li><p>动态实例化</p>
-<pre><code>NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
+</code></pre><h3 id="在后台线程中执行方法："><a href="#在后台线程中执行方法：" class="headerlink" title="在后台线程中执行方法："></a>在后台线程中执行方法：</h3><pre><code>-(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
+</code></pre><h2 id="NSThread-pthread"><a href="#NSThread-pthread" class="headerlink" title="NSThread / pthread"></a>NSThread / pthread</h2><p>pthread_t 和 NSThread是一一对应的。</p>
+<h3 id="三种实现开启线程的方式："><a href="#三种实现开启线程的方式：" class="headerlink" title="三种实现开启线程的方式："></a>三种实现开启线程的方式：</h3><pre><code>1. 动态实例化
 
-thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
+        NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
 
-[thread start];
-</code></pre></li>
-<li><p>静态实例化【分离线程】</p>
-<pre><code>[NSThread detachNewThreadSelector:@selector(loadImageSource:) toTarget:self withObject:imgUrl];
-</code></pre></li>
-<li><p>隐式实例化</p>
-<pre><code>[self performSelectorInBackground:@selector(loadImageSource:) withObject:imgUrl];
-</code></pre></li>
-</ol>
-</li>
-<li><p>线程间的通信</p>
-<ol>
-<li><p>performSelector On The thread</p>
-<pre><code>//在指定线程上执行操作
-[self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES];
-//在主线程上执行操作
-[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES];
-//在当前线程执行操作
-[self performSelector:@selector(run) withObject:nil];
-</code></pre></li>
-<li><p>Mach Port (了解)</p>
-<p> 父线程创建了一个NSMachPort对象，在创建子线程的时候一参数的方式将其传递给子线程，这样子线程就可以向这个传过来的NSMachPort对象发送消息，如果想让父线程也可以向子线程发个特殊消息，传过来的是自己创建的另一个NSMachPort对象，这样父线程便持有了子线程创建的port对象，可以向这个子线程的port对象发送消息。</p>
-<p> 当然各自的port对象需要设置delegate以及schdule到自己所在线程的RunLoop中，这样来了消息后，处理port消息的delegate方法会被调用，你就可以自己处理消息了</p>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h2><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
+        thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
+
+        [thread start];
+
+2. 静态实例化【分离线程】
+
+        [NSThread detachNewThreadSelector:@selector(loadImageSource:) toTarget:self withObject:imgUrl];
+
+3. 隐式实例化
+
+        [self performSelectorInBackground:@selector(loadImageSource:) withObject:imgUrl];
+</code></pre><h3 id="线程间的通信"><a href="#线程间的通信" class="headerlink" title="线程间的通信"></a>线程间的通信</h3><pre><code>1. performSelector On The thread
+
+        //在指定线程上执行操作
+        [self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES];
+        //在主线程上执行操作
+        [self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES];
+        //在当前线程执行操作
+        [self performSelector:@selector(run) withObject:nil];
+
+2. Mach Port (了解)
+
+    父线程创建了一个NSMachPort对象，在创建子线程的时候一参数的方式将其传递给子线程，这样子线程就可以向这个传过来的NSMachPort对象发送消息，如果想让父线程也可以向子线程发个特殊消息，传过来的是自己创建的另一个NSMachPort对象，这样父线程便持有了子线程创建的port对象，可以向这个子线程的port对象发送消息。
+
+    当然各自的port对象需要设置delegate以及schdule到自己所在线程的RunLoop中，这样来了消息后，处理port消息的delegate方法会被调用，你就可以自己处理消息了
+</code></pre><h2 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h2><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
 <p>NSOperation是个抽象类，但同时也提供了两个可以直接使用的子类： NSInvocationOperation 和NSBlockOperation.[任务的封装方式]</p>
 <p>NSOperationQueue则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation被添加到NSOperationQueue中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象被自动执行。</p>
-<ul>
-<li><p>NSOperation 提供一下任务优先级：</p>
-<pre><code>NSOperationQueuePriorityVeryHigh
+<h3 id="NSOperation-提供一下任务优先级："><a href="#NSOperation-提供一下任务优先级：" class="headerlink" title="NSOperation 提供一下任务优先级："></a>NSOperation 提供一下任务优先级：</h3><pre><code>NSOperationQueuePriorityVeryHigh
 NSOperationQueuePriorityHigh
 NSOperationQueuePriorityNormal
 NSOperationQueuePriorityLow
 NSOperationQueuePriorityVeryLow
-</code></pre></li>
-<li><p>NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</p>
-<pre><code>isReady
+</code></pre><h3 id="NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"><a href="#NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。" class="headerlink" title="NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"></a>NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</h3><pre><code>isReady
 isExecuting
 isFinished
-</code></pre></li>
-<li><p>NSOperation 对象间的依赖性可以：</p>
-<pre><code>[refreshUIOperation addDependency:requestDataOperation];
+</code></pre><h3 id="NSOperation-对象间的依赖性可以："><a href="#NSOperation-对象间的依赖性可以：" class="headerlink" title="NSOperation 对象间的依赖性可以："></a>NSOperation 对象间的依赖性可以：</h3><pre><code>[refreshUIOperation addDependency:requestDataOperation];
 [operationQueue addOperation:requestDataOperation];
 [operationQueue addOperation:refreshUIOperation];
-</code></pre></li>
-<li><p>NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</p>
-</li>
-</ul>
-<h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><ul>
-<li><p>GCD的分发队列：</p>
-<ol>
-<li><p><code>串行队列</code> Serial dispatch queue</p>
-<p>串行分发队列，按照顺序执行队列中的任务，且同一时间只会执行一个任务。串行队列常用于实现同步锁, 由于在串行队列中不会有两个任务并发运行，因此不会出现同时访问临界区的风险；相对于这些任务来说，这就从竞态条件下保护了临界区。所以如果访问临界区的唯一方式是通过提交到调度队列的任务，那么你就不需要担心临界区的安全问题了</p>
-</li>
-<li><p><code>并发队列</code> Concurrent dispatch queue</p>
-<p>在并发队列中的任务能得到的保证是它们会按照被添加的顺序开始执行，但这就是全部的保证了。任务可能以任意顺序完成，你不会知道何时开始运行下一个任务，或者任意时刻有多少 Block 在运行。再说一遍，这完全取决于 GCD 。对于n个并发队列，GCD不会创建对应的n个线程而是进行适当的优化</p>
-</li>
-</ol>
-</li>
-<li><p>队列类型</p>
-<p>  首先，系统提供给你一个叫做 <code>主队列</code>（main queue） 的特殊队列。和其它串行队列一样，这个队列中的任务一次只能执行一个。然而，它能保证所有的任务都在主线程执行，而主线程是唯一可用于更新 UI 的线程。这个队列就是用于发生消息给 UIView 或发送通知的。</p>
-<p>  系统同时提供给你好几个并发队列。它们叫做 <code>全局调度队列</code>（Global Dispatch Queues） 。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple 的 API 也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。</p>
-</li>
-<li><p>GCD任务执行方式</p>
-<ol>
-<li><code>异步</code>(dispatch_async): 将任务放入队列之后，主线程不会等待 block 的返回结果，而是立即继续执行下去。 gcd管理的线程池中有空闲线程就会从队列中取出任务，会开启线程。</li>
-<li><code>同步</code>(dispatch_sync): 任务放入队列之后，主线程被阻塞，需要等待 block 的执行结果返回，才能继续执行下去。不会开启新线程，在当前线程执行</li>
-</ol>
-</li>
-<li><p>几种类型</p>
-<p>  很明显两种执行方式，两种队列。那么就有4中情况： 串行队列同步执行、串行队列异步执行、并行队列同步执行、并行队列异步执行。哪一种会开启新的线程？开几条？是否并发？记忆起来比较绕，但是只要抓住基本的就可以，为了方便理解，现分析如下：</p>
-<ol>
-<li><p>串行队列，同步执行</p>
-<pre><code>串行队列意味着顺序执行，同步执行意味着不开启线程(在当前线程执行)
-</code></pre></li>
-<li><p>串行队列，异步执行</p>
-<pre><code>串行队列顺序执行，异步执行说明要开线程，如果开多个线程的话，不能保证串行队列顺序执行，所以只开一个线程
-</code></pre></li>
-<li><p>并行队列，异步执行</p>
-<pre><code>并行队列执行顺序不确定，异步意味着会开启线程，而并行队列又允许不按顺序执行，所以为了提高性能会开启多个线程来队列取任务.（队列中任务取出任然是顺序取出来的，只是线程执行无序）
-</code></pre></li>
-<li><p>并行队列，同步执行</p>
-<pre><code>同步意味着不离开线程，则肯定是顺序执行
-</code></pre></li>
-</ol>
-</li>
-</ul>
-<h2 id="iOS多线程对比"><a href="#iOS多线程对比" class="headerlink" title="iOS多线程对比"></a>iOS多线程对比</h2><table>
+</code></pre><h3 id="NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源"><a href="#NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源" class="headerlink" title="NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源"></a>NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</h3><h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><h3 id="GCD的分发队列："><a href="#GCD的分发队列：" class="headerlink" title="GCD的分发队列："></a>GCD的分发队列：</h3><pre><code> 1. `串行队列` Serial dispatch queue
+
+串行分发队列，按照顺序执行队列中的任务，且同一时间只会执行一个任务。串行队列常用于实现同步锁, 由于在串行队列中不会有两个任务并发运行，因此不会出现同时访问临界区的风险；相对于这些任务来说，这就从竞态条件下保护了临界区。所以如果访问临界区的唯一方式是通过提交到调度队列的任务，那么你就不需要担心临界区的安全问题了
+
+ 2. `并发队列` Concurrent dispatch queue
+
+ 在并发队列中的任务能得到的保证是它们会按照被添加的顺序开始执行，但这就是全部的保证了。任务可能以任意顺序完成，你不会知道何时开始运行下一个任务，或者任意时刻有多少 Block 在运行。再说一遍，这完全取决于 GCD 。对于n个并发队列，GCD不会创建对应的n个线程而是进行适当的优化
+</code></pre><h3 id="队列类型"><a href="#队列类型" class="headerlink" title="队列类型"></a>队列类型</h3><pre><code>首先，系统提供给你一个叫做 `主队列`（main queue） 的特殊队列。和其它串行队列一样，这个队列中的任务一次只能执行一个。然而，它能保证所有的任务都在主线程执行，而主线程是唯一可用于更新 UI 的线程。这个队列就是用于发生消息给 UIView 或发送通知的。
+
+系统同时提供给你好几个并发队列。它们叫做 `全局调度队列`（Global Dispatch Queues） 。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple 的 API 也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。
+</code></pre><h3 id="GCD任务执行方式"><a href="#GCD任务执行方式" class="headerlink" title="GCD任务执行方式"></a>GCD任务执行方式</h3><pre><code>1. `异步`(dispatch_async): 将任务放入队列之后，主线程不会等待 block 的返回结果，而是立即继续执行下去。 gcd管理的线程池中有空闲线程就会从队列中取出任务，会开启线程。
+2. `同步`(dispatch_sync): 任务放入队列之后，主线程被阻塞，需要等待 block 的执行结果返回，才能继续执行下去。不会开启新线程，在当前线程执行
+</code></pre><h3 id="几种类型"><a href="#几种类型" class="headerlink" title="几种类型"></a>几种类型</h3><pre><code>很明显两种执行方式，两种队列。那么就有4中情况： 串行队列同步执行、串行队列异步执行、并行队列同步执行、并行队列异步执行。哪一种会开启新的线程？开几条？是否并发？记忆起来比较绕，但是只要抓住基本的就可以，为了方便理解，现分析如下：
+
+1. 串行队列，同步执行
+
+        串行队列意味着顺序执行，同步执行意味着不开启线程(在当前线程执行)
+
+2. 串行队列，异步执行
+
+        串行队列顺序执行，异步执行说明要开线程，如果开多个线程的话，不能保证串行队列顺序执行，所以只开一个线程
+
+3. 并行队列，异步执行
+
+        并行队列执行顺序不确定，异步意味着会开启线程，而并行队列又允许不按顺序执行，所以为了提高性能会开启多个线程来队列取任务.（队列中任务取出任然是顺序取出来的，只是线程执行无序）
+
+4. 并行队列，同步执行
+
+        同步意味着不离开线程，则肯定是顺序执行
+</code></pre><h2 id="iOS多线程对比"><a href="#iOS多线程对比" class="headerlink" title="iOS多线程对比"></a>iOS多线程对比</h2><table>
 <thead>
 <tr>
 <th>采用技术</th>
@@ -476,15 +440,11 @@ isFinished
 3.RunLoop在第一次获取时创建，在线程结束时销毁
 </code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="http://upload-images.jianshu.io/upload_images/1854490-7a0dcaf4513cfddd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>在串行队列中，当线程开始执行block1时，必须要执行里面的block2,而由于是串行队列， block2只能等block1执行完才能执行, 这样block1和block2线程的执行就会互相等待，造成死锁。</p>
-<h4 id="死锁举例："><a href="#死锁举例：" class="headerlink" title="死锁举例："></a>死锁举例：</h4><ul>
-<li><p>主队列死锁：</p>
-<pre><code>dispatch_sync(dispatch_get_main_queue(), ^{
+<h3 id="死锁举例："><a href="#死锁举例：" class="headerlink" title="死锁举例："></a>死锁举例：</h3><h4 id="主队列死锁："><a href="#主队列死锁：" class="headerlink" title="主队列死锁："></a>主队列死锁：</h4><pre><code>dispatch_sync(dispatch_get_main_queue(), ^{
     // 发生死锁下面的代码不会执行
     NSLog(@&quot;middle&quot;);
 });
-</code></pre></li>
-<li><p>其他线程死锁</p>
-<pre><code>dispatch_queue_t serialQueue = dispatch_queue_create(&quot;serial_queue&quot;, DISPATCH_QUEUE_SERIAL);
+</code></pre><h4 id="其他线程死锁"><a href="#其他线程死锁" class="headerlink" title="其他线程死锁"></a>其他线程死锁</h4><pre><code>dispatch_queue_t serialQueue = dispatch_queue_create(&quot;serial_queue&quot;, DISPATCH_QUEUE_SERIAL);
 dispatch_async(serialQueue, ^{
     // 串行队列block1
     NSLog(@&quot;begin&quot;);
@@ -495,9 +455,7 @@ dispatch_async(serialQueue, ^{
     // 不会打印
     NSLog(@&quot;end&quot;);
 });
-</code></pre></li>
-</ul>
-
+</code></pre>
       
     </div>
 
@@ -609,10 +567,10 @@ dispatch_async(serialQueue, ^{
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -629,7 +587,7 @@ dispatch_async(serialQueue, ^{
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -639,7 +597,7 @@ dispatch_async(serialQueue, ^{
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -678,7 +636,7 @@ dispatch_async(serialQueue, ^{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的优缺点"><span class="nav-number">1.</span> <span class="nav-text">多线程的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective-C中实现多线程"><span class="nav-number">2.</span> <span class="nav-text">Objective-C中实现多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread-pthread"><span class="nav-number">3.</span> <span class="nav-text">NSThread / pthread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation"><span class="nav-number">4.</span> <span class="nav-text">NSOperation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">5.</span> <span class="nav-text">GCD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程对比"><span class="nav-number">6.</span> <span class="nav-text">iOS多线程对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">7.</span> <span class="nav-text">实际开发中的选择 （GCD or NSOperation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程与RunLoop的关系"><span class="nav-number">8.</span> <span class="nav-text">iOS多线程与RunLoop的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程死锁问题"><span class="nav-number">9.</span> <span class="nav-text">iOS多线程死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁举例："><span class="nav-number">9.0.1.</span> <span class="nav-text">死锁举例：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的优缺点"><span class="nav-number">1.</span> <span class="nav-text">多线程的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective-C中实现多线程"><span class="nav-number">2.</span> <span class="nav-text">Objective-C中实现多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前线程中执行方法："><span class="nav-number">2.1.</span> <span class="nav-text">在当前线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在指定线程中执行方法："><span class="nav-number">2.2.</span> <span class="nav-text">在指定线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在主线程中执行方法："><span class="nav-number">2.3.</span> <span class="nav-text">在主线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在后台线程中执行方法："><span class="nav-number">2.4.</span> <span class="nav-text">在后台线程中执行方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread-pthread"><span class="nav-number">3.</span> <span class="nav-text">NSThread / pthread</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现开启线程的方式："><span class="nav-number">3.1.</span> <span class="nav-text">三种实现开启线程的方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间的通信"><span class="nav-number">3.2.</span> <span class="nav-text">线程间的通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation"><span class="nav-number">4.</span> <span class="nav-text">NSOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-提供一下任务优先级："><span class="nav-number">4.1.</span> <span class="nav-text">NSOperation 提供一下任务优先级：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"><span class="nav-number">4.2.</span> <span class="nav-text">NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-对象间的依赖性可以："><span class="nav-number">4.3.</span> <span class="nav-text">NSOperation 对象间的依赖性可以：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源"><span class="nav-number">4.4.</span> <span class="nav-text">NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">5.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD的分发队列："><span class="nav-number">5.1.</span> <span class="nav-text">GCD的分发队列：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列类型"><span class="nav-number">5.2.</span> <span class="nav-text">队列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD任务执行方式"><span class="nav-number">5.3.</span> <span class="nav-text">GCD任务执行方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种类型"><span class="nav-number">5.4.</span> <span class="nav-text">几种类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程对比"><span class="nav-number">6.</span> <span class="nav-text">iOS多线程对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">7.</span> <span class="nav-text">实际开发中的选择 （GCD or NSOperation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程与RunLoop的关系"><span class="nav-number">8.</span> <span class="nav-text">iOS多线程与RunLoop的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程死锁问题"><span class="nav-number">9.</span> <span class="nav-text">iOS多线程死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁举例："><span class="nav-number">9.1.</span> <span class="nav-text">死锁举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主队列死锁："><span class="nav-number">9.1.1.</span> <span class="nav-text">主队列死锁：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他线程死锁"><span class="nav-number">9.1.2.</span> <span class="nav-text">其他线程死锁</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -705,11 +663,11 @@ dispatch_async(serialQueue, ^{
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
