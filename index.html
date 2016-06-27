@@ -277,9 +277,8 @@
       
         
           
-            <ol>
-<li><h4 id="Objective-C中实现多线程"><a href="#Objective-C中实现多线程" class="headerlink" title="Objective-C中实现多线程"></a>Objective-C中实现多线程</h4><p> <code>performSelectors</code>:</p>
-<p>   NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
+            <h4 id="1-Objective-C中实现多线程"><a href="#1-Objective-C中实现多线程" class="headerlink" title="1. Objective-C中实现多线程"></a>1. Objective-C中实现多线程</h4><p><code>performSelectors</code>:</p>
+<p>NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
 <ol>
 <li><p>在当前线程中执行方法：</p>
 <pre><code>- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
@@ -292,21 +291,18 @@
 - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
 </code></pre></li>
 <li><p>在主线程中执行方法：</p>
-<pre><code>    -(void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument
+<pre><code>-(void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument
 waitUntilDone:(BOOL)wait
 
-    -(void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg
-waitUntilDone:(BOOL)wait modes:(NSArray *)array
+-(void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg
+waitUntilDone:(BOOL)wait
+modes:(NSArray *)array
+</code></pre></li>
+<li><p>在后台线程中执行方法：</p>
+<pre><code>-(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
 </code></pre></li>
 </ol>
-</li>
-</ol>
-<pre><code>4. 在后台线程中执行方法：
-
-            -(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
-</code></pre><ol>
-<li><p>####NSThread / pthread</p>
-<ul>
+<h4 id="2-NSThread-pthread"><a href="#2-NSThread-pthread" class="headerlink" title="2. NSThread / pthread"></a>2. NSThread / pthread</h4><ul>
 <li><p>三种实现开启线程的方式：</p>
 <ol>
 <li><p>动态实例化</p>
@@ -333,12 +329,9 @@ thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
 [self performSelector:@selector(run) withObject:nil];
 </code></pre></li>
 </ul>
-</li>
-</ol>
-<ol>
-<li><p>####NSOperation<br> 通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
-<p> NSOperation是个抽象类，但同时也提供了两个可以直接使用的子类： NSInvocationOperation 和NSBlockOperation.[任务的封装方式]</p>
-<p> NSOperationQueue则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation被添加到NSOperationQueue中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象被自动执行。</p>
+<h4 id="3-NSOperation"><a href="#3-NSOperation" class="headerlink" title="3. NSOperation"></a>3. NSOperation</h4><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
+<p>NSOperation是个抽象类，但同时也提供了两个可以直接使用的子类： NSInvocationOperation 和NSBlockOperation.[任务的封装方式]</p>
+<p>NSOperationQueue则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation被添加到NSOperationQueue中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象被自动执行。</p>
 <ul>
 <li><p>NSOperation 提供一下任务优先级：</p>
 <pre><code>NSOperationQueuePriorityVeryHigh
@@ -360,55 +353,70 @@ isFinished
 <li><p>NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</p>
 </li>
 </ul>
-</li>
-</ol>
-<ol>
-<li><p>####GCD</p>
-<ul>
+<h4 id="4-GCD"><a href="#4-GCD" class="headerlink" title="4. GCD"></a>4. GCD</h4><ul>
 <li><p>GCD的分发队列：</p>
 <ol>
 <li><p><code>串行队列</code> Serial dispatch queue</p>
 <p>串行分发队列，按照顺序执行队列中的任务，且同一时间只会执行一个任务。串行队列常用于实现同步锁, 由于在串行队列中不会有两个任务并发运行，因此不会出现同时访问临界区的风险；相对于这些任务来说，这就从竞态条件下保护了临界区。所以如果访问临界区的唯一方式是通过提交到调度队列的任务，那么你就不需要担心临界区的安全问题了</p>
 </li>
+<li><p><code>并发队列</code> Concurrent dispatch queue</p>
+<p>在并发队列中的任务能得到的保证是它们会按照被添加的顺序开始执行，但这就是全部的保证了。任务可能以任意顺序完成，你不会知道何时开始运行下一个任务，或者任意时刻有多少 Block 在运行。再说一遍，这完全取决于 GCD 。</p>
+</li>
+</ol>
+</li>
+<li><p>队列类型</p>
+<p>  首先，系统提供给你一个叫做 <code>主队列</code>（main queue） 的特殊队列。和其它串行队列一样，这个队列中的任务一次只能执行一个。然而，它能保证所有的任务都在主线程执行，而主线程是唯一可用于更新 UI 的线程。这个队列就是用于发生消息给 UIView 或发送通知的。</p>
+<p>  系统同时提供给你好几个并发队列。它们叫做 <code>全局调度队列</code>（Global Dispatch Queues） 。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple 的 API 也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。</p>
+</li>
+<li><p>GCD任务执行方式</p>
+<ol>
+<li><code>异步</code>(dispatch_async): 将任务放入队列之后，主线程不会等待 block 的返回结果，而是立即继续执行下去</li>
+<li><code>同步</code>(dispatch_sync): 任务放入队列之后，主线程被阻塞，需要等待 block 的执行结果返回，才能继续执行下去。</li>
 </ol>
 </li>
 </ul>
-</li>
-</ol>
-<pre><code>     2. `并发队列` Concurrent dispatch queue
-
-     在并发队列中的任务能得到的保证是它们会按照被添加的顺序开始执行，但这就是全部的保证了。任务可能以任意顺序完成，你不会知道何时开始运行下一个任务，或者任意时刻有多少 Block 在运行。再说一遍，这完全取决于 GCD 。
-
-
-* 队列类型
-
-    首先，系统提供给你一个叫做 `主队列`（main queue） 的特殊队列。和其它串行队列一样，这个队列中的任务一次只能执行一个。然而，它能保证所有的任务都在主线程执行，而主线程是唯一可用于更新 UI 的线程。这个队列就是用于发生消息给 UIView 或发送通知的。
-
-    系统同时提供给你好几个并发队列。它们叫做 `全局调度队列`（Global Dispatch Queues） 。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple 的 API 也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。
-
-* GCD任务执行方式
-
-    1. `异步`(dispatch_async): 将任务放入队列之后，主线程不会等待 block 的返回结果，而是立即继续执行下去
-    2. `同步`(dispatch_sync): 任务放入队列之后，主线程被阻塞，需要等待 block 的执行结果返回，才能继续执行下去。
-</code></pre><ol>
-<li><p>####iOS多线程对比</p>
-<p> 采用技术| 描述|优点|缺点<br> ——-|——-|——|——-<br> NSThread|每个NSThread对象对应一个线程，真正最原始的线程。|NSThread 轻量级最低，相对简单|手动管理所有的线程活动，如生命周期、线程同步、睡眠等<br> NSOperation|自带线程管理的抽象类|自带线程周期管理，操作上可更注重自己逻辑|面向对象的抽象类，只能实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation<br> GCD|Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法|最高效，避开并发陷阱|基于C实现</p>
-</li>
-</ol>
-<ol>
-<li><p>####实际开发中的选择 （GCD or NSOperation）<br> GCD 虽然在很多地方值得提倡，但并不是任务管理和多线程地唯一解决方案，并不是说所有的地方都应该使用 GCD。GCD 是一个纯 C API，NSOperation 是 Objective-C 类，在一些地方对象编程是有优势的。NSOperation 也提供了一些 GCD 无法实现，或者 GCD 所没有的功能。</p>
-<p> 考略使用NSOperation的一些：</p>
+<h4 id="5-iOS多线程对比"><a href="#5-iOS多线程对比" class="headerlink" title="5. iOS多线程对比"></a>5. iOS多线程对比</h4><table>
+<thead>
+<tr>
+<th>采用技术</th>
+<th>描述</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NSThread</td>
+<td>每个NSThread对象对应一个线程，真正最原始的线程。</td>
+<td>NSThread 轻量级最低，相对简单</td>
+<td>手动管理所有的线程活动，如生命周期、线程同步、睡眠等</td>
+</tr>
+<tr>
+<td>NSOperation</td>
+<td>自带线程管理的抽象类</td>
+<td>自带线程周期管理，操作上可更注重自己逻辑</td>
+<td>面向对象的抽象类，只能实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation</td>
+</tr>
+<tr>
+<td>GCD</td>
+<td>Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法</td>
+<td>最高效，避开并发陷阱</td>
+<td>基于C实现</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6-实际开发中的选择-（GCD-or-NSOperation）"><a href="#6-实际开发中的选择-（GCD-or-NSOperation）" class="headerlink" title="6. 实际开发中的选择 （GCD or NSOperation）"></a>6. 实际开发中的选择 （GCD or NSOperation）</h4><p>GCD 虽然在很多地方值得提倡，但并不是任务管理和多线程地唯一解决方案，并不是说所有的地方都应该使用 GCD。GCD 是一个纯 C API，NSOperation 是 Objective-C 类，在一些地方对象编程是有优势的。NSOperation 也提供了一些 GCD 无法实现，或者 GCD 所没有的功能。</p>
+<p>考略使用NSOperation的一些：</p>
 <ul>
 <li>当你需要取消线程任务时，GCD 无法提供取消任务的操作。而 NSOperation 提供了取消任务的操作;</li>
 <li>当你需要更细的粒度地观察任务改变了状态时，由于 NSOperation 是一个对象，比较 GCD 使用的 block 而言，通过对 NSOperation 对象进行键值观察（KVO）能很容易观察到任务的状态改变;<br>*<br>当你需要重用线程任务时，NSOperation 作为一个普通的 Objective-C 对象，可以存储任何信息。对象就是为重用而设计的，这时，NSOperation 比 GCD 使用的 block 要更方便。</li>
 </ul>
-</li>
-</ol>
-<pre><code>建议：
+<p>建议：</p>
+<ul>
+<li>能够使用 GCD 的地方，尽量使用 GCD</li>
+<li>在需要更细粒度控制线程时，考虑 NSOperation</li>
+</ul>
 
-* 能够使用 GCD 的地方，尽量使用 GCD
-* 在需要更细粒度控制线程时，考虑 NSOperation
-</code></pre>
           
         
       
