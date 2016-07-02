@@ -243,6 +243,283 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/02/iOS直播Tutorials/" itemprop="url">
+                  iOS直播Tutorials
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/02/iOS直播Tutorials/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/iOS直播Tutorials/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="直播相关基本知识"><a href="#直播相关基本知识" class="headerlink" title="直播相关基本知识"></a>直播相关基本知识</h2><ul>
+<li>服务器<ul>
+<li>目前主流采用 服务器基于<code>nginx</code>，并且使用模块<a href="https://github.com/arut/nginx-rtmp-module" target="_blank" rel="external">nginx-rtmp-module</a>模块来增加对HLS的支持。</li>
+</ul>
+</li>
+<li><p>协议:<br>  国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
+<ul>
+<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="external">Real Time Messaging Protocol</a>) 协议</p>
+<p>  Adobe公司为Flash播放器和服务器之间音、视频及数据传输开发的实时消息传送协议。协议中，视频必须是H264编码，音频必须是AAC或MP3编码，且多以flv格式封包</p>
+<ol>
+<li>开源软件和开源库的支持稳定完整。如斗鱼主播常用的OBS软件，开源的librtmp库，服务端有nginx-rtmp插件。</li>
+<li>播放端安装率高。只要浏览器支持FlashPlayer就能非常简易的播放RTMP的直播，协议详解可以Google了解。相对其他协议而言，RTMP协议初次建立连接的时候握手过程过于复杂（底层基于TCP，这里说的是RTMP协议本身的交互），视不同的网络状况会带来给首开带来100ms以上的延迟。基于RTMP的直播一般内容延迟在2~5秒。</li>
+</ol>
+</li>
+<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="external">HTTP Live Streaming</a>) 协议</p>
+<p>  是由Apple公司定义的基于HTTP的流媒体实时传输协议。它的原理是将整个流分为一个一个小的文件来下载，每次只下载若干个。传输内容包括两部分：一是<code>M3U8</code>描述文件，二是<code>TS</code>媒体文件。TS媒体文件中的视频必须是<code>H264</code>编码,音频必须是<code>AAC</code>或<code>MP3</code>编码。</p>
+<p>  HLS协议在服务器端将直播数据流存储为连续的、很短时长的媒体文件（MPEG-TS格式），而客户端则不断的下载并播放这些小文件，因为服务器端总是会将最新的直播数据生成新的小文件，这样客户端只要不停的按顺序播放从服务器获取到的文件，就实现了直播。由此可见，基本上可以认为，HLS是以点播的技术方式来实现直播。由于数据通过HTTP协议传输，所以完全不用考虑防火墙或者代理的问题，而且分段文件的时长很短，客户端可以很快的选择和切换码率，以适应不同带宽条件下的播放。不过HLS的这种技术特点，决定了它的延迟一般总是会高于普通的流媒体直播协议。</p>
+<p>  HLS有一个非常大的<code>优点</code>：HTML5可以直接打开播放；这个意味着可以把一个直播链接通过微信等转发分享，不需要安装任何独立的APP，有浏览器即可，所以流行度很高。社交直播APP，HLS可以说是刚需</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><ol>
+<li><p>音视频的采集</p>
+<pre><code>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据
+</code></pre></li>
+<li><p>对视频进行H264编码，对音频进行AAC编码</p>
+<p> 将原始视频编码过程中，有两种方案：</p>
+<ol>
+<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">FFmpeg</a> 进行编码</li>
+<li>利用iOS自身的AVAssetWriter 或VideoToolBox.framework的VTCompressionSession进行编码。</li>
+</ol>
+</li>
+<li><p>编码：</p>
+<ol>
+<li>RTMP上推直播视频: 对编码后的音、视频数据进行FLV封包；</li>
+<li>HTTP Live Streaming直播: 视频和音频数据封装为MPEG-TS包</li>
+</ol>
+</li>
+<li><p>上推到服务端。</p>
+<ol>
+<li>基于RTMP进行推流的话：需要建立RTMP连接，</li>
+<li>HTTP Live Streaming直播: 直接http进行数据传输</li>
+</ol>
+</li>
+<li><p>播放端 拉流 解密</p>
+</li>
+</ol>
+<h2 id="IOS手机直播Demo流程"><a href="#IOS手机直播Demo流程" class="headerlink" title="IOS手机直播Demo流程"></a>IOS手机直播Demo流程</h2><h3 id="搭建本地测试服务器【Mac-os-10-11】"><a href="#搭建本地测试服务器【Mac-os-10-11】" class="headerlink" title="搭建本地测试服务器【Mac os 10.11】"></a>搭建本地测试服务器【Mac os 10.11】</h3><pre><code>1. 打开终端
+        brew update
+        brew install nginx-full --with-rtmp-module
+   如果你的mac之前安装了nginx, 那么这个时候先输入这个:
+
+        brew unlink nginx
+
+2. 修改配置文件
+
+    如果你本机上安装了atom,那么在terminal上输入：
+
+        atom /usr/local/etc/nginx
+
+    将配置文件修改为：
+
+        #user  nobody;
+        worker_processes  1;
+
+        #error_log  logs/error.log debug;
+        #error_log       /usr/local/var/log/nginx/error.log warn;
+
+        events {
+            worker_connections  1024;
+        }
+
+        http {
+            include       mime.types;
+            default_type  application/octet-stream;
+
+            sendfile        on;
+            keepalive_timeout  65;
+
+            server {
+                listen       8080;
+                server_name  localhost;
+
+                location /stat {
+                    rtmp_stat all;
+                    rtmp_stat_stylesheet stat.xsl;
+                }
+
+                 # 这个路径一定要改
+                location /stat.xsl {
+                    # you can move stat.xsl to a different location
+                    root /usr/local/Cellar/rtmp-nginx-module/1.1.7.10/share/rtmp-nginx-module;
+                }
+
+                # rtmp control
+                location /control {
+                    rtmp_control all;
+                }
+
+                error_page   500 502 503 504  /50x.html;
+                location = /50x.html {
+                    root   html;
+                }
+            }
+        }
+
+        rtmp {
+            server {
+                listen 1935;
+                ping 30s;
+                notify_method get;
+
+                application myapp {
+                    live on;
+
+                    # sample play/publish handlers
+                    #on_play http://localhost:8080/on_play;
+                    #on_publish http://localhost:8080/on_publish;
+
+                    # sample recorder
+                    #recorder rec1 {
+                    #    record all;
+                    #    record_interval 30s;
+                    #    record_path /tmp;
+                    #    record_unique on;
+                    #}
+
+                    # sample HLS
+                    #hls on;
+                    #hls_path /tmp/hls;
+                    #hls_sync 100ms;
+
+                }
+
+                application hls {
+                    live on;
+                    hls on;
+                    hls_path /tmp/hls;
+                    hls_fragment 5s;
+                }
+
+                # Video on demand
+                #application vod {
+                #    play /var/Videos;
+                #}
+
+                # Video on demand over HTTP
+                #application vod_http {
+                #    play http://localhost:8080/vod/;
+                #}
+            }
+        }
+
+&gt; 注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，
+跟你的rtmp-nginx-module这个版本有关系吧， 可以 `cd /usr/local/Cellar/rtmp-nginx-module/` 来查看
+
+3.  编辑好后， 进行  sudo nginx -s reload
+</code></pre><h3 id="采集音视频-用到是第三方的-LiveVideoCoreSDK"><a href="#采集音视频-用到是第三方的-LiveVideoCoreSDK" class="headerlink" title="采集音视频,用到是第三方的 LiveVideoCoreSDK"></a>采集音视频,用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></h3><p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
+<ol>
+<li>mac 和手机在同一局域网(共连一个wifi)</li>
+<li>然后打开本机的偏好设置-&gt;网络(Network), 看下你的wifi的status有个ip地址。或者你也可以用ipconfig进行才看 内网的ip地址。我的是192.168.1.100</li>
+<li><p>更改LiveVideoCoreSDK上demo</p>
+<pre><code>_RtmpUrlTextField.text = @&quot;rtmp://192.168.1.100:1935/myapp/mystream&quot;;
+</code></pre></li>
+<li><p>真机运行demo</p>
+</li>
+</ol>
+<h3 id="播放端"><a href="#播放端" class="headerlink" title="播放端"></a>播放端</h3><p>安装的ffmpeg没有带ffplay：</p>
+<pre><code>brew unlink ffmpeg
+brew install ffmpeg --with-ffplay
+</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="external">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
+<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="external"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
+<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="external">FFmpeg相关资料 专栏文章</a></li>
+<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/27/iOS多线程/" itemprop="url">
                   iOS多线程
                 </a>
@@ -887,7 +1164,7 @@ tags:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -897,7 +1174,7 @@ tags:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
