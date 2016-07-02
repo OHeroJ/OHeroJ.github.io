@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            A propos
           </a>
         </li>
       
@@ -256,7 +256,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -507,7 +507,7 @@ brew install ffmpeg --with-ffplay
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -701,7 +701,14 @@ dispatch_async(serialQueue, ^{
     // 不会打印
     NSLog(@&quot;end&quot;);
 });
-</code></pre>
+</code></pre><h2 id="拓展异步编程模型知识"><a href="#拓展异步编程模型知识" class="headerlink" title="拓展异步编程模型知识"></a>拓展异步编程模型知识</h2><h3 id="单线程同步模型"><a href="#单线程同步模型" class="headerlink" title="单线程同步模型"></a>单线程同步模型</h3><p><img src="/images/p01_sync.png" alt="同步模型"></p>
+<p>在一个时刻，只能有一个任务在执行，并且前一个任务结束后一个任务才能开始。如果任务都能按照事先规定好的顺序执行，最后一个任务的完成意味着前面所有的任务都已无任何差错地完成并输出其可用的结果—这是多么简单的逻辑.</p>
+<h3 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h3><p><img src="/images/p01_threaded.png" alt="线程模型"></p>
+<p>每个任务都在单独的线程中完成。这些线程都是由操作系统来管理，若在多处理机、多核处理机的系统中可能会相互独立的运行，若在单处理机上，则会交错运行。关键点在于，在线程模式中，具体哪个任务执行由操作系统来处理。但编程人员则只需简单地认为：它们的指令流是相互独立且可以并行执行。</p>
+<h3 id="异步模型"><a href="#异步模型" class="headerlink" title="异步模型"></a>异步模型</h3><p><img src="/images/p01_async.png" alt="异步模型"></p>
+<p>单线程多个任务分时完成(任务是交错完成)。</p>
+<p>在异步编程模型与多线程模型之间还有一个不同：在多线程程序中，对于停止某个线程启动另外一个线程，其决定权并不在程序员手里而在操作系统那里，在编写程序过程中必须要假设在任何时候一个线程都有可能被停止而启动另外一个线程。相反，在异步模型中，一个任务要想运行必须显式放弃当前运行的任务的控制权。这也是相比多线程模型来说，最简洁的地方。 值得注意的是：<code>将异步编程模型与同步模型混合在同一个系统中是可以的</code>。</p>
+
           
         
       
@@ -763,7 +770,7 @@ dispatch_async(serialQueue, ^{
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
               2016-05-25
             </time>
@@ -904,7 +911,7 @@ default: ()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -1022,7 +1029,7 @@ tags:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-05-24T10:11:23+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -1139,7 +1146,7 @@ tags:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -1149,7 +1156,7 @@ tags:
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1204,11 +1211,11 @@ tags:
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

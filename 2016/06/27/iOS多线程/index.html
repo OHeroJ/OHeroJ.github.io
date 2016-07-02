@@ -97,7 +97,10 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
 Objective-C中实现多线程performSelectors:
 NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中">
 <meta property="og:image" content="http://www.oheroj.com/images/sisuo.png">
-<meta property="og:updated_time" content="2016-06-27T14:50:32.000Z">
+<meta property="og:image" content="http://www.oheroj.com/images/p01_sync.png">
+<meta property="og:image" content="http://www.oheroj.com/images/p01_threaded.png">
+<meta property="og:image" content="http://www.oheroj.com/images/p01_async.png">
+<meta property="og:updated_time" content="2016-07-02T14:05:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS多线程">
 <meta name="twitter:description" content="多线程的优缺点优点: 多线程能够适当提高程序的执行效率，适当提高资源利用率(CPU、内存利用率)。
@@ -180,7 +183,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -190,7 +193,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -210,7 +213,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            A propos
           </a>
         </li>
       
@@ -263,7 +266,7 @@ NSObject 提供了以performSelector 为前缀的一些列方法。它们可以�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -455,7 +458,14 @@ dispatch_async(serialQueue, ^{
     // 不会打印
     NSLog(@&quot;end&quot;);
 });
-</code></pre>
+</code></pre><h2 id="拓展异步编程模型知识"><a href="#拓展异步编程模型知识" class="headerlink" title="拓展异步编程模型知识"></a>拓展异步编程模型知识</h2><h3 id="单线程同步模型"><a href="#单线程同步模型" class="headerlink" title="单线程同步模型"></a>单线程同步模型</h3><p><img src="/images/p01_sync.png" alt="同步模型"></p>
+<p>在一个时刻，只能有一个任务在执行，并且前一个任务结束后一个任务才能开始。如果任务都能按照事先规定好的顺序执行，最后一个任务的完成意味着前面所有的任务都已无任何差错地完成并输出其可用的结果—这是多么简单的逻辑.</p>
+<h3 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h3><p><img src="/images/p01_threaded.png" alt="线程模型"></p>
+<p>每个任务都在单独的线程中完成。这些线程都是由操作系统来管理，若在多处理机、多核处理机的系统中可能会相互独立的运行，若在单处理机上，则会交错运行。关键点在于，在线程模式中，具体哪个任务执行由操作系统来处理。但编程人员则只需简单地认为：它们的指令流是相互独立且可以并行执行。</p>
+<h3 id="异步模型"><a href="#异步模型" class="headerlink" title="异步模型"></a>异步模型</h3><p><img src="/images/p01_async.png" alt="异步模型"></p>
+<p>单线程多个任务分时完成(任务是交错完成)。</p>
+<p>在异步编程模型与多线程模型之间还有一个不同：在多线程程序中，对于停止某个线程启动另外一个线程，其决定权并不在程序员手里而在操作系统那里，在编写程序过程中必须要假设在任何时候一个线程都有可能被停止而启动另外一个线程。相反，在异步模型中，一个任务要想运行必须显式放弃当前运行的任务的控制权。这也是相比多线程模型来说，最简洁的地方。 值得注意的是：<code>将异步编程模型与同步模型混合在同一个系统中是可以的</code>。</p>
+
       
     </div>
 
@@ -571,10 +581,10 @@ dispatch_async(serialQueue, ^{
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -591,7 +601,7 @@ dispatch_async(serialQueue, ^{
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -601,7 +611,7 @@ dispatch_async(serialQueue, ^{
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -640,7 +650,7 @@ dispatch_async(serialQueue, ^{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的优缺点"><span class="nav-number">1.</span> <span class="nav-text">多线程的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective-C中实现多线程"><span class="nav-number">2.</span> <span class="nav-text">Objective-C中实现多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前线程中执行方法："><span class="nav-number">2.1.</span> <span class="nav-text">在当前线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在指定线程中执行方法："><span class="nav-number">2.2.</span> <span class="nav-text">在指定线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在主线程中执行方法："><span class="nav-number">2.3.</span> <span class="nav-text">在主线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在后台线程中执行方法："><span class="nav-number">2.4.</span> <span class="nav-text">在后台线程中执行方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread-pthread"><span class="nav-number">3.</span> <span class="nav-text">NSThread / pthread</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现开启线程的方式："><span class="nav-number">3.1.</span> <span class="nav-text">三种实现开启线程的方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间的通信"><span class="nav-number">3.2.</span> <span class="nav-text">线程间的通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation"><span class="nav-number">4.</span> <span class="nav-text">NSOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-提供一下任务优先级："><span class="nav-number">4.1.</span> <span class="nav-text">NSOperation 提供一下任务优先级：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"><span class="nav-number">4.2.</span> <span class="nav-text">NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-对象间的依赖性可以："><span class="nav-number">4.3.</span> <span class="nav-text">NSOperation 对象间的依赖性可以：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源"><span class="nav-number">4.4.</span> <span class="nav-text">NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">5.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD的分发队列："><span class="nav-number">5.1.</span> <span class="nav-text">GCD的分发队列：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列类型"><span class="nav-number">5.2.</span> <span class="nav-text">队列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD任务执行方式"><span class="nav-number">5.3.</span> <span class="nav-text">GCD任务执行方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种类型"><span class="nav-number">5.4.</span> <span class="nav-text">几种类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程对比"><span class="nav-number">6.</span> <span class="nav-text">iOS多线程对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">7.</span> <span class="nav-text">实际开发中的选择 （GCD or NSOperation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程与RunLoop的关系"><span class="nav-number">8.</span> <span class="nav-text">iOS多线程与RunLoop的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程死锁问题"><span class="nav-number">9.</span> <span class="nav-text">iOS多线程死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁举例："><span class="nav-number">9.1.</span> <span class="nav-text">死锁举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主队列死锁："><span class="nav-number">9.1.1.</span> <span class="nav-text">主队列死锁：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他线程死锁"><span class="nav-number">9.1.2.</span> <span class="nav-text">其他线程死锁</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的优缺点"><span class="nav-number">1.</span> <span class="nav-text">多线程的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective-C中实现多线程"><span class="nav-number">2.</span> <span class="nav-text">Objective-C中实现多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前线程中执行方法："><span class="nav-number">2.1.</span> <span class="nav-text">在当前线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在指定线程中执行方法："><span class="nav-number">2.2.</span> <span class="nav-text">在指定线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在主线程中执行方法："><span class="nav-number">2.3.</span> <span class="nav-text">在主线程中执行方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在后台线程中执行方法："><span class="nav-number">2.4.</span> <span class="nav-text">在后台线程中执行方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread-pthread"><span class="nav-number">3.</span> <span class="nav-text">NSThread / pthread</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现开启线程的方式："><span class="nav-number">3.1.</span> <span class="nav-text">三种实现开启线程的方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间的通信"><span class="nav-number">3.2.</span> <span class="nav-text">线程间的通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation"><span class="nav-number">4.</span> <span class="nav-text">NSOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-提供一下任务优先级："><span class="nav-number">4.1.</span> <span class="nav-text">NSOperation 提供一下任务优先级：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"><span class="nav-number">4.2.</span> <span class="nav-text">NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation-对象间的依赖性可以："><span class="nav-number">4.3.</span> <span class="nav-text">NSOperation 对象间的依赖性可以：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源"><span class="nav-number">4.4.</span> <span class="nav-text">NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">5.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD的分发队列："><span class="nav-number">5.1.</span> <span class="nav-text">GCD的分发队列：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列类型"><span class="nav-number">5.2.</span> <span class="nav-text">队列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD任务执行方式"><span class="nav-number">5.3.</span> <span class="nav-text">GCD任务执行方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种类型"><span class="nav-number">5.4.</span> <span class="nav-text">几种类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程对比"><span class="nav-number">6.</span> <span class="nav-text">iOS多线程对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际开发中的选择-（GCD-or-NSOperation）"><span class="nav-number">7.</span> <span class="nav-text">实际开发中的选择 （GCD or NSOperation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程与RunLoop的关系"><span class="nav-number">8.</span> <span class="nav-text">iOS多线程与RunLoop的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS多线程死锁问题"><span class="nav-number">9.</span> <span class="nav-text">iOS多线程死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁举例："><span class="nav-number">9.1.</span> <span class="nav-text">死锁举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主队列死锁："><span class="nav-number">9.1.1.</span> <span class="nav-text">主队列死锁：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他线程死锁"><span class="nav-number">9.1.2.</span> <span class="nav-text">其他线程死锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展异步编程模型知识"><span class="nav-number">10.</span> <span class="nav-text">拓展异步编程模型知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程同步模型"><span class="nav-number">10.1.</span> <span class="nav-text">单线程同步模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程模型"><span class="nav-number">10.2.</span> <span class="nav-text">线程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步模型"><span class="nav-number">10.3.</span> <span class="nav-text">异步模型</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -667,11 +677,11 @@ dispatch_async(serialQueue, ^{
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
