@@ -294,12 +294,8 @@
       
         
           
-            <h2 id="直播相关基本知识"><a href="#直播相关基本知识" class="headerlink" title="直播相关基本知识"></a>直播相关基本知识</h2><ul>
-<li>服务器<ul>
-<li>目前主流采用 服务器基于<code>nginx</code>，并且使用模块<a href="https://github.com/arut/nginx-rtmp-module" target="_blank" rel="external">nginx-rtmp-module</a>模块来增加对HLS的支持。</li>
-</ul>
-</li>
-<li><p>协议:<br>  国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
+            <h2 id="1-直播相关基本知识"><a href="#1-直播相关基本知识" class="headerlink" title="1.直播相关基本知识"></a>1.直播相关基本知识</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
+</code></pre><h3 id="协议"><a href="#协议" class="headerlink" title="协议:"></a>协议:</h3><p>国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
 <ul>
 <li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="external">Real Time Messaging Protocol</a>) 协议</p>
 <p>  Adobe公司为Flash播放器和服务器之间音、视频及数据传输开发的实时消息传送协议。协议中，视频必须是H264编码，音频必须是AAC或MP3编码，且多以flv格式封包</p>
@@ -314,145 +310,123 @@
 <p>  HLS有一个非常大的<code>优点</code>：HTML5可以直接打开播放；这个意味着可以把一个直播链接通过微信等转发分享，不需要安装任何独立的APP，有浏览器即可，所以流行度很高。社交直播APP，HLS可以说是刚需</p>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><ol>
-<li><p>音视频的采集</p>
-<pre><code>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据
-</code></pre></li>
-<li><p>对视频进行H264编码，对音频进行AAC编码</p>
-<p> 将原始视频编码过程中，有两种方案：</p>
+<h2 id="2-步骤："><a href="#2-步骤：" class="headerlink" title="2.步骤："></a>2.步骤：</h2><h3 id="音视频的采集"><a href="#音视频的采集" class="headerlink" title="音视频的采集"></a>音视频的采集</h3><p>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据</p>
+<h3 id="对视频进行H264编码，对音频进行AAC编码"><a href="#对视频进行H264编码，对音频进行AAC编码" class="headerlink" title="对视频进行H264编码，对音频进行AAC编码"></a>对视频进行H264编码，对音频进行AAC编码</h3><p>将原始视频编码过程中，有两种方案：</p>
 <ol>
 <li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">FFmpeg</a> 进行编码</li>
 <li>利用iOS自身的AVAssetWriter 或VideoToolBox.framework的VTCompressionSession进行编码。</li>
 </ol>
-</li>
-<li><p>编码：</p>
-<ol>
+<h3 id="编码："><a href="#编码：" class="headerlink" title="编码："></a>编码：</h3><ol>
 <li>RTMP上推直播视频: 对编码后的音、视频数据进行FLV封包；</li>
 <li>HTTP Live Streaming直播: 视频和音频数据封装为MPEG-TS包</li>
 </ol>
-</li>
-<li><p>上推到服务端。</p>
-<ol>
+<h3 id="上推到服务端。"><a href="#上推到服务端。" class="headerlink" title="上推到服务端。"></a>上推到服务端。</h3><ol>
 <li>基于RTMP进行推流的话：需要建立RTMP连接，</li>
 <li>HTTP Live Streaming直播: 直接http进行数据传输</li>
 </ol>
-</li>
-<li><p>播放端 拉流 解密</p>
-</li>
-</ol>
-<h2 id="IOS手机直播Demo流程"><a href="#IOS手机直播Demo流程" class="headerlink" title="IOS手机直播Demo流程"></a>IOS手机直播Demo流程</h2><h3 id="搭建本地测试服务器【Mac-os-10-11】"><a href="#搭建本地测试服务器【Mac-os-10-11】" class="headerlink" title="搭建本地测试服务器【Mac os 10.11】"></a>搭建本地测试服务器【Mac os 10.11】</h3><pre><code>1. 打开终端
-        brew update
-        brew install nginx-full --with-rtmp-module
-   如果你的mac之前安装了nginx, 那么这个时候先输入这个:
+<h3 id="播放端-拉流-解密"><a href="#播放端-拉流-解密" class="headerlink" title="播放端 拉流 解密"></a>播放端 拉流 解密</h3><h2 id="3-IOS手机直播Demo流程"><a href="#3-IOS手机直播Demo流程" class="headerlink" title="3.IOS手机直播Demo流程"></a>3.IOS手机直播Demo流程</h2><h3 id="搭建本地测试服务器【Mac-os-10-11】"><a href="#搭建本地测试服务器【Mac-os-10-11】" class="headerlink" title="搭建本地测试服务器【Mac os 10.11】"></a>搭建本地测试服务器【Mac os 10.11】</h3><h4 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h4><p>打开终端</p>
+<pre><code>brew update
+brew install nginx-full --with-rtmp-module
+</code></pre><p>如果你的mac之前安装了nginx, 那么这个时候先输入这个:</p>
+<pre><code>brew unlink nginx
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>如果你本机上安装了atom,那么在terminal上输入：</p>
+<pre><code>atom /usr/local/etc/nginx
+</code></pre><p>将配置文件修改为：</p>
+<pre><code>#user  nobody;
+worker_processes  1;
 
-        brew unlink nginx
+#error_log  logs/error.log debug;
+#error_log       /usr/local/var/log/nginx/error.log warn;
 
-2. 修改配置文件
+events {
+    worker_connections  1024;
+}
 
-    如果你本机上安装了atom,那么在terminal上输入：
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
 
-        atom /usr/local/etc/nginx
+    sendfile        on;
+    keepalive_timeout  65;
 
-    将配置文件修改为：
+    server {
+        listen       8080;
+        server_name  localhost;
 
-        #user  nobody;
-        worker_processes  1;
-
-        #error_log  logs/error.log debug;
-        #error_log       /usr/local/var/log/nginx/error.log warn;
-
-        events {
-            worker_connections  1024;
+        location /stat {
+            rtmp_stat all;
+            rtmp_stat_stylesheet stat.xsl;
         }
 
-        http {
-            include       mime.types;
-            default_type  application/octet-stream;
-
-            sendfile        on;
-            keepalive_timeout  65;
-
-            server {
-                listen       8080;
-                server_name  localhost;
-
-                location /stat {
-                    rtmp_stat all;
-                    rtmp_stat_stylesheet stat.xsl;
-                }
-
-                 # 这个路径一定要改
-                location /stat.xsl {
-                    # you can move stat.xsl to a different location
-                    root /usr/local/Cellar/rtmp-nginx-module/1.1.7.10/share/rtmp-nginx-module;
-                }
-
-                # rtmp control
-                location /control {
-                    rtmp_control all;
-                }
-
-                error_page   500 502 503 504  /50x.html;
-                location = /50x.html {
-                    root   html;
-                }
-            }
+         # 这个路径一定要改
+        location /stat.xsl {
+            # you can move stat.xsl to a different location
+            root /usr/local/Cellar/rtmp-nginx-module/1.1.7.10/share/rtmp-nginx-module;
         }
 
-        rtmp {
-            server {
-                listen 1935;
-                ping 30s;
-                notify_method get;
-
-                application myapp {
-                    live on;
-
-                    # sample play/publish handlers
-                    #on_play http://localhost:8080/on_play;
-                    #on_publish http://localhost:8080/on_publish;
-
-                    # sample recorder
-                    #recorder rec1 {
-                    #    record all;
-                    #    record_interval 30s;
-                    #    record_path /tmp;
-                    #    record_unique on;
-                    #}
-
-                    # sample HLS
-                    #hls on;
-                    #hls_path /tmp/hls;
-                    #hls_sync 100ms;
-
-                }
-
-                application hls {
-                    live on;
-                    hls on;
-                    hls_path /tmp/hls;
-                    hls_fragment 5s;
-                }
-
-                # Video on demand
-                #application vod {
-                #    play /var/Videos;
-                #}
-
-                # Video on demand over HTTP
-                #application vod_http {
-                #    play http://localhost:8080/vod/;
-                #}
-            }
+        # rtmp control
+        location /control {
+            rtmp_control all;
         }
 
-&gt; 注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，
-跟你的rtmp-nginx-module这个版本有关系吧， 可以 `cd /usr/local/Cellar/rtmp-nginx-module/` 来查看
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+}
 
-3.  编辑好后， 进行  sudo nginx -s reload
-</code></pre><h3 id="采集音视频-用到是第三方的-LiveVideoCoreSDK"><a href="#采集音视频-用到是第三方的-LiveVideoCoreSDK" class="headerlink" title="采集音视频,用到是第三方的 LiveVideoCoreSDK"></a>采集音视频,用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></h3><p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
+rtmp {
+    server {
+        listen 1935;
+        ping 30s;
+        notify_method get;
+
+        application myapp {
+            live on;
+
+            # sample play/publish handlers
+            #on_play http://localhost:8080/on_play;
+            #on_publish http://localhost:8080/on_publish;
+
+            # sample recorder
+            #recorder rec1 {
+            #    record all;
+            #    record_interval 30s;
+            #    record_path /tmp;
+            #    record_unique on;
+            #}
+
+            # sample HLS
+            #hls on;
+            #hls_path /tmp/hls;
+            #hls_sync 100ms;
+
+        }
+
+        application hls {
+            live on;
+            hls on;
+            hls_path /tmp/hls;
+            hls_fragment 5s;
+        }
+
+        # Video on demand
+        #application vod {
+        #    play /var/Videos;
+        #}
+
+        # Video on demand over HTTP
+        #application vod_http {
+        #    play http://localhost:8080/vod/;
+        #}
+    }
+}
+</code></pre><blockquote>
+<p>注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，<br>跟你的rtmp-nginx-module这个版本有关系吧， 可以 <code>cd /usr/local/Cellar/rtmp-nginx-module/</code> 来查看</p>
+</blockquote>
+<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></p>
+<p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
 <ol>
 <li>mac 和手机在同一局域网(共连一个wifi)</li>
 <li>然后打开本机的偏好设置-&gt;网络(Network), 看下你的wifi的status有个ip地址。或者你也可以用ipconfig进行才看 内网的ip地址。我的是192.168.1.100</li>
@@ -462,10 +436,10 @@
 <li><p>真机运行demo</p>
 </li>
 </ol>
-<h3 id="播放端"><a href="#播放端" class="headerlink" title="播放端"></a>播放端</h3><p>安装的ffmpeg没有带ffplay：</p>
+<h3 id="播放端"><a href="#播放端" class="headerlink" title="播放端"></a>播放端</h3><p>安装ffplay：</p>
 <pre><code>brew unlink ffmpeg
 brew install ffmpeg --with-ffplay
-</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+</code></pre><h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4.参考文献"></a>4.参考文献</h2><ol>
 <li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="external">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
 <li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="external"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
 <li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="external">FFmpeg相关资料 专栏文章</a></li>
