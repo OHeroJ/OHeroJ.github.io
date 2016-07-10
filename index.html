@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            A propos
+            Über
           </a>
         </li>
       
@@ -243,6 +243,156 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/10/ios-Vapor-v0-12/" itemprop="url">
+                  ios Vapor(v0.12)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T11:26:40+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/ios-Vapor-v0-12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/ios-Vapor-v0-12/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期定位是swift版的Laravel.<br>如果使用PHP Laravel的同学应该知道，这个库的很有艺术性，很优美。swift的年轻所以有很多地方也造就了vapor 的年轻<br>所以在使用vapor的时候并不是那么方便，坑还是不少的。</p>
+</blockquote>
+<hr>
+<p>环境：  xcode7.3.1  macOS 10.11.6</p>
+<h3 id="swift-版本的选择"><a href="#swift-版本的选择" class="headerlink" title="swift 版本的选择"></a>swift 版本的选择</h3><p>对于这个问题，我想说用swiftenv来解决吧</p>
+<pre><code>brew install kylef/formulae/swiftenv
+</code></pre><h3 id="vapor-CLI的安装"><a href="#vapor-CLI的安装" class="headerlink" title="vapor CLI的安装"></a>vapor CLI的安装</h3><pre><code>curl -L cli.qutheory.io -o vapor
+chmod +x vapor
+sudo mv vapor /usr/local/bin
+</code></pre><h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>如果你想使用vapor 的demo的话，直接用<code>vapor new yourDemo</code>, 这个时候你的项目就不是纯净的，当然可能会引发出相关问题，我这边碰到的是 ， vapor CLI的版本是5.3, 这个版本对应的swift版本是<code>DEVELOPMENT-SNAPSHOT-2016-06-06-a</code>, 但是这个时候这个new出来的项目的版本是 <code>DEVELOPMENT-SNAPSHOT-2016-06-20-a</code>,所以这就在‘vapor new’的时候会出现失败, 并且xcode7 也不能打开这个项目。</p>
+<h4 id="如何构建一个纯净版的Vapor项目"><a href="#如何构建一个纯净版的Vapor项目" class="headerlink" title="如何构建一个纯净版的Vapor项目?"></a>如何构建一个纯净版的Vapor项目?</h4><ol>
+<li><code>mkdir blog</code>创建一个blog文件夹</li>
+<li><code>swift package init</code> 创建一个基本项目</li>
+<li><p><code>atom Package.swift</code> 修改 Package.swift, 这里举例：</p>
+<pre><code>import PackageDescription
+
+let package = Package(
+    name: &quot;blog&quot;,
+    dependencies: [
+        .Package(url: &quot;https://github.com/qutheory/vapor.git&quot;, majorVersion: 0, minor: 12),
+
+    ],
+    exclude: [
+        &quot;Config&quot;,
+        &quot;Database&quot;,
+        &quot;Localization&quot;,
+        &quot;Public&quot;,
+        &quot;Resources&quot;,
+        &quot;Tests&quot;,
+    ]
+)
+</code></pre></li>
+<li><p>Source文件夹下的文件改名为 <code>main.swift</code>， 在里面编写如下一段代码：</p>
+<pre><code>import Vapor
+
+let drop = Application()
+
+drop.get(&quot;welcome&quot;) { request in
+
+    return  &quot;hello, world&quot;
+}
+
+drop.start()
+</code></pre></li>
+</ol>
+<ol>
+<li><code>vapor xcode</code>， 用xcode打开这个项目.</li>
+<li>用xcode , 运行这个项目, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
+</ol>
+<h3 id="如何体验-vapor的更多功能，请参考其-doc"><a href="#如何体验-vapor的更多功能，请参考其-doc" class="headerlink" title="如何体验 vapor的更多功能，请参考其 doc"></a>如何体验 vapor的更多功能，请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="external">doc</a></h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/02/iOS直播Tutorials/" itemprop="url">
                   iOS直播Tutorials
                 </a>
@@ -256,7 +406,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -507,7 +657,7 @@ brew install ffmpeg --with-ffplay
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -770,7 +920,7 @@ dispatch_async(serialQueue, ^{
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
               2016-05-25
             </time>
@@ -911,7 +1061,7 @@ default: ()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -1029,7 +1179,7 @@ tags:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-24T10:11:23+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -1145,8 +1295,8 @@ tags:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1155,8 +1305,8 @@ tags:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1211,11 +1361,11 @@ tags:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
