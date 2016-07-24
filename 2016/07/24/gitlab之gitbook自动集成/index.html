@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,Vapor,后台," />
+  <meta name="keywords" content="gitbook,gitlab,敏捷开发," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta name="description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
+
+今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swift之后台Vapor初步">
-<meta property="og:url" content="http://www.oheroj.com/2016/07/10/swift之后台Vapor初步/index.html">
+<meta property="og:title" content="gitlab之gitbook自动集成">
+<meta property="og:url" content="http://www.oheroj.com/2016/07/24/gitlab之gitbook自动集成/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
-<meta property="og:updated_time" content="2016-07-10T09:31:18.000Z">
+<meta property="og:description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
+
+今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
+<meta property="og:updated_time" content="2016-07-24T15:07:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swift之后台Vapor初步">
-<meta name="twitter:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta name="twitter:title" content="gitlab之gitbook自动集成">
+<meta name="twitter:description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
+
+今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
 
 
 
@@ -111,7 +117,7 @@
   };
 </script>
 
-  <title> swift之后台Vapor初步 | OHeroJ </title>
+  <title> gitlab之gitbook自动集成 | OHeroJ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -241,7 +247,7 @@
             
             
               
-                swift之后台Vapor初步
+                gitlab之gitbook自动集成
               
             
           </h1>
@@ -253,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T17:27:32+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -264,8 +270,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/swift之后台Vapor初步/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/swift之后台Vapor初步/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/gitlab之gitbook自动集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/gitlab之gitbook自动集成/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -289,59 +295,62 @@
 
       
         <blockquote>
-<p>近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写<br>“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.”<br>如果使用PHP Laravel的同学应该知道，这个库的很有艺术性，很优美<br>“The PHP Framework For Web Artisans”<br>swift的年轻所以有很多地方也造就了vapor的年轻<br>所以在使用vapor的时候并不是那么方便，坑还是不少的。</p>
+<p>最近有个任务是 想通过 <code>gitlab</code> 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，<br>排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，<br>很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。</p>
 </blockquote>
-<hr>
-<p>环境：  xcode7.3.1  macOS 10.11.6</p>
-<h3 id="swift-版本的选择"><a href="#swift-版本的选择" class="headerlink" title="swift 版本的选择"></a>swift 版本的选择</h3><p>对于这个问题，我想说用swiftenv来解决吧</p>
-<pre><code>brew install kylef/formulae/swiftenv
-</code></pre><h3 id="vapor-CLI的安装"><a href="#vapor-CLI的安装" class="headerlink" title="vapor CLI的安装"></a>vapor CLI的安装</h3><pre><code>curl -L cli.qutheory.io -o vapor
-chmod +x vapor
-sudo mv vapor /usr/local/bin
-</code></pre><h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>如果你想使用vapor 的demo的话，直接用<code>vapor new yourDemo</code>, 这个时候你的项目就不是纯净的，当然可能会引发出相关问题，我这边碰到的是 ， vapor CLI的版本是5.3, 这个版本对应的swift版本是<code>DEVELOPMENT-SNAPSHOT-2016-06-06-a</code>, 但是这个时候这个new出来的项目的版本是 <code>DEVELOPMENT-SNAPSHOT-2016-06-20-a</code>,所以这就在‘vapor new’的时候会出现失败, 并且xcode7 也不能打开这个项目。</p>
-<h4 id="如何构建一个纯净版的Vapor项目"><a href="#如何构建一个纯净版的Vapor项目" class="headerlink" title="如何构建一个纯净版的Vapor项目?"></a>如何构建一个纯净版的Vapor项目?</h4><ol>
-<li><code>mkdir blog</code>创建一个blog文件夹</li>
-<li><code>swift package init</code> 创建一个基本项目</li>
-<li><p><code>atom Package.swift</code> 修改 Package.swift, 这里举例：</p>
-<pre><code>import PackageDescription
-
-let package = Package(
-    name: &quot;blog&quot;,
-    dependencies: [
-        .Package(url: &quot;https://github.com/qutheory/vapor.git&quot;, majorVersion: 0, minor: 12),
-
-    ],
-    exclude: [
-        &quot;Config&quot;,
-        &quot;Database&quot;,
-        &quot;Localization&quot;,
-        &quot;Public&quot;,
-        &quot;Resources&quot;,
-        &quot;Tests&quot;,
-    ]
-)
-</code></pre></li>
-<li><p>Source文件夹下的文件改名为 <code>main.swift</code>， 在里面编写如下一段代码：</p>
-<pre><code>import Vapor
-
-let drop = Application()
-
-drop.get(&quot;welcome&quot;) { request in
-
-    return  &quot;hello, world&quot;
-}
-
-drop.start()
-</code></pre></li>
-<li><p>先<code>vapor build</code>,然后 <code>vapor xcode</code>， 会自动用xcode打开这个项目.</p>
-</li>
-<li>用xcode 运行这个项目（选中你这个项目）, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
+<p>今天植入主题，我们该如何在 <strong>gitlab</strong> 上持续集成我们的 <strong>gitbook</strong> 文档。</p>
+<h3 id="1-为什么需要文档？"><a href="#1-为什么需要文档？" class="headerlink" title="1. 为什么需要文档？"></a>1. 为什么需要文档？</h3><p>个人觉得：</p>
+<ol>
+<li>如果是新人入职的话，有文档那很多东西就方便多了；</li>
+<li>开发一个组件，写出文档，很多东西就不需要重复介绍给使用的人</li>
+<li>降低沟通成本和维护成本</li>
+<li>提高开发效率</li>
+<li>可以把一个新技术的探研做成一份学习路线文档，这样后来人就可以减少学习的成本</li>
 </ol>
-<h3 id="如何体验-vapor的更多功能"><a href="#如何体验-vapor的更多功能" class="headerlink" title="如何体验 vapor的更多功能"></a>如何体验 vapor的更多功能</h3><ol>
-<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="external">doc</a></p>
+<h3 id="2-需要的工具"><a href="#2-需要的工具" class="headerlink" title="2. 需要的工具"></a>2. 需要的工具</h3><ol>
+<li><a href="https://www.sourcetreeapp.com" target="_blank" rel="external">SourceTree</a></li>
+<li><a href="https://www.gitbook.com/editor/" target="_blank" rel="external">GitBookEditor</a></li>
+<li><a href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md" target="_blank" rel="external">GitBook</a></li>
+</ol>
+<h3 id="3-文档编写-markdown"><a href="#3-文档编写-markdown" class="headerlink" title="3. 文档编写 markdown"></a>3. 文档编写 <code>markdown</code></h3><p>语法可 <a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">参考</a></p>
+<h3 id="4-gitbook-基本使用"><a href="#4-gitbook-基本使用" class="headerlink" title="4. gitbook 基本使用"></a>4. <code>gitbook</code> 基本使用</h3><p>使用可 <a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="external">参考</a></p>
+<h3 id="5-gitlab上持续集成的步骤"><a href="#5-gitlab上持续集成的步骤" class="headerlink" title="5. gitlab上持续集成的步骤"></a>5. <code>gitlab</code>上持续集成的步骤</h3><ol>
+<li>在gitlab新建一个resposity</li>
+<li>checkout到本地</li>
+<li>在项目上新增一个 .gitlab-ci.yml 文件 并提交到 Gitlab</li>
+</ol>
+<h3 id="6-gitlab-的-gitlab-ci-yml文件的编写"><a href="#6-gitlab-的-gitlab-ci-yml文件的编写" class="headerlink" title="6. gitlab 的 .gitlab-ci.yml文件的编写"></a>6. <code>gitlab</code> 的 <code>.gitlab-ci.yml</code>文件的编写</h3><ol>
+<li><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">.gitlab-ci.yml 指南</a></li>
+<li><p>文件参考书写：</p>
+<pre><code>before_script:
+- env
+- export LC_ALL=zh_TW.UTF-8
+
+stages:
+- build
+
+ebook:
+stage: build
+script:
+- gitbook pdf
+artifacts:
+paths:
+  - book.pdf
+only:
+- master
+
+image: shuoshuo/gitbook-builder:latest
+</code></pre></li>
+</ol>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://www.jianshu.com/p/e650aac83f7a" target="_blank" rel="external">gitbook在私有gitlab上持续集成</a></li>
+<li><p><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">Configuration of your builds with .gitlab-ci.yml</a></p>
 </li>
-<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="external">教学视频</a></p>
+<li><p><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a></p>
 </li>
+<li><a href="http://www.jianshu.com/p/168c0c1c7e4f" target="_blank" rel="external">敏捷开发之API管理之道</a></li>
+<li><a href="http://www.jianshu.com/p/2b43151fb92e/comments/2348175" target="_blank" rel="external">GitLab-CI与GitLab-Runner</a></li>
+<li><a href="https://yudachi.biz/2016/05/27/moving-to-gitlab-pages/" target="_blank" rel="external">基地转移！从 GitHub Pages 转移到 GitLab Pages</a></li>
+<li><a href="https://medium.com/@shuoshuo/多人共筆且自動產生-pdf-版電子書-5a0f1053c069#.8qic6kquk" target="_blank" rel="external">多人共筆且自動產生 PDF 版電子書</a></li>
 </ol>
 
       
@@ -385,11 +394,11 @@ drop.start()
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/gitbook/" rel="tag">#gitbook</a>
           
-            <a href="/tags/Vapor/" rel="tag">#Vapor</a>
+            <a href="/tags/gitlab/" rel="tag">#gitlab</a>
           
-            <a href="/tags/后台/" rel="tag">#后台</a>
+            <a href="/tags/敏捷开发/" rel="tag">#敏捷开发</a>
           
         </div>
       
@@ -398,17 +407,13 @@ drop.start()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/02/iOS直播Tutorials/" rel="next" title="iOS直播Tutorials">
-                <i class="fa fa-chevron-left"></i> iOS直播Tutorials
+              <a href="/2016/07/16/iOS之cocoapods/" rel="next" title="iOS之cocoapods">
+                <i class="fa fa-chevron-left"></i> iOS之cocoapods
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/16/iOS之cocoapods/" rel="prev" title="iOS之cocoapods">
-                iOS之cocoapods <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,8 +439,8 @@ drop.start()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/10/swift之后台Vapor初步/"
-           data-title="swift之后台Vapor初步" data-url="http://www.oheroj.com/2016/07/10/swift之后台Vapor初步/">
+      <div class="ds-thread" data-thread-key="2016/07/24/gitlab之gitbook自动集成/"
+           data-title="gitlab之gitbook自动集成" data-url="http://www.oheroj.com/2016/07/24/gitlab之gitbook自动集成/">
       </div>
     
   </div>
@@ -530,7 +535,7 @@ drop.start()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-版本的选择"><span class="nav-number">1.</span> <span class="nav-text">swift 版本的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor-CLI的安装"><span class="nav-number">2.</span> <span class="nav-text">vapor CLI的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor"><span class="nav-number">3.</span> <span class="nav-text">vapor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何构建一个纯净版的Vapor项目"><span class="nav-number">3.1.</span> <span class="nav-text">如何构建一个纯净版的Vapor项目?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何体验-vapor的更多功能"><span class="nav-number">4.</span> <span class="nav-text">如何体验 vapor的更多功能</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么需要文档？"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么需要文档？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-需要的工具"><span class="nav-number">2.</span> <span class="nav-text">2. 需要的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-文档编写-markdown"><span class="nav-number">3.</span> <span class="nav-text">3. 文档编写 markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-gitbook-基本使用"><span class="nav-number">4.</span> <span class="nav-text">4. gitbook 基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-gitlab上持续集成的步骤"><span class="nav-number">5.</span> <span class="nav-text">5. gitlab上持续集成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-gitlab-的-gitlab-ci-yml文件的编写"><span class="nav-number">6.</span> <span class="nav-text">6. gitlab 的 .gitlab-ci.yml文件的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
         </section>
