@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -243,6 +243,120 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/10/优雅处理-bad-enum-configurations/" itemprop="url">
+                  优雅处理 bad enum configurations
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/优雅处理-bad-enum-configurations/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/优雅处理-bad-enum-configurations/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Using-an-enum-for-configuration"><a href="#Using-an-enum-for-configuration" class="headerlink" title="Using an enum for configuration"></a>Using an enum for configuration</h3><p>上例子：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CellStyle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> login</span><br><span class="line">    <span class="keyword">case</span> profile</span><br><span class="line">    <span class="keyword">case</span> settings</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonTableCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> style: <span class="type">CellStyle</span> &#123;</span><br><span class="line">        <span class="keyword">didSet</span> &#123;</span><br><span class="line">            configureStyle()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">configureStyle</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> cellStyle &#123;</span><br><span class="line">        <span class="keyword">case</span> .login:</span><br><span class="line">            <span class="comment">// configure style for login view</span></span><br><span class="line">            textLabel?.textColor = .red()</span><br><span class="line">            textLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleBody</span>)</span><br><span class="line"></span><br><span class="line">            detailTextLabel?.textColor = .blue()</span><br><span class="line">            detailTextLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle3</span>)</span><br><span class="line"></span><br><span class="line">            accessoryView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(named: <span class="string">"chevron"</span>))</span><br><span class="line">        <span class="keyword">case</span> .settings:</span><br><span class="line">            <span class="comment">// configure style for settings view</span></span><br><span class="line">            textLabel?.textColor = .purple()</span><br><span class="line">            textLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>)</span><br><span class="line"></span><br><span class="line">            detailTextLabel?.textColor = .green()</span><br><span class="line">            detailTextLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>)</span><br><span class="line"></span><br><span class="line">            accessoryView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(named: <span class="string">"checkmark"</span>))</span><br><span class="line">         <span class="keyword">case</span> .profile:</span><br><span class="line">            <span class="comment">// configure style for profile view</span></span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SettingsViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, cellForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</span><br><span class="line">      <span class="comment">// create and configure cell</span></span><br><span class="line">      cell.style = .settings</span><br><span class="line">      <span class="keyword">return</span> cell</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>This is so bad!😢</strong></p>
+<h3 id="Why-enum-configurations-are-bad"><a href="#Why-enum-configurations-are-bad" class="headerlink" title="Why enum configurations are bad"></a>Why enum configurations are bad</h3><p>有些人会觉得这个模式很ok哇， “is flexible”，如果你有一个新的CellStyle, 你只需要添加一个<code>case</code>,然后在switch添加一处处理。‘set any style you want’。</p>
+<p>但是如果这个cell是一个library，你就没有办法添加新的 case, 这个时候就无法 添加自己想要的cellstyle了，或者你也许可以提PR.那么对于使用这个lib的人来说，这个库设计的是不灵活的。</p>
+<p>还有就是这个 判断case 分支越多，代码就越难看。</p>
+<h4 id="如何改进这种设计"><a href="#如何改进这种设计" class="headerlink" title="如何改进这种设计"></a>如何改进这种设计</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CellStyle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> labelColor: <span class="type">UIColor</span></span><br><span class="line">    <span class="keyword">let</span> labelFont: <span class="type">UIFont</span></span><br><span class="line">    <span class="keyword">let</span> detailColor: <span class="type">UIColor</span></span><br><span class="line">    <span class="keyword">let</span> detailFont: <span class="type">UIFont</span></span><br><span class="line">    <span class="keyword">let</span> accessory: <span class="type">UIImage</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>(labelColor: <span class="type">UIColor</span> = .black(),</span><br><span class="line">         labelFont: <span class="type">UIFont</span> = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>),</span><br><span class="line">         detailColor: <span class="type">UIColor</span> = .lightGray(),</span><br><span class="line">         detailFont: <span class="type">UIFont</span> = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>),</span><br><span class="line">         accessory: <span class="type">UIImage</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.labelColor = labelColor</span><br><span class="line">        <span class="keyword">self</span>.labelFont = labelFont</span><br><span class="line">        <span class="keyword">self</span>.detailColor = detailColor</span><br><span class="line">        <span class="keyword">self</span>.detailFont = detailFont</span><br><span class="line">        <span class="keyword">self</span>.accessory = accessory</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CellStyle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> settings: <span class="type">CellStyle</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CellStyle</span>(labelColor: .purple(),</span><br><span class="line">                         labelFont: .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>),</span><br><span class="line">                         detailColor: .green(),</span><br><span class="line">                         detailFont: .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>),</span><br><span class="line">                         accessory: <span class="type">UIImage</span>(named: <span class="string">"checkmark"</span>)!)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CellStyle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> custom: <span class="type">CellStyle</span> &#123;</span><br><span class="line">        <span class="comment">// uses default fonts</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">CellStyle</span>(labelColor: .blue(),</span><br><span class="line">                         detailColor: .red(),</span><br><span class="line">                         accessory: <span class="type">UIImage</span>(named: <span class="string">"action"</span>)!)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonTableCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">apply</span><span class="params">(style: CellStyle)</span></span> &#123;</span><br><span class="line">        textLabel?.textColor = style.labelColor</span><br><span class="line">        textLabel?.font = style.labelFont</span><br><span class="line"></span><br><span class="line">        detailTextLabel?.textColor = style.detailColor</span><br><span class="line">        detailTextLabel?.font = style.detailFont</span><br><span class="line"></span><br><span class="line">        accessoryView = <span class="type">UIImageView</span>(image: style.accessory)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// usage:</span></span><br><span class="line">cell.apply(style: .settings)</span><br></pre></td></tr></table></figure>
+<p>对扩展开放，对修改关闭</p>
+<blockquote>
+<p>Software entities should be open for extension, but closed for modification. That is, such an entity can allow its behavior to be extended without modifying its source code.</p>
+</blockquote>
+<h3 id="扩展阅读："><a href="#扩展阅读：" class="headerlink" title="扩展阅读："></a>扩展阅读：</h3><ul>
+<li><a href="http://www.jessesquires.com/enums-as-configs/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=web&amp;utm_source=This_Week_in_Swift_98" target="_blank" rel="external">Enums as configuration: the anti-pattern</a></li>
+<li><a href="https://realm.io/cn/news/tryswift-daniel-steinberg-blending-cultures/" target="_blank" rel="external">文化碰撞：函数式、面向协议、面向对象编程的最佳实践</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/07/私有cocoapods的创建和维护s/" itemprop="url">
                   私有cocoapods的创建和维护s
                 </a>
@@ -256,7 +370,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
               2016-08-07
             </time>
@@ -414,7 +528,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -541,7 +655,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
               2016-07-24
             </time>
@@ -699,7 +813,7 @@ image: shuoshuo/gitbook-builder:latest
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-16T07:06:01+08:00" content="2016-07-16">
               2016-07-16
             </time>
@@ -842,7 +956,7 @@ pod update --verbose --no-repo-update
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-10T17:27:32+08:00" content="2016-07-10">
               2016-07-10
             </time>
@@ -997,7 +1111,7 @@ drop.start()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -1248,7 +1362,7 @@ brew install ffmpeg --with-ffplay
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -1511,7 +1625,7 @@ dispatch_async(serialQueue, ^{
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
               2016-05-25
             </time>
@@ -1652,7 +1766,7 @@ default: ()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
               2016-05-24
             </time>
@@ -1736,118 +1850,13 @@ tags:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/24/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T10:11:23+08:00" content="2016-05-24">
-              2016-05-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/24/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/24/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1886,8 +1895,8 @@ tags:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1896,8 +1905,8 @@ tags:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1952,7 +1961,7 @@ tags:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
