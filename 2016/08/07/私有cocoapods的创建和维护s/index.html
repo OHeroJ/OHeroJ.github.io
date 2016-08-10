@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://www.oheroj.com/images/pod-file06.png">
 <meta property="og:image" content="http://www.oheroj.com/images/pod-file07.png">
 <meta property="og:image" content="http://www.oheroj.com/images/pod-file08.png">
-<meta property="og:updated_time" content="2016-08-07T16:10:20.000Z">
+<meta property="og:updated_time" content="2016-08-10T14:45:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="私有cocoapods的创建和维护s">
 <meta name="twitter:description" content="使用cocoapods创建私有podspec创建私有podspec的步骤1. 创建并设置一个私有的Spec Repo1pod repo add MySpecs https://gitlab.com/oheroj/spects.git
@@ -187,7 +187,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -270,7 +270,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
               2016-08-07
             </time>
@@ -342,7 +342,29 @@
 <h5 id="6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><a href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用" class="headerlink" title="6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用"></a>6. 在个人项目中的<code>Podfile</code>中增加刚刚制作好的<code>Pod</code>使用</h5><p>在其他项目中使用的时候, 在podfile中添加如下：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://github.com/CocoaPods/Specs.git'</span> <span class="comment">#公有库</span></span><br><span class="line">source <span class="string">'https://gitlab.com/oheroj/spects.git'</span></span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, <span class="string">"8.0"</span></span><br><span class="line"></span><br><span class="line">target <span class="string">'ModelPro'</span> <span class="keyword">do</span></span><br><span class="line">    pod <span class="string">'RoundButton'</span>, <span class="string">'~&gt; 0.1.0'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>然后执行pod install 即可</p>
-<h5 id="7-更新维护podspec"><a href="#7-更新维护podspec" class="headerlink" title="7. 更新维护podspec"></a>7. 更新维护<code>podspec</code></h5>
+<h5 id="7-更新维护podspec"><a href="#7-更新维护podspec" class="headerlink" title="7. 更新维护podspec"></a>7. 更新维护<code>podspec</code></h5><h5 id="版本规范（版本tag）"><a href="#版本规范（版本tag）" class="headerlink" title="版本规范（版本tag）"></a>版本规范（版本tag）</h5><p><strong>major.minor.patch</strong></p>
+<p>App主项目依赖  <code>pod &#39;AFNetworking&#39;, &#39;~&gt; 3.1.0&#39;</code></p>
+<ul>
+<li>修改bug和一些其他不重要修改（修改README，Format等），增加patch版本号。用户可以放心升级。</li>
+<li>曾加功能并且向前兼容，增加minor版本号。用户可以考虑升级。（推荐升级）</li>
+<li>不向前兼容或重大修改或重构，增加major版本号。用户应当慎重决定是否升级。</li>
+<li>当major为0时，表示该库为beta版本。不是稳定版本，所以会经常修改，并很容易造成向前不兼容的情况。开发者需要认真评估major版本号。 此时发生向前不兼容的情况，开发者应当升级minor版本号。其他同上面的规范。</li>
+</ul>
+<h5 id="维护、增加新功能"><a href="#维护、增加新功能" class="headerlink" title="维护、增加新功能"></a>维护、增加新功能</h5><p>将源文件添加到<code>Pod/Classes</code>中， 在测试项目里<code>pod update</code>一下， 写代码验证无误之后，就可以将这个工程 <code>push</code> 到远端仓库， 并且打上新的 tag， tag 号遵从上面的版本规范来制定。</p>
+<p>然后修改<code>podspec</code>上的<code>s.version</code>为我们的 tag 号。最后再次使用<code>pod lib lint</code>验证编辑好的<code>podsepc</code>文件，没有自身的WARNING或者ERROR之后，就可以再次提交到Spec Repo中了，命令跟之前是一样的</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo push MySpecs RoundButton.podspec</span><br></pre></td></tr></table></figure>
+<p>之后再次到~/.cocoapods/repos/MySpecs目录下查看, eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── YTNSFoundation</span><br><span class="line">│   └── 0.1.0</span><br><span class="line">│       └── YTNSFoundation.podspec</span><br><span class="line">├── YTNetworking</span><br><span class="line">│   └── 1.0.12</span><br><span class="line">│       └── YTNetworking.podspec</span><br><span class="line">└── YTUIKit</span><br><span class="line">    ├── 0.1.0</span><br><span class="line">    │   └── YTUIKit.podspec</span><br><span class="line">    └── 0.1.1</span><br><span class="line">        └── YTUIKit.podspec</span><br></pre></td></tr></table></figure>
+<h5 id="删除本地一个私有Spec-Repo"><a href="#删除本地一个私有Spec-Repo" class="headerlink" title="删除本地一个私有Spec Repo"></a>删除本地一个私有<code>Spec Repo</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo remove WTSpecs</span><br></pre></td></tr></table></figure>
+<h5 id="删除私有Spec-Repo某一个podspec"><a href="#删除私有Spec-Repo某一个podspec" class="headerlink" title="删除私有Spec Repo某一个podspec"></a>删除私有<code>Spec Repo</code>某一个<code>podspec</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.cocoapods/repos/MySpecs</span><br><span class="line">rm -rf RoundButton</span><br><span class="line">git commit -a -m &quot;Feat: RoundButton podspec&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<h5 id="8-参考文献"><a href="#8-参考文献" class="headerlink" title="8. 参考文献"></a>8. 参考文献</h5><ol>
+<li><a href="http://guides.cocoapods.org/making/private-cocoapods.html" target="_blank" rel="external">Private Pods</a></li>
+<li><a href="http://blog.grio.com/2014/11/creating-a-private-cocoapod.html" target="_blank" rel="external">Creating a Private CocoaPod</a></li>
+<li><a href="https://objectpartners.com/2014/06/25/developing-private-in-house-libraries-with-cocoapods/" target="_blank" rel="external">Developing Private In-House Libraries with CocoaPods</a></li>
+<li><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="external">使用Cocoapods创建私有podspec</a></li>
+<li><a href="http://www.pluto-y.com/cocoapod-private-pods-and-module-manager/" target="_blank" rel="external">Cocoapods系列教程(三)——私有库管理和模块化管理</a></li>
+</ol>
+
       
     </div>
 
@@ -458,10 +480,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -478,7 +500,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -488,7 +510,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -527,7 +549,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cocoapods创建私有podspec"><span class="nav-number">1.</span> <span class="nav-text">使用cocoapods创建私有podspec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建私有podspec的步骤"><span class="nav-number">1.1.</span> <span class="nav-text">创建私有podspec的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-创建并设置一个私有的Spec-Repo"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 创建并设置一个私有的Spec Repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-创建Pod所对应的podspec文件"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 创建Pod所对应的podspec文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-本地测试配置好的podsepc文件是否可用"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 本地测试配置好的podsepc文件是否可用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#创建podspec-文件-此步骤是对有现存项目的"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">创建podspec 文件(此步骤是对有现存项目的)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-向私有的Spec-Repo-中提交-podsepc"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 向私有的Spec Repo 中提交 podsepc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-更新维护podspec"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 更新维护podspec</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cocoapods创建私有podspec"><span class="nav-number">1.</span> <span class="nav-text">使用cocoapods创建私有podspec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建私有podspec的步骤"><span class="nav-number">1.1.</span> <span class="nav-text">创建私有podspec的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-创建并设置一个私有的Spec-Repo"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 创建并设置一个私有的Spec Repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-创建Pod所对应的podspec文件"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 创建Pod所对应的podspec文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-本地测试配置好的podsepc文件是否可用"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 本地测试配置好的podsepc文件是否可用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#创建podspec-文件-此步骤是对有现存项目的"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">创建podspec 文件(此步骤是对有现存项目的)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-向私有的Spec-Repo-中提交-podsepc"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 向私有的Spec Repo 中提交 podsepc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-更新维护podspec"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 更新维护podspec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本规范（版本tag）"><span class="nav-number">1.1.8.</span> <span class="nav-text">版本规范（版本tag）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#维护、增加新功能"><span class="nav-number">1.1.9.</span> <span class="nav-text">维护、增加新功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除本地一个私有Spec-Repo"><span class="nav-number">1.1.10.</span> <span class="nav-text">删除本地一个私有Spec Repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除私有Spec-Repo某一个podspec"><span class="nav-number">1.1.11.</span> <span class="nav-text">删除私有Spec Repo某一个podspec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-参考文献"><span class="nav-number">1.1.12.</span> <span class="nav-text">8. 参考文献</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -554,7 +576,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
