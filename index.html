@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -243,6 +243,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/23/iOS之AOP/" itemprop="url">
+                  iOS之AOP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T22:37:39+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/iOS之AOP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/iOS之AOP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector</span><br><span class="line">&#123;</span><br><span class="line">    Class class = [self class];</span><br><span class="line"></span><br><span class="line">    Method originalMethod = class_getInstanceMethod(class, origSelector);</span><br><span class="line">    Method swizzledMethod = class_getInstanceMethod(class, newSelector);</span><br><span class="line"></span><br><span class="line">    BOOL didAddMethod = class_addMethod(class,</span><br><span class="line">                                        origSelector,</span><br><span class="line">                                        method_getImplementation(swizzledMethod),</span><br><span class="line">                                        method_getTypeEncoding(swizzledMethod));</span><br><span class="line">    if (didAddMethod) &#123;</span><br><span class="line">        class_replaceMethod(class,</span><br><span class="line">                            newSelector,</span><br><span class="line">                            method_getImplementation(originalMethod),</span><br><span class="line">                            method_getTypeEncoding(originalMethod));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="业务埋点、日志打印分离"><a href="#业务埋点、日志打印分离" class="headerlink" title="业务埋点、日志打印分离"></a>业务埋点、日志打印分离</h3><p><code>Aspects</code> 一个基于Objective-c的AOP开发框架,只提供两个API:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (id)aspect_hookSelector:(SEL)selector</span><br><span class="line">                         withOptions:(AspectOptions)options</span><br><span class="line">                      usingBlock:(id)block</span><br><span class="line">                           error:(NSError **)error;</span><br><span class="line">- (id)aspect_hookSelector:(SEL)selector</span><br><span class="line">                     withOptions:(AspectOptions)options</span><br><span class="line">                      usingBlock:(id)block</span><br><span class="line">                           error:(NSError **)error;</span><br></pre></td></tr></table></figure></p>
+<p>一般对于这种统计的埋点 我们会配置相关文件，然后读取相关文件的信息，解析 <code>Class</code> 和 <code>selector</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *analyticsConfiguration()</span><br><span class="line">&#123;</span><br><span class="line">    return @&#123;</span><br><span class="line">             @&quot;trackedScreens&quot; : @[    // 页面统计</span><br><span class="line">                     @&#123;</span><br><span class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</span><br><span class="line">                         @&quot;label&quot; : @&quot;Main screen&quot;</span><br><span class="line">                         &#125;</span><br><span class="line">                     ],</span><br><span class="line">             @&quot;trackedEvents&quot; : @[  // 交互事件统计</span><br><span class="line">                     @&#123;</span><br><span class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</span><br><span class="line">                         @&quot;selector&quot; : @&quot;loginViewFetchedUserInfo:user:&quot;,</span><br><span class="line">                         @&quot;label&quot; : @&quot;Login with Facebook&quot;</span><br><span class="line">                         &#125;,</span><br><span class="line">                     @&#123;</span><br><span class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</span><br><span class="line">                         @&quot;selector&quot; : @&quot;loginViewShowingLoggedOutUser:&quot;,</span><br><span class="line">                         @&quot;label&quot; : @&quot;Logout with Facebook&quot;</span><br><span class="line">                         &#125;,</span><br><span class="line">                     @&#123;</span><br><span class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</span><br><span class="line">                         @&quot;selector&quot; : @&quot;loginView:handleError:&quot;,</span><br><span class="line">                         @&quot;label&quot; : @&quot;Login error with Facebook&quot;</span><br><span class="line">                         &#125;,</span><br><span class="line">                     @&#123;</span><br><span class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</span><br><span class="line">                         @&quot;selector&quot; : @&quot;shareButtonPressed:&quot;,</span><br><span class="line">                         @&quot;label&quot; : @&quot;Share button&quot;</span><br><span class="line">                         &#125;</span><br><span class="line">                     ]</span><br><span class="line">             &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就是 进行 method_swizzing,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">// .h</span><br><span class="line">@interface YTViewControllerIntercepter : NSObject</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// .m</span><br><span class="line">@implementation YTViewControllerIntercepter</span><br><span class="line"></span><br><span class="line">+ (void)load &#123;</span><br><span class="line">    [super load];</span><br><span class="line">    [YTViewControllerIntercepter shareInstance];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (instancetype)shareInstance &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    static YTViewControllerIntercepter *sharedInstance;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        sharedInstance = [[YTViewControllerIntercepter alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    return sharedInstance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line"></span><br><span class="line">         /* 在这里做好方法拦截 */</span><br><span class="line">        [self setupWithConfiguration:analyticsConfiguration()];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setupWithConfiguration:(NSDictionary *)configuration &#123;</span><br><span class="line"></span><br><span class="line">    for (NSDictionary *trackedScreen in configuration[@&quot;trackedScreens&quot;]) &#123;</span><br><span class="line">        Class clazz = NSClassFromString(trackedScreen[@&quot;class&quot;]);</span><br><span class="line"></span><br><span class="line">        [clazz aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">                NSString *viewName = trackedScreen[@&quot;label&quot;];</span><br><span class="line">//                [tracker trackScreenHitWithName:viewName];</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;error:nil];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // events tracking</span><br><span class="line">    for (NSDictionary *trackedEvents in configuration[@&quot;trackedEvents&quot;]) &#123;</span><br><span class="line">        Class clazz = NSClassFromString(trackedEvents[@&quot;class&quot;]);</span><br><span class="line">        SEL selektor = NSSelectorFromString(trackedEvents[@&quot;selector&quot;]);</span><br><span class="line"></span><br><span class="line">        [clazz aspect_hookSelector:selektor</span><br><span class="line">                       withOptions:AspectPositionAfter</span><br><span class="line">                        usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),</span><br><span class="line">                                           ^&#123;</span><br><span class="line">//                                               UserActivityButtonPressedEvent *buttonPressEvent =</span><br><span class="line">//                                               [UserActivityButtonPressedEvent</span><br><span class="line">//                                                eventWithLabel:trackedEvents[@&quot;label&quot;]];</span><br><span class="line">//                                               [tracker trackEvent:buttonPressEvent];</span><br><span class="line">                                           &#125;);</span><br><span class="line">                        &#125;</span><br><span class="line">                             error:nil];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面有个提示，摘抄自<a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">nshsipster</a></p>
+<blockquote>
+<p> Swizzling should always be done in +load ?<br>+load is sent when the class is initially loaded, while +initialize is called just before the application calls its first method on that class or an instance of that class. Both are optional, and are executed only if the method is implemented.<br>Because method swizzling affects global state, it is important to minimize the possibility of race conditions. +load is guaranteed to be loaded during class initialization, which provides a modicum of consistency for changing system-wide behavior. By contrast, +initialize provides no such guarantee of when it will be executed—in fact, it may never be called, if that class is never messaged directly by the app.</p>
+</blockquote>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ol>
+<li>解耦</li>
+</ol>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ol>
+<li>变更方法的时候，可能会忽略修改配置文件</li>
+<li>这个方法被重构了。或者新加的方法忘了加统计了</li>
+</ol>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
+<li><a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">Method Swizzling</a></li>
+<li><a href="http://my.oschina.net/leejun2005/blog/504732" target="_blank" rel="external">iOS 统计打点那些事</a></li>
+<li><a href="https://github.com/oa414/objc-zen-book-cn#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B" target="_blank" rel="external">禅与 Objective-C 编程艺术</a></li>
+<li><a href="http://ios.jobbole.com/86612/?utm_source=top.caibaojian.com/112246" target="_blank" rel="external">漫谈iOS AOP编程之路</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/21/React-Native入门/" itemprop="url">
                   React-Native入门
                 </a>
@@ -256,7 +382,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-21T18:51:28+08:00" content="2016-08-21">
               2016-08-21
             </time>
@@ -294,7 +420,20 @@
       
         
           
-            
+            <h2 id="为什么学习React-Native"><a href="#为什么学习React-Native" class="headerlink" title="为什么学习React-Native?"></a>为什么学习React-Native?</h2><h3 id="动态配置？"><a href="#动态配置？" class="headerlink" title="动态配置？"></a>动态配置？</h3><p>从 Server 获取配置 –&gt; 解析 –&gt; 执行 native 代码：</p>
+<ol>
+<li>通过请求获取JSON格式的配置文件</li>
+<li>配置文件中标记了每个元素的属性，比如位置， 颜色， 图片URL等</li>
+<li>解析完JSON后， 我们调用Object-C的代码，完成UI控件的渲染。</li>
+</ol>
+<p>此方法其实就是 移动端 和 服务器端 约定的一套协议，但是协议内容 严重依赖于 应用内要展示的内容， 不利于扩展。<br>提供的是一些配置信息，而不是很方便的提供逻辑信息。</p>
+<p>我们只是在解析字符串， 它完全不具备运行和调试的能力。</p>
+<blockquote>
+<p>React 是一套可以用简洁的语法高效绘制DOM的框架</p>
+</blockquote>
+<p>当然，React 并不是前端开发的全部。从之前的描述也能看出，它专注于 UI 部分，对应到 MVC 结构中就是 View 层。要想实现完整的 MVC 架构，还需要 Model 和 Controller 的结构。在前端开发时，我们可以采用 Flux 和 Redux 架构，它们并非框架(Library)，而是和 MVC 一样都是一种架构设计(Architecture)。</p>
+<p>React Native 与 Hybrid 完全没有关系，它只不过是以 JavaScript 的形式告诉 Objective-C 该执行什么代码</p>
+<h3 id="JavaScript-调用-Objective-C"><a href="#JavaScript-调用-Objective-C" class="headerlink" title="JavaScript 调用 Objective-C"></a>JavaScript 调用 Objective-C</h3><h4 id="js-怎么知道-oc-有哪些方法可以调用？"><a href="#js-怎么知道-oc-有哪些方法可以调用？" class="headerlink" title="js 怎么知道 oc 有哪些方法可以调用？"></a>js 怎么知道 oc 有哪些方法可以调用？</h4><h4 id="闭包与回调"><a href="#闭包与回调" class="headerlink" title="闭包与回调"></a>闭包与回调</h4>
           
         
       
@@ -356,7 +495,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -473,7 +612,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
               2016-08-07
             </time>
@@ -632,7 +771,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -759,7 +898,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
               2016-07-24
             </time>
@@ -917,7 +1056,7 @@ image: shuoshuo/gitbook-builder:latest
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-16T07:06:01+08:00" content="2016-07-16">
               2016-07-16
             </time>
@@ -1060,7 +1199,7 @@ pod update --verbose --no-repo-update
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-10T17:27:32+08:00" content="2016-07-10">
               2016-07-10
             </time>
@@ -1215,7 +1354,7 @@ drop.start()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -1466,7 +1605,7 @@ brew install ffmpeg --with-ffplay
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-27T11:44:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -1695,147 +1834,6 @@ dispatch_async(serialQueue, ^{
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/25/Swift-模式匹配/" itemprop="url">
-                  Swift 模式匹配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T09:15:52+08:00" content="2016-05-25">
-              2016-05-25
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/25/Swift-模式匹配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/Swift-模式匹配/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="模式匹配进阶"><a href="#模式匹配进阶" class="headerlink" title="模式匹配进阶"></a>模式匹配进阶</h3><ol>
-<li><p>通配符模式</p>
-<p> 通配符模式会忽略需要匹配的值， <code>_</code></p>
-</li>
-<li><p>标示模式</p>
-<p> 匹配具体的值</p>
-</li>
-<li><p>值绑定模式</p>
-<pre><code>switch (4, 5) {
-    case let (x, y): print(&quot;\(x) \(y)&quot;)
-}
-</code></pre></li>
-<li><p>元组模式</p>
-<pre><code>let age = 23
-let job: String? = &quot;Operator&quot;
-let payload: AnyObject = NSDictionary()
-
-switch (age, job, payload) {
-  case (let age, _?, _ as NSDictionary):
-  print(age)
-  default: ()
-}
-</code></pre></li>
-<li><p>枚举Case模式</p>
-</li>
-<li><p>类型转换模式</p>
-<ul>
-<li>is 类型：匹配右手边内容的运行时类型（或者类型的子类）。它会做类型转换但是不关注返回值。所以你的 case 块不知道所匹配的类型是什么。</li>
-<li><p>模式 as 类型：和 is 模式做同样的匹配操作，但是如果成功的话会把类型转换到左侧指定的模式中。</p>
-<p>  let a: Any = 5<br>  switch a {</p>
-<pre><code>// 这会失败因为它的类型仍然是 `Any`
-// 错误: binary operator &apos;+&apos; cannot be applied to operands of type &apos;Any&apos; and &apos;Int&apos;
-case is Int: print (a + 1)
-// 有效并返回 &apos;6&apos;
-case let n as Int: print (n + 1)
-default: ()
-</code></pre><p>  }</p>
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1881,8 +1879,8 @@ default: ()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1891,8 +1889,8 @@ default: ()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1947,7 +1945,7 @@ default: ()
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
