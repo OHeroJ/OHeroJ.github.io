@@ -84,16 +84,16 @@
 
 
 
-<meta name="description">
+<meta name="description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-Native ES6函数篇">
 <meta property="og:url" content="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-09-17T13:44:45.000Z">
+<meta property="og:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
+<meta property="og:updated_time" content="2016-09-17T14:25:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-Native ES6函数篇">
-<meta name="twitter:description">
+<meta name="twitter:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
 
 
 
@@ -169,7 +169,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -179,7 +179,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -252,7 +252,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
               2016-09-17
             </time>
@@ -288,7 +288,25 @@
       
 
       
-        
+        <p>写这篇文章，主要是自己不是个<code>JS</code>新手。记得第一次接触<code>js</code>是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，我只能说js是火得，不瞎扯了。工作2年了，虽然不是很久，但是叫我去学一门语言的话，问题应该不大，但是有些地方我觉得还是得做做笔记，整理整理遇到的一些坑。</p>
+<p>首先，我不清楚<code>ES5</code>,当然对于现在我学习的目的而言，我不打算去学<code>ES5</code>, 直接上手<code>ES6</code>. 我们做开发，面向对象可以说是离不开的，说道对象：类，对象，方法，属性。</p>
+<p>不得不说，js 的语法也 在跟大众语言靠起。不得不说这样可以降低学习的难度。语言是一门工具，一门工具的好用与否，当然跟这个工具的结构，材质等方面有关系，语言也是如此。</p>
+<ol>
+<li>在构造器中使用被定义的函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class CartItem extends React.Component &#123;</span><br><span class="line">    </span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.increaseQty = this.increaseQty.bind(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        &lt;button onClick=&#123;this.increaseQty&#125; className=&quot;button success&quot;&gt;+&lt;/button&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>调用时, 绑定this.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Feed extends Component &#123;</span><br><span class="line">  // 调用时, 绑定this.</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ListView</span><br><span class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</span><br><span class="line">        dataSource=&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow=&#123;(story) =&gt; this.renderStories(story)&#125;</span><br><span class="line">        .../&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用时, 绑定this</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Feed extends Component &#123;</span><br><span class="line">  // 使用时, 绑定this</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ListView</span><br><span class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</span><br><span class="line">        dataSource=&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow=&#123;this.renderStories.bind(this)&#125;</span><br><span class="line">        .../&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>React-Native的资料质量低下，重复率高，对于语法上的问题，完全可以参考React. </p>
+</blockquote>
+
       
     </div>
 
@@ -420,10 +438,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -440,7 +458,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -450,7 +468,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -489,7 +507,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>
@@ -516,7 +534,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
