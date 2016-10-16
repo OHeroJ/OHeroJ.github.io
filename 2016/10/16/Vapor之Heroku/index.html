@@ -94,7 +94,7 @@
 <meta property="og:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
 今天我们看看如何将swift写的代码部署到线上
 环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
-<meta property="og:updated_time" content="2016-10-16T03:18:06.000Z">
+<meta property="og:updated_time" content="2016-10-16T03:22:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vapor之Heroku">
 <meta name="twitter:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
@@ -318,7 +318,8 @@
 </ol>
 <pre><code>* 方法2：在页面上创建
 </code></pre><ol>
-<li>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>, <code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：<ul>
+<li><p>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>, <code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：</p>
+<ul>
 <li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
 <li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
 <li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
