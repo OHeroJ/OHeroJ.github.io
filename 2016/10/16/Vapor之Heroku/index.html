@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="react-native," />
+  <meta name="keywords" content="vapor,hexoku," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
+<meta name="description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React-Native ES6函数篇">
-<meta property="og:url" content="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/index.html">
+<meta property="og:title" content="Vapor之Heroku">
+<meta property="og:url" content="http://www.oheroj.com/2016/10/16/Vapor之Heroku/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
-<meta property="og:updated_time" content="2016-09-17T14:25:12.000Z">
+<meta property="og:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
+<meta property="og:updated_time" content="2016-10-16T03:18:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React-Native ES6函数篇">
-<meta name="twitter:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
+<meta name="twitter:title" content="Vapor之Heroku">
+<meta name="twitter:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
 
 
 
@@ -111,7 +117,7 @@
   };
 </script>
 
-  <title> React-Native ES6函数篇 | OHeroJ </title>
+  <title> Vapor之Heroku | OHeroJ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -241,7 +247,7 @@
             
             
               
-                React-Native ES6函数篇
+                Vapor之Heroku
               
             
           </h1>
@@ -253,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
-              2016-09-17
+            <time itemprop="dateCreated" datetime="2016-10-16T10:28:18+08:00" content="2016-10-16">
+              2016-10-16
             </time>
           </span>
 
@@ -264,8 +270,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/17/React-Native-ES6函数篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/React-Native-ES6函数篇/" itemprop="commentsCount"></span>
+                <a href="/2016/10/16/Vapor之Heroku/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Vapor之Heroku/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -288,24 +294,44 @@
       
 
       
-        <p>写这篇文章，主要是自己不是个<code>JS</code>新手。记得第一次接触<code>js</code>是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，我只能说js是火得，不瞎扯了。工作2年了，虽然不是很久，但是叫我去学一门语言的话，问题应该不大，但是有些地方我觉得还是得做做笔记，整理整理遇到的一些坑。</p>
-<p>首先，我不清楚<code>ES5</code>,当然对于现在我学习的目的而言，我不打算去学<code>ES5</code>, 直接上手<code>ES6</code>. 我们做开发，面向对象可以说是离不开的，说道对象：类，对象，方法，属性。</p>
-<p>不得不说，js 的语法也 在跟大众语言靠起。不得不说这样可以降低学习的难度。语言是一门工具，一门工具的好用与否，当然跟这个工具的结构，材质等方面有关系，语言也是如此。</p>
+        <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
+<p>今天我们看看如何将swift写的代码部署到线上</p>
+<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</span><br><span class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</span><br><span class="line">3. swift: 3.0</span><br><span class="line">4. xcode: 8.0</span><br><span class="line">5. macOS: 10.12</span><br><span class="line">6. vapor: 1.1</span><br></pre></td></tr></table></figure>
+<p><strong>Heroku</strong></p>
+<p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
+<p><strong>vapor</strong></p>
+<p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Vapor</span><br><span class="line">let drop = Droplet()</span><br><span class="line">drop.get &#123; req in</span><br><span class="line">    return &quot;Hello,world&quot;</span><br><span class="line">&#125;</span><br><span class="line">drop.get(&quot;/post&quot;) &#123; req  in</span><br><span class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</span><br><span class="line">&#125;</span><br><span class="line">drop.run()</span><br></pre></td></tr></table></figure>
+<p><strong>知识准备：</strong></p>
+<ul>
+<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
+</ul>
+<h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><p>如何将项目提交到 <code>Heroku</code>：</p>
 <ol>
-<li>在构造器中使用被定义的函数</li>
+<li><p>在 Heroku 创建好仓库(项目)</p>
+<ul>
+<li><p>方法1：命令行创建:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku apps:create spider-site</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class CartItem extends React.Component &#123;</span><br><span class="line">    </span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.increaseQty = this.increaseQty.bind(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        &lt;button onClick=&#123;this.increaseQty&#125; className=&quot;button success&quot;&gt;+&lt;/button&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>调用时, 绑定this.</li>
+<pre><code>* 方法2：在页面上创建
+</code></pre><ol>
+<li>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>, <code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：<ul>
+<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
+<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
+<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
+<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="external">cloudfoundry-community/swift-buildpack</a></li>
+</ul>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Feed extends Component &#123;</span><br><span class="line">  // 调用时, 绑定this.</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ListView</span><br><span class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</span><br><span class="line">        dataSource=&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow=&#123;(story) =&gt; this.renderStories(story)&#125;</span><br><span class="line">        .../&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>使用时, 绑定this</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Feed extends Component &#123;</span><br><span class="line">  // 使用时, 绑定this</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ListView</span><br><span class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</span><br><span class="line">        dataSource=&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow=&#123;this.renderStories.bind(this)&#125;</span><br><span class="line">        .../&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>React-Native的资料质量低下，重复率高，对于语法上的问题，完全可以参考React. </p>
-</blockquote>
+<p><code>heroku</code> 的环境都准备好后，我们要做的就是将代码提交到<code>Heroku</code>上，你可以把<code>Heroku</code>想象成为<code>github</code>,然后使用 git 进行代码管理就好了。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>步骤不需太详细，坑一定要多踩</li>
+<li>部署整体步骤还是挺简单的 </li>
+<li>下篇应该说说如何使用 heroku上的数据库<code>PostgreSQL</code>, 人家是免费提供你用的喔。</li>
+</ul>
 
       
     </div>
@@ -348,7 +374,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/react-native/" rel="tag">#react-native</a>
+            <a href="/tags/vapor/" rel="tag">#vapor</a>
+          
+            <a href="/tags/hexoku/" rel="tag">#hexoku</a>
           
         </div>
       
@@ -357,17 +385,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/04/cocoapods高级篇/" rel="next" title="cocoapods高级篇">
-                <i class="fa fa-chevron-left"></i> cocoapods高级篇
+              <a href="/2016/10/07/Vapor之mysql/" rel="next" title="Vapor之mysql">
+                <i class="fa fa-chevron-left"></i> Vapor之mysql
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/07/Vapor之mysql/" rel="prev" title="Vapor之mysql">
-                Vapor之mysql <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -382,10 +406,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/17/React-Native-ES6函数篇/"
-     data-title="React-Native ES6函数篇"
+        <div class="ds-share flat" data-thread-key="2016/10/16/Vapor之Heroku/"
+     data-title="Vapor之Heroku"
      data-content=""
-     data-url="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/">
+     data-url="http://www.oheroj.com/2016/10/16/Vapor之Heroku/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -415,8 +439,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/17/React-Native-ES6函数篇/"
-           data-title="React-Native ES6函数篇" data-url="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/">
+      <div class="ds-thread" data-thread-key="2016/10/16/Vapor之Heroku/"
+           data-title="Vapor之Heroku" data-url="http://www.oheroj.com/2016/10/16/Vapor之Heroku/">
       </div>
     
   </div>
@@ -511,7 +535,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境："><span class="nav-number">1.</span> <span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码部署"><span class="nav-number">2.</span> <span class="nav-text">代码部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
             
           </div>
         </section>

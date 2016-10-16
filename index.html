@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -243,6 +243,144 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/16/Vapor之Heroku/" itemprop="url">
+                  Vapor之Heroku
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-16T10:28:18+08:00" content="2016-10-16">
+              2016-10-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/16/Vapor之Heroku/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Vapor之Heroku/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
+<p>今天我们看看如何将swift写的代码部署到线上</p>
+<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</span><br><span class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</span><br><span class="line">3. swift: 3.0</span><br><span class="line">4. xcode: 8.0</span><br><span class="line">5. macOS: 10.12</span><br><span class="line">6. vapor: 1.1</span><br></pre></td></tr></table></figure>
+<p><strong>Heroku</strong></p>
+<p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
+<p><strong>vapor</strong></p>
+<p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Vapor</span><br><span class="line">let drop = Droplet()</span><br><span class="line">drop.get &#123; req in</span><br><span class="line">    return &quot;Hello,world&quot;</span><br><span class="line">&#125;</span><br><span class="line">drop.get(&quot;/post&quot;) &#123; req  in</span><br><span class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</span><br><span class="line">&#125;</span><br><span class="line">drop.run()</span><br></pre></td></tr></table></figure>
+<p><strong>知识准备：</strong></p>
+<ul>
+<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
+</ul>
+<h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><p>如何将项目提交到 <code>Heroku</code>：</p>
+<ol>
+<li><p>在 Heroku 创建好仓库(项目)</p>
+<ul>
+<li><p>方法1：命令行创建:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku apps:create spider-site</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>* 方法2：在页面上创建
+</code></pre><ol>
+<li>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>, <code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：<ul>
+<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
+<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
+<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
+<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="external">cloudfoundry-community/swift-buildpack</a></li>
+</ul>
+</li>
+</ol>
+<p><code>heroku</code> 的环境都准备好后，我们要做的就是将代码提交到<code>Heroku</code>上，你可以把<code>Heroku</code>想象成为<code>github</code>,然后使用 git 进行代码管理就好了。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>步骤不需太详细，坑一定要多踩</li>
+<li>部署整体步骤还是挺简单的 </li>
+<li>下篇应该说说如何使用 heroku上的数据库<code>PostgreSQL</code>, 人家是免费提供你用的喔。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/07/Vapor之mysql/" itemprop="url">
                   Vapor之mysql
                 </a>
@@ -256,7 +394,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-07T20:27:48+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -381,7 +519,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
               2016-09-17
             </time>
@@ -499,7 +637,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-04T13:16:02+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -634,7 +772,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-31T21:54:58+08:00" content="2016-08-31">
               2016-08-31
             </time>
@@ -789,7 +927,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-24T08:42:11+08:00" content="2016-08-24">
               2016-08-24
             </time>
@@ -912,7 +1050,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-23T22:37:39+08:00" content="2016-08-23">
               2016-08-23
             </time>
@@ -1038,7 +1176,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-21T18:51:28+08:00" content="2016-08-21">
               2016-08-21
             </time>
@@ -1151,7 +1289,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -1268,7 +1406,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
               2016-08-07
             </time>
@@ -1393,133 +1531,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/28/自定义xcode模板/" itemprop="url">
-                  自定义xcode模板
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
-              2016-07-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/28/自定义xcode模板/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/自定义xcode模板/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>很多时候，我们为了阅读、快速查询代码用的手段就是在写代码的时候 使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark -</span><br><span class="line">#pragma mark</span><br><span class="line">....</span><br></pre></td></tr></table></figure></p>
-<p>这些来对代码进行分区块标注， 这是个很不错的开发习惯。</p>
-<p>但是往往有些东西重复多了，感觉就是在浪费时间:</p>
-<p>比如 在<code>ViewController</code>我们基本上都会有如下的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - life cycle</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - api</span><br><span class="line"></span><br><span class="line">#pragma mark - delegate</span><br><span class="line"></span><br><span class="line">#pragma mark - dataSource</span><br><span class="line"></span><br><span class="line">#pragma mark - netWork</span><br><span class="line"></span><br><span class="line">#pragma mark - event response</span><br><span class="line"></span><br><span class="line">#pragma mark - private methods</span><br><span class="line"></span><br><span class="line">#pragma mark - getter / setter</span><br></pre></td></tr></table></figure>
-<p>在 <code>View</code>上我们会有如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - initial</span><br><span class="line"></span><br><span class="line">#pragma mark - add subviews (setup)</span><br><span class="line">- (void)setup &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">#pragma mark - view layouts</span><br><span class="line">- (void)layoutUI &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - public method</span><br><span class="line"></span><br><span class="line">#pragma mark - private method</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - getter / setter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - config test data</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>事情可以重复1遍，2遍，但是如果要重复3遍，那就必须得重构了</p>
-</blockquote>
-<p>所以我们有没有办法解决这个问题呢？ 答案当然是显然的。 在我们创建一个UITableViewController 的时候，你会发现.m里面会生成一些默认代码，那么 我们能否制作一份呢， 要怎么做？</p>
-<h3 id="can-do-how-do"><a href="#can-do-how-do" class="headerlink" title="can do ? how do?"></a>can do ? how do?</h3><h5 id="1-这些文件到底是从哪里生成的？"><a href="#1-这些文件到底是从哪里生成的？" class="headerlink" title="1. 这些文件到底是从哪里生成的？"></a>1. 这些文件到底是从哪里生成的？</h5><p>如果做过php, 或者python的同学 应该知道<code>模板引擎</code>, 其实xcode 生成的原理也差不多，有一份模板文件，这些文件放在叫一个<code>templates</code>的文件目录下(<code>xcode7.3</code>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/</span><br></pre></td></tr></table></figure></p>
-<p>我们可以切换到这个目录：<br><img src="/images/ddtemplate.png" alt="templates"></p>
-<p><code>Templates</code>下的目录结构我就不再这多说了，我相信你有这种能力发现一些规律:<br><img src="/images/ddxcode.png" alt="xcode"></p>
-<p>可以对比上面的两个图， 你会看到那个<code>牛头</code>的图标在上面的两张图中都有体现。</p>
-<h5 id="2-那么ViewController-xctemplate-里面放的是什么？"><a href="#2-那么ViewController-xctemplate-里面放的是什么？" class="headerlink" title="2. 那么ViewController.xctemplate 里面放的是什么？"></a>2. 那么<code>ViewController.xctemplate</code> 里面放的是什么？</h5><ol>
-<li>Templatelcon.png 就是一个图标， 这东西你可以随意换，就是不要把这名字给换了</li>
-<li><p>Templatelcon.plist里面是一些配置的东西</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">	&lt;key&gt;AllowedTypes&lt;/key&gt;</span><br><span class="line">	&lt;array&gt;</span><br><span class="line">		&lt;string&gt;public.objective-c-source&lt;/string&gt;</span><br><span class="line">		&lt;string&gt;public.objective-c-plus-plus-source&lt;/string&gt;</span><br><span class="line">	&lt;/array&gt;</span><br><span class="line">	&lt;key&gt;DefaultCompletionName&lt;/key&gt;</span><br><span class="line">	&lt;string&gt;File&lt;/string&gt;</span><br><span class="line">	&lt;key&gt;Description&lt;/key&gt;</span><br><span class="line">	&lt;string&gt;自定义 viewController 模板&lt;/string&gt;</span><br><span class="line">	&lt;key&gt;Kind&lt;/key&gt;</span><br><span class="line">	&lt;string&gt;Xcode.IDEKit.TextSubstitutionFileTemplateKind&lt;/string&gt;</span><br><span class="line">	&lt;key&gt;Options&lt;/key&gt;</span><br><span class="line">	&lt;array&gt;</span><br><span class="line">		&lt;dict&gt;</span><br><span class="line">			&lt;key&gt;Description&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;The name of the file to create&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Identifier&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;productName&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Name&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;File:&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;NotPersisted&lt;/key&gt;</span><br><span class="line">			&lt;true/&gt;</span><br><span class="line">			&lt;key&gt;Required&lt;/key&gt;</span><br><span class="line">			&lt;true/&gt;</span><br><span class="line">			&lt;key&gt;Type&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;text&lt;/string&gt;</span><br><span class="line">		&lt;/dict&gt;</span><br><span class="line">		&lt;dict&gt;</span><br><span class="line">			&lt;key&gt;Default&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;UIViewController&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Description&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;What class to subclass in the new file&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;FallbackHeader&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Identifier&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;cocoaSubclass&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Name&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;Subclass of:&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Required&lt;/key&gt;</span><br><span class="line">			&lt;true/&gt;</span><br><span class="line">			&lt;key&gt;Type&lt;/key&gt;</span><br><span class="line">			&lt;string&gt;class&lt;/string&gt;</span><br><span class="line">			&lt;key&gt;Values&lt;/key&gt;</span><br><span class="line">			&lt;array&gt;</span><br><span class="line">				&lt;string&gt;UIViewController&lt;/string&gt;</span><br><span class="line">			&lt;/array&gt;</span><br><span class="line">		&lt;/dict&gt;</span><br><span class="line">	&lt;/array&gt;</span><br><span class="line">	&lt;key&gt;SortOrder&lt;/key&gt;</span><br><span class="line">	&lt;string&gt;4&lt;/string&gt;</span><br><span class="line">	&lt;key&gt;Summary&lt;/key&gt;</span><br><span class="line">	&lt;string&gt;自定义 viewController 模板&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>UIViewController 这文件夹的东西你可以对比 Source文件下的系统默认的</p>
-</li>
-</ol>
-<p>在<code>__FILEBASENAME__.H</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ___FILEBASENAME___.h</span><br><span class="line">//  ___PROJECTNAME___</span><br><span class="line">//</span><br><span class="line">//  Created by ___FULLUSERNAME___ on ___DATE___.</span><br><span class="line">//___COPYRIGHT___</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">___IMPORTHEADER_cocoaSubclass___</span><br><span class="line"></span><br><span class="line">@interface ___FILEBASENAME___: ___VARIABLE_cocoaSubclass___</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<p>在 <code>__FILEBASENAME__.m</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ___FILEBASENAME___.m</span><br><span class="line">//  ___PROJECTNAME___e</span><br><span class="line">//</span><br><span class="line">//  Created by ___FULLUSERNAME___ on ___DATE___.</span><br><span class="line">//___COPYRIGHT___</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;___FILEBASENAME___.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ___FILEBASENAME___ ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ___FILEBASENAME___</span><br><span class="line"></span><br><span class="line">#pragma mark - life cycle</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - api</span><br><span class="line"></span><br><span class="line">#pragma mark - delegate</span><br><span class="line"></span><br><span class="line">#pragma mark - dataSource</span><br><span class="line"></span><br><span class="line">#pragma mark - netWork</span><br><span class="line"></span><br><span class="line">#pragma mark - event response</span><br><span class="line"></span><br><span class="line">#pragma mark - private methods</span><br><span class="line"></span><br><span class="line">#pragma mark - getter / setter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>然后打开一个xcode项目， cmd + n</p>
-<p>然后很多你想要的就有了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1565,8 +1576,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1575,8 +1586,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1631,7 +1642,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
