@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gitbook,gitlab,敏捷开发," />
+  <meta name="keywords" content="Django,python," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
-
-今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
+<meta name="description" content="不求人不求人，自给自足。
+最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。
+iOS端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitlab之gitbook自动集成">
-<meta property="og:url" content="http://www.oheroj.com/2016/07/24/gitlab之gitbook自动集成/index.html">
+<meta property="og:title" content="基于 Django 搭建 Zip 皮肤包下载功能测试后台">
+<meta property="og:url" content="http://www.oheroj.com/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/index.html">
 <meta property="og:site_name" content="OHeroJ">
-<meta property="og:description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
-
-今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
-<meta property="og:updated_time" content="2016-07-24T15:10:17.000Z">
+<meta property="og:description" content="不求人不求人，自给自足。
+最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。
+iOS端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一">
+<meta property="og:updated_time" content="2016-11-16T15:15:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gitlab之gitbook自动集成">
-<meta name="twitter:description" content="最近有个任务是 想通过 gitlab 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。
-
-今天植入主题，我们该如何在 gitlab 上持续集成我们的 gitb">
+<meta name="twitter:title" content="基于 Django 搭建 Zip 皮肤包下载功能测试后台">
+<meta name="twitter:description" content="不求人不求人，自给自足。
+最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。
+iOS端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一">
 
 
 
@@ -117,7 +117,7 @@
   };
 </script>
 
-  <title> gitlab之gitbook自动集成 | OHeroJ </title>
+  <title> 基于 Django 搭建 Zip 皮肤包下载功能测试后台 | OHeroJ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -247,7 +247,7 @@
             
             
               
-                gitlab之gitbook自动集成
+                基于 Django 搭建 Zip 皮肤包下载功能测试后台
               
             
           </h1>
@@ -259,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
-              2016-07-24
+            <time itemprop="dateCreated" datetime="2016-11-16T23:02:22+08:00" content="2016-11-16">
+              2016-11-16
             </time>
           </span>
 
@@ -270,8 +270,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/24/gitlab之gitbook自动集成/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/gitlab之gitbook自动集成/" itemprop="commentsCount"></span>
+                <a href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -294,65 +294,19 @@
       
 
       
-        <blockquote>
-<p>最近有个任务是 想通过 <code>gitlab</code> 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，<br>排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，<br>很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。</p>
-</blockquote>
-<p>今天植入主题，我们该如何在 <strong>gitlab</strong> 上持续集成我们的 <strong>gitbook</strong> 文档。</p>
-<h3 id="为什么需要文档？"><a href="#为什么需要文档？" class="headerlink" title="为什么需要文档？"></a>为什么需要文档？</h3><p>个人觉得：</p>
-<ol>
-<li>如果是新人入职的话，有文档那很多东西就方便多了；</li>
-<li>开发一个组件，写出文档，很多东西就不需要重复介绍给使用的人</li>
-<li>降低沟通成本和维护成本</li>
-<li>提高开发效率</li>
-<li>可以把一个新技术的探研做成一份学习路线文档，这样后来人就可以减少学习的成本</li>
+        <p>不求人不求人，自给自足。</p>
+<p>最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。</p>
+<p><code>iOS</code>端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。<br>因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。<br>但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一样，<br>半成品的东西最后还是不能给你打勾。没有实现等于没有完成，中间过程忽略不计，这是我的做事风格。</p>
+<h2 id="后台需求："><a href="#后台需求：" class="headerlink" title="后台需求："></a>后台需求：</h2><ol>
+<li>提供一个 皮肤包 zip 下载的接口，里面的数据我们自己造。</li>
+<li>实现对文件进行 zip 打包，留着以后遇到 zip 相关就可以快速找到实现方案。</li>
 </ol>
-<h3 id="需要的工具"><a href="#需要的工具" class="headerlink" title="需要的工具"></a>需要的工具</h3><ol>
-<li><a href="https://www.sourcetreeapp.com" target="_blank" rel="external">SourceTree</a></li>
-<li><a href="https://www.gitbook.com/editor/" target="_blank" rel="external">GitBookEditor</a></li>
-<li><a href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md" target="_blank" rel="external">GitBook</a></li>
-</ol>
-<h3 id="文档编写-markdown"><a href="#文档编写-markdown" class="headerlink" title="文档编写 markdown"></a>文档编写 <code>markdown</code></h3><p>语法可 <a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">参考</a></p>
-<h3 id="gitbook-基本使用"><a href="#gitbook-基本使用" class="headerlink" title="gitbook 基本使用"></a><code>gitbook</code> 基本使用</h3><p>使用可 <a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="external">参考</a></p>
-<h3 id="gitlab上持续集成的步骤"><a href="#gitlab上持续集成的步骤" class="headerlink" title="gitlab上持续集成的步骤"></a><code>gitlab</code>上持续集成的步骤</h3><ol>
-<li>在gitlab新建一个resposity</li>
-<li>checkout到本地</li>
-<li>在项目上新增一个 .gitlab-ci.yml 文件 并提交到 Gitlab</li>
-</ol>
-<h3 id="gitlab-的-gitlab-ci-yml文件的编写"><a href="#gitlab-的-gitlab-ci-yml文件的编写" class="headerlink" title="gitlab 的 .gitlab-ci.yml文件的编写"></a><code>gitlab</code> 的 <code>.gitlab-ci.yml</code>文件的编写</h3><ol>
-<li><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">.gitlab-ci.yml 指南</a></li>
-<li><p>文件参考书写：</p>
-<pre><code>before_script:
-- env
-- export LC_ALL=zh_TW.UTF-8
-
-stages:
-- build
-
-ebook:
-stage: build
-script:
-- gitbook pdf
-artifacts:
-paths:
-  - book.pdf
-only:
-- master
-
-image: shuoshuo/gitbook-builder:latest
-</code></pre></li>
-</ol>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
-<li><a href="http://www.jianshu.com/p/e650aac83f7a" target="_blank" rel="external">gitbook在私有gitlab上持续集成</a></li>
-<li><p><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">Configuration of your builds with .gitlab-ci.yml</a></p>
-</li>
-<li><p><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a></p>
-</li>
-<li><a href="http://www.jianshu.com/p/168c0c1c7e4f" target="_blank" rel="external">敏捷开发之API管理之道</a></li>
-<li><a href="http://www.jianshu.com/p/2b43151fb92e/comments/2348175" target="_blank" rel="external">GitLab-CI与GitLab-Runner</a></li>
-<li><a href="https://yudachi.biz/2016/05/27/moving-to-gitlab-pages/" target="_blank" rel="external">基地转移！从 GitHub Pages 转移到 GitLab Pages</a></li>
-<li><a href="https://medium.com/@shuoshuo/多人共筆且自動產生-pdf-版電子書-5a0f1053c069#.8qic6kquk" target="_blank" rel="external">多人共筆且自動產生 PDF 版電子書</a></li>
-</ol>
-
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>后台技能树： node.js | python | swift | go<br>选择个人较为容易的 Python, 且使用我以前现有的 Django 项目，添加一个接口即可</p>
+<h2 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点"></a>实现要点</h2><ul>
+<li>zip 下载接口</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># view 中代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> StreamingHttpResponse</span><br><span class="line"><span class="keyword">import</span> os,zipfile</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">big_file_download</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">file_iterator</span><span class="params">(file_name, chunk_size=<span class="number">512</span>)</span>:</span></span><br><span class="line">        <span class="keyword">with</span> open (file_name, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">                c = f.read(chunk_size)</span><br><span class="line">                <span class="keyword">if</span> c:</span><br><span class="line">                    <span class="keyword">yield</span> c</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    the_file_name = <span class="string">"tmp.zip"</span></span><br><span class="line">    filepath = os.path.join(BASE_DIR, the_file_name)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</span><br><span class="line">        zipFile(<span class="string">'tmp'</span>) <span class="comment">#不存在就进行压缩</span></span><br><span class="line">    response = StreamingHttpResponse(file_iterator(filepath))</span><br><span class="line">    response[<span class="string">'Content-Type'</span>] = <span class="string">'application/octest-stream'</span></span><br><span class="line">    response[<span class="string">'Content-Disposition'</span>] = <span class="string">'attachment; filename="&#123;0&#125;"'</span>.format(the_file_name)</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zipFile</span><span class="params">(dir)</span>:</span></span><br><span class="line">    the_zip = zipfile.ZipFile(<span class="string">'tmp.zip'</span>, <span class="string">'w'</span>, zipfile.ZIP_DEFLATED)</span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir):</span><br><span class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</span><br><span class="line">            the_zip.write(os.path.join(dirpath,filename))</span><br><span class="line">    the_zip.close()</span><br></pre></td></tr></table></figure>
+<h2 id="Over"><a href="#Over" class="headerlink" title="Over"></a>Over</h2>
       
     </div>
 
@@ -394,11 +348,9 @@ image: shuoshuo/gitbook-builder:latest
       
         <div class="post-tags">
           
-            <a href="/tags/gitbook/" rel="tag">#gitbook</a>
+            <a href="/tags/Django/" rel="tag">#Django</a>
           
-            <a href="/tags/gitlab/" rel="tag">#gitlab</a>
-          
-            <a href="/tags/敏捷开发/" rel="tag">#敏捷开发</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -407,17 +359,13 @@ image: shuoshuo/gitbook-builder:latest
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/16/iOS之cocoapods/" rel="next" title="iOS之cocoapods">
-                <i class="fa fa-chevron-left"></i> iOS之cocoapods
+              <a href="/2016/10/16/Vapor之Heroku/" rel="next" title="Vapor之Heroku">
+                <i class="fa fa-chevron-left"></i> Vapor之Heroku
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/自定义xcode模板/" rel="prev" title="自定义xcode模板">
-                自定义xcode模板 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,10 +380,10 @@ image: shuoshuo/gitbook-builder:latest
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/07/24/gitlab之gitbook自动集成/"
-     data-title="gitlab之gitbook自动集成"
+        <div class="ds-share flat" data-thread-key="2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/"
+     data-title="基于 Django 搭建 Zip 皮肤包下载功能测试后台"
      data-content=""
-     data-url="http://www.oheroj.com/2016/07/24/gitlab之gitbook自动集成/">
+     data-url="http://www.oheroj.com/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -465,8 +413,8 @@ image: shuoshuo/gitbook-builder:latest
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/24/gitlab之gitbook自动集成/"
-           data-title="gitlab之gitbook自动集成" data-url="http://www.oheroj.com/2016/07/24/gitlab之gitbook自动集成/">
+      <div class="ds-thread" data-thread-key="2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/"
+           data-title="基于 Django 搭建 Zip 皮肤包下载功能测试后台" data-url="http://www.oheroj.com/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/">
       </div>
     
   </div>
@@ -561,7 +509,7 @@ image: shuoshuo/gitbook-builder:latest
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要文档？"><span class="nav-number">1.</span> <span class="nav-text">为什么需要文档？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的工具"><span class="nav-number">2.</span> <span class="nav-text">需要的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档编写-markdown"><span class="nav-number">3.</span> <span class="nav-text">文档编写 markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitbook-基本使用"><span class="nav-number">4.</span> <span class="nav-text">gitbook 基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitlab上持续集成的步骤"><span class="nav-number">5.</span> <span class="nav-text">gitlab上持续集成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitlab-的-gitlab-ci-yml文件的编写"><span class="nav-number">6.</span> <span class="nav-text">gitlab 的 .gitlab-ci.yml文件的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后台需求："><span class="nav-number">1.</span> <span class="nav-text">后台需求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术选型"><span class="nav-number">2.</span> <span class="nav-text">技术选型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现要点"><span class="nav-number">3.</span> <span class="nav-text">实现要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Over"><span class="nav-number">4.</span> <span class="nav-text">Over</span></a></li></ol></div>
             
           </div>
         </section>
