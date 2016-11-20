@@ -296,10 +296,10 @@
       
         <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
 <p>今天我们看看如何将swift写的代码部署到线上</p>
-<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</span><br><span class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</span><br><span class="line">3. swift: 3.0</span><br><span class="line">4. xcode: 8.0</span><br><span class="line">5. macOS: 10.12</span><br><span class="line">6. vapor: 1.1</span><br></pre></td></tr></table></figure>
+<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</div><div class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</div><div class="line">3. swift: 3.0</div><div class="line">4. xcode: 8.0</div><div class="line">5. macOS: 10.12</div><div class="line">6. vapor: 1.1</div></pre></td></tr></table></figure>
 <h3 id="Heroku"><a href="#Heroku" class="headerlink" title="Heroku"></a>Heroku</h3><p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
 <h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Vapor</span><br><span class="line">let drop = Droplet()</span><br><span class="line">drop.get &#123; req in</span><br><span class="line">    return &quot;Hello,world&quot;</span><br><span class="line">&#125;</span><br><span class="line">drop.get(&quot;/post&quot;) &#123; req  in</span><br><span class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</span><br><span class="line">&#125;</span><br><span class="line">drop.run()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Vapor</div><div class="line">let drop = Droplet()</div><div class="line">drop.get &#123; req in</div><div class="line">    return &quot;Hello,world&quot;</div><div class="line">&#125;</div><div class="line">drop.get(&quot;/post&quot;) &#123; req  in</div><div class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</div><div class="line">&#125;</div><div class="line">drop.run()</div></pre></td></tr></table></figure>
 <h3 id="知识准备："><a href="#知识准备：" class="headerlink" title="知识准备："></a>知识准备：</h3><ul>
 <li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
 </ul>
@@ -308,7 +308,7 @@
 <li><p>在 Heroku 创建好仓库(项目)</p>
 <ul>
 <li><p>方法1：命令行创建:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku apps:create spider-site</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">heroku apps:create spider-site</div></pre></td></tr></table></figure>
 </li>
 <li><p>方法2：在页面上创建</p>
 </li>
@@ -328,7 +328,7 @@
 </ol>
 </li>
 <li><p><code>heroku</code> 的环境都准备好后，我们要做的就是将代码提交到<code>Heroku</code>上，你可以把<code>Heroku</code>想象成为<code>github</code>,然后使用 git 进行代码管理就好了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote add heroku https://spider-site.herokuapp.com/  # 关联远端</span><br><span class="line">git commit -a -m &quot;Feat: 第一次添加&quot; </span><br><span class="line">git push heroku # 将代码提交到heroku</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote add heroku https://spider-site.herokuapp.com/  # 关联远端</div><div class="line">git commit -a -m &quot;Feat: 第一次添加&quot; </div><div class="line">git push heroku # 将代码提交到heroku</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
