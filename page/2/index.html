@@ -167,7 +167,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -177,7 +177,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -240,6 +240,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/17/React-Native-ES6函数篇/" itemprop="url">
+                  React-Native ES6函数篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
+              2016-09-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/17/React-Native-ES6函数篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/React-Native-ES6函数篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>写这篇文章，主要是自己不是个<code>JS</code>新手。记得第一次接触<code>js</code>是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，我只能说js是火得，不瞎扯了。工作2年了，虽然不是很久，但是叫我去学一门语言的话，问题应该不大，但是有些地方我觉得还是得做做笔记，整理整理遇到的一些坑。</p>
+<p>首先，我不清楚<code>ES5</code>,当然对于现在我学习的目的而言，我不打算去学<code>ES5</code>, 直接上手<code>ES6</code>. 我们做开发，面向对象可以说是离不开的，说道对象：类，对象，方法，属性。</p>
+<p>不得不说，js 的语法也 在跟大众语言靠起。不得不说这样可以降低学习的难度。语言是一门工具，一门工具的好用与否，当然跟这个工具的结构，材质等方面有关系，语言也是如此。</p>
+<ol>
+<li>在构造器中使用被定义的函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class CartItem extends React.Component &#123;</div><div class="line">    </div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.increaseQty = this.increaseQty.bind(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        &lt;button onClick=&#123;this.increaseQty&#125; className=&quot;button success&quot;&gt;+&lt;/button&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>调用时, 绑定this.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 调用时, 绑定this.</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;(story) =&gt; this.renderStories(story)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>使用时, 绑定this</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 使用时, 绑定this</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;this.renderStories.bind(this)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>React-Native的资料质量低下，重复率高，对于语法上的问题，完全可以参考React. </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/04/cocoapods高级篇/" itemprop="url">
                   cocoapods高级篇
                 </a>
@@ -253,7 +371,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-04T13:16:02+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -388,7 +506,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-31T21:54:58+08:00" content="2016-08-31">
               2016-08-31
             </time>
@@ -543,7 +661,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-24T08:42:11+08:00" content="2016-08-24">
               2016-08-24
             </time>
@@ -666,7 +784,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-23T22:37:39+08:00" content="2016-08-23">
               2016-08-23
             </time>
@@ -792,7 +910,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-21T18:51:28+08:00" content="2016-08-21">
               2016-08-21
             </time>
@@ -905,7 +1023,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -1022,7 +1140,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
               2016-08-07
             </time>
@@ -1181,7 +1299,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -1308,7 +1426,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
               2016-07-24
             </time>
@@ -1432,149 +1550,6 @@ image: shuoshuo/gitbook-builder:latest
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/16/iOS之cocoapods/" itemprop="url">
-                  iOS之cocoapods
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-16T07:06:01+08:00" content="2016-07-16">
-              2016-07-16
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/16/iOS之cocoapods/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/16/iOS之cocoapods/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>很多东西就不在此啰嗦了， 根据 <a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">这篇博客</a> 就可以很愉快的玩上你的cocoapods了</p>
-</blockquote>
-<p>今天想说的是关于自己在使用上遇到的一些问题：</p>
-<h3 id="1-cocoapods-重装问题"><a href="#1-cocoapods-重装问题" class="headerlink" title="1. cocoapods 重装问题"></a>1. cocoapods 重装问题</h3><h4 id="1-卸载"><a href="#1-卸载" class="headerlink" title="1. 卸载"></a>1. 卸载</h4><pre><code>sudo gem uninstall cocoapods
-
-// 你也可以卸载指定版本的cocoapods
-// sudo gem uninstall cocoapods -v 0.38
-
-// 对于如何查看你安装的版本
-// gem list
-</code></pre><h4 id="2-重装"><a href="#2-重装" class="headerlink" title="2. 重装"></a>2. 重装</h4><pre><code>// 检测你安装的 ruby 的版本是否是该 cocoapods 所支持的
-sudo gem update --system  
-sudo gem install cocoapods
-// 或者安装指定版本的
-// sudo gem install cocoapods -v 1.0.0
-</code></pre><h4 id="3-pod-setup"><a href="#3-pod-setup" class="headerlink" title="3. pod setup"></a>3. pod setup</h4><p>这块拎出来讲是有原因的， 主要是在执行上面的 1，2 其实很关键的就是这个 setup 这步，很多东西都依赖于这个。</p>
-<p>那么这部做了什么东西？</p>
-<pre><code>cd ~/.cocoapods/repos/
-</code></pre><p>会有个 <code>master</code> 文件夹，那么这个文件夹的东西就是这个 <code>pod setup</code>生成的。对于这个我们在每次<code>pod install or pod update</code> 的时候，也会牵扯到这个文件夹中的内容。</p>
-<pre><code>// 切刀这个 ~/.cocoapods/repos/
-du -sh *
-
-// 我这边显示的结果是
-779M  master
-</code></pre><p>779M， 这也是为什么 pod setup 这么慢的原因吧(所以在setup 的时候最好是能在比较稳定且快速的网络下进行， 我就因为公司的网络问题， 下了n便，结果没成功)。</p>
-<p>那么如果我们就是 setup 不成功， 那么这个时候我们可以另寻其他的路：我们可以向朋友叫他们 zip 出这个包给你,然后放到这个目录下就好。</p>
-<h4 id="4-可能会有的坑"><a href="#4-可能会有的坑" class="headerlink" title="4. 可能会有的坑"></a>4. 可能会有的坑</h4><h5 id="1-搜索时报错"><a href="#1-搜索时报错" class="headerlink" title="1. 搜索时报错"></a>1. 搜索时报错</h5><pre><code>pod search  AFNetworking
-</code></pre><p>出现了 <code>[!] Unable to find a pod with name, author, summary, or descriptionmatching</code>AFNetworking``</p>
-<p>解决方案是：</p>
-<pre><code>rm ~/Library/Caches/CocoaPods/search_index.json
-
-// 然后
-pod search AFNetworking
-</code></pre><h5 id="2-1-0以上的版本-记得设置-target"><a href="#2-1-0以上的版本-记得设置-target" class="headerlink" title="2. 1.0以上的版本  记得设置 target"></a>2. 1.0以上的版本  记得设置 target</h5><h5 id="3-pod-install-或者-pod-update-很慢"><a href="#3-pod-install-或者-pod-update-很慢" class="headerlink" title="3. pod install 或者 pod update 很慢"></a>3. pod install 或者 pod update 很慢</h5><pre><code>pod install --verbose --no-repo-update
-pod update --verbose --no-repo-update
-</code></pre><p>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少</p>
-<h4 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h4><ol>
-<li><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">用CocoaPods做iOS程序的依赖管理</a></li>
-<li><a href="https://segmentfault.com/a/1190000005011497" target="_blank" rel="external">拥抱 CocoaPods 1.0</a></li>
-<li><a href="http://www.jianshu.com/p/f79589c21dc4" target="_blank" rel="external">Cocoapods安装使用以及完全卸载</a></li>
-<li><a href="http://my.oschina.net/u/2559341/blog/592738#OSC_h3_10" target="_blank" rel="external">CocoaPods详解之—-使用篇 pod install/pod update更新慢的问题</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1620,8 +1595,8 @@ pod update --verbose --no-repo-update
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1630,8 +1605,8 @@ pod update --verbose --no-repo-update
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1686,7 +1661,7 @@ pod update --verbose --no-repo-update
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
