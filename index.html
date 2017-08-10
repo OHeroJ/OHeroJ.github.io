@@ -167,7 +167,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -177,7 +177,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -240,6 +240,155 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/10/Docker-gitlab-nginx-自动化/" itemprop="url">
+                  Docker+gitlab+nginx 自动化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2017-08-10T14:50:20+08:00" content="2017-08-10">
+              2017-08-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/10/Docker-gitlab-nginx-自动化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/10/Docker-gitlab-nginx-自动化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker-Gitlab-Nginx-自动化集成"><a href="#Docker-Gitlab-Nginx-自动化集成" class="headerlink" title="Docker + Gitlab + Nginx 自动化集成"></a>Docker + Gitlab + Nginx 自动化集成</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><ol>
+<li>mac os</li>
+<li><p>Kitematic + docker</p>
+</li>
+<li><p>然后依次添加 docker image : </p>
+<ul>
+<li>gilab-ce </li>
+<li>nginx</li>
+</ul>
+</li>
+<li><p>用终端下载 gitlab-runner:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure>
+<p>添加 sudo 的话是以root用户运行，那么配置文件默认是 /etc/gitlab-runner-config.toml， 反之<br>以非 root 用户运行，那么配置文件默认是~/.gitlab-runner/comfig.toml</p>
+<h2 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h2><p>Runner 可以分布在不同的主机上，同一个主机上也可以有多个 Runner.</p>
+<p>gitlab-runner 可以分为两种类型：</p>
+<ul>
+<li><code>Shared Runner</code> : 系统管理员创建</li>
+<li><code>Specific Runner</code>: 有该工程访问权限的人可以创建</li>
+</ul>
+<blockquote>
+<p>每次 gitlab-ci-multi-runner 注册完成之后，还必须执行 <code>run</code> 操作，否则它无法使用</p>
+</blockquote>
+<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">官方文档</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages: </div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www: </div><div class="line">    stage: build </div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure>
+<p>如果你在构建的时候遇到: </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Running with gitlab-ci-multi-runner 9.4.2 (6d06f2e)</div><div class="line">  on mac (22376a88)</div><div class="line">Using Shell executor...</div><div class="line">Running on gangyan.local...</div><div class="line">Cloning repository...</div><div class="line">Cloning into <span class="string">'/Users/aa/test/builds/22376a88/0/leo/ios'</span>...</div><div class="line">fatal: unable to access <span class="string">'http://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gygitlab/leo/ios.git/'</span>: Failed to connect to gygitlab port 80: Connection refused</div><div class="line">ERROR: Job failed: <span class="built_in">exit</span> status 1</div></pre></td></tr></table></figure>
+<p>需要做域名端口映射。我们 docker 里面配置的 gitlab 的映射到本地的端口是 <code>32788</code>, 而现在报错的是 <code>80</code>端口，那么这个时候说明端口有问题，如何解决呢？</p>
+<ol>
+<li>修改<code>/etc/hosts</code></li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192.168.1.129 gygitlab</div></pre></td></tr></table></figure>
+<ol>
+<li>修改<code>/etc/pf.conf</code></li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">nat-anchor <span class="string">"gygitlab"</span></div><div class="line">rdr-anchor <span class="string">"gygitlab"</span></div><div class="line">anchor <span class="string">"gygitlab"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"gygitlab"</span> from <span class="string">"/etc/pf.anchors/gygitlab"</span></div></pre></td></tr></table></figure>
+<ol>
+<li>修改 <code>etc/pf.anchors</code>,添加<code>gygitlab</code>，且编辑内容：</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rdr pass on lo0 inet proto tcp from any to self port 80 -&gt; 192.168.1.129 port 32788</div></pre></td></tr></table></figure>
+<ol>
+<li>部署</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pfctl <span class="_">-f</span> /etc/pf.conf</div><div class="line">sudo pfctl <span class="_">-e</span> <span class="comment">## 开启</span></div><div class="line">sudo pfctl <span class="_">-d</span> <span class="comment">##  关闭</span></div></pre></td></tr></table></figure>
+<h2 id="nginx-docker"><a href="#nginx-docker" class="headerlink" title="nginx(docker)"></a>nginx(docker)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name some_nginx -v ~/nginx/some/www:/usr/share/nginx/html:ro <span class="_">-d</span> nginx</div></pre></td></tr></table></figure>
+<p>其他相关可以<a href="https://yeasy.gitbooks.io/docker_practice/content/appendix/repo/nginx.html" target="_blank" rel="external">参考</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/12/swift-之-silgen-name/" itemprop="url">
                   swift 之 @_silgen_name
                 </a>
@@ -253,7 +402,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-06-12T22:50:34+08:00" content="2017-06-12">
               2017-06-12
             </time>
@@ -359,7 +508,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-06-07T00:18:48+08:00" content="2017-06-07">
               2017-06-07
             </time>
@@ -477,7 +626,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-05-05T20:16:49+08:00" content="2017-05-05">
               2017-05-05
             </time>
@@ -587,7 +736,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-03-26T10:43:03+08:00" content="2017-03-26">
               2017-03-26
             </time>
@@ -694,7 +843,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-03-26T10:18:00+08:00" content="2017-03-26">
               2017-03-26
             </time>
@@ -801,7 +950,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-01-10T23:44:00+08:00" content="2017-01-10">
               2017-01-10
             </time>
@@ -901,7 +1050,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2017-01-01T23:13:26+08:00" content="2017-01-01">
               2017-01-01
             </time>
@@ -1026,7 +1175,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-12-17T22:53:51+08:00" content="2016-12-17">
               2016-12-17
             </time>
@@ -1199,7 +1348,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-11-16T23:02:22+08:00" content="2016-11-16">
               2016-11-16
             </time>
@@ -1279,148 +1428,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/16/Vapor之Heroku/" itemprop="url">
-                  Vapor之Heroku
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-16T10:28:18+08:00" content="2016-10-16">
-              2016-10-16
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/16/Vapor之Heroku/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Vapor之Heroku/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
-<p>今天我们看看如何将swift写的代码部署到线上</p>
-<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</div><div class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</div><div class="line">3. swift: 3.0</div><div class="line">4. xcode: 8.0</div><div class="line">5. macOS: 10.12</div><div class="line">6. vapor: 1.1</div></pre></td></tr></table></figure>
-<h3 id="Heroku"><a href="#Heroku" class="headerlink" title="Heroku"></a>Heroku</h3><p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
-<h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Vapor</div><div class="line">let drop = Droplet()</div><div class="line">drop.get &#123; req in</div><div class="line">    return &quot;Hello,world&quot;</div><div class="line">&#125;</div><div class="line">drop.get(&quot;/post&quot;) &#123; req  in</div><div class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</div><div class="line">&#125;</div><div class="line">drop.run()</div></pre></td></tr></table></figure>
-<h3 id="知识准备："><a href="#知识准备：" class="headerlink" title="知识准备："></a>知识准备：</h3><ul>
-<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
-</ul>
-<h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><p>如何将项目提交到 <code>Heroku</code>：</p>
-<ol>
-<li><p>在 Heroku 创建好仓库(项目)</p>
-<ul>
-<li><p>方法1：命令行创建:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">heroku apps:create spider-site</div></pre></td></tr></table></figure>
-</li>
-<li><p>方法2：在页面上创建</p>
-</li>
-</ul>
-</li>
-<li><p>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>,<br><code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：</p>
-<ul>
-<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
-<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
-<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
-<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="external">cloudfoundry-community/swift-buildpack</a></li>
-</ul>
-<p>创建方法也有两种：</p>
-<ol>
-<li>命令创建</li>
-<li>页面上添加</li>
-</ol>
-</li>
-<li><p><code>heroku</code> 的环境都准备好后，我们要做的就是将代码提交到<code>Heroku</code>上，你可以把<code>Heroku</code>想象成为<code>github</code>,然后使用 git 进行代码管理就好了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote add heroku https://spider-site.herokuapp.com/  # 关联远端</div><div class="line">git commit -a -m &quot;Feat: 第一次添加&quot; </div><div class="line">git push heroku # 将代码提交到heroku</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
-<li>步骤不需太详细，坑一定要多踩， 页面上操作的东西基本上都可以用命令行实现(看文档去吧)。</li>
-<li>部署整体步骤还是挺简单的 </li>
-<li>下篇应该说说如何使用 heroku上的数据库<code>PostgreSQL</code>, 人家是免费提供你用的喔。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1466,8 +1473,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1476,8 +1483,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1532,7 +1539,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
