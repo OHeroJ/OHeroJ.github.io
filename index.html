@@ -301,12 +301,14 @@
 <li>nginx</li>
 </ul>
 </li>
-<li>用终端下载 gitlab-runner:<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure></p>
+<li><p>用终端下载 gitlab-runner:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
+<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure>
 <p>添加 sudo 的话是以root用户运行，那么配置文件默认是 /etc/gitlab-runner-config.toml， 反之<br>以非 root 用户运行，那么配置文件默认是~/.gitlab-runner/comfig.toml</p>
 <h2 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h2><p>Runner 可以分布在不同的主机上，同一个主机上也可以有多个 Runner.<br>gitlab-runner 可以分为两种类型：</p>
+</li>
+</ol>
 <ul>
 <li><code>Shared Runner</code> : 系统管理员创建</li>
 <li><code>Specific Runner</code>: 有该工程访问权限的人可以创建<blockquote>
