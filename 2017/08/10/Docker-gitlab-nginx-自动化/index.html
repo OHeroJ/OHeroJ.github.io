@@ -87,15 +87,12 @@
 <meta name="description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-
 然后依次添加 docker image : 
-
 gilab-ce 
 nginx
 
 
-用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-">
+用终端下载 gitlab-runner:12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mul">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker+gitlab+nginx 自动化">
 <meta property="og:url" content="http://www.oheroj.com/2017/08/10/Docker-gitlab-nginx-自动化/index.html">
@@ -103,30 +100,24 @@ nginx
 <meta property="og:description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-
 然后依次添加 docker image : 
-
 gilab-ce 
 nginx
 
 
-用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-">
-<meta property="og:updated_time" content="2017-08-10T06:56:22.000Z">
+用终端下载 gitlab-runner:12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mul">
+<meta property="og:updated_time" content="2017-08-10T07:01:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker+gitlab+nginx 自动化">
 <meta name="twitter:description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-
 然后依次添加 docker image : 
-
 gilab-ce 
 nginx
 
 
-用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-">
+用终端下载 gitlab-runner:12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mul">
 
 
 
@@ -323,51 +314,42 @@ nginx
       
         <h1 id="Docker-Gitlab-Nginx-自动化集成"><a href="#Docker-Gitlab-Nginx-自动化集成" class="headerlink" title="Docker + Gitlab + Nginx 自动化集成"></a>Docker + Gitlab + Nginx 自动化集成</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><ol>
 <li>mac os</li>
-<li><p>Kitematic + docker</p>
-</li>
-<li><p>然后依次添加 docker image : </p>
-<ul>
+<li>Kitematic + docker</li>
+<li>然后依次添加 docker image : <ul>
 <li>gilab-ce </li>
 <li>nginx</li>
 </ul>
 </li>
-<li><p>用终端下载 gitlab-runner:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
+<li>用终端下载 gitlab-runner:<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure>
+<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure></p>
 <p>添加 sudo 的话是以root用户运行，那么配置文件默认是 /etc/gitlab-runner-config.toml， 反之<br>以非 root 用户运行，那么配置文件默认是~/.gitlab-runner/comfig.toml</p>
-<h2 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h2><p>Runner 可以分布在不同的主机上，同一个主机上也可以有多个 Runner.</p>
-<p>gitlab-runner 可以分为两种类型：</p>
+<h2 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h2><p>Runner 可以分布在不同的主机上，同一个主机上也可以有多个 Runner.<br>gitlab-runner 可以分为两种类型：</p>
 <ul>
 <li><code>Shared Runner</code> : 系统管理员创建</li>
-<li><code>Specific Runner</code>: 有该工程访问权限的人可以创建</li>
-</ul>
-<blockquote>
+<li><code>Specific Runner</code>: 有该工程访问权限的人可以创建<blockquote>
 <p>每次 gitlab-ci-multi-runner 注册完成之后，还必须执行 <code>run</code> 操作，否则它无法使用</p>
 </blockquote>
-<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">官方文档</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages: </div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www: </div><div class="line">    stage: build </div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure>
-<p>如果你在构建的时候遇到: </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Running with gitlab-ci-multi-runner 9.4.2 (6d06f2e)</div><div class="line">  on mac (22376a88)</div><div class="line">Using Shell executor...</div><div class="line">Running on gangyan.local...</div><div class="line">Cloning repository...</div><div class="line">Cloning into <span class="string">'/Users/aa/test/builds/22376a88/0/leo/ios'</span>...</div><div class="line">fatal: unable to access <span class="string">'http://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gygitlab/leo/ios.git/'</span>: Failed to connect to gygitlab port 80: Connection refused</div><div class="line">ERROR: Job failed: <span class="built_in">exit</span> status 1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">官方文档</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages: </div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www: </div><div class="line">    stage: build </div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure></p>
+<p>如果你在构建的时候遇到:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Running with gitlab-ci-multi-runner 9.4.2 (6d06f2e)</div><div class="line">  on mac (22376a88)</div><div class="line">Using Shell executor...</div><div class="line">Running on gangyan.local...</div><div class="line">Cloning repository...</div><div class="line">Cloning into <span class="string">'/Users/aa/test/builds/22376a88/0/leo/ios'</span>...</div><div class="line">fatal: unable to access <span class="string">'http://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gygitlab/leo/ios.git/'</span>: Failed to connect to gygitlab port 80: Connection refused</div><div class="line">ERROR: Job failed: <span class="built_in">exit</span> status 1</div></pre></td></tr></table></figure></p>
 <p>需要做域名端口映射。我们 docker 里面配置的 gitlab 的映射到本地的端口是 <code>32788</code>, 而现在报错的是 <code>80</code>端口，那么这个时候说明端口有问题，如何解决呢？</p>
 <ol>
-<li>修改<code>/etc/hosts</code></li>
-</ol>
+<li><p>修改<code>/etc/hosts</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192.168.1.129 gygitlab</div></pre></td></tr></table></figure>
-<ol>
-<li>修改<code>/etc/pf.conf</code></li>
-</ol>
+</li>
+<li><p>修改<code>/etc/pf.conf</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">nat-anchor <span class="string">"gygitlab"</span></div><div class="line">rdr-anchor <span class="string">"gygitlab"</span></div><div class="line">anchor <span class="string">"gygitlab"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"gygitlab"</span> from <span class="string">"/etc/pf.anchors/gygitlab"</span></div></pre></td></tr></table></figure>
-<ol>
-<li>修改 <code>etc/pf.anchors</code>,添加<code>gygitlab</code>，且编辑内容：</li>
-</ol>
+</li>
+<li><p>修改 <code>etc/pf.anchors</code>,添加<code>gygitlab</code>，且编辑内容：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rdr pass on lo0 inet proto tcp from any to self port 80 -&gt; 192.168.1.129 port 32788</div></pre></td></tr></table></figure>
-<ol>
-<li>部署</li>
-</ol>
+</li>
+<li><p>部署</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pfctl <span class="_">-f</span> /etc/pf.conf</div><div class="line">sudo pfctl <span class="_">-e</span> <span class="comment">## 开启</span></div><div class="line">sudo pfctl <span class="_">-d</span> <span class="comment">##  关闭</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="nginx-docker"><a href="#nginx-docker" class="headerlink" title="nginx(docker)"></a>nginx(docker)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name some_nginx -v ~/nginx/some/www:/usr/share/nginx/html:ro <span class="_">-d</span> nginx</div></pre></td></tr></table></figure>
 <p>其他相关可以<a href="https://yeasy.gitbooks.io/docker_practice/content/appendix/repo/nginx.html" target="_blank" rel="external">参考</a></p>
 
