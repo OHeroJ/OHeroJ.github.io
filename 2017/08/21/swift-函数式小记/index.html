@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gitlab,macos," />
+  <meta name="keywords" content="swift,函数式," />
 
 
 
@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="如何使Mac OS X的端口转发etc/hosts
-hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文">
+<meta name="description" content="Functor &amp;amp; Monad &amp;amp; Applicative123456789101112131415161718192021222324252627282930313233343536enum Result&amp;lt;T&amp;gt; &amp;#123;    case success(T)    case failure(Error)&amp;#125;extension Result &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacOS  端口转发">
-<meta property="og:url" content="http://www.oheroj.com/2017/08/12/MacOS-端口转发/index.html">
+<meta property="og:title" content=" swift 函数式小记">
+<meta property="og:url" content="http://www.oheroj.com/2017/08/21/swift-函数式小记/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="如何使Mac OS X的端口转发etc/hosts
-hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文">
-<meta property="og:updated_time" content="2017-08-12T02:55:18.000Z">
+<meta property="og:description" content="Functor &amp;amp; Monad &amp;amp; Applicative123456789101112131415161718192021222324252627282930313233343536enum Result&amp;lt;T&amp;gt; &amp;#123;    case success(T)    case failure(Error)&amp;#125;extension Result &amp;#123;">
+<meta property="og:updated_time" content="2017-08-21T07:59:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MacOS  端口转发">
-<meta name="twitter:description" content="如何使Mac OS X的端口转发etc/hosts
-hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
-Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文">
+<meta name="twitter:title" content=" swift 函数式小记">
+<meta name="twitter:description" content="Functor &amp;amp; Monad &amp;amp; Applicative123456789101112131415161718192021222324252627282930313233343536enum Result&amp;lt;T&amp;gt; &amp;#123;    case success(T)    case failure(Error)&amp;#125;extension Result &amp;#123;">
 
 
 
@@ -117,7 +111,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
   };
 </script>
 
-  <title> MacOS  端口转发 | loveli </title>
+  <title>  swift 函数式小记 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +241,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
             
             
               
-                MacOS  端口转发
+                 swift 函数式小记
               
             
           </h1>
@@ -259,8 +253,8 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T10:53:36+08:00" content="2017-08-12">
-              2017-08-12
+            <time itemprop="dateCreated" datetime="2017-08-21T15:56:43+08:00" content="2017-08-21">
+              2017-08-21
             </time>
           </span>
 
@@ -270,8 +264,8 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/08/12/MacOS-端口转发/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/12/MacOS-端口转发/" itemprop="commentsCount"></span>
+                <a href="/2017/08/21/swift-函数式小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/21/swift-函数式小记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,39 +290,8 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
       
 
       
-        <h1 id="如何使Mac-OS-X的端口转发"><a href="#如何使Mac-OS-X的端口转发" class="headerlink" title="如何使Mac OS X的端口转发"></a>如何使Mac OS X的端口转发</h1><h2 id="etc-hosts"><a href="#etc-hosts" class="headerlink" title="etc/hosts"></a>etc/hosts</h2><blockquote>
-<p>hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。</p>
-<p>Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文件中是否有这个地址映射关系，如果有则调用这个 IP 地址映射，如果没有再向已知的 DNS 服务器提出域名解析。也就是说 Hosts 的请求级别比 DNS 高。当你的 Hosts 文件里面有对应的 IP 时，它就会直接访问那个 IP，而不用通过 DNS</p>
-</blockquote>
-<p>其实它存放的就是一些常用的网站主机的域名和其对应的 IP 地址， 默认是 <code>80</code> 端口。</p>
-<h2 id="80-端口"><a href="#80-端口" class="headerlink" title="80 端口"></a>80 端口</h2><p>HTTP 的默认端口是 80<br>8080 一般用来连接代理</p>
-<h2 id="那么如何实现输入一个域名后，访问的不是-80-端口呢？"><a href="#那么如何实现输入一个域名后，访问的不是-80-端口呢？" class="headerlink" title="那么如何实现输入一个域名后，访问的不是 80 端口呢？"></a>那么如何实现输入一个域名后，访问的不是 80 端口呢？</h2><p>通过修改 hosts 文件是行不通的。 比如 有个自定义的域名是 mygitlab, 想映射到 192.168.1.129:32788<br>那么如何实现呢？  <code>pf or ipfw</code></p>
-<ul>
-<li>首先修改 <code>/etc/hosts</code></li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#...</span></div><div class="line"><span class="comment"># 添加一个</span></div><div class="line"></div><div class="line">192.168.2.129 mygitlab</div><div class="line"></div><div class="line"><span class="comment">#...</span></div></pre></td></tr></table></figure>
-<ul>
-<li>在 <code>/etc/pf.anchors/</code>新建一个 <code>mygitlab</code> 文件内容如下：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rdr pass on lo0 inet proto tcp from any to 192.168.2.129 port 80 -&gt; 192.168.1.129 port 32788</div></pre></td></tr></table></figure>
-<p>其中 <code>lo0</code>是ifconfig查询到的网卡的名字,<code>80</code> 是默认端口</p>
-<ul>
-<li>添加到主配置文件中</li>
-</ul>
-<p>pf 启动时会自动装载 <code>/etc/pf.conf</code> 文件，因此需要将 mygitlab 文件链接到 <code>/etc/pf.conf</code> 文件，实现转发</p>
-<p>修改后的文件内容如下： </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"mygitlab"</span></div><div class="line"></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"mygitlab"</span> from <span class="string">"/etc/pf.anchors/mygitlab"</span></div></pre></td></tr></table></figure>
-<ul>
-<li>导入并运行 PF 命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pfctl -evf /etc/pf.anchors/mygitlab</div></pre></td></tr></table></figure>
-<ul>
-<li>设置 pf 开机自启动</li>
-</ul>
-<pre><code>sudo pfctl -e
+        <h1 id="Functor-amp-Monad-amp-Applicative"><a href="#Functor-amp-Monad-amp-Applicative" class="headerlink" title="Functor &amp; Monad &amp; Applicative"></a>Functor &amp; Monad &amp; Applicative</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">enum Result&lt;T&gt; &#123;</div><div class="line">    case success(T)</div><div class="line">    case failure(Error)</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension Result &#123;</div><div class="line">    // Functor, 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个未封装的值</div><div class="line">    func fmap&lt;U&gt;(_ f: (T) -&gt; U) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case let .success(v):</div><div class="line">            return .success(f(v))</div><div class="line">        case let .failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Monad: 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个已封装的值</div><div class="line">    func flatMap&lt;U&gt;(f:(T)-&gt; Result&lt;U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case .success(let v):</div><div class="line">            return f(v)</div><div class="line">        case .failure(let e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /// Applicative: 对自己解包，然后应用到解包后的闭包上，接受一个未封装的值，返回一个未封装的值</div><div class="line">    func apply&lt;U&gt;(_ ap: Result&lt;(T) -&gt; U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch ap &#123;</div><div class="line">        case let .success(f):</div><div class="line">            return self.fmap(f)</div><div class="line">        case let.failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-# sudo pfctl -d 关闭
-</code></pre>
       
     </div>
 
@@ -370,9 +333,9 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
       
         <div class="post-tags">
           
-            <a href="/tags/gitlab/" rel="tag">#gitlab</a>
+            <a href="/tags/swift/" rel="tag">#swift</a>
           
-            <a href="/tags/macos/" rel="tag">#macos</a>
+            <a href="/tags/函数式/" rel="tag">#函数式</a>
           
         </div>
       
@@ -381,17 +344,13 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/10/Docker-gitlab-nginx-自动化/" rel="next" title="Docker+gitlab+nginx 自动化">
-                <i class="fa fa-chevron-left"></i> Docker+gitlab+nginx 自动化
+              <a href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" rel="next" title=" 用 Swift 优雅的封装 OC 的命名前缀问题">
+                <i class="fa fa-chevron-left"></i>  用 Swift 优雅的封装 OC 的命名前缀问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" rel="prev" title=" 用 Swift 优雅的封装 OC 的命名前缀问题">
-                 用 Swift 优雅的封装 OC 的命名前缀问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -406,10 +365,10 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/08/12/MacOS-端口转发/"
-     data-title="MacOS  端口转发"
+        <div class="ds-share flat" data-thread-key="2017/08/21/swift-函数式小记/"
+     data-title=" swift 函数式小记"
      data-content=""
-     data-url="http://www.oheroj.com/2017/08/12/MacOS-端口转发/">
+     data-url="http://www.oheroj.com/2017/08/21/swift-函数式小记/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -439,8 +398,8 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/08/12/MacOS-端口转发/"
-           data-title="MacOS  端口转发" data-url="http://www.oheroj.com/2017/08/12/MacOS-端口转发/">
+      <div class="ds-thread" data-thread-key="2017/08/21/swift-函数式小记/"
+           data-title=" swift 函数式小记" data-url="http://www.oheroj.com/2017/08/21/swift-函数式小记/">
       </div>
     
   </div>
@@ -535,7 +494,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使Mac-OS-X的端口转发"><span class="nav-number">1.</span> <span class="nav-text">如何使Mac OS X的端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#etc-hosts"><span class="nav-number">1.1.</span> <span class="nav-text">etc/hosts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#80-端口"><span class="nav-number">1.2.</span> <span class="nav-text">80 端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#那么如何实现输入一个域名后，访问的不是-80-端口呢？"><span class="nav-number">1.3.</span> <span class="nav-text">那么如何实现输入一个域名后，访问的不是 80 端口呢？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Functor-amp-Monad-amp-Applicative"><span class="nav-number">1.</span> <span class="nav-text">Functor & Monad & Applicative</span></a></li></ol></div>
             
           </div>
         </section>
