@@ -88,15 +88,15 @@
 个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
 为了不让 obs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swift 之若引用数组">
+<meta property="og:title" content="swift 之弱引用数组">
 <meta property="og:url" content="http://www.oheroj.com/2017/08/31/swift-之若引用数组/index.html">
 <meta property="og:site_name" content="loveli">
 <meta property="og:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
 个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
 为了不让 obs">
-<meta property="og:updated_time" content="2017-08-31T03:06:33.000Z">
+<meta property="og:updated_time" content="2017-08-31T03:09:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swift 之若引用数组">
+<meta name="twitter:title" content="swift 之弱引用数组">
 <meta name="twitter:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
 个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
 为了不让 obs">
@@ -117,7 +117,7 @@
   };
 </script>
 
-  <title> swift 之若引用数组 | loveli </title>
+  <title> swift 之弱引用数组 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +247,7 @@
             
             
               
-                swift 之若引用数组
+                swift 之弱引用数组
               
             
           </h1>
@@ -300,7 +300,7 @@
 <p>个人不主张使用一个超级基类，然后就想用<code>Theme</code>模块来尝试解决。</p>
 <p>为了不让 <code>observer</code> 是存放到一个 Array<observable> 中的，如果是强引用的话，那这个 observable 将无法得到释放，那怎么办？ 我当时的第一想法是既然有<code>register</code>,那么就实现一个<br><code>remove</code>的操作，但是这样就得在使用地方进行 remove 操作，使得有点在使用 <code>NSNotification</code> 了.<br>那么我们可不可用数组存放弱引用指针呢？</observable></p>
 <p>在stackoverflow找到了<a href="https://stackoverflow.com/questions/24127587/how-do-i-declare-an-array-of-weak-references-in-swift?answertab=votes" target="_blank" rel="external">How do I declare an array of weak references in Swift?</a></p>
-<p>下面来简要介绍一下这写方案： </p>
+<p>下面来简要介绍一下这些方案： </p>
 <h2 id="创建一个通用包装器"><a href="#创建一个通用包装器" class="headerlink" title="创建一个通用包装器"></a>创建一个通用包装器</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weak</span>&lt;<span class="title">T</span>: <span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> value: <span class="type">T</span>?</div><div class="line">    <span class="keyword">init</span>(value: <span class="type">T</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.value = value</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stuff</span> </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> weakly : [<span class="type">Weak</span>&lt;<span class="type">Stuff</span>&gt;] = [<span class="type">Weak</span>(value: <span class="type">Stuff</span>()), <span class="type">Weak</span>(value: <span class="type">Stuff</span>())]</div><div class="line"></div><div class="line"><span class="comment">/// 获取数组的内容</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> <span class="title">where</span> <span class="title">Element</span>:<span class="title">Weak</span>&lt;<span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">reap</span> <span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">self</span> = <span class="keyword">self</span>.<span class="built_in">filter</span> &#123; <span class="literal">nil</span> != $<span class="number">0</span>.value &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="使用-NSHashTable，-swift3-0"><a href="#使用-NSHashTable，-swift3-0" class="headerlink" title="使用 NSHashTable， swift3.0 +"></a>使用 NSHashTable， swift3.0 +</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSHashTable.weakObjects()</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>还有很多方法，但是对我来说这两种应该是最佳的方案。</p>
@@ -377,7 +377,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2017/08/31/swift-之若引用数组/"
-     data-title="swift 之若引用数组"
+     data-title="swift 之弱引用数组"
      data-content=""
      data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
   <div class="ds-share-inline">
@@ -410,7 +410,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/08/31/swift-之若引用数组/"
-           data-title="swift 之若引用数组" data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
+           data-title="swift 之弱引用数组" data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
       </div>
     
   </div>
