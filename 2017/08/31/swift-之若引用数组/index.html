@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="swift," />
 
 
 
@@ -84,61 +84,22 @@
 
 
 
-<meta name="description" content="纸上得来终觉浅， 绝知此事要躬行
-
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
-NexT的主题配置
-添加「标签」页面
-title: 标签测试文章
-tags:
-- Testing
-- Another Tag
----
-
-
-
-对于CNAME和README">
+<meta name="description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
+个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
+为了不让 obs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo Use">
-<meta property="og:url" content="http://www.oheroj.com/2016/05/24/Hexo-Use/index.html">
+<meta property="og:title" content="swift 之若引用数组">
+<meta property="og:url" content="http://www.oheroj.com/2017/08/31/swift-之若引用数组/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="纸上得来终觉浅， 绝知此事要躬行
-
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
-NexT的主题配置
-添加「标签」页面
-title: 标签测试文章
-tags:
-- Testing
-- Another Tag
----
-
-
-
-对于CNAME和README">
-<meta property="og:updated_time" content="2016-06-27T07:46:24.000Z">
+<meta property="og:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
+个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
+为了不让 obs">
+<meta property="og:updated_time" content="2017-08-31T03:06:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo Use">
-<meta name="twitter:description" content="纸上得来终觉浅， 绝知此事要躬行
-
-新建博文：  hexo new “文章题目”
-新建页面：  hexo new page “页面名称”
-发布博文：  hexo clean  hexo generate  hexo deploy
-NexT的主题配置
-添加「标签」页面
-title: 标签测试文章
-tags:
-- Testing
-- Another Tag
----
-
-
-
-对于CNAME和README">
+<meta name="twitter:title" content="swift 之若引用数组">
+<meta name="twitter:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
+个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
+为了不让 obs">
 
 
 
@@ -156,7 +117,7 @@ tags:
   };
 </script>
 
-  <title> Hexo Use | loveli </title>
+  <title> swift 之若引用数组 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -286,7 +247,7 @@ tags:
             
             
               
-                Hexo Use
+                swift 之若引用数组
               
             
           </h1>
@@ -298,8 +259,8 @@ tags:
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T15:31:03+08:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2017-08-31T10:28:19+08:00" content="2017-08-31">
+              2017-08-31
             </time>
           </span>
 
@@ -309,8 +270,8 @@ tags:
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/24/Hexo-Use/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/24/Hexo-Use/" itemprop="commentsCount"></span>
+                <a href="/2017/08/31/swift-之若引用数组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/31/swift-之若引用数组/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,24 +296,14 @@ tags:
       
 
       
-        <blockquote>
-<p>纸上得来终觉浅， 绝知此事要躬行</p>
-</blockquote>
-<h3 id="新建博文："><a href="#新建博文：" class="headerlink" title="新建博文："></a>新建博文：</h3><p>  hexo new “文章题目”</p>
-<h3 id="新建页面："><a href="#新建页面：" class="headerlink" title="新建页面："></a>新建页面：</h3><p>  hexo new page “页面名称”</p>
-<h3 id="发布博文："><a href="#发布博文：" class="headerlink" title="发布博文："></a>发布博文：</h3><p>  hexo clean<br>  hexo generate<br>  hexo deploy</p>
-<h3 id="NexT的主题配置"><a href="#NexT的主题配置" class="headerlink" title="NexT的主题配置"></a><a href="http://theme-next.iissnan.com/theme-settings.html#duoshuo-ua" target="_blank" rel="external">NexT的主题配置</a></h3><ol>
-<li><p>添加「标签」页面</p>
-<pre><code>title: 标签测试文章
-tags:
-- Testing
-- Another Tag
----
-</code></pre></li>
-</ol>
-<blockquote>
-<p>对于CNAME和README文件，我们应该把他们放在source文件夹中</p>
-</blockquote>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在看《HeadFirst 设计模式》中的观察者模式，其中有 <code>Subject</code> 和 <code>Observer</code> 这两块，然后就联想到一个在 <code>iOS</code> 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中<br>做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。</p>
+<p>个人不主张使用一个超级基类，然后就想用<code>Theme</code>模块来尝试解决。</p>
+<p>为了不让 <code>observer</code> 是存放到一个 Array<observable> 中的，如果是强引用的话，那这个 observable 将无法得到释放，那怎么办？ 我当时的第一想法是既然有<code>register</code>,那么就实现一个<br><code>remove</code>的操作，但是这样就得在使用地方进行 remove 操作，使得有点在使用 <code>NSNotification</code> 了.<br>那么我们可不可用数组存放弱引用指针呢？</observable></p>
+<p>在stackoverflow找到了<a href="https://stackoverflow.com/questions/24127587/how-do-i-declare-an-array-of-weak-references-in-swift?answertab=votes" target="_blank" rel="external">How do I declare an array of weak references in Swift?</a></p>
+<p>下面来简要介绍一下这写方案： </p>
+<h2 id="创建一个通用包装器"><a href="#创建一个通用包装器" class="headerlink" title="创建一个通用包装器"></a>创建一个通用包装器</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weak</span>&lt;<span class="title">T</span>: <span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> value: <span class="type">T</span>?</div><div class="line">    <span class="keyword">init</span>(value: <span class="type">T</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.value = value</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stuff</span> </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> weakly : [<span class="type">Weak</span>&lt;<span class="type">Stuff</span>&gt;] = [<span class="type">Weak</span>(value: <span class="type">Stuff</span>()), <span class="type">Weak</span>(value: <span class="type">Stuff</span>())]</div><div class="line"></div><div class="line"><span class="comment">/// 获取数组的内容</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> <span class="title">where</span> <span class="title">Element</span>:<span class="title">Weak</span>&lt;<span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">reap</span> <span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">self</span> = <span class="keyword">self</span>.<span class="built_in">filter</span> &#123; <span class="literal">nil</span> != $<span class="number">0</span>.value &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用-NSHashTable，-swift3-0"><a href="#使用-NSHashTable，-swift3-0" class="headerlink" title="使用 NSHashTable， swift3.0 +"></a>使用 NSHashTable， swift3.0 +</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSHashTable.weakObjects()</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>还有很多方法，但是对我来说这两种应该是最佳的方案。</p>
 
       
     </div>
@@ -395,7 +346,7 @@ tags:
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/swift/" rel="tag">#swift</a>
           
         </div>
       
@@ -404,13 +355,13 @@ tags:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/21/swift-函数式小记/" rel="next" title=" swift 函数式小记">
+                <i class="fa fa-chevron-left"></i>  swift 函数式小记
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/25/Swift-模式匹配/" rel="prev" title="Swift 模式匹配">
-                Swift 模式匹配 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -425,10 +376,10 @@ tags:
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/24/Hexo-Use/"
-     data-title="Hexo Use"
+        <div class="ds-share flat" data-thread-key="2017/08/31/swift-之若引用数组/"
+     data-title="swift 之若引用数组"
      data-content=""
-     data-url="http://www.oheroj.com/2016/05/24/Hexo-Use/">
+     data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -458,8 +409,8 @@ tags:
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/24/Hexo-Use/"
-           data-title="Hexo Use" data-url="http://www.oheroj.com/2016/05/24/Hexo-Use/">
+      <div class="ds-thread" data-thread-key="2017/08/31/swift-之若引用数组/"
+           data-title="swift 之若引用数组" data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
       </div>
     
   </div>
@@ -554,7 +505,7 @@ tags:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建博文："><span class="nav-number">1.</span> <span class="nav-text">新建博文：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建页面："><span class="nav-number">2.</span> <span class="nav-text">新建页面：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布博文："><span class="nav-number">3.</span> <span class="nav-text">发布博文：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NexT的主题配置"><span class="nav-number">4.</span> <span class="nav-text">NexT的主题配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个通用包装器"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个通用包装器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-NSHashTable，-swift3-0"><span class="nav-number">1.2.</span> <span class="nav-text">使用 NSHashTable， swift3.0 +</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
