@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="react-native," />
+  <meta name="keywords" content="Vapor,swift," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
+<meta name="description" content="代码：123456789101112131415161718192021222324252627282930313233343536373839import Foundationimport Vaporimport Cryptoclass QiniuToken &amp;#123;    let accessKey: String = &quot;Your-accessKey&quot;    let secretKey:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React-Native ES6函数篇">
-<meta property="og:url" content="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/index.html">
+<meta property="og:title" content="Vapor 七牛上传 token 生成算法实现">
+<meta property="og:url" content="http://www.oheroj.com/2017/09/05/Vapor-七牛上传-token-生成算法实现/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
-<meta property="og:updated_time" content="2016-09-17T14:25:12.000Z">
+<meta property="og:description" content="代码：123456789101112131415161718192021222324252627282930313233343536373839import Foundationimport Vaporimport Cryptoclass QiniuToken &amp;#123;    let accessKey: String = &quot;Your-accessKey&quot;    let secretKey:">
+<meta property="og:updated_time" content="2017-09-05T09:26:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React-Native ES6函数篇">
-<meta name="twitter:description" content="写这篇文章，主要是自己不是个JS新手。记得第一次接触js是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，">
+<meta name="twitter:title" content="Vapor 七牛上传 token 生成算法实现">
+<meta name="twitter:description" content="代码：123456789101112131415161718192021222324252627282930313233343536373839import Foundationimport Vaporimport Cryptoclass QiniuToken &amp;#123;    let accessKey: String = &quot;Your-accessKey&quot;    let secretKey:">
 
 
 
@@ -111,7 +111,7 @@
   };
 </script>
 
-  <title> React-Native ES6函数篇 | loveli </title>
+  <title> Vapor 七牛上传 token 生成算法实现 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +241,7 @@
             
             
               
-                React-Native ES6函数篇
+                Vapor 七牛上传 token 生成算法实现
               
             
           </h1>
@@ -253,8 +253,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
-              2016-09-17
+            <time itemprop="dateCreated" datetime="2017-09-05T17:12:22+08:00" content="2017-09-05">
+              2017-09-05
             </time>
           </span>
 
@@ -264,8 +264,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/17/React-Native-ES6函数篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/React-Native-ES6函数篇/" itemprop="commentsCount"></span>
+                <a href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/05/Vapor-七牛上传-token-生成算法实现/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -290,24 +290,18 @@
       
 
       
-        <p>写这篇文章，主要是自己不是个<code>JS</code>新手。记得第一次接触<code>js</code>是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，我只能说js是火得，不瞎扯了。工作2年了，虽然不是很久，但是叫我去学一门语言的话，问题应该不大，但是有些地方我觉得还是得做做笔记，整理整理遇到的一些坑。</p>
-<p>首先，我不清楚<code>ES5</code>,当然对于现在我学习的目的而言，我不打算去学<code>ES5</code>, 直接上手<code>ES6</code>. 我们做开发，面向对象可以说是离不开的，说道对象：类，对象，方法，属性。</p>
-<p>不得不说，js 的语法也 在跟大众语言靠起。不得不说这样可以降低学习的难度。语言是一门工具，一门工具的好用与否，当然跟这个工具的结构，材质等方面有关系，语言也是如此。</p>
-<ol>
-<li>在构造器中使用被定义的函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class CartItem extends React.Component &#123;</div><div class="line">    </div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.increaseQty = this.increaseQty.bind(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        &lt;button onClick=&#123;this.increaseQty&#125; className=&quot;button success&quot;&gt;+&lt;/button&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>调用时, 绑定this.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 调用时, 绑定this.</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;(story) =&gt; this.renderStories(story)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>使用时, 绑定this</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 使用时, 绑定this</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;this.renderStories.bind(this)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>React-Native的资料质量低下，重复率高，对于语法上的问题，完全可以参考React. </p>
-</blockquote>
+        <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"><span class="keyword">import</span> Crypto</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QiniuToken</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> accessKey: <span class="type">String</span> = <span class="string">"Your-accessKey"</span></div><div class="line">    <span class="keyword">let</span> secretKey: <span class="type">String</span> = <span class="string">"Your-secretKey"</span></div><div class="line">    <span class="keyword">let</span> scope: <span class="type">String</span> = <span class="string">"twicebook"</span></div><div class="line">    <span class="keyword">var</span> liveTime: <span class="type">TimeInterval</span> = <span class="number">5</span></div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">genereryToken</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> <span class="type">QiniuToken</span>().gengeryToken()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">gengeryToken</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>  &#123;</div><div class="line">        <span class="keyword">let</span> date = <span class="type">Date</span>().timeIntervalSince1970 + liveTime * <span class="number">24</span> * <span class="number">3600</span></div><div class="line">        <span class="keyword">let</span> authInfo: [<span class="type">String</span> : <span class="type">Any</span>] = [<span class="string">"scope"</span>: scope,<span class="string">"deadline"</span>: <span class="type">Int</span>(date)]</div><div class="line">        <span class="keyword">let</span> jsonData = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data(withJSONObject: authInfo, options: .prettyPrinted)</div><div class="line">        <span class="keyword">let</span> encodeString = urlSafeBase64Encode(jsonData)</div><div class="line">        <span class="keyword">let</span> encodedSignedString = <span class="keyword">try</span> <span class="type">HMACSHA1</span>(secretKey, text: encodeString)</div><div class="line"></div><div class="line">        <span class="keyword">let</span> token = accessKey + <span class="string">":"</span> + encodedSignedString + <span class="string">":"</span> + encodeString</div><div class="line">        <span class="keyword">return</span> token</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">HMACSHA1</span><span class="params">(<span class="number">_</span> key: String, text: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">let</span> hmac = <span class="keyword">try</span> <span class="type">HMAC</span>.make(.sha1, text, key: key)</div><div class="line">        <span class="keyword">let</span> hmacData = <span class="type">Data</span>(bytes: hmac)</div><div class="line">        <span class="keyword">return</span> urlSafeBase64Encode(hmacData)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">urlSafeBase64Encode</span><span class="params">(<span class="number">_</span> text: Data)</span></span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">var</span> base64 = text.base64EncodedString()</div><div class="line">        base64 = base64.replacingOccurrences(of: <span class="string">"+"</span>, with: <span class="string">"-"</span>)</div><div class="line">        base64 = base64.replacingOccurrences(of: <span class="string">"/"</span>, with: <span class="string">"_"</span>)</div><div class="line">        <span class="keyword">return</span> base64</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><ul>
+<li><code>deadline</code> 文档中描述值为整数。</li>
+</ul>
+<p>如果 <code>let authInfo: [String : Any] = [&quot;scope&quot;: scope,&quot;deadline&quot;: Int(date)]</code> 改为<br><code>let authInfo: [String : Any] = [&quot;scope&quot;: scope,&quot;deadline&quot;: Int(date)]</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Domain=qiniu.com Code=401 <span class="string">"(null)"</span> UserInfo=&#123;error=invalid put policy encoding&#125;</div></pre></td></tr></table></figure>
+<p>此坑踩了一天。</p>
+<ul>
+<li>ios客户端上传的时候</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> config = <span class="type">QNConfiguration</span>.build(&#123; (builder) <span class="keyword">in</span></div><div class="line">                builder?.setZone(<span class="type">QNZone</span>.zone0())</div><div class="line">            &#125;)</div><div class="line"></div><div class="line"><span class="keyword">let</span> upManager = <span class="type">QNUploadManager</span>(configuration: config)</div></pre></td></tr></table></figure>
+<p>关于 <code>QNZone</code> 需要跟你创建存储对象的时候所选的地区有关. <code>zone0</code> 对应的是 <code>华东</code></p>
 
       
     </div>
@@ -350,7 +344,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/react-native/" rel="tag">#react-native</a>
+            <a href="/tags/Vapor/" rel="tag">#Vapor</a>
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
           
         </div>
       
@@ -359,17 +355,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/04/cocoapods高级篇/" rel="next" title="cocoapods高级篇">
-                <i class="fa fa-chevron-left"></i> cocoapods高级篇
+              <a href="/2017/08/31/swift-之若引用数组/" rel="next" title="swift 之弱引用数组">
+                <i class="fa fa-chevron-left"></i> swift 之弱引用数组
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/07/Vapor之mysql/" rel="prev" title="Vapor之mysql">
-                Vapor之mysql <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -384,10 +376,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/17/React-Native-ES6函数篇/"
-     data-title="React-Native ES6函数篇"
+        <div class="ds-share flat" data-thread-key="2017/09/05/Vapor-七牛上传-token-生成算法实现/"
+     data-title="Vapor 七牛上传 token 生成算法实现"
      data-content=""
-     data-url="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/">
+     data-url="http://www.oheroj.com/2017/09/05/Vapor-七牛上传-token-生成算法实现/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -417,8 +409,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/17/React-Native-ES6函数篇/"
-           data-title="React-Native ES6函数篇" data-url="http://www.oheroj.com/2016/09/17/React-Native-ES6函数篇/">
+      <div class="ds-thread" data-thread-key="2017/09/05/Vapor-七牛上传-token-生成算法实现/"
+           data-title="Vapor 七牛上传 token 生成算法实现" data-url="http://www.oheroj.com/2017/09/05/Vapor-七牛上传-token-生成算法实现/">
       </div>
     
   </div>
@@ -513,7 +505,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码："><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#踩坑"><span class="nav-number">2.</span> <span class="nav-text">踩坑</span></a></li></ol></div>
             
           </div>
         </section>
