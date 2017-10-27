@@ -240,6 +240,126 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/07/React-基础概念-md/" itemprop="url">
+                  React 基础概念.md
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-07T00:18:48+08:00" content="2017-06-07">
+              2017-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/07/React-基础概念-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/07/React-基础概念-md/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="需要记住的点"><a href="#需要记住的点" class="headerlink" title="需要记住的点"></a>需要记住的点</h2><ol>
+<li>JSX 是 javascript 语言的一种语法的扩展，长得 HTML, 但是并不是 HTML</li>
+<li>React.js 可以用 JSX 来描述你的组件长什么样子</li>
+<li>JSX 在编译的时候会变成相应的 JavaScript 对象描述</li>
+<li>react-dom 负责把这个用来描述 UI 信息的 Javascript 对象变为 DOM 元素， 并渲染到页面上</li>
+</ol>
+<blockquote>
+<p>摘自 <a href="http://huziketang.com/books/react/lesson6" target="_blank" rel="external">《React.js 小书》</a></p>
+</blockquote>
+<h2 id="关于事件中的-this"><a href="#关于事件中的-this" class="headerlink" title="关于事件中的 this"></a>关于事件中的 this</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// =&gt; null or undefined</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一般在某个类的实例方法里面的 this 指的是这个实例本身。但是你在上面的 handleClickOnTitle 中把 this 打印出来，你会看到 this 是 null 或者 undefined。</p>
+<p>这是因为 React.js 调用你所传给它的方法的时候，并不是通过对象方法的方式调用（this.handleClickOnTitle），而是直接通过函数调用 （handleClickOnTitle），所以事件监听函数内并不能通过 this 获取到实例。</p>
+<p>如果你想在事件函数当中使用当前的实例，你需要手动地将实例方法 bind 到当前实例上再传入给 React.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this)&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你也可以在 bind 的时候给事件监听函数传入一些参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (word, e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>, word)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this, 'Hello')&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>React.js 会给每个事件监听传入一个 event 对象，这个对象提供的功能和浏览器提供的功能一致，而且它是兼容所有浏览器的。</p>
+<p>React.js 的事件监听方法需要手动 bind 到当前实例，这种模式在 React.js 中非常常用。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/05/swift-的相关编码样式/" itemprop="url">
                   swift 的相关编码样式
                 </a>
@@ -1340,126 +1460,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/17/React-Native-ES6函数篇/" itemprop="url">
-                  React-Native ES6函数篇
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
-              2016-09-17
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/17/React-Native-ES6函数篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/React-Native-ES6函数篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>写这篇文章，主要是自己不是个<code>JS</code>新手。记得第一次接触<code>js</code>是在大二的时候，当时也没怎么去深究js的东西，记得那时还买了本厚厚的《javascript 权威指南》， 那本书，🙄，没怎么翻过，字典级别的书籍不适合入门。时隔多年叫我看js的一些代码，问题不是很大，但是如果叫我写出个优秀点的代码那还真有点难度。记得还有一位老师还调侃说“javascript不是工程化语言”，感觉他好像很看不起 js。如今，我只能说js是火得，不瞎扯了。工作2年了，虽然不是很久，但是叫我去学一门语言的话，问题应该不大，但是有些地方我觉得还是得做做笔记，整理整理遇到的一些坑。</p>
-<p>首先，我不清楚<code>ES5</code>,当然对于现在我学习的目的而言，我不打算去学<code>ES5</code>, 直接上手<code>ES6</code>. 我们做开发，面向对象可以说是离不开的，说道对象：类，对象，方法，属性。</p>
-<p>不得不说，js 的语法也 在跟大众语言靠起。不得不说这样可以降低学习的难度。语言是一门工具，一门工具的好用与否，当然跟这个工具的结构，材质等方面有关系，语言也是如此。</p>
-<ol>
-<li>在构造器中使用被定义的函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class CartItem extends React.Component &#123;</div><div class="line">    </div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.increaseQty = this.increaseQty.bind(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        &lt;button onClick=&#123;this.increaseQty&#125; className=&quot;button success&quot;&gt;+&lt;/button&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>调用时, 绑定this.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 调用时, 绑定this.</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;(story) =&gt; this.renderStories(story)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>使用时, 绑定this</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Feed extends Component &#123;</div><div class="line">  // 使用时, 绑定this</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;ListView</div><div class="line">        testID=&#123;&quot;Feed Screen&quot;&#125;</div><div class="line">        dataSource=&#123;this.state.dataSource&#125;</div><div class="line">        renderRow=&#123;this.renderStories.bind(this)&#125;</div><div class="line">        .../&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>React-Native的资料质量低下，重复率高，对于语法上的问题，完全可以参考React. </p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1505,7 +1505,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1515,7 +1515,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
