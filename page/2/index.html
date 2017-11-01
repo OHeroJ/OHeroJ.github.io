@@ -240,6 +240,114 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/12/swift-之-silgen-name/" itemprop="url">
+                  swift 之 @_silgen_name
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-12T22:50:34+08:00" content="2017-06-12">
+              2017-06-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/12/swift-之-silgen-name/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/12/swift-之-silgen-name/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="silgen-name"><a href="#silgen-name" class="headerlink" title="@_silgen_name"></a><code>@_silgen_name</code></h2><p>swift2.0 之后， <code>Darwin</code>已经更改为全局类库，不需要进行导入。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C 函数</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">printC</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">"This is c Printf Func"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// &#123;product-module-name&#125;-Bridging-Header.h</span></div><div class="line"><span class="meta">#import <span class="meta-string">"CAPI"</span>.h</span></div></pre></td></tr></table></figure>
+<p>这样设置之后，就可以在 swift 文件中使用 C 语言的接口 printC 了。 但是这种方式带来了弊端就是，如果 C 语言的函数散落在多个 C 语言文件中，那么在桥接文件中就需要导入多个 C 语言头文件才可以。</p>
+<p><code>@_silgen_name</code>其实是 Swift 的一个隐藏符号，作用是将某个 C 语言函数直接映射为 Swift 函数,这样就不需要在桥接文件中导入C语言头文件，甚至可以直接删掉C语言头文件。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@_silgen_name(<span class="string">"printC"</span>) <span class="function"><span class="keyword">func</span> <span class="title">swift_print</span><span class="params">()</span></span> -&gt; <span class="type">CInt</span></div></pre></td></tr></table></figure>
+<p>这样进行映射后，在Swift中，就可以直接使用 swift_print 函数了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/07/React-基础概念-md/" itemprop="url">
                   React 基础概念.md
                 </a>
@@ -1333,133 +1441,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/07/Vapor之mysql/" itemprop="url">
-                  Vapor之mysql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T20:27:48+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/07/Vapor之mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/Vapor之mysql/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>十一过后，流量剩得惨不忍睹，这个月该怎么过活，没有流量的手机能干什么？所以最近也想倒腾一下做个离线的博客APP, 打算用<code>python</code>写抓包脚本，然后用<code>mysql</code>来存放抓取数据，然后用<code>swift</code>写接口，最后用<code>react-native</code>写客户端页面。</p>
-<blockquote>
-<p>环境：vapor:1.0 , mysql-provider:1.0, xcode: 8.0, mac os:10.12， mysql:5.7.13</p>
-</blockquote>
-<h3 id="抓包脚本"><a href="#抓包脚本" class="headerlink" title="抓包脚本"></a>抓包脚本</h3><p>对着这个计划，上午一下子就写了个抓取 <code>伯乐在线</code>的  python 专栏的文章列表。 代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="keyword">import</span> pymysql</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 抓取伯乐在线的 python 文章的数据</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">spider_bolezaixian_python</span><span class="params">()</span>:</span></div><div class="line">    response = requests.get(<span class="string">"http://python.jobbole.com/all-posts/"</span>)</div><div class="line">    soup = BeautifulSoup(response.text)</div><div class="line">    posts = []</div><div class="line">    <span class="keyword">for</span> post <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>,<span class="string">"post floated-thumb"</span>):</div><div class="line">        item = &#123;&#125;</div><div class="line">        item[<span class="string">"thumb"</span>] = post.find(<span class="string">"img"</span>)[<span class="string">"src"</span>] <span class="comment">#缩略图</span></div><div class="line">        item[<span class="string">"title"</span>] = post.find(<span class="string">"a"</span>,<span class="string">"archive-title"</span>)[<span class="string">"title"</span>]</div><div class="line">        item[<span class="string">"url"</span>] = post.find(<span class="string">"a"</span>,<span class="string">"archive-title"</span>)[<span class="string">"href"</span>]</div><div class="line">        item[<span class="string">"desc"</span>] = post.find(<span class="string">"span"</span>,<span class="string">"excerpt"</span>).find(<span class="string">"p"</span>).text</div><div class="line">        item[<span class="string">"category"</span>] = <span class="string">"python"</span></div><div class="line">        posts.append(item)</div><div class="line">    <span class="keyword">return</span> posts</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">savedb_posts_bolezaixian_python</span><span class="params">(posts)</span>:</span></div><div class="line">    conn = pymysql.connect(host=<span class="string">'localhost'</span>, port=<span class="number">3306</span>,user=<span class="string">'root'</span>,passwd=<span class="string">'lai12345'</span>, db=<span class="string">"spider"</span>, charset=<span class="string">"utf8"</span>)</div><div class="line">    cur = conn.cursor()</div><div class="line">    <span class="keyword">for</span> post <span class="keyword">in</span> posts:</div><div class="line">        sql = <span class="string">"INSERT INTO `blog` (`thumb`, `title`, `url`, `desc`, `category`) VALUES (%s, %s, %s, %s, %s)"</span></div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            cur.execute(sql,(post[<span class="string">"thumb"</span>],post[<span class="string">"title"</span>],post[<span class="string">"url"</span>],post[<span class="string">"desc"</span>],post[<span class="string">"category"</span>]))</div><div class="line">            conn.commit()</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            conn.rollback()</div><div class="line">    cur.close()</div><div class="line">    conn.close()</div><div class="line"></div><div class="line">posts = spider_bolezaixian_python()</div><div class="line">print(posts)</div><div class="line">savedb_posts_bolezaixian_python(posts)</div></pre></td></tr></table></figure>
-<p>该抓取脚本是基于<code>python3.5</code>开发的，主要用了<code>requests</code>和<code>BeautifulSoup</code>这两个第三方库，实现的原理也相对简单，在此不再阐述。可能后期会把这块替换成<code>scrapy</code>.</p>
-<h3 id="swift-写接口"><a href="#swift-写接口" class="headerlink" title="swift 写接口"></a>swift 写接口</h3><p>采用的是<code>vapor</code>框架，别问我为什么不用<code>prefect</code>和IBM的<code>Kitura</code>，只因情有独钟。思路就是：连接mysql数据库，然后进行数据转换成模型，然后把数据返回给客户端。</p>
-<p>在实践的时候,还是遇到了点坑：</p>
-<ol>
-<li><p>在抓取数据的时候，我们手动创建了张 blog的表。这个时候，swift这边需要连接这张表，本来很容易的一件事，但是却足足花了我3个小时，问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 接口代码</div><div class="line">import Vapor</div><div class="line">  import VaporMySQL</div><div class="line">  </div><div class="line">  </div><div class="line">  let drop = Droplet(preparations:[Blog.self], providers: [VaporMySQL.Provider.self])</div><div class="line">  </div><div class="line">  </div><div class="line">  </div><div class="line">  drop.get &#123; req in</div><div class="line">      let query = try Blog.all()</div><div class="line">      return try query.makeNode().converted(to: JSON.self)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  drop.run()</div></pre></td></tr></table></figure>
-<p>然后就是一个<code>Blog</code>的对象模型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">import Vapor</div><div class="line">import Fluent</div><div class="line">import Foundation</div><div class="line"></div><div class="line">final class Blog: Model &#123;</div><div class="line">    var id: Node?</div><div class="line">    var desc: String</div><div class="line">    var title: String</div><div class="line">    var url: String</div><div class="line">    var thumb: String</div><div class="line">    var category: String</div><div class="line">    </div><div class="line">    init(desc:String, title:String,url:String, thumb: String, category:String ) &#123;</div><div class="line">        self.desc = desc</div><div class="line">        self.title = title</div><div class="line">        self.url = url</div><div class="line">        self.thumb = thumb</div><div class="line">        self.category = category</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    init(node: Node, in context: Context) throws &#123;</div><div class="line">        id = try node.extract(&quot;id&quot;)</div><div class="line">        desc = try node.extract(&quot;desc&quot;)</div><div class="line">        title = try node.extract(&quot;title&quot;)</div><div class="line">        url = try node.extract(&quot;url&quot;)</div><div class="line">        thumb = try node.extract(&quot;thumb&quot;)</div><div class="line">        category = try node.extract(&quot;category&quot;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func makeNode(context: Context) throws -&gt; Node &#123;</div><div class="line">        return try Node(node: [</div><div class="line">            &quot;id&quot;: id,</div><div class="line">            &quot;desc&quot;: desc,</div><div class="line">            &quot;title&quot;: title,</div><div class="line">            &quot;url&quot;: url,</div><div class="line">            &quot;thumb&quot;: thumb,</div><div class="line">            &quot;category&quot;: category,</div><div class="line">        ])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension Blog: Preparation &#123;</div><div class="line">    static func prepare(_ database: Database) throws &#123;</div><div class="line">        // 😢无语了都，居然不能这里设置blog</div><div class="line">        try database.create(&quot;blog&quot;, closure: &#123; (post) in</div><div class="line">            post.id()</div><div class="line">            post.string(&quot;title&quot;)</div><div class="line">            post.string(&quot;desc&quot;)</div><div class="line">            post.string(&quot;url&quot;)</div><div class="line">            post.string(&quot;thumb&quot;)</div><div class="line">            post.string(&quot;category&quot;)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static func revert(_ database: Database) throws &#123;</div><div class="line">        try database.delete(&quot;blog&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>就是这么几句代码，并老老实实的按照官方文档上来的。然而还是有坑要填。</p>
-<p>当进行访问这个接口的时候，会出现这么：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Uncaught Error: Error.prepare(&quot;Table \&apos;spider.blogs\&apos;doesn&apos;t exit&quot;).</div><div class="line">Use middleware to catch this error ...</div></pre></td></tr></table></figure>
-<p>代码上实现上根本就没有’blogs’，每次执行<code>Blog.fetch()</code>或者<code>Blog.all()</code>，就蹦出个这东东，难道，这个ORM的查询只能查询带<code>s</code>的表么?或者我该换个表名试试了。大量实践，终究无果，无奈只能看源码。代码以协议居多，该项目是个<code>壳工程</code>，实现的下沉，造成代码的各种切换易乱，由于XCode对swift的代码支持还不是很完善，并且在debug的时候，用<code>po</code>这命令不能获变量的值，很是伤脑。在<code>Slack</code>上咨询了一下，然而并没人鸟。那只能，既然你要<code>blogs</code>, 那我就造个’blogs’表给你。然后我把抓包中创建的表给删了，然后 用swift这个接口方实现表的创建。 最后代码基本没变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">extension Blog: Preparation &#123;</div><div class="line">      static func prepare(_ database: Database) throws &#123;</div><div class="line">          //😁换成 blogs</div><div class="line">          try database.create(&quot;blogs&quot;, closure: &#123; (post) in</div><div class="line">              post.id()</div><div class="line">              post.string(&quot;title&quot;)</div><div class="line">              post.string(&quot;desc&quot;)</div><div class="line">              post.string(&quot;url&quot;)</div><div class="line">              post.string(&quot;thumb&quot;)</div><div class="line">              post.string(&quot;category&quot;)</div><div class="line">          &#125;)</div><div class="line">      &#125;</div><div class="line">  </div><div class="line">      static func revert(_ database: Database) throws &#123;</div><div class="line">          try database.delete(&quot;blog&quot;)</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>然后在修改下 抓包脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def savedb_posts_bolezaixian_python(posts):</div><div class="line">conn = pymysql.connect(host=&apos;localhost&apos;, port=3306,user=&apos;root&apos;,passwd=&apos;lai12345&apos;, db=&quot;spider&quot;, charset=&quot;utf8&quot;)</div><div class="line">cur = conn.cursor()</div><div class="line">for post in posts:</div><div class="line">    # 😁修改下表名</div><div class="line">    sql = &quot;INSERT INTO `blogs` (`thumb`, `title`, `url`, `desc`, `category`) VALUES (%s, %s, %s, %s, %s)&quot;</div><div class="line"></div><div class="line">    try:</div><div class="line">        cur.execute(sql,(post[&quot;thumb&quot;],post[&quot;title&quot;],post[&quot;url&quot;],post[&quot;desc&quot;],post[&quot;category&quot;]))</div><div class="line">        conn.commit()</div><div class="line">    except:</div><div class="line">        conn.rollback()</div><div class="line">cur.close()</div><div class="line">conn.close()</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>  最后，破天荒的居然能成功了。</p>
-<p>  对于React-Native方的代码及坑会持续更新中，待续….</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1505,7 +1486,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
