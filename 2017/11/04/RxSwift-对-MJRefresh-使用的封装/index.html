@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="swift," />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -84,22 +84,25 @@
 
 
 
-<meta name="description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
-个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
-为了不让 obs">
+<meta name="description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
+1btn.rx.tap.subscribe(...)
+代码如下：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swift 之弱引用数组">
-<meta property="og:url" content="http://www.oheroj.com/2017/08/31/swift-之若引用数组/index.html">
+<meta property="og:title" content="RxSwift 对 MJRefresh 使用的封装">
+<meta property="og:url" content="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
-个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
-为了不让 obs">
-<meta property="og:updated_time" content="2017-08-31T03:09:11.000Z">
+<meta property="og:description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
+1btn.rx.tap.subscribe(...)
+代码如下：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
+<meta property="og:updated_time" content="2017-11-04T09:36:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swift 之弱引用数组">
-<meta name="twitter:description" content="背景最近在看《HeadFirst 设计模式》中的观察者模式，其中有 Subject 和 Observer 这两块，然后就联想到一个在 iOS 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。
-个人不主张使用一个超级基类，然后就想用Theme模块来尝试解决。
-为了不让 obs">
+<meta name="twitter:title" content="RxSwift 对 MJRefresh 使用的封装">
+<meta name="twitter:description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
+1btn.rx.tap.subscribe(...)
+代码如下：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
 
 
 
@@ -117,7 +120,7 @@
   };
 </script>
 
-  <title> swift 之弱引用数组 | loveli </title>
+  <title> RxSwift 对 MJRefresh 使用的封装 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +250,7 @@
             
             
               
-                swift 之弱引用数组
+                RxSwift 对 MJRefresh 使用的封装
               
             
           </h1>
@@ -259,8 +262,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-31T10:28:19+08:00" content="2017-08-31">
-              2017-08-31
+            <time itemprop="dateCreated" datetime="2017-11-04T17:35:38+08:00" content="2017-11-04">
+              2017-11-04
             </time>
           </span>
 
@@ -270,8 +273,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/08/31/swift-之若引用数组/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/31/swift-之若引用数组/" itemprop="commentsCount"></span>
+                <a href="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,14 +299,10 @@
       
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在看《HeadFirst 设计模式》中的观察者模式，其中有 <code>Subject</code> 和 <code>Observer</code> 这两块，然后就联想到一个在 <code>iOS</code> 开发中一个主题更换的功能，以前是用通知中心做主题更换，但是有个缺点就是需要写个基类，然后在基类中<br>做一些共性的东西，如通知的注册，消息回调等问题， 子类重写父类，达到更换功能。</p>
-<p>个人不主张使用一个超级基类，然后就想用<code>Theme</code>模块来尝试解决。</p>
-<p>为了不让 <code>observer</code> 是存放到一个 Array<observable> 中的，如果是强引用的话，那这个 observable 将无法得到释放，那怎么办？ 我当时的第一想法是既然有<code>register</code>,那么就实现一个<br><code>remove</code>的操作，但是这样就得在使用地方进行 remove 操作，使得有点在使用 <code>NSNotification</code> 了.<br>那么我们可不可用数组存放弱引用指针呢？</observable></p>
-<p>在stackoverflow找到了<a href="https://stackoverflow.com/questions/24127587/how-do-i-declare-an-array-of-weak-references-in-swift?answertab=votes" target="_blank" rel="external">How do I declare an array of weak references in Swift?</a></p>
-<p>下面来简要介绍一下这些方案： </p>
-<h2 id="创建一个通用包装器"><a href="#创建一个通用包装器" class="headerlink" title="创建一个通用包装器"></a>创建一个通用包装器</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weak</span>&lt;<span class="title">T</span>: <span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> value: <span class="type">T</span>?</div><div class="line">    <span class="keyword">init</span>(value: <span class="type">T</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.value = value</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stuff</span> </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> weakly : [<span class="type">Weak</span>&lt;<span class="type">Stuff</span>&gt;] = [<span class="type">Weak</span>(value: <span class="type">Stuff</span>()), <span class="type">Weak</span>(value: <span class="type">Stuff</span>())]</div><div class="line"></div><div class="line"><span class="comment">/// 获取数组的内容</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> <span class="title">where</span> <span class="title">Element</span>:<span class="title">Weak</span>&lt;<span class="title">AnyObject</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">reap</span> <span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">self</span> = <span class="keyword">self</span>.<span class="built_in">filter</span> &#123; <span class="literal">nil</span> != $<span class="number">0</span>.value &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用-NSHashTable，-swift3-0"><a href="#使用-NSHashTable，-swift3-0" class="headerlink" title="使用 NSHashTable， swift3.0 +"></a>使用 NSHashTable， swift3.0 +</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSHashTable.weakObjects()</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>还有很多方法，但是对我来说这两种应该是最佳的方案。</p>
+        <p>对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">btn.rx.tap.subscribe(...)</div></pre></td></tr></table></figure>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> MJRefresh</div><div class="line"><span class="keyword">import</span> RxSwift</div><div class="line"><span class="keyword">import</span> RxCocoa</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RxTarget</span>: <span class="title">NSObject</span>, <span class="title">Disposable</span> </span>&#123;  <span class="comment">// RxTarget 是 Rxswift 源码</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> retainSelf: <span class="type">RxTarget</span>?</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="keyword">self</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RefreshTarget</span>&lt;<span class="title">Component</span>:<span class="title">MJRefreshComponent</span>&gt;: <span class="title">RxTarget</span> </span>&#123;</div><div class="line">    <span class="keyword">typealias</span> <span class="type">Callback</span> = <span class="type">MJRefreshComponentRefreshingBlock</span></div><div class="line">    <span class="keyword">var</span> callback: <span class="type">Callback</span>?</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> component:<span class="type">Component</span>?</div><div class="line"></div><div class="line">    <span class="keyword">let</span> selector = #selector(<span class="type">RefreshTarget</span>.eventHandler)</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> component: <span class="type">Component</span>,callback:@escaping <span class="type">Callback</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.callback = callback</div><div class="line">        <span class="keyword">self</span>.component = component</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        component.setRefreshingTarget(<span class="keyword">self</span>, refreshingAction: selector)</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">eventHandler</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> callback = <span class="keyword">self</span>.callback &#123;</div><div class="line">            callback()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.dispose()</div><div class="line">        <span class="keyword">self</span>.component?.refreshingBlock = <span class="literal">nil</span></div><div class="line">        <span class="keyword">self</span>.callback = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">MJRefreshComponent</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> event: <span class="type">ControlEvent</span>&lt;<span class="type">Base</span>&gt; &#123;</div><div class="line">        <span class="keyword">let</span> source: <span class="type">Observable</span>&lt;<span class="type">Base</span>&gt; = <span class="type">Observable</span>.create &#123; [<span class="keyword">weak</span> control = <span class="keyword">self</span>.base] observer  <span class="keyword">in</span></div><div class="line">            <span class="type">MainScheduler</span>.ensureExecutingOnScheduler()</div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> control = control <span class="keyword">else</span> &#123;</div><div class="line">                observer.on(.completed)</div><div class="line">                <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">let</span> observer = <span class="type">RefreshTarget</span>(control) &#123;</div><div class="line">                observer.on(.next(control))</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> observer</div><div class="line">        &#125;.takeUntil(deallocated)</div><div class="line">        <span class="keyword">return</span> <span class="type">ControlEvent</span>(events: source)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -346,7 +345,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/swift/" rel="tag">#swift</a>
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag">#RxSwift</a>
           
         </div>
       
@@ -355,17 +356,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/21/swift-函数式小记/" rel="next" title=" swift 函数式小记">
-                <i class="fa fa-chevron-left"></i>  swift 函数式小记
+              <a href="/2017/11/01/LaunchScreen-storyboard-换图的问题/" rel="next" title="LaunchScreen.storyboard 换图的问题">
+                <i class="fa fa-chevron-left"></i> LaunchScreen.storyboard 换图的问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/" rel="prev" title="Vapor 七牛上传 token 生成算法实现">
-                Vapor 七牛上传 token 生成算法实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -380,10 +377,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/08/31/swift-之若引用数组/"
-     data-title="swift 之弱引用数组"
+        <div class="ds-share flat" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/"
+     data-title="RxSwift 对 MJRefresh 使用的封装"
      data-content=""
-     data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
+     data-url="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -413,8 +410,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/08/31/swift-之若引用数组/"
-           data-title="swift 之弱引用数组" data-url="http://www.oheroj.com/2017/08/31/swift-之若引用数组/">
+      <div class="ds-thread" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/"
+           data-title="RxSwift 对 MJRefresh 使用的封装" data-url="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/">
       </div>
     
   </div>
@@ -509,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个通用包装器"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个通用包装器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-NSHashTable，-swift3-0"><span class="nav-number">1.2.</span> <span class="nav-text">使用 NSHashTable， swift3.0 +</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
