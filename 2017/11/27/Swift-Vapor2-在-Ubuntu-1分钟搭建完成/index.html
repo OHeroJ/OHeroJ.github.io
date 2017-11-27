@@ -1,0 +1,711 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift,vapor," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="运行环境：
+Ubuntu 16.04
+ssh
+
+ssh 登入ssh -p 端口 xx@ip  (ssh 默认是22端口)
+可以指定端口，例如: ssh -p 123 root@98.1.2.3
+运行脚本1eval &quot;$(curl -sL https://apt.vapor.sh)&quot;
+安装 swift 和 vapor1sudo apt-get install swift vapor
+结果 ：
+123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Vapor2 在 Ubuntu 1分钟搭建完成">
+<meta property="og:url" content="http://www.oheroj.com/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="运行环境：
+Ubuntu 16.04
+ssh
+
+ssh 登入ssh -p 端口 xx@ip  (ssh 默认是22端口)
+可以指定端口，例如: ssh -p 123 root@98.1.2.3
+运行脚本1eval &quot;$(curl -sL https://apt.vapor.sh)&quot;
+安装 swift 和 vapor1sudo apt-get install swift vapor
+结果 ：
+123">
+<meta property="og:updated_time" content="2017-11-27T05:08:23.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift Vapor2 在 Ubuntu 1分钟搭建完成">
+<meta name="twitter:description" content="运行环境：
+Ubuntu 16.04
+ssh
+
+ssh 登入ssh -p 端口 xx@ip  (ssh 默认是22端口)
+可以指定端口，例如: ssh -p 123 root@98.1.2.3
+运行脚本1eval &quot;$(curl -sL https://apt.vapor.sh)&quot;
+安装 swift 和 vapor1sudo apt-get install swift vapor
+结果 ：
+123">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Swift Vapor2 在 Ubuntu 1分钟搭建完成 | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift Vapor2 在 Ubuntu 1分钟搭建完成
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-27T13:07:39+08:00" content="2017-11-27">
+              2017-11-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="运行环境："><a href="#运行环境：" class="headerlink" title="运行环境："></a>运行环境：</h2><ul>
+<li>Ubuntu 16.04</li>
+<li>ssh</li>
+</ul>
+<h2 id="ssh-登入"><a href="#ssh-登入" class="headerlink" title="ssh 登入"></a>ssh 登入</h2><p>ssh -p 端口 xx@ip  (ssh 默认是22端口)</p>
+<p>可以指定端口，例如: ssh -p 123 root@98.1.2.3</p>
+<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(curl -sL https://apt.vapor.sh)</span>"</span></div></pre></td></tr></table></figure>
+<h2 id="安装-swift-和-vapor"><a href="#安装-swift-和-vapor" class="headerlink" title="安装 swift 和 vapor"></a>安装 swift 和 vapor</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install swift vapor</div></pre></td></tr></table></figure>
+<p>结果 ：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># swift --version</span></div><div class="line">Swift version 4.0.2 (swift-4.0.2-RELEASE)</div><div class="line">Target: x86_64-unknown-linux-gnu</div><div class="line">~<span class="comment"># vapor --version</span></div><div class="line">Vapor Toolbox: 3.1.2</div><div class="line">~<span class="comment">#</span></div></pre></td></tr></table></figure>
+<h2 id="创建-Hello-world"><a href="#创建-Hello-world" class="headerlink" title="创建 Hello world"></a>创建 Hello world</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vapor new helloworld</div></pre></td></tr></table></figure>
+<p><code>tree</code> 结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">-- helloworld</div><div class="line">    |-- circle.yml</div><div class="line">    |-- cloud.yml</div><div class="line">    |-- Config</div><div class="line">    |   |-- app.json</div><div class="line">    |   |-- crypto.json</div><div class="line">    |   |-- droplet.json</div><div class="line">    |   |-- fluent.json</div><div class="line">    |   `-- server.json</div><div class="line">    |-- license</div><div class="line">    |-- Package.resolved</div><div class="line">    |-- Package.swift</div><div class="line">    |-- Public</div><div class="line">    |-- README.md</div><div class="line">    |-- Sources</div><div class="line">    |   |-- App</div><div class="line">    |   |   |-- Controllers</div><div class="line">    |   |   |   `-- PostController.swift</div><div class="line">    |   |   |-- Models</div><div class="line">    |   |   |   `-- Post.swift</div><div class="line">    |   |   |-- Routes</div><div class="line">    |   |   |   `-- Routes.swift</div><div class="line">    |   |   `-- Setup</div><div class="line">    |   |       |-- Config+Setup.swift</div><div class="line">    |   |       `-- Droplet+Setup.swift</div><div class="line">    |   `-- Run</div><div class="line">    |       `-- main.swift</div><div class="line">    `-- Tests</div><div class="line">        |-- AppTests</div><div class="line">        |   |-- PostControllerTests.swift</div><div class="line">        |   |-- RouteTests.swift</div><div class="line">        |   `-- Utilities.swift</div><div class="line">        `-- LinuxMain.swift</div></pre></td></tr></table></figure>
+<p>在 <code>Sources/App/Routes/Routes.swift</code> 可以看到:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Droplet</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setupRoutes</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="keyword">get</span>(<span class="string">"hello"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">var</span> json = <span class="type">JSON</span>()</div><div class="line">            <span class="keyword">try</span> json.<span class="keyword">set</span>(<span class="string">"hello"</span>, <span class="string">"world"</span>)</div><div class="line">            <span class="keyword">return</span> json</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">get</span>(<span class="string">"plaintext"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> <span class="string">"Hello, world!"</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// response to requests to /info domain</span></div><div class="line">        <span class="comment">// with a description of the request</span></div><div class="line">        <span class="keyword">get</span>(<span class="string">"info"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> req.description</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">get</span>(<span class="string">"description"</span>) &#123; req <span class="keyword">in</span> <span class="keyword">return</span> req.description &#125;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> resource(<span class="string">"posts"</span>, <span class="type">PostController</span>.<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><h3 id="vapor-相关命令"><a href="#vapor-相关命令" class="headerlink" title="vapor 相关命令"></a>vapor 相关命令</h3><ul>
+<li>vapor build 编译</li>
+<li>vapor run serve  运行</li>
+</ul>
+<p>更多命令可以</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vapor --help</span></div><div class="line">Usage: vapor <span class="built_in">command</span></div><div class="line"></div><div class="line">Join our Slack <span class="keyword">if</span> you have questions, need <span class="built_in">help</span>,</div><div class="line">or want to contribute: http://vapor.team</div><div class="line"></div><div class="line">Commands:</div><div class="line">       new Creates a new Vapor application from a template.</div><div class="line">           Use --template=repo/template <span class="keyword">for</span> github templates</div><div class="line">           Use --template=full-url-here.git <span class="keyword">for</span> non github templates</div><div class="line">           Use --web to create a new web app</div><div class="line">           Use --auth to create a new authenticated API app</div><div class="line">           Use --api (default) to create a new API</div><div class="line">     build Compiles the application.</div><div class="line">       run Runs the compiled application.</div><div class="line">     fetch Fetches the application<span class="string">'s dependencies.</span></div><div class="line">    update Updates your dependencies.</div><div class="line">     clean Cleans temporary files--usually fixes</div><div class="line">           a plethora of bizarre build errors.</div><div class="line">      test Runs the application's tests.</div><div class="line">     xcode Generates an Xcode project <span class="keyword">for</span> development.</div><div class="line">           Additionally links commonly used libraries.</div><div class="line">   version Displays Vapor CLI version</div><div class="line">     cloud Commands <span class="keyword">for</span> interacting with Vapor Cloud.</div><div class="line">    heroku Commands to <span class="built_in">help</span> deploy to Heroku.</div><div class="line">  provider Commands to <span class="built_in">help</span> manage providers.</div><div class="line"></div><div class="line">Use `vapor <span class="built_in">command</span> --help` <span class="keyword">for</span> more information on a command.</div></pre></td></tr></table></figure>
+<p>我们执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vapor run serve</div></pre></td></tr></table></figure>
+<h2 id="打开浏览器访问"><a href="#打开浏览器访问" class="headerlink" title="打开浏览器访问"></a>打开浏览器访问</h2><p>Config/server.json 中可以看到</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"The $PORT:8080 call tells the json file to see if there"</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"is any value at the 'PORT' environment variable."</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"If there is no value there, it will fallback to '8080'"</span>,</div><div class="line">    <span class="attr">"port"</span>: <span class="string">"$PORT:8080"</span>,</div><div class="line"></div><div class="line">    <span class="attr">"host"</span>: <span class="string">"0.0.0.0"</span>,</div><div class="line"></div><div class="line">    <span class="attr">"//"</span>: <span class="string">"It's very rare that a server manages its own TLS."</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"More commonly, vapor is served behind a proxy like nginx."</span>,</div><div class="line">    <span class="attr">"securityLayer"</span>: <span class="string">"none"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认是 8080 端口，那我们可以直接在浏览器中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://&lt;yourip&gt;:8080/hello</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/vapor/" rel="tag">#vapor</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/" rel="next" title="RxSwift 对 MJRefresh 使用的封装">
+                <i class="fa fa-chevron-left"></i> RxSwift 对 MJRefresh 使用的封装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/"
+     data-title="Swift Vapor2 在 Ubuntu 1分钟搭建完成"
+     data-content=""
+     data-url="http://www.oheroj.com/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/"
+           data-title="Swift Vapor2 在 Ubuntu 1分钟搭建完成" data-url="http://www.oheroj.com/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行环境："><span class="nav-number">1.</span> <span class="nav-text">运行环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-登入"><span class="nav-number">2.</span> <span class="nav-text">ssh 登入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行脚本"><span class="nav-number">3.</span> <span class="nav-text">运行脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-swift-和-vapor"><span class="nav-number">4.</span> <span class="nav-text">安装 swift 和 vapor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Hello-world"><span class="nav-number">5.</span> <span class="nav-text">创建 Hello world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行项目"><span class="nav-number">6.</span> <span class="nav-text">运行项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor-相关命令"><span class="nav-number">6.1.</span> <span class="nav-text">vapor 相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开浏览器访问"><span class="nav-number">7.</span> <span class="nav-text">打开浏览器访问</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+</body>
+</html>
