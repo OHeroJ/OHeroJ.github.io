@@ -240,6 +240,115 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/27/Vapor2-之数据库迁移/" itemprop="url">
+                  Vapor2 之数据库迁移
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-27T15:28:24+08:00" content="2017-11-27">
+              2017-11-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/27/Vapor2-之数据库迁移/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/27/Vapor2-之数据库迁移/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻</p>
+<blockquote>
+<p>Preparations相当于迁移，因为它允许修改已经创建的模式</p>
+</blockquote>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddFooToBar</span>: <span class="title">Preparation</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="comment">/// bar 是表名</span></div><div class="line">        <span class="keyword">try</span> database.modify(<span class="type">Bar</span>.<span class="keyword">self</span>, closure: &#123; bar <span class="keyword">in</span></div><div class="line">            bar.string(<span class="string">"foo"</span>, length: <span class="number">150</span>, <span class="keyword">optional</span>: <span class="literal">false</span>, unique: <span class="literal">false</span>, <span class="keyword">default</span>: <span class="literal">nil</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">revert</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后记得 <code>drop.preparations.append(AddFooToBar.self)</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" itemprop="url">
                   Swift Vapor2 在 Ubuntu 1分钟搭建完成
                 </a>
@@ -1223,113 +1332,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="url">
-                   用 Swift 优雅的封装 OC 的命名前缀问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-15T16:05:51+08:00" content="2017-08-15">
-              2017-08-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="swift-风格"><a href="#swift-风格" class="headerlink" title="swift 风格"></a>swift 风格</h2><p>对于 <code>OC</code> 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个<code>前缀_</code>,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。 </p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="UIView-Frame-swift"><a href="#UIView-Frame-swift" class="headerlink" title="UIView+Frame.swift"></a>UIView+Frame.swift</h3><h4 id="声明-protocol"><a href="#声明-protocol" class="headerlink" title="声明 protocol"></a>声明 protocol</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> y: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> width: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> height: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">right</span>: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> top: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> bottom: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> center: <span class="type">CGPoint</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div></pre></td></tr></table></figure>
-<h4 id="实现-protocol"><a href="#实现-protocol" class="headerlink" title="实现 protocol"></a>实现 protocol</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BaseFrame</span>: <span class="title">Framable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> view: <span class="type">UIView</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(view: <span class="type">UIView</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.view = view</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> x: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:newValue ,y:frame.origin.y), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> y: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> width: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span>&#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: newValue, height: frame.size.height)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> height: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span>&#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: frame.size.width, height: newValue)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:newValue ,y:frame.origin.y), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> <span class="keyword">right</span>: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x + view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: newValue - frame.origin.x, height: frame.size.height)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> top: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> bottom: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.height + view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: frame.origin.x, height: newValue - frame.origin.y)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> center: <span class="type">CGPoint</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.center</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            view.center = center</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="对接-UIView-增加-wrapper"><a href="#对接-UIView-增加-wrapper" class="headerlink" title="对接 UIView,增加 wrapper"></a>对接 UIView,增加 wrapper</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UIView</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> bf: <span class="type">Framable</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">BaseFrame</span>(view: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> button: <span class="type">UIButton</span> = <span class="type">UIButton</span>()</div><div class="line">button.bf.x = <span class="number">30</span></div><div class="line">button.bf.y = <span class="number">50</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1375,7 +1377,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

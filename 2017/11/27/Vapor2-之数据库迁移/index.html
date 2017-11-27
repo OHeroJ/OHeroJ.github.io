@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,RxSwift," />
+  <meta name="keywords" content="vapor,swift," />
 
 
 
@@ -84,25 +84,31 @@
 
 
 
-<meta name="description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
-1btn.rx.tap.subscribe(...)
-代码如下：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
+<meta name="description" content="之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻
+
+Preparations相当于迁移，因为它允许修改已经创建的模式
+
+方案一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：
+1234567891011struct AddFooToBar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxSwift 对 MJRefresh 使用的封装">
-<meta property="og:url" content="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/index.html">
+<meta property="og:title" content="Vapor2 之数据库迁移">
+<meta property="og:url" content="http://www.oheroj.com/2017/11/27/Vapor2-之数据库迁移/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
-1btn.rx.tap.subscribe(...)
-代码如下：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
-<meta property="og:updated_time" content="2017-11-04T09:36:22.000Z">
+<meta property="og:description" content="之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻
+
+Preparations相当于迁移，因为它允许修改已经创建的模式
+
+方案一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：
+1234567891011struct AddFooToBar">
+<meta property="og:updated_time" content="2017-11-27T07:33:17.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxSwift 对 MJRefresh 使用的封装">
-<meta name="twitter:description" content="对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：
-1btn.rx.tap.subscribe(...)
-代码如下：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657import UIKitimpor">
+<meta name="twitter:title" content="Vapor2 之数据库迁移">
+<meta name="twitter:description" content="之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻
+
+Preparations相当于迁移，因为它允许修改已经创建的模式
+
+方案一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：
+1234567891011struct AddFooToBar">
 
 
 
@@ -120,7 +126,7 @@
   };
 </script>
 
-  <title> RxSwift 对 MJRefresh 使用的封装 | loveli </title>
+  <title> Vapor2 之数据库迁移 | loveli </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +256,7 @@
             
             
               
-                RxSwift 对 MJRefresh 使用的封装
+                Vapor2 之数据库迁移
               
             
           </h1>
@@ -262,8 +268,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-04T17:35:38+08:00" content="2017-11-04">
-              2017-11-04
+            <time itemprop="dateCreated" datetime="2017-11-27T15:28:24+08:00" content="2017-11-27">
+              2017-11-27
             </time>
           </span>
 
@@ -273,8 +279,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/" itemprop="commentsCount"></span>
+                <a href="/2017/11/27/Vapor2-之数据库迁移/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/27/Vapor2-之数据库迁移/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,10 +305,13 @@
       
 
       
-        <p>对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">btn.rx.tap.subscribe(...)</div></pre></td></tr></table></figure>
-<p>代码如下：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> MJRefresh</div><div class="line"><span class="keyword">import</span> RxSwift</div><div class="line"><span class="keyword">import</span> RxCocoa</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RxTarget</span>: <span class="title">NSObject</span>, <span class="title">Disposable</span> </span>&#123;  <span class="comment">// RxTarget 是 Rxswift 源码</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> retainSelf: <span class="type">RxTarget</span>?</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="keyword">self</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RefreshTarget</span>&lt;<span class="title">Component</span>:<span class="title">MJRefreshComponent</span>&gt;: <span class="title">RxTarget</span> </span>&#123;</div><div class="line">    <span class="keyword">typealias</span> <span class="type">Callback</span> = <span class="type">MJRefreshComponentRefreshingBlock</span></div><div class="line">    <span class="keyword">var</span> callback: <span class="type">Callback</span>?</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> component:<span class="type">Component</span>?</div><div class="line"></div><div class="line">    <span class="keyword">let</span> selector = #selector(<span class="type">RefreshTarget</span>.eventHandler)</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> component: <span class="type">Component</span>,callback:@escaping <span class="type">Callback</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.callback = callback</div><div class="line">        <span class="keyword">self</span>.component = component</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        component.setRefreshingTarget(<span class="keyword">self</span>, refreshingAction: selector)</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">eventHandler</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> callback = <span class="keyword">self</span>.callback &#123;</div><div class="line">            callback()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.dispose()</div><div class="line">        <span class="keyword">self</span>.component?.refreshingBlock = <span class="literal">nil</span></div><div class="line">        <span class="keyword">self</span>.callback = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">MJRefreshComponent</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> event: <span class="type">ControlEvent</span>&lt;<span class="type">Base</span>&gt; &#123;</div><div class="line">        <span class="keyword">let</span> source: <span class="type">Observable</span>&lt;<span class="type">Base</span>&gt; = <span class="type">Observable</span>.create &#123; [<span class="keyword">weak</span> control = <span class="keyword">self</span>.base] observer  <span class="keyword">in</span></div><div class="line">            <span class="type">MainScheduler</span>.ensureExecutingOnScheduler()</div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> control = control <span class="keyword">else</span> &#123;</div><div class="line">                observer.on(.completed)</div><div class="line">                <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">let</span> observer = <span class="type">RefreshTarget</span>(control) &#123;</div><div class="line">                observer.on(.next(control))</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> observer</div><div class="line">        &#125;.takeUntil(deallocated)</div><div class="line">        <span class="keyword">return</span> <span class="type">ControlEvent</span>(events: source)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻</p>
+<blockquote>
+<p>Preparations相当于迁移，因为它允许修改已经创建的模式</p>
+</blockquote>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddFooToBar</span>: <span class="title">Preparation</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="comment">/// bar 是表名</span></div><div class="line">        <span class="keyword">try</span> database.modify(<span class="type">Bar</span>.<span class="keyword">self</span>, closure: &#123; bar <span class="keyword">in</span></div><div class="line">            bar.string(<span class="string">"foo"</span>, length: <span class="number">150</span>, <span class="keyword">optional</span>: <span class="literal">false</span>, unique: <span class="literal">false</span>, <span class="keyword">default</span>: <span class="literal">nil</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">revert</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后记得 <code>drop.preparations.append(AddFooToBar.self)</code></p>
 
       
     </div>
@@ -345,9 +354,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/vapor/" rel="tag">#vapor</a>
           
-            <a href="/tags/RxSwift/" rel="tag">#RxSwift</a>
+            <a href="/tags/swift/" rel="tag">#swift</a>
           
         </div>
       
@@ -356,17 +365,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/LaunchScreen-storyboard-换图的问题/" rel="next" title="LaunchScreen.storyboard 换图的问题">
-                <i class="fa fa-chevron-left"></i> LaunchScreen.storyboard 换图的问题
+              <a href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" rel="next" title="Swift Vapor2 在 Ubuntu 1分钟搭建完成">
+                <i class="fa fa-chevron-left"></i> Swift Vapor2 在 Ubuntu 1分钟搭建完成
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" rel="prev" title="Swift Vapor2 在 Ubuntu 1分钟搭建完成">
-                Swift Vapor2 在 Ubuntu 1分钟搭建完成 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -381,10 +386,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/"
-     data-title="RxSwift 对 MJRefresh 使用的封装"
+        <div class="ds-share flat" data-thread-key="2017/11/27/Vapor2-之数据库迁移/"
+     data-title="Vapor2 之数据库迁移"
      data-content=""
-     data-url="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/">
+     data-url="http://www.oheroj.com/2017/11/27/Vapor2-之数据库迁移/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -414,8 +419,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/11/04/RxSwift-对-MJRefresh-使用的封装/"
-           data-title="RxSwift 对 MJRefresh 使用的封装" data-url="http://www.oheroj.com/2017/11/04/RxSwift-对-MJRefresh-使用的封装/">
+      <div class="ds-thread" data-thread-key="2017/11/27/Vapor2-之数据库迁移/"
+           data-title="Vapor2 之数据库迁移" data-url="http://www.oheroj.com/2017/11/27/Vapor2-之数据库迁移/">
       </div>
     
   </div>
@@ -510,7 +515,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方案"><span class="nav-number">1.</span> <span class="nav-text">方案</span></a></li></ol></div>
             
           </div>
         </section>

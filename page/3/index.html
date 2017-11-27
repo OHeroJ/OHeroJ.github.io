@@ -240,6 +240,181 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/17/swift之vapor小试/" itemprop="url">
+                  swift之vapor小试
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-17T22:53:51+08:00" content="2016-12-17">
+              2016-12-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/17/swift之vapor小试/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/17/swift之vapor小试/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>零零碎碎的学了下 swift 后台方面的东西，16年年末，反观前些年，自己在编程语言的建树，可谓杂多广亦零零碎碎，未深入，有些也就是庭前看花，浅尝辄止。17年即将到来，年前新也给自己博客定个风格套路，避免写出的东西也零碎不堪。</p>
+<p>此博文来谈 Vapor,纵观 github ,swift web 框架 Prefect 居首位。然每个人挑选框架亦与其个人喜好关联。随性的人喜欢按照自己的兴趣去选择。我并没有选择 Prefect：</p>
+<ol>
+<li>不优雅</li>
+<li>传统</li>
+<li>企业性质</li>
+<li>不是我关注的第一个 swift 的后台框架</li>
+</ol>
+<p>如果你想去了解现有框架的对比，可移步到 <a href="https://swift.libhunt.com/project/vapor/vs/perfect" target="_blank" rel="external">这里</a></p>
+<p>多说无益，毕竟说得越多（文笔不好，现在还是多写点，多暴露一点自己的问题，勿怪），就会暴露更多的问题，就如我们写代码，写的越多，人家 <code>review</code> 的越多，然后打回的几率也大，所以代码的简洁和优化是多么的重要</p>
+<p><strong>牛逼的程序员是思考如何将代码越写越少而不是越写越多！</strong></p>
+<h2 id="知识点之前，说说最近的一些感触"><a href="#知识点之前，说说最近的一些感触" class="headerlink" title="知识点之前，说说最近的一些感触"></a>知识点之前，说说最近的一些感触</h2><p>最近感觉自己在写代码的时候，自由度被限制了。公司现在在不断的要求 代码规范和代码提交规范，git 管理规范，文档规范…, 代码日产果断是降低不少。但过了这么段苦逼的日子，看看现在自己的代码确实欣慰少许。细节方面略过，如果你以后是做规范的，我觉得可以往这几个方面：</p>
+<ol>
+<li><p>代码方面：</p>
+<p>注释风格 | 空行 | 空格 | 命名 | 社区比较认定的规范(从 github 上找)</p>
+</li>
+<li><p>代码提交方面(git):</p>
+<p>提交有意义的代码 | 提交规范 | 分支命名规范 | 分支管理规范 | 审核规范</p>
+</li>
+<li><p>文档方面(markdown):</p>
+<p>这块我局的大家把文档质量保证，其实排版问题不到，前提说的你用的是 <a href="http://wowubuntu.com/markdown" target="_blank" rel="external">Markdown</a></p>
+<p>以上几点非本文重点，不在过多阐述，等我在多点经验整理获取更具合理性</p>
+</li>
+</ol>
+<h2 id="项目环境"><a href="#项目环境" class="headerlink" title="项目环境"></a>项目环境</h2><p><strong>环境</strong></p>
+<ul>
+<li>Xcode: 8.1</li>
+<li>Swift: 3.0.1</li>
+<li>MacOS: 10.12.1</li>
+<li>MySql: 5.7.13</li>
+<li>vapor: Vapor Toolbox v1.0.3</li>
+</ul>
+<p>对于 Vapor 的基本知识我就不在过多的阐述，在用到的时候，有必要，会在相应的地方进行书写，Vapor 文档请移步到 <a href="https://vapor.github.io/documentation/" target="_blank" rel="external">这里</a></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Package.swift</span></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"spider"</span>,</div><div class="line">    dependencies: [</div><div class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/vapor/vapor.git"</span>, majorVersion: <span class="number">1</span>, minor:<span class="number">1</span>),</div><div class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/vapor/mysql-provider.git"</span>, majorVersion: <span class="number">1</span>, minor: <span class="number">1</span>)</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
+<li>建立数据模型</li>
+</ol>
+<p>代码操纵的数据，定义好自己要操作的数据(<code>建表</code>)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Post.swift</span></div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Post</span>: <span class="title">Model</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> id: <span class="type">Node</span>?</div><div class="line">    <span class="keyword">var</span> desc: <span class="type">String</span>  <span class="comment">// 描述</span></div><div class="line">    <span class="keyword">var</span> title: <span class="type">String</span> <span class="comment">// 标题</span></div><div class="line">    <span class="keyword">var</span> category: <span class="type">String</span> <span class="comment">// 分类</span></div><div class="line">    <span class="keyword">var</span> content: <span class="type">String</span> <span class="comment">// 内容</span></div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(desc:<span class="type">String</span>, title:<span class="type">String</span>, content: <span class="type">String</span>, category:<span class="type">String</span> ) &#123;</div><div class="line">        <span class="keyword">self</span>.desc = desc</div><div class="line">        <span class="keyword">self</span>.title = title</div><div class="line">        <span class="keyword">self</span>.content = content</div><div class="line">        <span class="keyword">self</span>.category = category</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(node: <span class="type">Node</span>, <span class="keyword">in</span> context: <span class="type">Context</span>) <span class="keyword">throws</span> &#123;</div><div class="line">        id = <span class="keyword">try</span> node.extract(<span class="string">"id"</span>)</div><div class="line">        desc = <span class="keyword">try</span> node.extract(<span class="string">"desc"</span>)</div><div class="line">        title = <span class="keyword">try</span> node.extract(<span class="string">"title"</span>)</div><div class="line">        content = <span class="keyword">try</span> node.extract(<span class="string">"content"</span>)</div><div class="line">        category = <span class="keyword">try</span> node.extract(<span class="string">"category"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeNode</span><span class="params">(context: Context)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Node</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> <span class="type">Node</span>(node: [</div><div class="line">            <span class="string">"id"</span>: id,</div><div class="line">            <span class="string">"desc"</span>: desc,</div><div class="line">            <span class="string">"title"</span>: title,</div><div class="line">            <span class="string">"content"</span>: content,</div><div class="line">            <span class="string">"category"</span>: category,</div><div class="line">        ])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Post</span>: <span class="title">Preparation</span> </span>&#123;   </div><div class="line">    <span class="comment">// 建表</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="keyword">try</span> database.create(<span class="string">"posts"</span>, closure: &#123; (post) <span class="keyword">in</span></div><div class="line">            post.id()</div><div class="line">            post.string(<span class="string">"desc"</span>)</div><div class="line">            post.string(<span class="string">"title"</span>)</div><div class="line">            post.string(<span class="string">"content"</span>)</div><div class="line">            post.string(<span class="string">"category"</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// this will be run if vapor run prepare --revert is called.</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">revert</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="keyword">try</span> database.delete(<span class="string">"posts"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="将模型生成为对应的数据表"><a href="#将模型生成为对应的数据表" class="headerlink" title="将模型生成为对应的数据表"></a>将模型生成为对应的数据表</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.swift</span></div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"><span class="keyword">import</span> VaporMySQL</div><div class="line"></div><div class="line"><span class="keyword">let</span> drop = <span class="type">Droplet</span>()</div><div class="line"></div><div class="line"><span class="keyword">try</span> drop.addProvider(<span class="type">VaporMySQL</span>.<span class="type">Provider</span>.<span class="keyword">self</span>)</div><div class="line">drop.preparations += <span class="type">Post</span>.<span class="keyword">self</span></div><div class="line">drop.run()</div></pre></td></tr></table></figure>
+<p>使用的是数据库是 mysql, 需要进行相关的配置, 在 <code>Config/secrets</code>目录下，我们创建个 <code>mysql.json</code>, 内容配置可参考如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;host&quot;: &quot;localhost&quot;,</div><div class="line">    &quot;user&quot;: &quot;root&quot;,</div><div class="line">    &quot;password&quot;: &quot;lai12345&quot;,</div><div class="line">    &quot;database&quot;: &quot;spider&quot;,</div><div class="line">    &quot;port&quot;: &quot;3306&quot;,</div><div class="line">    &quot;encoding&quot;: &quot;utf8&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在打开 xocde 的时候，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vapor xcode --mysql -y</div></pre></td></tr></table></figure>
+<h2 id="建立路由"><a href="#建立路由" class="headerlink" title="建立路由"></a>建立路由</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.swift</span></div><div class="line">...</div><div class="line"><span class="keyword">try</span> drop.addProvider(<span class="type">VaporMySQL</span>.<span class="type">Provider</span>.<span class="keyword">self</span>)</div><div class="line">drop.preparations += <span class="type">Post</span>.<span class="keyword">self</span></div><div class="line"></div><div class="line"><span class="comment">// Routers</span></div><div class="line">drop.<span class="keyword">get</span>(<span class="string">"/"</span>)&#123; request <span class="keyword">in</span> </div><div class="line">    <span class="keyword">return</span> <span class="string">"Hello,world"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">drop.<span class="keyword">get</span>(<span class="string">"/blog"</span>) &#123; request <span class="keyword">in</span> </div><div class="line">    <span class="keyword">let</span> blogs = <span class="keyword">try</span> <span class="type">Post</span>.all().makeNode()</div><div class="line">    <span class="keyword">let</span> parameters = <span class="keyword">try</span> <span class="type">Node</span>(node: [<span class="string">"blogs"</span>: blogs])</div><div class="line">    <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"index"</span>, parameters)</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">drop.run()</div></pre></td></tr></table></figure>
+<p>如果路由不断的增多，<code>main.swift</code> 必然增多。 将相关性很大的路由放到一个地方进行管理。 对上面的代码进行相关改进：</p>
+<h3 id="创建-BlogController"><a href="#创建-BlogController" class="headerlink" title="创建 BlogController"></a>创建 <code>BlogController</code></h3><p><strong>创建 ‘BaseController’</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// BaseController.swift</span></div><div class="line"><span class="keyword">import</span> HTTP</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"></div><div class="line"><span class="comment">// 基类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> drop: <span class="type">Droplet</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(droplet: <span class="type">Droplet</span>) &#123;</div><div class="line">        drop = droplet</div><div class="line">        addRouters()</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// to sub vc ovviride</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addRouters</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>创建 BlogController.swift</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Controllers/BlogController.swift</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> HTTP</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogController</span> : <span class="title">BaseController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">addRouters</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> group = drop.grouped(<span class="string">"blog"</span>)</div><div class="line">        group.<span class="keyword">get</span>(<span class="string">"/"</span>, handler: indexView) <span class="comment">// index</span></div><div class="line">        group.post(<span class="string">"/"</span>,handler: addPost)  <span class="comment">// add</span></div><div class="line">        group.<span class="keyword">get</span>(<span class="type">Post</span>.<span class="keyword">self</span>, handler: postDetail)</div><div class="line">        group.post(<span class="type">Post</span>.<span class="keyword">self</span>, <span class="string">"delete"</span>, handler: deletePost) <span class="comment">//delete</span></div><div class="line">        group.<span class="keyword">get</span>(<span class="string">"create"</span>, handler: createPost) <span class="comment">// create 页面</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">postDetail</span><span class="params">(request: Request, post: Post)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span>&#123;</div><div class="line">        <span class="keyword">let</span> content = post.content</div><div class="line">        <span class="keyword">let</span> params = [<span class="string">"content"</span>: content]</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/detail"</span>, params)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">createPost</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/create"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">deletePost</span><span class="params">(request: Request, post:Post)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> post.delete()</div><div class="line">        <span class="keyword">return</span> <span class="type">Response</span>(redirect: <span class="string">"/blog"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addPost</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> title = request.data[<span class="string">"title"</span>]?.string,</div><div class="line">            <span class="keyword">let</span> content = request.data[<span class="string">"content"</span>]?.string,</div><div class="line">        <span class="keyword">let</span> category = request.data[<span class="string">"category"</span>]?.string <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">Abort</span>.badRequest</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> post = <span class="type">Post</span>(desc: content, title: title, content: content, category: category)</div><div class="line">        <span class="keyword">try</span> post.save()</div><div class="line">        <span class="keyword">return</span> <span class="type">Response</span>(redirect: <span class="string">"/blog"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">indexView</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">let</span> posts = <span class="keyword">try</span> <span class="type">Post</span>.all().makeNode()</div><div class="line">        <span class="keyword">let</span> parameters = <span class="keyword">try</span> <span class="type">Node</span>(node: [<span class="string">"posts"</span>: posts])</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/index"</span>, parameters);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建-View-Leaf"><a href="#创建-View-Leaf" class="headerlink" title="创建 View(Leaf)"></a>创建 <code>View</code>(Leaf)</h2><p>采用了 <a href="http://getskeleton.com/" target="_blank" rel="external">skeleton</a> 样式， 使用了内嵌 markdown 编辑器 <a href="https://github.com/OscarGodson/EpicEditor" target="_blank" rel="external">EpicEditor</a></p>
+<p><strong>文件结构</strong></p>
+<p><img src="http://obp26pczx.bkt.clouddn.com/wendang_blog_lef.png" alt="wendang_blog_lef"></p>
+<p><strong>base.leaf</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    #import("head")</div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>TIL<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-sacle=1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/styles/normalize.css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/styles/skeleton.css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"//fonts.googleapis.com/css?family=Raleway:400,300,600"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/lib/epiceditor/js/epiceditor.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"u-full-width"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>TIL: Tody I Learn <span class="tag">&lt;<span class="name">smal</span>&gt;</span>Vapor web Service<span class="tag">&lt;/<span class="name">smal</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            #import("body")</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>create.leaf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#extend(&quot;base&quot;)</div><div class="line"></div><div class="line">#export(&quot;body&quot;) &#123;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        &lt;div class=&quot;u-full-width&quot;&gt;</div><div class="line">            &lt;h4&gt;Blog Create&lt;/h4&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;form action=&quot;/blog&quot; method=&quot;post&quot;&gt;</div><div class="line">        &lt;div class=&quot;u-full-width&quot;&gt;</div><div class="line">            &lt;label&gt;Title&lt;/label&gt;</div><div class="line">            &lt;input name=&quot;title&quot; class=&quot;u-full-width&quot; placeholder=&quot;title&quot;&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;u-full-width&quot;&gt;</div><div class="line">            &lt;label&gt;Category&lt;/label&gt;</div><div class="line">            &lt;input name=&quot;category&quot; class=&quot;u-full-width&quot; placeholder=&quot;Category&quot;&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line"></div><div class="line">        &lt;div class=&quot;u-full-width&quot; style=&quot;height: 360px;&quot;id=&quot;epiceditor&quot;&gt;</div><div class="line">            &lt;label&gt;Content&lt;/label&gt;</div><div class="line">            &lt;textarea id=&quot;my-edit-area&quot; name=&quot;content&quot; class=&quot;u-full-width&quot;&gt;&lt;/textarea&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line"></div><div class="line">        &lt;div class= &quot;row&quot; style=&quot;margin-top: 50px&quot;&gt;</div><div class="line">            &lt;input class=&quot;button-primary&quot; type=&quot;submit&quot; value=&quot;Save Blog&quot;/&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;/form&gt;</div><div class="line"></div><div class="line">    &lt;script&gt;</div><div class="line">        &lt;!-- 这里在basepath里去掉了 &quot;/&quot; --&gt;</div><div class="line">        var editor = new EpicEditor(&#123;basePath: &apos;/lib/epiceditor/&apos;&#125;);</div><div class="line">        editor.load();</div><div class="line">    &lt;/script&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>detail.leaf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#extend(&quot;base&quot;)</div><div class="line"></div><div class="line">#export(&quot;body&quot;) &#123;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        #(content)</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">    &lt;a class=&quot;button button-primary&quot; href=&quot;/blog/&quot;&gt;Back Post Lists&lt;/a&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>index.leaf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">#extend(&quot;base&quot;)</div><div class="line"></div><div class="line">#export(&quot;body&quot;) &#123;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        &lt;div class=&quot;u-full-width&quot;&gt;</div><div class="line">        &lt;h4&gt;Blog list&lt;/h4&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        #loop(posts, &quot;post&quot;) &#123;</div><div class="line"></div><div class="line">            &lt;div class=&quot;two columns&quot;&gt;</div><div class="line">                &lt;h5&gt;&lt;span&gt;#(post.title)&lt;/span&gt;&lt;/h5&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;four columns&quot;&gt;</div><div class="line">                &lt;p&gt;&lt;span&gt;#(post.content)&lt;/span&gt;&lt;/p&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;two columns&quot;&gt;</div><div class="line">                &lt;p&gt;&lt;span&gt;#(post.category)&lt;/span&gt;&lt;/p&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;two columns&quot;&gt;</div><div class="line">                &lt;form action=&quot;/blog/#(post.id)/delete&quot; method=&quot;post&quot;&gt;</div><div class="line">                    &lt;input type=&quot;submit&quot; value=&quot;Delete&quot; /&gt;</div><div class="line">                &lt;/form&gt;</div><div class="line"></div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;two columns&quot;&gt;</div><div class="line">                &lt;a class=&quot;button button-primary&quot; href=&quot;/blog/#(post.id)&quot;&gt;Detail&lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        &lt;a class=&quot;button button-primary&quot; href=&quot;/blog/create&quot;&gt;Create Post&lt;/a&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>总体写下来，难点</p>
+<ul>
+<li>用 Controller 来管理 Router 这个思路 </li>
+<li>第二个就是 Markdown 的编辑器</li>
+<li>leaf 的编写</li>
+</ul>
+<p>待改善的地方：</p>
+<ol>
+<li>粗版，后续会不断改良</li>
+</ol>
+<blockquote>
+<p>代码可到 github 上 <a href="https://github.com/OHeroJ/site" target="_blank" rel="external">下载</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="url">
                   基于 Django 搭建 Zip 皮肤包下载功能测试后台
                 </a>
@@ -1388,125 +1563,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/10/优雅处理-bad-enum-configurations/" itemprop="url">
-                  优雅处理 bad enum configurations
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
-              2016-08-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/10/优雅处理-bad-enum-configurations/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/优雅处理-bad-enum-configurations/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Using-an-enum-for-configuration"><a href="#Using-an-enum-for-configuration" class="headerlink" title="Using an enum for configuration"></a>Using an enum for configuration</h3><p>上例子：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CellStyle</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> login</div><div class="line">    <span class="keyword">case</span> profile</div><div class="line">    <span class="keyword">case</span> settings</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonTableCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> style: <span class="type">CellStyle</span> &#123;</div><div class="line">        <span class="keyword">didSet</span> &#123;</div><div class="line">            configureStyle()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">configureStyle</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">switch</span> cellStyle &#123;</div><div class="line">        <span class="keyword">case</span> .login:</div><div class="line">            <span class="comment">// configure style for login view</span></div><div class="line">            textLabel?.textColor = .red()</div><div class="line">            textLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleBody</span>)</div><div class="line"></div><div class="line">            detailTextLabel?.textColor = .blue()</div><div class="line">            detailTextLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle3</span>)</div><div class="line"></div><div class="line">            accessoryView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(named: <span class="string">"chevron"</span>))</div><div class="line">        <span class="keyword">case</span> .settings:</div><div class="line">            <span class="comment">// configure style for settings view</span></div><div class="line">            textLabel?.textColor = .purple()</div><div class="line">            textLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>)</div><div class="line"></div><div class="line">            detailTextLabel?.textColor = .green()</div><div class="line">            detailTextLabel?.font = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>)</div><div class="line"></div><div class="line">            accessoryView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(named: <span class="string">"checkmark"</span>))</div><div class="line">         <span class="keyword">case</span> .profile:</div><div class="line">            <span class="comment">// configure style for profile view</span></div><div class="line">            <span class="comment">// ...</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SettingsViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</div><div class="line">   <span class="comment">// ...</span></div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, cellForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">      <span class="comment">// create and configure cell</span></div><div class="line">      cell.style = .settings</div><div class="line">      <span class="keyword">return</span> cell</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>This is so bad!😢</strong></p>
-<h3 id="Why-enum-configurations-are-bad"><a href="#Why-enum-configurations-are-bad" class="headerlink" title="Why enum configurations are bad"></a>Why enum configurations are bad</h3><p>有些人会觉得这个模式很ok哇， “is flexible”，如果你有一个新的CellStyle, 你只需要添加一个<code>case</code>,然后在switch添加一处处理。‘set any style you want’。</p>
-<p>但是如果这个cell是一个library，你就没有办法添加新的 case, 这个时候就无法 添加自己想要的cellstyle了，或者你也许可以提PR.那么对于使用这个lib的人来说，这个库设计的是不灵活的。</p>
-<p>还有就是这个 判断case 分支越多，代码就越难看。</p>
-<h4 id="如何改进这种设计"><a href="#如何改进这种设计" class="headerlink" title="如何改进这种设计"></a>如何改进这种设计</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CellStyle</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> labelColor: <span class="type">UIColor</span></div><div class="line">    <span class="keyword">let</span> labelFont: <span class="type">UIFont</span></div><div class="line">    <span class="keyword">let</span> detailColor: <span class="type">UIColor</span></div><div class="line">    <span class="keyword">let</span> detailFont: <span class="type">UIFont</span></div><div class="line">    <span class="keyword">let</span> accessory: <span class="type">UIImage</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(labelColor: <span class="type">UIColor</span> = .black(),</div><div class="line">         labelFont: <span class="type">UIFont</span> = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>),</div><div class="line">         detailColor: <span class="type">UIColor</span> = .lightGray(),</div><div class="line">         detailFont: <span class="type">UIFont</span> = .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>),</div><div class="line">         accessory: <span class="type">UIImage</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.labelColor = labelColor</div><div class="line">        <span class="keyword">self</span>.labelFont = labelFont</div><div class="line">        <span class="keyword">self</span>.detailColor = detailColor</div><div class="line">        <span class="keyword">self</span>.detailFont = detailFont</div><div class="line">        <span class="keyword">self</span>.accessory = accessory</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CellStyle</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> settings: <span class="type">CellStyle</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">CellStyle</span>(labelColor: .purple(),</div><div class="line">                         labelFont: .preferredFont(forTextStyle: <span class="type">UIFontTextStyleTitle1</span>),</div><div class="line">                         detailColor: .green(),</div><div class="line">                         detailFont: .preferredFont(forTextStyle: <span class="type">UIFontTextStyleCaption1</span>),</div><div class="line">                         accessory: <span class="type">UIImage</span>(named: <span class="string">"checkmark"</span>)!)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CellStyle</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> custom: <span class="type">CellStyle</span> &#123;</div><div class="line">        <span class="comment">// uses default fonts</span></div><div class="line">        <span class="keyword">return</span> <span class="type">CellStyle</span>(labelColor: .blue(),</div><div class="line">                         detailColor: .red(),</div><div class="line">                         accessory: <span class="type">UIImage</span>(named: <span class="string">"action"</span>)!)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonTableCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">apply</span><span class="params">(style: CellStyle)</span></span> &#123;</div><div class="line">        textLabel?.textColor = style.labelColor</div><div class="line">        textLabel?.font = style.labelFont</div><div class="line"></div><div class="line">        detailTextLabel?.textColor = style.detailColor</div><div class="line">        detailTextLabel?.font = style.detailFont</div><div class="line"></div><div class="line">        accessoryView = <span class="type">UIImageView</span>(image: style.accessory)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// usage:</span></div><div class="line">cell.apply(style: .settings)</div></pre></td></tr></table></figure>
-<p>对扩展开放，对修改关闭</p>
-<blockquote>
-<p>Software entities should be open for extension, but closed for modification. That is, such an entity can allow its behavior to be extended without modifying its source code.</p>
-</blockquote>
-<div text-align="center"><br><img src="http://obp26pczx.bkt.clouddn.com/cell-model.png" width="80%"><br></div>
-
-
-<h3 id="扩展阅读："><a href="#扩展阅读：" class="headerlink" title="扩展阅读："></a>扩展阅读：</h3><ul>
-<li><a href="http://www.jessesquires.com/enums-as-configs/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=web&amp;utm_source=This_Week_in_Swift_98" target="_blank" rel="external">Enums as configuration: the anti-pattern</a></li>
-<li><a href="https://realm.io/cn/news/tryswift-daniel-steinberg-blending-cultures/" target="_blank" rel="external">文化碰撞：函数式、面向协议、面向对象编程的最佳实践</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1552,7 +1608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
