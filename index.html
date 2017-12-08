@@ -240,6 +240,135 @@
             
               
                 
+                <a class="post-title-link" href="/2017/12/08/Swift-之惰性求值/" itemprop="url">
+                  Swift 之惰性求值
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-08T11:25:13+08:00" content="2017-12-08">
+              2017-12-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/08/Swift-之惰性求值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/08/Swift-之惰性求值/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在 <code>Haskell</code> 中的函数有一个特性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">函数的返回可能是一个块(一个被延迟计算的表达式)</div></pre></td></tr></table></figure>
+<p>从而引出一个概念 <code>惰性求值</code></p>
+<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">isOdd</span> n = mod n <span class="number">2</span> == <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>下面有段 <a href="https://rwh.readthedocs.io/en/latest/chp/2.html#function-types" target="_blank" rel="external">分析</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在使用严格求值的语言里，函数的参数总是在应用函数之前被求值。以 isOdd 为例子：子表达式 (1 + 2)</div><div class="line">会首先被求值，得出结果 3 。接着，将 3 绑定到变量 n ，应用到函数 isOdd 。最后， mod 3 2 返回</div><div class="line">1 ，而 1 == 1 返回 True 。</div><div class="line"></div><div class="line">Haskell 使用了另外一种求值方式 —— 非严格求值。在这种情况下，求值 isOdd (1 + 2) 并不会即刻使得</div><div class="line">子表达式 1 + 2 被求值为 3 ，相反，编译器做出了一个“承诺”，说，“当真正有需要的时候，我有办法计算</div><div class="line">出 isOdd (1 + 2) 的值”。</div></pre></td></tr></table></figure>
+<h2 id="惰性求值的优点"><a href="#惰性求值的优点" class="headerlink" title="惰性求值的优点"></a>惰性求值的优点</h2><p>简单理解<code>惰性求值</code>: 在使用惰性计算时，表达式不在它被绑定到变量之后就立即求值，而是在该值被取用的时候求值。</p>
+<ul>
+<li>可以创建无限序列数据类型， 比如无穷大，由于字节的限制，很多语言并不能描述出无穷大</li>
+<li>减少存储空间, 在要求值的时候才会发生计算。 这个跟 <code>lazy</code> 属性一样的作用</li>
+<li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
+</ul>
+<p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
+<p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
+<ul>
+<li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
+<li>对于 <code>2</code>：因为是惰性求值，会先从 array 取出第4个元素， 然后 <code>* 2</code> , 1+1 = 2</li>
+</ul>
+<h2 id="lazy-到底为何物"><a href="#lazy-到底为何物" class="headerlink" title="lazy 到底为何物?"></a><code>lazy</code> 到底为何物?</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> <span class="built_in">lazy</span>: <span class="type">LazyRandomAccessCollection</span>&lt;<span class="type">Array</span>&lt;<span class="type">Element</span>&gt;&gt; &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>LazyRandomAccessCollection</code>  Conforms To<br><code>LazyCollectionProtocol</code></p>
+<p><code>LazyCollectionProtocol</code> Conforms To<br><code>LazySequenceProtocol</code></p>
+<h2 id="构建无穷大序列-swift4"><a href="#构建无穷大序列-swift4" class="headerlink" title="构建无穷大序列 (swift4)"></a>构建无穷大序列 (swift4)</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Stream</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">    <span class="keyword">case</span> cons(()-&gt;<span class="type">T</span>, ()-&gt; <span class="type">Stream</span>&lt;<span class="type">T</span>&gt;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Stream</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> empty: <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> .empty</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> tail: <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> .empty</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .cons(<span class="number">_</span>, tail):</div><div class="line">            <span class="keyword">return</span> tail()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> toArray: [<span class="type">T</span>] &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .cons(h, t):</div><div class="line">            <span class="keyword">return</span> [h()] + t().toArray</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">take</span><span class="params">(n: Int)</span></span> -&gt; <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span> &#123;</div><div class="line">            <span class="keyword">return</span> empty</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">case</span> .empty:</div><div class="line">                <span class="keyword">return</span> .empty</div><div class="line">            <span class="keyword">case</span> <span class="keyword">let</span> .cons(h, t):</div><div class="line">                <span class="keyword">return</span> <span class="type">Stream</span>.cons(h, &#123;t().take(n: n-<span class="number">1</span>)&#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">onses</span><span class="params">()</span></span> -&gt; <span class="type">Stream</span>&lt;<span class="type">Int</span>&gt; &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">Stream</span>&lt;<span class="type">Int</span>&gt;.cons(&#123;<span class="number">1</span>&#125;, &#123;onses()&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">print</span>(onses().take(n: <span class="number">5</span>).toArray)</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://lincode.github.io/Swift-Lazy" target="_blank" rel="external">Swift 函数式编程－惰性计算</a></li>
+<li><a href="http://www.bijishequ.com/detail/266436?p=" target="_blank" rel="external">Swift函数式编程(二)：惰性求值与无穷数据流</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/27/Vapor2-之数据库迁移/" itemprop="url">
                   Vapor2 之数据库迁移
                 </a>
@@ -1229,114 +1358,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/21/swift-函数式小记/" itemprop="url">
-                   swift 函数式小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-21T15:56:43+08:00" content="2017-08-21">
-              2017-08-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/08/21/swift-函数式小记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/21/swift-函数式小记/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Functor-amp-Monad-amp-Applicative"><a href="#Functor-amp-Monad-amp-Applicative" class="headerlink" title="Functor &amp; Monad &amp; Applicative"></a>Functor &amp; Monad &amp; Applicative</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">enum Result&lt;T&gt; &#123;</div><div class="line">    case success(T)</div><div class="line">    case failure(Error)</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension Result &#123;</div><div class="line">    // Functor, 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个未封装的值</div><div class="line">    func fmap&lt;U&gt;(_ f: (T) -&gt; U) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case let .success(v):</div><div class="line">            return .success(f(v))</div><div class="line">        case let .failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Monad: 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个已封装的值</div><div class="line">    func flatMap&lt;U&gt;(f:(T)-&gt; Result&lt;U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case .success(let v):</div><div class="line">            return f(v)</div><div class="line">        case .failure(let e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /// Applicative: 对自己解包，然后应用到解包后的闭包上，接受一个未封装的值，返回一个未封装的值</div><div class="line">    func apply&lt;U&gt;(_ ap: Result&lt;(T) -&gt; U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch ap &#123;</div><div class="line">        case let .success(f):</div><div class="line">            return self.fmap(f)</div><div class="line">        case let.failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1377,7 +1403,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1387,7 +1413,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

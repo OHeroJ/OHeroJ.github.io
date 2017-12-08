@@ -240,6 +240,109 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/21/swift-函数式小记/" itemprop="url">
+                   swift 函数式小记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-21T15:56:43+08:00" content="2017-08-21">
+              2017-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/21/swift-函数式小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/21/swift-函数式小记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Functor-amp-Monad-amp-Applicative"><a href="#Functor-amp-Monad-amp-Applicative" class="headerlink" title="Functor &amp; Monad &amp; Applicative"></a>Functor &amp; Monad &amp; Applicative</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">enum Result&lt;T&gt; &#123;</div><div class="line">    case success(T)</div><div class="line">    case failure(Error)</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension Result &#123;</div><div class="line">    // Functor, 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个未封装的值</div><div class="line">    func fmap&lt;U&gt;(_ f: (T) -&gt; U) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case let .success(v):</div><div class="line">            return .success(f(v))</div><div class="line">        case let .failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Monad: 对自己解包，然后应用到一个闭包上，这个闭包接受一个未封装的值，返回一个已封装的值</div><div class="line">    func flatMap&lt;U&gt;(f:(T)-&gt; Result&lt;U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch self &#123;</div><div class="line">        case .success(let v):</div><div class="line">            return f(v)</div><div class="line">        case .failure(let e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /// Applicative: 对自己解包，然后应用到解包后的闭包上，接受一个未封装的值，返回一个未封装的值</div><div class="line">    func apply&lt;U&gt;(_ ap: Result&lt;(T) -&gt; U&gt;) -&gt; Result&lt;U&gt; &#123;</div><div class="line">        switch ap &#123;</div><div class="line">        case let .success(f):</div><div class="line">            return self.fmap(f)</div><div class="line">        case let.failure(e):</div><div class="line">            return .failure(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="url">
                    用 Swift 优雅的封装 OC 的命名前缀问题
                 </a>
@@ -1264,138 +1367,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/01/2016-2017/" itemprop="url">
-                  2016 -> 2017
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T23:13:26+08:00" content="2017-01-01">
-              2017-01-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/01/2016-2017/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/01/2016-2017/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>随着滴答滴答的尾声，2017年的第二天也即将到来。一天的逝去，无不叹伤时间流水般的飞快。</p>
-<p><code>16年我干了什么，17年我该干什么？</code> 每年开端都会有这么个疑问，<br>但是都找不到明确的答案，我只能说我是个失败者！</p>
-<p>16年接触很多东西，也实践很多东西，貌似有点小成，但心里总发出个声音<code>做的不够彻底，还留着很多 how 和 why</code>, 不得不承认我内心还是发虚的。</p>
-<p>16年主要干了这么几大留存在大脑的事情：</p>
-<ul>
-<li>公司破产，转战深圳，工作难找</li>
-<li>成为公司基础研发者，实时组件化工作</li>
-<li>学习 Go、React、Python、Shell、Git</li>
-</ul>
-<p>大体情况可全圈可点，代码质量有所提高、都未深入消化做到尽善尽美，唯一的就是自己可以组件看清自己的不足，可以找到发力点，这是我觉得这一年我最大的收获。</p>
-<p>17年，目标扎实基础，尽善尽美，把那些<code>无意识</code>的代码都弄清楚, 建立自己的技能点, 把之前的所有技能树都进行强化和融汇体现在某些开源项目中，巩固更多的工具的使用。有这么几点：</p>
-<ul>
-<li>设计模式, UML 画图</li>
-<li>强化个语言树(按月)</li>
-<li>熟练基本算法实现</li>
-<li>项目化（流程、自动化、构建，git hook…，单元测试UI测试）</li>
-<li>融合知识点</li>
-<li>读开源 nx 代码库（每周一个且写博客总结收获点）</li>
-<li>iOS8,9,10 相关特性的使用</li>
-<li>博客质量提高， 搭建个人站点，写一个自己的 App 且上线长期维护</li>
-<li>锻炼身体，将体重降到 130，去除小肚子</li>
-</ul>
-<p>17年是一个充实自己的阶段，挺住我就牛逼，没挺住，那我就还是16年的我！</p>
-<p><strong>Believe in yourself， i think i can do.</strong> </p>
-<p><strong>要么继续崇拜别人，要么让别人崇拜我!!!</strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1436,7 +1412,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1446,7 +1422,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

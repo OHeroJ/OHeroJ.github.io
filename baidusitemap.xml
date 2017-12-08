@@ -3,6 +3,24 @@
 
 
     
+  <url>
+    <loc>http://loveli.site/2017/12/08/Swift-%E4%B9%8B%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC/</loc>
+    <lastmod>2017-12-08T03:26:09.505Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 之惰性求值</title>
+        <pubTime>2017-12-08T03:25:13.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>函数式编程</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://loveli.site/2017/11/27/Vapor2-%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB/</loc>
@@ -552,9 +570,9 @@
         <title>私有cocoapods的创建和维护s</title>
         <pubTime>2016-08-07T13:53:39.000Z</pubTime>
         
-        <tag>gitlab</tag>
-         
         <tag>iOS</tag>
+         
+        <tag>gitlab</tag>
          
         <tag>cocoapods</tag>
          
