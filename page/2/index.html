@@ -241,7 +241,7 @@
               
                 
                 <a class="post-title-link" href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/" itemprop="url">
-                  Vapor 七牛上传 token 生成算法实现
+                  Vapor 七牛上传 Token 生成算法实现
                 </a>
               
             
@@ -355,7 +355,7 @@
               
                 
                 <a class="post-title-link" href="/2017/08/31/Swift-之若引用数组/" itemprop="url">
-                  swift 之弱引用数组
+                  Swift 之弱引用数组
                 </a>
               
             
@@ -465,7 +465,7 @@
               
                 
                 <a class="post-title-link" href="/2017/08/21/Swift-函数式小记/" itemprop="url">
-                   swift 函数式小记
+                   Swift 函数式小记
                 </a>
               
             
@@ -568,7 +568,7 @@
               
                 
                 <a class="post-title-link" href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="url">
-                   用 Swift 优雅的封装 OC 的命名前缀问题
+                  Swift 优雅的封装 OC 的命名前缀问题
                 </a>
               
             
@@ -687,7 +687,7 @@
               
                 
                 <a class="post-title-link" href="/2017/08/12/MacOS-端口转发/" itemprop="url">
-                  MacOS  端口转发
+                  MacOS 端口转发
                 </a>
               
             
@@ -962,7 +962,7 @@
               
                 
                 <a class="post-title-link" href="/2017/06/12/Swift-之-silgen-name/" itemprop="url">
-                  swift 之 @_silgen_name
+                  Swift 之 @_silgen_name
                 </a>
               
             
@@ -1190,7 +1190,7 @@
               
                 
                 <a class="post-title-link" href="/2017/05/05/Swift-的相关编码样式/" itemprop="url">
-                  swift 的相关编码样式
+                  Swift 的相关编码样式
                 </a>
               
             
@@ -1244,7 +1244,7 @@
           
             <h2 id="书写延迟加载属性"><a href="#书写延迟加载属性" class="headerlink" title="书写延迟加载属性"></a>书写延迟加载属性</h2><h3 id="闭包方式"><a href="#闭包方式" class="headerlink" title="闭包方式"></a>闭包方式</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> collectionView: <span class="type">UICollectionView</span>  = &#123;</div><div class="line">        <span class="keyword">let</span> layout = <span class="type">UICollectionViewFlowLayout</span>()</div><div class="line">        layout.scrollDirection = .horizontal</div><div class="line">        layout.minimumInteritemSpacing = <span class="number">0</span></div><div class="line">        layout.minimumLineSpacing = <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> cv: <span class="type">UICollectionView</span> = <span class="type">UICollectionView</span>.<span class="keyword">init</span>(frame: <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="type">UIScreen</span>.main.bounds.width, height: (<span class="keyword">self</span>.view.bounds.height)), collectionViewLayout: layout)</div><div class="line">        cv.delegate = <span class="keyword">self</span></div><div class="line">        cv.dataSource = <span class="keyword">self</span></div><div class="line">        cv.showsHorizontalScrollIndicator = <span class="literal">false</span></div><div class="line">        cv.backgroundColor = <span class="type">UIColor</span>.clear</div><div class="line">        cv.bounces = <span class="literal">false</span></div><div class="line">        cv.isPagingEnabled = <span class="literal">true</span></div><div class="line">        cv.isDirectionalLockEnabled = <span class="literal">true</span></div><div class="line">        <span class="keyword">return</span> cv</div><div class="line">    &#125;()</div></pre></td></tr></table></figure>
 <h3 id="函数方式"><a href="#函数方式" class="headerlink" title="函数方式"></a>函数方式</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> locationManager: <span class="type">CLLocationManager</span> = <span class="keyword">self</span>.makeLocationManager()</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">makeLocationManager</span><span class="params">()</span></span> -&gt; <span class="type">CLLocationManager</span> &#123;</div><div class="line">  <span class="keyword">let</span> manager = <span class="type">CLLocationManager</span>()</div><div class="line">  manager.desiredAccuracy = kCLLocationAccuracyBest</div><div class="line">  manager.delegate = <span class="keyword">self</span></div><div class="line">  manager.requestAlwaysAuthorization()</div><div class="line">  <span class="keyword">return</span> manager</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="weak-的正确使用方式"><a href="#weak-的正确使用方式" class="headerlink" title="weak 的正确使用方式"></a>weak 的正确使用方式</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">resource.request().onComplete &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] response <span class="keyword">in</span></div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> strongSelf = <span class="keyword">self</span> <span class="keyword">else</span> &#123; </div><div class="line">    <span class="keyword">return</span> </div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> model = strongSelf.updateModel(response)</div><div class="line">  strongSelf.updateUI(model)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="weak-的正确使用方式"><a href="#weak-的正确使用方式" class="headerlink" title="weak 的正确使用方式"></a>weak 的正确使用方式</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">resource.request().onComplete &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] response <span class="keyword">in</span></div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> strongSelf = <span class="keyword">self</span> <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> model = strongSelf.updateModel(response)</div><div class="line">  strongSelf.updateUI(model)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在 Cocoa 使用 protocol 的时候</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">weak</span> <span class="keyword">var</span> delegate: <span class="type">MyProtocol</span></div></pre></td></tr></table></figure>
 <p>这个时候记得<code>MyProtocol</code>要继承 <code>NSObjectProtocol</code>，即:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span>: <span class="title">NSObjectProtocol</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1302,7 +1302,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/" itemprop="url">
-                  swift 自定义对象数据序列化成JSON 串
+                  Swift 自定义对象数据序列化成 JSON 串
                 </a>
               
             
