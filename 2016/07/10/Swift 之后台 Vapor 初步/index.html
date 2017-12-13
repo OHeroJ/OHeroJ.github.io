@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift,Vapor,后台," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swift之后台Vapor初步">
+<meta property="og:url" content="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta property="og:updated_time" content="2016-07-10T09:31:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="swift之后台Vapor初步">
+<meta name="twitter:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> swift之后台Vapor初步 | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                swift之后台Vapor初步
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T17:27:32+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/Swift 之后台 Vapor 初步/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/Swift 之后台 Vapor 初步/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写<br>“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.”<br>如果使用PHP Laravel的同学应该知道，这个库的很有艺术性，很优美<br>“The PHP Framework For Web Artisans”<br>swift的年轻所以有很多地方也造就了vapor的年轻<br>所以在使用vapor的时候并不是那么方便，坑还是不少的。</p>
+</blockquote>
+<hr>
+<p>环境：  xcode7.3.1  macOS 10.11.6</p>
+<h3 id="swift-版本的选择"><a href="#swift-版本的选择" class="headerlink" title="swift 版本的选择"></a>swift 版本的选择</h3><p>对于这个问题，我想说用swiftenv来解决吧</p>
+<pre><code>brew install kylef/formulae/swiftenv
+</code></pre><h3 id="vapor-CLI的安装"><a href="#vapor-CLI的安装" class="headerlink" title="vapor CLI的安装"></a>vapor CLI的安装</h3><pre><code>curl -L cli.qutheory.io -o vapor
+chmod +x vapor
+sudo mv vapor /usr/local/bin
+</code></pre><h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>如果你想使用vapor 的demo的话，直接用<code>vapor new yourDemo</code>, 这个时候你的项目就不是纯净的，当然可能会引发出相关问题，我这边碰到的是 ， vapor CLI的版本是5.3, 这个版本对应的swift版本是<code>DEVELOPMENT-SNAPSHOT-2016-06-06-a</code>, 但是这个时候这个new出来的项目的版本是 <code>DEVELOPMENT-SNAPSHOT-2016-06-20-a</code>,所以这就在‘vapor new’的时候会出现失败, 并且xcode7 也不能打开这个项目。</p>
+<h4 id="如何构建一个纯净版的Vapor项目"><a href="#如何构建一个纯净版的Vapor项目" class="headerlink" title="如何构建一个纯净版的Vapor项目?"></a>如何构建一个纯净版的Vapor项目?</h4><ol>
+<li><code>mkdir blog</code>创建一个blog文件夹</li>
+<li><code>swift package init</code> 创建一个基本项目</li>
+<li><p><code>atom Package.swift</code> 修改 Package.swift, 这里举例：</p>
+<pre><code>import PackageDescription
+
+let package = Package(
+    name: &quot;blog&quot;,
+    dependencies: [
+        .Package(url: &quot;https://github.com/qutheory/vapor.git&quot;, majorVersion: 0, minor: 12),
+
+    ],
+    exclude: [
+        &quot;Config&quot;,
+        &quot;Database&quot;,
+        &quot;Localization&quot;,
+        &quot;Public&quot;,
+        &quot;Resources&quot;,
+        &quot;Tests&quot;,
+    ]
+)
+</code></pre></li>
+<li><p>Source文件夹下的文件改名为 <code>main.swift</code>， 在里面编写如下一段代码：</p>
+<pre><code>import Vapor
+
+let drop = Application()
+
+drop.get(&quot;welcome&quot;) { request in
+
+    return  &quot;hello, world&quot;
+}
+
+drop.start()
+</code></pre></li>
+<li><p>先<code>vapor build</code>,然后 <code>vapor xcode</code>， 会自动用xcode打开这个项目.</p>
+</li>
+<li>用xcode 运行这个项目（选中你这个项目）, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
+</ol>
+<h3 id="如何体验-vapor的更多功能"><a href="#如何体验-vapor的更多功能" class="headerlink" title="如何体验 vapor的更多功能"></a>如何体验 vapor的更多功能</h3><ol>
+<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="external">doc</a></p>
+</li>
+<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="external">教学视频</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+            <a href="/tags/Vapor/" rel="tag">#Vapor</a>
+          
+            <a href="/tags/后台/" rel="tag">#后台</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/02/iOS 直播 Tutorials/" rel="next" title="iOS直播Tutorials">
+                <i class="fa fa-chevron-left"></i> iOS直播Tutorials
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/16/iOS 之 Cocoapods/" rel="prev" title="iOS之cocoapods">
+                iOS之cocoapods <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/10/Swift 之后台 Vapor 初步/"
+     data-title="swift之后台Vapor初步"
+     data-content=""
+     data-url="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/10/Swift 之后台 Vapor 初步/"
+           data-title="swift之后台Vapor初步" data-url="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-版本的选择"><span class="nav-number">1.</span> <span class="nav-text">swift 版本的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor-CLI的安装"><span class="nav-number">2.</span> <span class="nav-text">vapor CLI的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor"><span class="nav-number">3.</span> <span class="nav-text">vapor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何构建一个纯净版的Vapor项目"><span class="nav-number">3.1.</span> <span class="nav-text">如何构建一个纯净版的Vapor项目?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何体验-vapor的更多功能"><span class="nav-number">4.</span> <span class="nav-text">如何体验 vapor的更多功能</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocoapods,Gitlab,iOS,工具," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="使用cocoapods创建私有podspec创建私有podspec的步骤1. 创建并设置一个私有的Spec Repo1pod repo add MySpecs https://gitlab.com/oheroj/spects.git
+验证是否成功的话，1cd ~/.cocoapods/repos/MySpecs
+
+2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址3. 创建Po">
+<meta property="og:type" content="article">
+<meta property="og:title" content="私有cocoapods的创建和维护s">
+<meta property="og:url" content="http://loveli.site/2016/08/07/私有 Cocoapods 的创建和维护/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="使用cocoapods创建私有podspec创建私有podspec的步骤1. 创建并设置一个私有的Spec Repo1pod repo add MySpecs https://gitlab.com/oheroj/spects.git
+验证是否成功的话，1cd ~/.cocoapods/repos/MySpecs
+
+2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址3. 创建Po">
+<meta property="og:image" content="http://loveli.site/images/pod-file01.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file02.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file03.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file04.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file05.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file06.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file07.png">
+<meta property="og:image" content="http://loveli.site/images/pod-file08.png">
+<meta property="og:updated_time" content="2017-12-13T02:13:02.140Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="私有cocoapods的创建和维护s">
+<meta name="twitter:description" content="使用cocoapods创建私有podspec创建私有podspec的步骤1. 创建并设置一个私有的Spec Repo1pod repo add MySpecs https://gitlab.com/oheroj/spects.git
+验证是否成功的话，1cd ~/.cocoapods/repos/MySpecs
+
+2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址3. 创建Po">
+<meta name="twitter:image" content="http://loveli.site/images/pod-file01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 私有cocoapods的创建和维护s | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                私有cocoapods的创建和维护s
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/07/私有 Cocoapods 的创建和维护/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="使用cocoapods创建私有podspec"><a href="#使用cocoapods创建私有podspec" class="headerlink" title="使用cocoapods创建私有podspec"></a>使用cocoapods创建私有<code>podspec</code></h3><h4 id="创建私有podspec的步骤"><a href="#创建私有podspec的步骤" class="headerlink" title="创建私有podspec的步骤"></a>创建私有<code>podspec</code>的步骤</h4><h5 id="1-创建并设置一个私有的Spec-Repo"><a href="#1-创建并设置一个私有的Spec-Repo" class="headerlink" title="1. 创建并设置一个私有的Spec Repo"></a>1. 创建并设置一个私有的<code>Spec Repo</code></h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo add MySpecs <span class="symbol">https:</span>/<span class="regexp">/gitlab.com/oheroj</span><span class="regexp">/spects.git</span></div></pre></td></tr></table></figure>
+<p>验证是否成功的话，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/.cocoapods/repos/MySpecs</div></pre></td></tr></table></figure></p>
+<p><img src="/images/pod-file01.png" alt="eg"></p>
+<h5 id="2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址"><a href="#2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址" class="headerlink" title="2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址"></a>2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址</h5><h5 id="3-创建Pod所对应的podspec文件"><a href="#3-创建Pod所对应的podspec文件" class="headerlink" title="3. 创建Pod所对应的podspec文件"></a>3. 创建Pod所对应的<code>podspec</code>文件</h5><p>一般情况下2，3 两步骤是在一起的， 使用<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod lib create RoundButton</div></pre></td></tr></table></figure></p>
+<p><img src="/images/pod-file02.png" alt="pod lib create eg"></p>
+<p><img src="/images/pod-file03.png" alt="pod lib create xocde eg"></p>
+<p>接下来就是在pod文件夹中添加文件和资源， 并配置<code>podspec</code>文件。</p>
+<p><img src="/images/pod-file04.png" alt="pod lib create xcode add"></p>
+<p>将代码推送到远端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit <span class="_">-s</span> -m <span class="string">"First Commit of Lib"</span></div></pre></td></tr></table></figure>
+<p>这个时候你在gitlab上创建个项目：<br><img src="/images/pod-file05.png" alt="pod lib create xcode gitlab"></p>
+<p>将本地代码库与远程代码库关联<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@gitlab.com:oheroj/RoundButton.git <span class="comment">#添加远端仓库</span></div><div class="line">git push origin master <span class="comment"># 提交到远端仓库</span></div></pre></td></tr></table></figure></p>
+<p>这里我们也会遇到一个问题就是 git 提交人的信息有问题，默认提交者为你设置的全局的git的ueser， 所以这个时候就得改名字了， 比如我这边要改为 oheroj , 然后邮箱改为gmail邮箱。<br>有这么一段脚本可以 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="external">参考执行</a>：</p>
+<p>有这么个脚本  change.sh, 里面的内容是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure></p>
+<p>这个时候你直接替换相应的内容，然后执行 <code>sh change.sh</code></p>
+<blockquote>
+<p>这里需要注意的是每当你向Pod中添加了新的文件或者以后更新了podspec的版本都需要重新执行一遍pod update命令</p>
+</blockquote>
+<p>接下来就是编辑<code>podspec</code>文件了, 涉及到的字段可以到 <a href="http://guides.cocoapods.org/syntax/podspec.html#specification" target="_blank" rel="external">官方文档</a> 查阅<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'RoundButton'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'A Custom Round Button of Button.'</span></div><div class="line"></div><div class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></div><div class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></div><div class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></div><div class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></div><div class="line"><span class="comment">#   * Finally, don't worry about the indent, CocoaPods strips it!</span></div><div class="line"></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">创建一个带有圆角的UIButton, 并且用block封装回调</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://gitlab.com/oheroj/RoundButton'</span></div><div class="line">  <span class="comment"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'oheroj'</span> =&gt; <span class="string">'oheroj@gmail.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://gitlab.com/oheroj/RoundButton.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line">  <span class="comment"># s.social_media_url = 'https://twitter.com/&lt;TWITTER_USERNAME&gt;'</span></div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'8.0'</span></div><div class="line"></div><div class="line">  s.source_files = <span class="string">'RoundButton/Classes/**/*'</span></div><div class="line"></div><div class="line">  <span class="comment"># s.resource_bundles = &#123;</span></div><div class="line">  <span class="comment">#   'RoundButton' =&gt; ['RoundButton/Assets/*.png']</span></div><div class="line">  <span class="comment"># &#125;</span></div><div class="line"></div><div class="line">  <span class="comment"># s.public_header_files = 'Pod/Classes/**/*.h'</span></div><div class="line">  <span class="comment"># s.frameworks = 'UIKit', 'MapKit'</span></div><div class="line">  <span class="comment"># s.dependency 'AFNetworking', '~&gt; 2.3'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>进行提交，并且打<code>tag</code></p>
+<blockquote>
+<p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git commit -a -m &quot;podspec modif&quot;</div><div class="line">git push origin master</div><div class="line"></div><div class="line">git tag -m &quot;first release&quot; 0.1.0</div><div class="line">git push --tags</div></pre></td></tr></table></figure>
+<h5 id="4-本地测试配置好的podsepc文件是否可用"><a href="#4-本地测试配置好的podsepc文件是否可用" class="headerlink" title="4. 本地测试配置好的podsepc文件是否可用"></a>4. 本地测试配置好的<code>podsepc</code>文件是否可用</h5><p>编辑完<code>podspec</code>文件后，需要验证一下这个文件是否可用，如果有任何WARNING或者ERROR都是不可以的，它就不能被添加到Spec Repo中，不过xcode的WARNING是可以存在的，验证需要执行一下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod lib lint</div></pre></td></tr></table></figure>
+<p><img src="/images/pod-file06.png" alt="pod lib lint"></p>
+<h6 id="创建podspec-文件-此步骤是对有现存项目的"><a href="#创建podspec-文件-此步骤是对有现存项目的" class="headerlink" title="创建podspec 文件(此步骤是对有现存项目的)"></a>创建podspec 文件(此步骤是对有现存项目的)</h6><p>如果有现成项目的话， 我们就需要给这个项目创建个<code>podspec</code>文件,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod sepc create RoundButton git@gitlab.com:oheroj/RoundButton.git</div></pre></td></tr></table></figure></p>
+<p>执行完之后，就创建了一个podspec文件，他其中会包含很多内容，可以按照我之前介绍的进行编辑，没用的删掉。编辑完成之后使用验证命令验证一下.</p>
+<h5 id="5-向私有的Spec-Repo-中提交-podsepc"><a href="#5-向私有的Spec-Repo-中提交-podsepc" class="headerlink" title="5. 向私有的Spec Repo 中提交 podsepc"></a>5. 向私有的<code>Spec Repo</code> 中提交 podsepc</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MySpecs RoundButton.podspec</div></pre></td></tr></table></figure>
+<p><img src="/images/pod-file07.png" alt="pod repos push "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search RoundButton</div></pre></td></tr></table></figure>
+<p><img src="/images/pod-file08.png" alt="pod search"></p>
+<h5 id="6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><a href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用" class="headerlink" title="6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用"></a>6. 在个人项目中的<code>Podfile</code>中增加刚刚制作好的<code>Pod</code>使用</h5><p>在其他项目中使用的时候, 在podfile中添加如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'https://github.com/CocoaPods/Specs.git'</span> <span class="comment">#公有库</span></div><div class="line">source <span class="string">'https://gitlab.com/oheroj/spects.git'</span></div><div class="line"></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">"8.0"</span></div><div class="line"></div><div class="line">target <span class="string">'ModelPro'</span> <span class="keyword">do</span></div><div class="line">    pod <span class="string">'RoundButton'</span>, <span class="string">'~&gt; 0.1.0'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>然后执行pod install 即可</p>
+<h5 id="7-更新维护podspec"><a href="#7-更新维护podspec" class="headerlink" title="7. 更新维护podspec"></a>7. 更新维护<code>podspec</code></h5><h5 id="版本规范（版本tag）"><a href="#版本规范（版本tag）" class="headerlink" title="版本规范（版本tag）"></a>版本规范（版本tag）</h5><p><strong>major.minor.patch</strong></p>
+<p>App主项目依赖  <code>pod &#39;AFNetworking&#39;, &#39;~&gt; 3.1.0&#39;</code></p>
+<ul>
+<li>修改bug和一些其他不重要修改（修改README，Format等），增加patch版本号。用户可以放心升级。</li>
+<li>曾加功能并且向前兼容，增加minor版本号。用户可以考虑升级。（推荐升级）</li>
+<li>不向前兼容或重大修改或重构，增加major版本号。用户应当慎重决定是否升级。</li>
+<li>当major为0时，表示该库为beta版本。不是稳定版本，所以会经常修改，并很容易造成向前不兼容的情况。开发者需要认真评估major版本号。 此时发生向前不兼容的情况，开发者应当升级minor版本号。其他同上面的规范。</li>
+</ul>
+<h5 id="维护、增加新功能"><a href="#维护、增加新功能" class="headerlink" title="维护、增加新功能"></a>维护、增加新功能</h5><p>将源文件添加到<code>Pod/Classes</code>中， 在测试项目里<code>pod update</code>一下， 写代码验证无误之后，就可以将这个工程 <code>push</code> 到远端仓库， 并且打上新的 tag， tag 号遵从上面的版本规范来制定。</p>
+<p>然后修改<code>podspec</code>上的<code>s.version</code>为我们的 tag 号。最后再次使用<code>pod lib lint</code>验证编辑好的<code>podsepc</code>文件，没有自身的WARNING或者ERROR之后，就可以再次提交到Spec Repo中了，命令跟之前是一样的</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MySpecs RoundButton.podspec</div></pre></td></tr></table></figure>
+<p>之后再次到~/.cocoapods/repos/MySpecs目录下查看, eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── YTNSFoundation</div><div class="line">│   └── 0.1.0</div><div class="line">│       └── YTNSFoundation.podspec</div><div class="line">├── YTNetworking</div><div class="line">│   └── 1.0.12</div><div class="line">│       └── YTNetworking.podspec</div><div class="line">└── YTUIKit</div><div class="line">    ├── 0.1.0</div><div class="line">    │   └── YTUIKit.podspec</div><div class="line">    └── 0.1.1</div><div class="line">        └── YTUIKit.podspec</div></pre></td></tr></table></figure>
+<h5 id="删除本地一个私有Spec-Repo"><a href="#删除本地一个私有Spec-Repo" class="headerlink" title="删除本地一个私有Spec Repo"></a>删除本地一个私有<code>Spec Repo</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo remove WTSpecs</div></pre></td></tr></table></figure>
+<h5 id="删除私有Spec-Repo某一个podspec"><a href="#删除私有Spec-Repo某一个podspec" class="headerlink" title="删除私有Spec Repo某一个podspec"></a>删除私有<code>Spec Repo</code>某一个<code>podspec</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/.cocoapods/repos/MySpecs</div><div class="line">rm -rf RoundButton</div><div class="line">git commit -a -m &quot;Feat: RoundButton podspec&quot;</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h5 id="8-参考文献"><a href="#8-参考文献" class="headerlink" title="8. 参考文献"></a>8. 参考文献</h5><ol>
+<li><a href="http://guides.cocoapods.org/making/private-cocoapods.html" target="_blank" rel="external">Private Pods</a></li>
+<li><a href="http://blog.grio.com/2014/11/creating-a-private-cocoapod.html" target="_blank" rel="external">Creating a Private CocoaPod</a></li>
+<li><a href="https://objectpartners.com/2014/06/25/developing-private-in-house-libraries-with-cocoapods/" target="_blank" rel="external">Developing Private In-House Libraries with CocoaPods</a></li>
+<li><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="external">使用Cocoapods创建私有podspec</a></li>
+<li><a href="http://www.pluto-y.com/cocoapod-private-pods-and-module-manager/" target="_blank" rel="external">Cocoapods系列教程(三)——私有库管理和模块化管理</a></li>
+<li><a href="http://xiongzenghuidegithub.github.io/blog/2015/12/25/frameworksan-,-shi-yong-di-san-ku/" target="_blank" rel="external">一个iOS菜菜的白话文记录</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocoapods/" rel="tag">#Cocoapods</a>
+          
+            <a href="/tags/Gitlab/" rel="tag">#Gitlab</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/28/自定义 Xcode 模板/" rel="next" title="自定义xcode模板">
+                <i class="fa fa-chevron-left"></i> 自定义xcode模板
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/10/优雅处理-bad-enum-configurations/" rel="prev" title="优雅处理 bad enum configurations">
+                优雅处理 bad enum configurations <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/07/私有 Cocoapods 的创建和维护/"
+     data-title="私有cocoapods的创建和维护s"
+     data-content=""
+     data-url="http://loveli.site/2016/08/07/私有 Cocoapods 的创建和维护/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/07/私有 Cocoapods 的创建和维护/"
+           data-title="私有cocoapods的创建和维护s" data-url="http://loveli.site/2016/08/07/私有 Cocoapods 的创建和维护/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cocoapods创建私有podspec"><span class="nav-number">1.</span> <span class="nav-text">使用cocoapods创建私有podspec</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建私有podspec的步骤"><span class="nav-number">1.1.</span> <span class="nav-text">创建私有podspec的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-创建并设置一个私有的Spec-Repo"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 创建并设置一个私有的Spec Repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-创建Pod所对应的podspec文件"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 创建Pod所对应的podspec文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-本地测试配置好的podsepc文件是否可用"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 本地测试配置好的podsepc文件是否可用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#创建podspec-文件-此步骤是对有现存项目的"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">创建podspec 文件(此步骤是对有现存项目的)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-向私有的Spec-Repo-中提交-podsepc"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 向私有的Spec Repo 中提交 podsepc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-更新维护podspec"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 更新维护podspec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本规范（版本tag）"><span class="nav-number">1.1.8.</span> <span class="nav-text">版本规范（版本tag）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#维护、增加新功能"><span class="nav-number">1.1.9.</span> <span class="nav-text">维护、增加新功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除本地一个私有Spec-Repo"><span class="nav-number">1.1.10.</span> <span class="nav-text">删除本地一个私有Spec Repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除私有Spec-Repo某一个podspec"><span class="nav-number">1.1.11.</span> <span class="nav-text">删除私有Spec Repo某一个podspec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-参考文献"><span class="nav-number">1.1.12.</span> <span class="nav-text">8. 参考文献</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  
+</body>
+</html>

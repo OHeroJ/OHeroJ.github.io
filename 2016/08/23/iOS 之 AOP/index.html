@@ -1,0 +1,696 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,AOP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱
+
+1234567891011121314151617181920- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector&amp;#123;    Class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS之AOP">
+<meta property="og:url" content="http://loveli.site/2016/08/23/iOS 之 AOP/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱
+
+1234567891011121314151617181920- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector&amp;#123;    Class">
+<meta property="og:updated_time" content="2016-08-23T15:12:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS之AOP">
+<meta name="twitter:description" content="在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱
+
+1234567891011121314151617181920- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector&amp;#123;    Class">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iOS之AOP | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS之AOP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T22:37:39+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/iOS 之 AOP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/iOS 之 AOP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector</div><div class="line">&#123;</div><div class="line">    Class class = [self class];</div><div class="line"></div><div class="line">    Method originalMethod = class_getInstanceMethod(class, origSelector);</div><div class="line">    Method swizzledMethod = class_getInstanceMethod(class, newSelector);</div><div class="line"></div><div class="line">    BOOL didAddMethod = class_addMethod(class,</div><div class="line">                                        origSelector,</div><div class="line">                                        method_getImplementation(swizzledMethod),</div><div class="line">                                        method_getTypeEncoding(swizzledMethod));</div><div class="line">    if (didAddMethod) &#123;</div><div class="line">        class_replaceMethod(class,</div><div class="line">                            newSelector,</div><div class="line">                            method_getImplementation(originalMethod),</div><div class="line">                            method_getTypeEncoding(originalMethod));</div><div class="line">    &#125; else &#123;</div><div class="line">        method_exchangeImplementations(originalMethod, swizzledMethod);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="业务埋点、日志打印分离"><a href="#业务埋点、日志打印分离" class="headerlink" title="业务埋点、日志打印分离"></a>业务埋点、日志打印分离</h3><p><code>Aspects</code> 一个基于Objective-c的AOP开发框架,只提供两个API:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+ (id)aspect_hookSelector:(SEL)selector</div><div class="line">                         withOptions:(AspectOptions)options</div><div class="line">                      usingBlock:(id)block</div><div class="line">                           error:(NSError **)error;</div><div class="line">- (id)aspect_hookSelector:(SEL)selector</div><div class="line">                     withOptions:(AspectOptions)options</div><div class="line">                      usingBlock:(id)block</div><div class="line">                           error:(NSError **)error;</div></pre></td></tr></table></figure></p>
+<p>一般对于这种统计的埋点 我们会配置相关文件，然后读取相关文件的信息，解析 <code>Class</code> 和 <code>selector</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">NSDictionary *analyticsConfiguration()</div><div class="line">&#123;</div><div class="line">    return @&#123;</div><div class="line">             @&quot;trackedScreens&quot; : @[    // 页面统计</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Main screen&quot;</div><div class="line">                         &#125;</div><div class="line">                     ],</div><div class="line">             @&quot;trackedEvents&quot; : @[  // 交互事件统计</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginViewFetchedUserInfo:user:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Login with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginViewShowingLoggedOutUser:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Logout with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginView:handleError:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Login error with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;shareButtonPressed:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Share button&quot;</div><div class="line">                         &#125;</div><div class="line">                     ]</div><div class="line">             &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后就是 进行 method_swizzing,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">// .h</div><div class="line">@interface YTViewControllerIntercepter : NSObject</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">// .m</div><div class="line">@implementation YTViewControllerIntercepter</div><div class="line"></div><div class="line">+ (void)load &#123;</div><div class="line">    [super load];</div><div class="line">    [YTViewControllerIntercepter shareInstance];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (instancetype)shareInstance &#123;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    static YTViewControllerIntercepter *sharedInstance;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        sharedInstance = [[YTViewControllerIntercepter alloc] init];</div><div class="line">    &#125;);</div><div class="line">    return sharedInstance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (instancetype)init &#123;</div><div class="line">    if (self = [super init]) &#123;</div><div class="line"></div><div class="line">         /* 在这里做好方法拦截 */</div><div class="line">        [self setupWithConfiguration:analyticsConfiguration()];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setupWithConfiguration:(NSDictionary *)configuration &#123;</div><div class="line"></div><div class="line">    for (NSDictionary *trackedScreen in configuration[@&quot;trackedScreens&quot;]) &#123;</div><div class="line">        Class clazz = NSClassFromString(trackedScreen[@&quot;class&quot;]);</div><div class="line"></div><div class="line">        [clazz aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</div><div class="line">            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</div><div class="line">                NSString *viewName = trackedScreen[@&quot;label&quot;];</div><div class="line">//                [tracker trackScreenHitWithName:viewName];</div><div class="line"></div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;error:nil];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // events tracking</div><div class="line">    for (NSDictionary *trackedEvents in configuration[@&quot;trackedEvents&quot;]) &#123;</div><div class="line">        Class clazz = NSClassFromString(trackedEvents[@&quot;class&quot;]);</div><div class="line">        SEL selektor = NSSelectorFromString(trackedEvents[@&quot;selector&quot;]);</div><div class="line"></div><div class="line">        [clazz aspect_hookSelector:selektor</div><div class="line">                       withOptions:AspectPositionAfter</div><div class="line">                        usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</div><div class="line">                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),</div><div class="line">                                           ^&#123;</div><div class="line">//                                               UserActivityButtonPressedEvent *buttonPressEvent =</div><div class="line">//                                               [UserActivityButtonPressedEvent</div><div class="line">//                                                eventWithLabel:trackedEvents[@&quot;label&quot;]];</div><div class="line">//                                               [tracker trackEvent:buttonPressEvent];</div><div class="line">                                           &#125;);</div><div class="line">                        &#125;</div><div class="line">                             error:nil];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面有个提示，摘抄自<a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">nshsipster</a></p>
+<blockquote>
+<p> Swizzling should always be done in +load ?<br>+load is sent when the class is initially loaded, while +initialize is called just before the application calls its first method on that class or an instance of that class. Both are optional, and are executed only if the method is implemented.<br>Because method swizzling affects global state, it is important to minimize the possibility of race conditions. +load is guaranteed to be loaded during class initialization, which provides a modicum of consistency for changing system-wide behavior. By contrast, +initialize provides no such guarantee of when it will be executed—in fact, it may never be called, if that class is never messaged directly by the app.</p>
+</blockquote>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ol>
+<li>解耦</li>
+</ol>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ol>
+<li>变更方法的时候，可能会忽略修改配置文件</li>
+<li>这个方法被重构了。或者新加的方法忘了加统计了</li>
+</ol>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
+<li><a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">Method Swizzling</a></li>
+<li><a href="http://my.oschina.net/leejun2005/blog/504732" target="_blank" rel="external">iOS 统计打点那些事</a></li>
+<li><a href="https://github.com/oa414/objc-zen-book-cn#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B" target="_blank" rel="external">禅与 Objective-C 编程艺术</a></li>
+<li><a href="http://ios.jobbole.com/86612/?utm_source=top.caibaojian.com/112246" target="_blank" rel="external">漫谈iOS AOP编程之路</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/AOP/" rel="tag">#AOP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/React-Native入门/" rel="next" title="React-Native入门">
+                <i class="fa fa-chevron-left"></i> React-Native入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/iOS 开发技巧/" rel="prev" title="iOS开发技巧">
+                iOS开发技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/23/iOS 之 AOP/"
+     data-title="iOS之AOP"
+     data-content=""
+     data-url="http://loveli.site/2016/08/23/iOS 之 AOP/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/iOS 之 AOP/"
+           data-title="iOS之AOP" data-url="http://loveli.site/2016/08/23/iOS 之 AOP/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务埋点、日志打印分离"><span class="nav-number">1.</span> <span class="nav-text">业务埋点、日志打印分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点："><span class="nav-number">2.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点："><span class="nav-number">3.</span> <span class="nav-text">缺点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  
+</body>
+</html>

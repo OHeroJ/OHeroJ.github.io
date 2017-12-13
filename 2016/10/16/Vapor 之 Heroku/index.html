@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vapor,Hexoku," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vapor之Heroku">
+<meta property="og:url" content="http://loveli.site/2016/10/16/Vapor 之 Heroku/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
+<meta property="og:updated_time" content="2017-12-13T02:10:42.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vapor之Heroku">
+<meta name="twitter:description" content="swift 能开发后台，那么如何将他部署到线上，这是必须的。
+今天我们看看如何将swift写的代码部署到线上
+环境：1234561. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.02. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.13. swift: 3.04. xcode: 8.05">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Vapor之Heroku | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vapor之Heroku
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-16T10:28:18+08:00" content="2016-10-16">
+              2016-10-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/16/Vapor 之 Heroku/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Vapor 之 Heroku/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
+<p>今天我们看看如何将swift写的代码部署到线上</p>
+<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</div><div class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</div><div class="line">3. swift: 3.0</div><div class="line">4. xcode: 8.0</div><div class="line">5. macOS: 10.12</div><div class="line">6. vapor: 1.1</div></pre></td></tr></table></figure>
+<h3 id="Heroku"><a href="#Heroku" class="headerlink" title="Heroku"></a>Heroku</h3><p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
+<h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Vapor</div><div class="line">let drop = Droplet()</div><div class="line">drop.get &#123; req in</div><div class="line">    return &quot;Hello,world&quot;</div><div class="line">&#125;</div><div class="line">drop.get(&quot;/post&quot;) &#123; req  in</div><div class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</div><div class="line">&#125;</div><div class="line">drop.run()</div></pre></td></tr></table></figure>
+<h3 id="知识准备："><a href="#知识准备：" class="headerlink" title="知识准备："></a>知识准备：</h3><ul>
+<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
+</ul>
+<h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><p>如何将项目提交到 <code>Heroku</code>：</p>
+<ol>
+<li><p>在 Heroku 创建好仓库(项目)</p>
+<ul>
+<li><p>方法1：命令行创建:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">heroku apps:create spider-site</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：在页面上创建</p>
+</li>
+</ul>
+</li>
+<li><p>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>,<br><code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：</p>
+<ul>
+<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
+<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
+<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
+<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="external">cloudfoundry-community/swift-buildpack</a></li>
+</ul>
+<p>创建方法也有两种：</p>
+<ol>
+<li>命令创建</li>
+<li>页面上添加</li>
+</ol>
+</li>
+<li><p><code>heroku</code> 的环境都准备好后，我们要做的就是将代码提交到<code>Heroku</code>上，你可以把<code>Heroku</code>想象成为<code>github</code>,然后使用 git 进行代码管理就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote add heroku https://spider-site.herokuapp.com/  # 关联远端</div><div class="line">git commit -a -m &quot;Feat: 第一次添加&quot;</div><div class="line">git push heroku # 将代码提交到heroku</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>步骤不需太详细，坑一定要多踩， 页面上操作的东西基本上都可以用命令行实现(看文档去吧)。</li>
+<li>部署整体步骤还是挺简单的</li>
+<li>下篇应该说说如何使用 heroku上的数据库<code>PostgreSQL</code>, 人家是免费提供你用的喔。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vapor/" rel="tag">#Vapor</a>
+          
+            <a href="/tags/Hexoku/" rel="tag">#Hexoku</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/07/Vapor 之 Mysql/" rel="next" title="Vapor之mysql">
+                <i class="fa fa-chevron-left"></i> Vapor之mysql
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" rel="prev" title="基于 Django 搭建 Zip 皮肤包下载功能测试后台">
+                基于 Django 搭建 Zip 皮肤包下载功能测试后台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/16/Vapor 之 Heroku/"
+     data-title="Vapor之Heroku"
+     data-content=""
+     data-url="http://loveli.site/2016/10/16/Vapor 之 Heroku/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/16/Vapor 之 Heroku/"
+           data-title="Vapor之Heroku" data-url="http://loveli.site/2016/10/16/Vapor 之 Heroku/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境："><span class="nav-number">1.</span> <span class="nav-text">环境：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Heroku"><span class="nav-number">1.1.</span> <span class="nav-text">Heroku</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor"><span class="nav-number">1.2.</span> <span class="nav-text">vapor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识准备："><span class="nav-number">1.3.</span> <span class="nav-text">知识准备：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码部署"><span class="nav-number">2.</span> <span class="nav-text">代码部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  
+</body>
+</html>

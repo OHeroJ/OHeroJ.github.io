@@ -1,0 +1,704 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工具," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="很多时候，我们为了阅读、快速查询代码用的手段就是在写代码的时候 使用123#pragma mark -#pragma mark....
+这些来对代码进行分区块标注， 这是个很不错的开发习惯。
+但是往往有些东西重复多了，感觉就是在浪费时间:
+比如 在ViewController我们基本上都会有如下的：
+12345678910111213141516171819#pragma mark - life">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义xcode模板">
+<meta property="og:url" content="http://loveli.site/2016/07/28/自定义 Xcode 模板/index.html">
+<meta property="og:site_name" content="loveli">
+<meta property="og:description" content="很多时候，我们为了阅读、快速查询代码用的手段就是在写代码的时候 使用123#pragma mark -#pragma mark....
+这些来对代码进行分区块标注， 这是个很不错的开发习惯。
+但是往往有些东西重复多了，感觉就是在浪费时间:
+比如 在ViewController我们基本上都会有如下的：
+12345678910111213141516171819#pragma mark - life">
+<meta property="og:image" content="http://loveli.site/images/ddtemplate.png">
+<meta property="og:image" content="http://loveli.site/images/ddxcode.png">
+<meta property="og:updated_time" content="2016-07-28T15:38:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义xcode模板">
+<meta name="twitter:description" content="很多时候，我们为了阅读、快速查询代码用的手段就是在写代码的时候 使用123#pragma mark -#pragma mark....
+这些来对代码进行分区块标注， 这是个很不错的开发习惯。
+但是往往有些东西重复多了，感觉就是在浪费时间:
+比如 在ViewController我们基本上都会有如下的：
+12345678910111213141516171819#pragma mark - life">
+<meta name="twitter:image" content="http://loveli.site/images/ddtemplate.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6263237426282497000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 自定义xcode模板 | loveli </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">loveli</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">浮生流年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义xcode模板
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/自定义 Xcode 模板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/自定义 Xcode 模板/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很多时候，我们为了阅读、快速查询代码用的手段就是在写代码的时候 使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#pragma mark -</div><div class="line">#pragma mark</div><div class="line">....</div></pre></td></tr></table></figure></p>
+<p>这些来对代码进行分区块标注， 这是个很不错的开发习惯。</p>
+<p>但是往往有些东西重复多了，感觉就是在浪费时间:</p>
+<p>比如 在<code>ViewController</code>我们基本上都会有如下的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#pragma mark - life cycle</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma mark - api</div><div class="line"></div><div class="line">#pragma mark - delegate</div><div class="line"></div><div class="line">#pragma mark - dataSource</div><div class="line"></div><div class="line">#pragma mark - netWork</div><div class="line"></div><div class="line">#pragma mark - event response</div><div class="line"></div><div class="line">#pragma mark - private methods</div><div class="line"></div><div class="line">#pragma mark - getter / setter</div></pre></td></tr></table></figure>
+<p>在 <code>View</code>上我们会有如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#pragma mark - initial</div><div class="line"></div><div class="line">#pragma mark - add subviews (setup)</div><div class="line">- (void)setup &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">#pragma mark - view layouts</div><div class="line">- (void)layoutUI &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma mark - public method</div><div class="line"></div><div class="line">#pragma mark - private method</div><div class="line"></div><div class="line"></div><div class="line">#pragma mark - getter / setter</div><div class="line"></div><div class="line"></div><div class="line">#pragma mark - config test data</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>事情可以重复1遍，2遍，但是如果要重复3遍，那就必须得重构了</p>
+</blockquote>
+<p>所以我们有没有办法解决这个问题呢？ 答案当然是显然的。 在我们创建一个UITableViewController 的时候，你会发现.m里面会生成一些默认代码，那么 我们能否制作一份呢， 要怎么做？</p>
+<h3 id="can-do-how-do"><a href="#can-do-how-do" class="headerlink" title="can do ? how do?"></a>can do ? how do?</h3><h5 id="1-这些文件到底是从哪里生成的？"><a href="#1-这些文件到底是从哪里生成的？" class="headerlink" title="1. 这些文件到底是从哪里生成的？"></a>1. 这些文件到底是从哪里生成的？</h5><p>如果做过php, 或者python的同学 应该知道<code>模板引擎</code>, 其实xcode 生成的原理也差不多，有一份模板文件，这些文件放在叫一个<code>templates</code>的文件目录下(<code>xcode7.3</code>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/</div></pre></td></tr></table></figure></p>
+<p>我们可以切换到这个目录：<br><img src="/images/ddtemplate.png" alt="templates"></p>
+<p><code>Templates</code>下的目录结构我就不再这多说了，我相信你有这种能力发现一些规律:<br><img src="/images/ddxcode.png" alt="xcode"></p>
+<p>可以对比上面的两个图， 你会看到那个<code>牛头</code>的图标在上面的两张图中都有体现。</p>
+<h5 id="2-那么ViewController-xctemplate-里面放的是什么？"><a href="#2-那么ViewController-xctemplate-里面放的是什么？" class="headerlink" title="2. 那么ViewController.xctemplate 里面放的是什么？"></a>2. 那么<code>ViewController.xctemplate</code> 里面放的是什么？</h5><ol>
+<li>Templatelcon.png 就是一个图标， 这东西你可以随意换，就是不要把这名字给换了</li>
+<li><p>Templatelcon.plist里面是一些配置的东西</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">	&lt;key&gt;AllowedTypes&lt;/key&gt;</div><div class="line">	&lt;array&gt;</div><div class="line">		&lt;string&gt;public.objective-c-source&lt;/string&gt;</div><div class="line">		&lt;string&gt;public.objective-c-plus-plus-source&lt;/string&gt;</div><div class="line">	&lt;/array&gt;</div><div class="line">	&lt;key&gt;DefaultCompletionName&lt;/key&gt;</div><div class="line">	&lt;string&gt;File&lt;/string&gt;</div><div class="line">	&lt;key&gt;Description&lt;/key&gt;</div><div class="line">	&lt;string&gt;自定义 viewController 模板&lt;/string&gt;</div><div class="line">	&lt;key&gt;Kind&lt;/key&gt;</div><div class="line">	&lt;string&gt;Xcode.IDEKit.TextSubstitutionFileTemplateKind&lt;/string&gt;</div><div class="line">	&lt;key&gt;Options&lt;/key&gt;</div><div class="line">	&lt;array&gt;</div><div class="line">		&lt;dict&gt;</div><div class="line">			&lt;key&gt;Description&lt;/key&gt;</div><div class="line">			&lt;string&gt;The name of the file to create&lt;/string&gt;</div><div class="line">			&lt;key&gt;Identifier&lt;/key&gt;</div><div class="line">			&lt;string&gt;productName&lt;/string&gt;</div><div class="line">			&lt;key&gt;Name&lt;/key&gt;</div><div class="line">			&lt;string&gt;File:&lt;/string&gt;</div><div class="line">			&lt;key&gt;NotPersisted&lt;/key&gt;</div><div class="line">			&lt;true/&gt;</div><div class="line">			&lt;key&gt;Required&lt;/key&gt;</div><div class="line">			&lt;true/&gt;</div><div class="line">			&lt;key&gt;Type&lt;/key&gt;</div><div class="line">			&lt;string&gt;text&lt;/string&gt;</div><div class="line">		&lt;/dict&gt;</div><div class="line">		&lt;dict&gt;</div><div class="line">			&lt;key&gt;Default&lt;/key&gt;</div><div class="line">			&lt;string&gt;UIViewController&lt;/string&gt;</div><div class="line">			&lt;key&gt;Description&lt;/key&gt;</div><div class="line">			&lt;string&gt;What class to subclass in the new file&lt;/string&gt;</div><div class="line">			&lt;key&gt;FallbackHeader&lt;/key&gt;</div><div class="line">			&lt;string&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;&lt;/string&gt;</div><div class="line">			&lt;key&gt;Identifier&lt;/key&gt;</div><div class="line">			&lt;string&gt;cocoaSubclass&lt;/string&gt;</div><div class="line">			&lt;key&gt;Name&lt;/key&gt;</div><div class="line">			&lt;string&gt;Subclass of:&lt;/string&gt;</div><div class="line">			&lt;key&gt;Required&lt;/key&gt;</div><div class="line">			&lt;true/&gt;</div><div class="line">			&lt;key&gt;Type&lt;/key&gt;</div><div class="line">			&lt;string&gt;class&lt;/string&gt;</div><div class="line">			&lt;key&gt;Values&lt;/key&gt;</div><div class="line">			&lt;array&gt;</div><div class="line">				&lt;string&gt;UIViewController&lt;/string&gt;</div><div class="line">			&lt;/array&gt;</div><div class="line">		&lt;/dict&gt;</div><div class="line">	&lt;/array&gt;</div><div class="line">	&lt;key&gt;SortOrder&lt;/key&gt;</div><div class="line">	&lt;string&gt;4&lt;/string&gt;</div><div class="line">	&lt;key&gt;Summary&lt;/key&gt;</div><div class="line">	&lt;string&gt;自定义 viewController 模板&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>UIViewController 这文件夹的东西你可以对比 Source文件下的系统默认的</p>
+</li>
+</ol>
+<p>在<code>__FILEBASENAME__.H</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  ___FILEBASENAME___.h</div><div class="line">//  ___PROJECTNAME___</div><div class="line">//</div><div class="line">//  Created by ___FULLUSERNAME___ on ___DATE___.</div><div class="line">//___COPYRIGHT___</div><div class="line">//</div><div class="line"></div><div class="line">___IMPORTHEADER_cocoaSubclass___</div><div class="line"></div><div class="line">@interface ___FILEBASENAME___: ___VARIABLE_cocoaSubclass___</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure></p>
+<p>在 <code>__FILEBASENAME__.m</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  ___FILEBASENAME___.m</div><div class="line">//  ___PROJECTNAME___e</div><div class="line">//</div><div class="line">//  Created by ___FULLUSERNAME___ on ___DATE___.</div><div class="line">//___COPYRIGHT___</div><div class="line">//</div><div class="line"></div><div class="line">#import &quot;___FILEBASENAME___.h&quot;</div><div class="line"></div><div class="line">@interface ___FILEBASENAME___ ()</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ___FILEBASENAME___</div><div class="line"></div><div class="line">#pragma mark - life cycle</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma mark - api</div><div class="line"></div><div class="line">#pragma mark - delegate</div><div class="line"></div><div class="line">#pragma mark - dataSource</div><div class="line"></div><div class="line">#pragma mark - netWork</div><div class="line"></div><div class="line">#pragma mark - event response</div><div class="line"></div><div class="line">#pragma mark - private methods</div><div class="line"></div><div class="line">#pragma mark - getter / setter</div><div class="line"></div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>然后打开一个xcode项目， cmd + n</p>
+<p>然后很多你想要的就有了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/24/Gitlab 之 Gitbook 自动集成/" rel="next" title="gitlab之gitbook自动集成">
+                <i class="fa fa-chevron-left"></i> gitlab之gitbook自动集成
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/07/私有 Cocoapods 的创建和维护/" rel="prev" title="私有cocoapods的创建和维护s">
+                私有cocoapods的创建和维护s <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/28/自定义 Xcode 模板/"
+     data-title="自定义xcode模板"
+     data-content=""
+     data-url="http://loveli.site/2016/07/28/自定义 Xcode 模板/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/28/自定义 Xcode 模板/"
+           data-title="自定义xcode模板" data-url="http://loveli.site/2016/07/28/自定义 Xcode 模板/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/12316547.jpeg"
+               alt="loveli" />
+          <p class="site-author-name" itemprop="name">loveli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#can-do-how-do"><span class="nav-number">1.</span> <span class="nav-text">can do ? how do?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-这些文件到底是从哪里生成的？"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 这些文件到底是从哪里生成的？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-那么ViewController-xctemplate-里面放的是什么？"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 那么ViewController.xctemplate 里面放的是什么？</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">loveli</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"loveli"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+  
+</body>
+</html>
