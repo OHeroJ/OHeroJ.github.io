@@ -240,6 +240,120 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/" itemprop="url">
+                  Vapor 七牛上传 token 生成算法实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T17:12:22+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/05/Vapor-七牛上传-token-生成算法实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"><span class="keyword">import</span> Crypto</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QiniuToken</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> accessKey: <span class="type">String</span> = <span class="string">"Your-accessKey"</span></div><div class="line">    <span class="keyword">let</span> secretKey: <span class="type">String</span> = <span class="string">"Your-secretKey"</span></div><div class="line">    <span class="keyword">let</span> scope: <span class="type">String</span> = <span class="string">"twicebook"</span></div><div class="line">    <span class="keyword">var</span> liveTime: <span class="type">TimeInterval</span> = <span class="number">5</span></div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">genereryToken</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> <span class="type">QiniuToken</span>().gengeryToken()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">gengeryToken</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>  &#123;</div><div class="line">        <span class="keyword">let</span> date = <span class="type">Date</span>().timeIntervalSince1970 + liveTime * <span class="number">24</span> * <span class="number">3600</span></div><div class="line">        <span class="keyword">let</span> authInfo: [<span class="type">String</span> : <span class="type">Any</span>] = [<span class="string">"scope"</span>: scope,<span class="string">"deadline"</span>: <span class="type">Int</span>(date)]</div><div class="line">        <span class="keyword">let</span> jsonData = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data(withJSONObject: authInfo, options: .prettyPrinted)</div><div class="line">        <span class="keyword">let</span> encodeString = urlSafeBase64Encode(jsonData)</div><div class="line">        <span class="keyword">let</span> encodedSignedString = <span class="keyword">try</span> <span class="type">HMACSHA1</span>(secretKey, text: encodeString)</div><div class="line"></div><div class="line">        <span class="keyword">let</span> token = accessKey + <span class="string">":"</span> + encodedSignedString + <span class="string">":"</span> + encodeString</div><div class="line">        <span class="keyword">return</span> token</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">HMACSHA1</span><span class="params">(<span class="number">_</span> key: String, text: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">let</span> hmac = <span class="keyword">try</span> <span class="type">HMAC</span>.make(.sha1, text, key: key)</div><div class="line">        <span class="keyword">let</span> hmacData = <span class="type">Data</span>(bytes: hmac)</div><div class="line">        <span class="keyword">return</span> urlSafeBase64Encode(hmacData)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">urlSafeBase64Encode</span><span class="params">(<span class="number">_</span> text: Data)</span></span> -&gt; <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">var</span> base64 = text.base64EncodedString()</div><div class="line">        base64 = base64.replacingOccurrences(of: <span class="string">"+"</span>, with: <span class="string">"-"</span>)</div><div class="line">        base64 = base64.replacingOccurrences(of: <span class="string">"/"</span>, with: <span class="string">"_"</span>)</div><div class="line">        <span class="keyword">return</span> base64</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><ul>
+<li><code>deadline</code> 文档中描述值为整数。</li>
+</ul>
+<p>如果 <code>let authInfo: [String : Any] = [&quot;scope&quot;: scope,&quot;deadline&quot;: Int(date)]</code> 改为<br><code>let authInfo: [String : Any] = [&quot;scope&quot;: scope,&quot;deadline&quot;: Int(date)]</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Domain=qiniu.com Code=401 <span class="string">"(null)"</span> UserInfo=&#123;error=invalid put policy encoding&#125;</div></pre></td></tr></table></figure>
+<p>此坑踩了一天。</p>
+<ul>
+<li>ios客户端上传的时候</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> config = <span class="type">QNConfiguration</span>.build(&#123; (builder) <span class="keyword">in</span></div><div class="line">                builder?.setZone(<span class="type">QNZone</span>.zone0())</div><div class="line">            &#125;)</div><div class="line"></div><div class="line"><span class="keyword">let</span> upManager = <span class="type">QNUploadManager</span>(configuration: config)</div></pre></td></tr></table></figure>
+<p>关于 <code>QNZone</code> 需要跟你创建存储对象的时候所选的地区有关. <code>zone0</code> 对应的是 <code>华东</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/31/Swift-之若引用数组/" itemprop="url">
                   swift 之弱引用数组
                 </a>
@@ -1246,116 +1360,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> nickname: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> age: <span class="type">Int</span>?</div><div class="line">    <span class="keyword">var</span> emails:[<span class="type">String</span>]?</div><div class="line">    <span class="keyword">var</span> tels:[<span class="type">Telephone</span>]?</div><div class="line">    <span class="keyword">var</span> createTime: <span class="type">Date</span> = <span class="type">Date</span>()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Telephone</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> title: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> number: <span class="type">String</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将自定义数据转化成 JSON 串</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>?</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">JSON</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">if</span> mirror.children.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</div><div class="line">            <span class="keyword">var</span> result: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</div><div class="line"></div><div class="line">            <span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> (lable?, value) <span class="keyword">in</span> mirror.children &#123;</div><div class="line">                <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line"></div><div class="line">                    result[lable] = jsonValue.toJSONModel()</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> result <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">        <span class="keyword">let</span> jsonModel = <span class="keyword">self</span>.toJSONModel()</div><div class="line">        <span class="keyword">let</span> data: <span class="type">Data</span>! = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.data(withJSONObject: jsonModel!, options: [])</div><div class="line">        <span class="keyword">let</span> str = <span class="type">String</span>(data: data, encoding: .utf8)</div><div class="line">        <span class="keyword">return</span> str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Optional</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> x = <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> value = x <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line">                <span class="keyword">return</span> value.toJSONModel()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展 swift 的基本数据类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Bool</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Dictionary</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="comment">//将数据转成可用的JSON模型</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">var</span> result: [<span class="type">Any</span>] = []</div><div class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> ,</div><div class="line">               <span class="keyword">let</span> jsonModel = jsonValue.toJSONModel()&#123;</div><div class="line"></div><div class="line">                result.append(jsonModel)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> dformatter = <span class="type">DateFormatter</span>()</div><div class="line">        dformatter.dateFormat = <span class="string">"yyyy 年 MM 月 dd 日 HH:mm:ss"</span></div><div class="line">        <span class="keyword">let</span> datestr = dformatter.string(from: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">return</span> datestr</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展自定义类型，使其遵守 JSON 协议</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> user = <span class="type">User</span>()</div><div class="line">user.name = <span class="string">"hange"</span></div><div class="line">user.age = <span class="number">100</span></div><div class="line">user.emails = [<span class="string">"hagn@hagnge.com"</span>, <span class="string">"system@hagn.com"</span>]</div><div class="line"><span class="keyword">let</span> tel = <span class="type">Telephone</span>(title: <span class="string">"手机"</span>, number: <span class="string">"12333"</span>)</div><div class="line"><span class="keyword">let</span> tel1 = <span class="type">Telephone</span>(title: <span class="string">"公司座机"</span>, number: <span class="string">"001-0358"</span>)</div><div class="line">user.tels = [tel1, tel]</div><div class="line"></div><div class="line"><span class="built_in">print</span>(user)</div></pre></td></tr></table></figure>
 <p><strong>应用二</strong></p>
 <p>取值</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xiaoMing = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> mirror.children.startIndex..&lt;mirror.children.endIndex &#123;</div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = mirror.children[i]</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoMing, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过 key 得到值: <span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/Swift-Any-vs-AnyObject/" itemprop="url">
-                  swift Any vs AnyObject
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T10:18:00+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/26/Swift-Any-vs-AnyObject/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Swift-Any-vs-AnyObject/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Any-and-AnyObject-的区别"><a href="#Any-and-AnyObject-的区别" class="headerlink" title="Any and AnyObject 的区别"></a>Any and AnyObject 的区别</h2><ul>
-<li><code>Any</code> can represent an instance of any type at all, including function types and optional types.</li>
-<li><code>AnyObject</code> can represent an instance of any class type. </li>
-</ul>
-<p>Any 用在任何类型，AnyObject 用在 Class</p>
-<p>例如：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anyArr: [<span class="type">Any</span>]= [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"hello"</span>]</div><div class="line"></div><div class="line"><span class="keyword">var</span> anyObj: [<span class="type">AnyObject</span>] = [<span class="number">1</span>, <span class="number">2</span>] <span class="comment">// 报错</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xiaoMing = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> mirror.children.startIndex..&lt;mirror.children.endIndex &#123;</div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = mirror.children[i]</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoMing, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过 key 得到值: \(name)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -1429,7 +1434,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1439,7 +1444,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
