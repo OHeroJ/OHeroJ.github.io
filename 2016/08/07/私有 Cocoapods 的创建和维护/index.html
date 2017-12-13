@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Gitlab,Cocoapods,iOS,工具," />
+  <meta name="keywords" content="Cocoapods,Gitlab,iOS,工具," />
 
 
 
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://loveli.site/images/pod-file06.png">
 <meta property="og:image" content="http://loveli.site/images/pod-file07.png">
 <meta property="og:image" content="http://loveli.site/images/pod-file08.png">
-<meta property="og:updated_time" content="2017-12-13T02:13:02.140Z">
+<meta property="og:updated_time" content="2017-12-13T03:41:05.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="私有cocoapods的创建和维护s">
 <meta name="twitter:description" content="使用cocoapods创建私有podspec创建私有podspec的步骤1. 创建并设置一个私有的Spec Repo1pod repo add MySpecs https://gitlab.com/oheroj/spects.git
@@ -321,7 +321,8 @@
 <p>这个时候你在gitlab上创建个项目：<br><img src="/images/pod-file05.png" alt="pod lib create xcode gitlab"></p>
 <p>将本地代码库与远程代码库关联<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@gitlab.com:oheroj/RoundButton.git <span class="comment">#添加远端仓库</span></div><div class="line">git push origin master <span class="comment"># 提交到远端仓库</span></div></pre></td></tr></table></figure></p>
 <p>这里我们也会遇到一个问题就是 git 提交人的信息有问题，默认提交者为你设置的全局的git的ueser， 所以这个时候就得改名字了， 比如我这边要改为 oheroj , 然后邮箱改为gmail邮箱。<br>有这么一段脚本可以 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="external">参考执行</a>：</p>
-<p>有这么个脚本  change.sh, 里面的内容是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure></p>
+<p>有这么个脚本  change.sh, 里面的内容是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure>
 <p>这个时候你直接替换相应的内容，然后执行 <code>sh change.sh</code></p>
 <blockquote>
 <p>这里需要注意的是每当你向Pod中添加了新的文件或者以后更新了podspec的版本都需要重新执行一遍pod update命令</p>
@@ -409,9 +410,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Gitlab/" rel="tag">#Gitlab</a>
-          
             <a href="/tags/Cocoapods/" rel="tag">#Cocoapods</a>
+          
+            <a href="/tags/Gitlab/" rel="tag">#Gitlab</a>
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
