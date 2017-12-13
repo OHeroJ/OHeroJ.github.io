@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gitlab,macos," />
+  <meta name="keywords" content="Gitlab,Macos," />
 
 
 
@@ -94,7 +94,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
 <meta property="og:description" content="如何使Mac OS X的端口转发etc/hosts
 hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。
 Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文">
-<meta property="og:updated_time" content="2017-08-12T02:55:18.000Z">
+<meta property="og:updated_time" content="2017-12-13T02:11:46.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOS  端口转发">
 <meta name="twitter:description" content="如何使Mac OS X的端口转发etc/hosts
@@ -316,7 +316,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
 <li>添加到主配置文件中</li>
 </ul>
 <p>pf 启动时会自动装载 <code>/etc/pf.conf</code> 文件，因此需要将 mygitlab 文件链接到 <code>/etc/pf.conf</code> 文件，实现转发</p>
-<p>修改后的文件内容如下： </p>
+<p>修改后的文件内容如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"mygitlab"</span></div><div class="line"></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"mygitlab"</span> from <span class="string">"/etc/pf.anchors/mygitlab"</span></div></pre></td></tr></table></figure>
 <ul>
 <li>导入并运行 PF 命令</li>
@@ -325,10 +325,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
 <ul>
 <li>设置 pf 开机自启动</li>
 </ul>
-<pre><code>sudo pfctl -e
-
-# sudo pfctl -d 关闭
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pfctl -e</div><div class="line"></div><div class="line"># sudo pfctl -d 关闭</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -370,9 +367,9 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
       
         <div class="post-tags">
           
-            <a href="/tags/gitlab/" rel="tag">#gitlab</a>
+            <a href="/tags/Gitlab/" rel="tag">#Gitlab</a>
           
-            <a href="/tags/macos/" rel="tag">#macos</a>
+            <a href="/tags/Macos/" rel="tag">#Macos</a>
           
         </div>
       
@@ -495,7 +492,7 @@ Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

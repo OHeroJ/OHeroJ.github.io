@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gitlab,docker,nginx," />
+  <meta name="keywords" content="Gitlab,Docker,Nginx," />
 
 
 
@@ -87,13 +87,13 @@
 <meta name="description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-然后依次添加 docker image : 
-gilab-ce 
+然后依次添加 docker image :
+gilab-ce
 nginx
 
 
 用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mu">
+12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mult">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker+gitlab+nginx 自动化">
 <meta property="og:url" content="http://loveli.site/2017/08/10/Docker-gitlab-nginx-自动化/index.html">
@@ -101,26 +101,26 @@ nginx
 <meta property="og:description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-然后依次添加 docker image : 
-gilab-ce 
+然后依次添加 docker image :
+gilab-ce
 nginx
 
 
 用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mu">
-<meta property="og:updated_time" content="2017-08-10T07:48:58.000Z">
+12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mult">
+<meta property="og:updated_time" content="2017-12-13T02:12:26.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker+gitlab+nginx 自动化">
 <meta name="twitter:description" content="Docker + Gitlab + Nginx 自动化集成环境：
 mac os
 Kitematic + docker
-然后依次添加 docker image : 
-gilab-ce 
+然后依次添加 docker image :
+gilab-ce
 nginx
 
 
 用终端下载 gitlab-runner:
-12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mu">
+12sudo curl --output /usr/local/bin/gitlab-ci-multi-runner https://gitlab-ci-mult">
 
 
 
@@ -320,8 +320,8 @@ nginx
         <h1 id="Docker-Gitlab-Nginx-自动化集成"><a href="#Docker-Gitlab-Nginx-自动化集成" class="headerlink" title="Docker + Gitlab + Nginx 自动化集成"></a>Docker + Gitlab + Nginx 自动化集成</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><ol>
 <li>mac os</li>
 <li>Kitematic + docker</li>
-<li>然后依次添加 docker image : <ul>
-<li>gilab-ce </li>
+<li>然后依次添加 docker image :<ul>
+<li>gilab-ce</li>
 <li>nginx</li>
 </ul>
 </li>
@@ -340,7 +340,7 @@ nginx
 </blockquote>
 </li>
 </ul>
-<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">官方文档</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages: </div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www: </div><div class="line">    stage: build </div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure></p>
+<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">官方文档</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages:</div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www:</div><div class="line">    stage: build</div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure></p>
 <p>如果你在构建的时候遇到:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Running with gitlab-ci-multi-runner 9.4.2 (6d06f2e)</div><div class="line">  on mac (22376a88)</div><div class="line">Using Shell executor...</div><div class="line">Running on gangyan.local...</div><div class="line">Cloning repository...</div><div class="line">Cloning into <span class="string">'/Users/aa/test/builds/22376a88/0/leo/ios'</span>...</div><div class="line">fatal: unable to access <span class="string">'http://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gygitlab/leo/ios.git/'</span>: Failed to connect to gygitlab port 80: Connection refused</div><div class="line">ERROR: Job failed: <span class="built_in">exit</span> status 1</div></pre></td></tr></table></figure></p>
 <p>需要做域名端口映射。我们 docker 里面配置的 gitlab 的映射到本地的端口是 <code>32788</code>, 而现在报错的是 <code>80</code>端口，那么这个时候说明端口有问题，如何解决呢？</p>
 <ol>
@@ -401,11 +401,11 @@ nginx
       
         <div class="post-tags">
           
-            <a href="/tags/gitlab/" rel="tag">#gitlab</a>
+            <a href="/tags/Gitlab/" rel="tag">#Gitlab</a>
           
-            <a href="/tags/docker/" rel="tag">#docker</a>
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
           
-            <a href="/tags/nginx/" rel="tag">#nginx</a>
+            <a href="/tags/Nginx/" rel="tag">#Nginx</a>
           
         </div>
       
@@ -528,7 +528,7 @@ nginx
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
