@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,48 +34,13 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="oheroj iOS python" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -76,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
 
 
 
@@ -88,30 +83,45 @@
 <meta property="og:title" content="loveli">
 <meta property="og:url" content="http://loveli.site/page/3/index.html">
 <meta property="og:site_name" content="loveli">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="loveli">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> loveli -  </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/page/3/"/>
+
+
+
+
+
+  <title>loveli</title>
   
 
 
@@ -121,38 +131,43 @@
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -173,31 +188,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -208,6 +203,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -222,13 +219,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/03/26/Swift-Any-vs-AnyObject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -236,55 +247,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/03/26/Swift-Any-vs-AnyObject/" itemprop="url">
-                  Swift Any vs AnyObject
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/03/26/Swift-Any-vs-AnyObject/" itemprop="url">Swift Any vs AnyObject</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T10:18:00+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T10:18:00+08:00">
+                2017-03-26
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/26/Swift-Any-vs-AnyObject/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Swift-Any-vs-AnyObject/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -305,16 +312,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -324,6 +334,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -331,13 +345,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/01/10/忆/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -345,55 +373,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/10/忆/" itemprop="url">
-                  忆
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/10/忆/" itemprop="url">忆</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-10T23:44:00+08:00" content="2017-01-10">
-              2017-01-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-10T23:44:00+08:00">
+                2017-01-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/10/忆/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/10/忆/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -407,16 +431,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -426,6 +453,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -433,13 +464,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/01/01/2016-2017/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -447,55 +492,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/01/2016-2017/" itemprop="url">
-                  2016 -> 2017
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/01/2016-2017/" itemprop="url">2016 -> 2017</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T23:13:26+08:00" content="2017-01-01">
-              2017-01-01
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T23:13:26+08:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/01/2016-2017/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/01/2016-2017/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -534,16 +575,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -553,6 +597,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -560,13 +608,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/12/17/Swift 之 Vapor小试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -574,55 +636,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/12/17/Swift 之 Vapor小试/" itemprop="url">
-                  Swift 之 Vapor小试
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/12/17/Swift 之 Vapor小试/" itemprop="url">Swift 之 Vapor小试</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-17T22:53:51+08:00" content="2016-12-17">
-              2016-12-17
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T22:53:51+08:00">
+                2016-12-17
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/17/Swift 之 Vapor小试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/17/Swift 之 Vapor小试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -639,7 +697,7 @@
 <li>企业性质</li>
 <li>不是我关注的第一个 swift 的后台框架</li>
 </ol>
-<p>如果你想去了解现有框架的对比，可移步到 <a href="https://swift.libhunt.com/project/vapor/vs/perfect" target="_blank" rel="external">这里</a></p>
+<p>如果你想去了解现有框架的对比，可移步到 <a href="https://swift.libhunt.com/project/vapor/vs/perfect" target="_blank" rel="noopener">这里</a></p>
 <p>多说无益，毕竟说得越多（文笔不好，现在还是多写点，多暴露一点自己的问题，勿怪），就会暴露更多的问题，就如我们写代码，写的越多，人家 <code>review</code> 的越多，然后打回的几率也大，所以代码的简洁和优化是多么的重要</p>
 <p><strong>牛逼的程序员是思考如何将代码越写越少而不是越写越多！</strong></p>
 <h2 id="知识点之前，说说最近的一些感触"><a href="#知识点之前，说说最近的一些感触" class="headerlink" title="知识点之前，说说最近的一些感触"></a>知识点之前，说说最近的一些感触</h2><p>最近感觉自己在写代码的时候，自由度被限制了。公司现在在不断的要求 代码规范和代码提交规范，git 管理规范，文档规范…, 代码日产果断是降低不少。但过了这么段苦逼的日子，看看现在自己的代码确实欣慰少许。细节方面略过，如果你以后是做规范的，我觉得可以往这几个方面：</p>
@@ -651,7 +709,7 @@
 <p>提交有意义的代码 | 提交规范 | 分支命名规范 | 分支管理规范 | 审核规范</p>
 </li>
 <li><p>文档方面(markdown):</p>
-<p>这块我局的大家把文档质量保证，其实排版问题不到，前提说的你用的是 <a href="http://wowubuntu.com/markdown" target="_blank" rel="external">Markdown</a></p>
+<p>这块我局的大家把文档质量保证，其实排版问题不到，前提说的你用的是 <a href="http://wowubuntu.com/markdown" target="_blank" rel="noopener">Markdown</a></p>
 <p>以上几点非本文重点，不在过多阐述，等我在多点经验整理获取更具合理性</p>
 </li>
 </ol>
@@ -663,7 +721,7 @@
 <li>MySql: 5.7.13</li>
 <li>vapor: Vapor Toolbox v1.0.3</li>
 </ul>
-<p>对于 Vapor 的基本知识我就不在过多的阐述，在用到的时候，有必要，会在相应的地方进行书写，Vapor 文档请移步到 <a href="https://vapor.github.io/documentation/" target="_blank" rel="external">这里</a></p>
+<p>对于 Vapor 的基本知识我就不在过多的阐述，在用到的时候，有必要，会在相应的地方进行书写，Vapor 文档请移步到 <a href="https://vapor.github.io/documentation/" target="_blank" rel="noopener">这里</a></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Package.swift</span></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"spider"</span>,</div><div class="line">    dependencies: [</div><div class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/vapor/vapor.git"</span>, majorVersion: <span class="number">1</span>, minor:<span class="number">1</span>),</div><div class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/vapor/mysql-provider.git"</span>, majorVersion: <span class="number">1</span>, minor: <span class="number">1</span>)</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li>建立数据模型</li>
@@ -680,7 +738,7 @@
 <h3 id="创建-BlogController"><a href="#创建-BlogController" class="headerlink" title="创建 BlogController"></a>创建 <code>BlogController</code></h3><p><strong>创建 ‘BaseController’</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// BaseController.swift</span></div><div class="line"><span class="keyword">import</span> HTTP</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"></div><div class="line"><span class="comment">// 基类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> drop: <span class="type">Droplet</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(droplet: <span class="type">Droplet</span>) &#123;</div><div class="line">        drop = droplet</div><div class="line">        addRouters()</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// to sub vc ovviride</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addRouters</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong>创建 BlogController.swift</strong></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Controllers/BlogController.swift</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> HTTP</div><div class="line"><span class="keyword">import</span> Vapor</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogController</span> : <span class="title">BaseController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">addRouters</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> group = drop.grouped(<span class="string">"blog"</span>)</div><div class="line">        group.<span class="keyword">get</span>(<span class="string">"/"</span>, handler: indexView) <span class="comment">// index</span></div><div class="line">        group.post(<span class="string">"/"</span>,handler: addPost)  <span class="comment">// add</span></div><div class="line">        group.<span class="keyword">get</span>(<span class="type">Post</span>.<span class="keyword">self</span>, handler: postDetail)</div><div class="line">        group.post(<span class="type">Post</span>.<span class="keyword">self</span>, <span class="string">"delete"</span>, handler: deletePost) <span class="comment">//delete</span></div><div class="line">        group.<span class="keyword">get</span>(<span class="string">"create"</span>, handler: createPost) <span class="comment">// create 页面</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">postDetail</span><span class="params">(request: Request, post: Post)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span>&#123;</div><div class="line">        <span class="keyword">let</span> content = post.content</div><div class="line">        <span class="keyword">let</span> params = [<span class="string">"content"</span>: content]</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/detail"</span>, params)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">createPost</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/create"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">deletePost</span><span class="params">(request: Request, post:Post)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> post.delete()</div><div class="line">        <span class="keyword">return</span> <span class="type">Response</span>(redirect: <span class="string">"/blog"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addPost</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> title = request.data[<span class="string">"title"</span>]?.string,</div><div class="line">            <span class="keyword">let</span> content = request.data[<span class="string">"content"</span>]?.string,</div><div class="line">        <span class="keyword">let</span> category = request.data[<span class="string">"category"</span>]?.string <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">Abort</span>.badRequest</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> post = <span class="type">Post</span>(desc: content, title: title, content: content, category: category)</div><div class="line">        <span class="keyword">try</span> post.save()</div><div class="line">        <span class="keyword">return</span> <span class="type">Response</span>(redirect: <span class="string">"/blog"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">indexView</span><span class="params">(request: Request)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">ResponseRepresentable</span> &#123;</div><div class="line">        <span class="keyword">let</span> posts = <span class="keyword">try</span> <span class="type">Post</span>.all().makeNode()</div><div class="line">        <span class="keyword">let</span> parameters = <span class="keyword">try</span> <span class="type">Node</span>(node: [<span class="string">"posts"</span>: posts])</div><div class="line">        <span class="keyword">return</span> <span class="keyword">try</span> drop.view.make(<span class="string">"blog/index"</span>, parameters);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="创建-View-Leaf"><a href="#创建-View-Leaf" class="headerlink" title="创建 View(Leaf)"></a>创建 <code>View</code>(Leaf)</h2><p>采用了 <a href="http://getskeleton.com/" target="_blank" rel="external">skeleton</a> 样式， 使用了内嵌 markdown 编辑器 <a href="https://github.com/OscarGodson/EpicEditor" target="_blank" rel="external">EpicEditor</a></p>
+<h2 id="创建-View-Leaf"><a href="#创建-View-Leaf" class="headerlink" title="创建 View(Leaf)"></a>创建 <code>View</code>(Leaf)</h2><p>采用了 <a href="http://getskeleton.com/" target="_blank" rel="noopener">skeleton</a> 样式， 使用了内嵌 markdown 编辑器 <a href="https://github.com/OscarGodson/EpicEditor" target="_blank" rel="noopener">EpicEditor</a></p>
 <p><strong>文件结构</strong></p>
 <p><img src="http://obp26pczx.bkt.clouddn.com/wendang_blog_lef.png" alt="wendang_blog_lef"></p>
 <p><strong>base.leaf</strong></p>
@@ -702,23 +760,26 @@
 <li>粗版，后续会不断改良</li>
 </ol>
 <blockquote>
-<p>代码可到 github 上 <a href="https://github.com/OHeroJ/site" target="_blank" rel="external">下载</a></p>
+<p>代码可到 github 上 <a href="https://github.com/OHeroJ/site" target="_blank" rel="noopener">下载</a></p>
 </blockquote>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -728,6 +789,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -735,13 +800,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -749,55 +828,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="url">
-                  基于 Django 搭建 Zip 皮肤包下载功能测试后台
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="url">基于 Django 搭建 Zip 皮肤包下载功能测试后台</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-16T23:02:22+08:00" content="2016-11-16">
-              2016-11-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-16T23:02:22+08:00">
+                2016-11-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -825,16 +900,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -844,6 +922,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -851,13 +933,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/10/16/Vapor 之 Heroku/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -865,55 +961,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/10/16/Vapor 之 Heroku/" itemprop="url">
-                  Vapor 之 Heroku
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/10/16/Vapor 之 Heroku/" itemprop="url">Vapor 之 Heroku</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-16T10:28:18+08:00" content="2016-10-16">
-              2016-10-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-16T10:28:18+08:00">
+                2016-10-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/16/Vapor 之 Heroku/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Vapor 之 Heroku/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -925,11 +1017,11 @@
             <p>swift 能开发后台，那么如何将他部署到线上，这是必须的。</p>
 <p>今天我们看看如何将swift写的代码部署到线上</p>
 <h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. heroku-gem/3.43.0 (universal.x86_64-darwin16) ruby/2.0.0</div><div class="line">2. heroku-cli/5.4.5-f66b45a (darwin-amd64) go1.7.1</div><div class="line">3. swift: 3.0</div><div class="line">4. xcode: 8.0</div><div class="line">5. macOS: 10.12</div><div class="line">6. vapor: 1.1</div></pre></td></tr></table></figure>
-<h3 id="Heroku"><a href="#Heroku" class="headerlink" title="Heroku"></a>Heroku</h3><p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="external">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="external">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
+<h3 id="Heroku"><a href="#Heroku" class="headerlink" title="Heroku"></a>Heroku</h3><p>首次使用，请先登入<a href="http://heroku.com/" target="_blank" rel="noopener">Heroku</a>注册账号，并<a href="https://devcenter.heroku.com/articles/heroku-command-line" target="_blank" rel="noopener">安装命令行工具</a><br>由于本章重点是如何部署 swift 后台,所以更多的<code>Heroku</code>请自行搜索资料解决，官方的文档是说得很清楚明白的。</p>
 <h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>对于 vapor 后台代码，我们也比较简单，只在 <code>main.swift</code> 上</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Vapor</div><div class="line">let drop = Droplet()</div><div class="line">drop.get &#123; req in</div><div class="line">    return &quot;Hello,world&quot;</div><div class="line">&#125;</div><div class="line">drop.get(&quot;/post&quot;) &#123; req  in</div><div class="line">    return JSON([&quot;id&quot;:1,&quot;name&quot;:&quot;Oheroj&quot;,&quot;tell&quot;:&quot;welcome&quot;])</div><div class="line">&#125;</div><div class="line">drop.run()</div></pre></td></tr></table></figure>
 <h3 id="知识准备："><a href="#知识准备：" class="headerlink" title="知识准备："></a>知识准备：</h3><ul>
-<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="external">Webhook 实践 —— 自动部署</a></li>
+<li><a href="http://jerryzou.com/posts/webhook-practice/" target="_blank" rel="noopener">Webhook 实践 —— 自动部署</a></li>
 </ul>
 <h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><p>如何将项目提交到 <code>Heroku</code>：</p>
 <ol>
@@ -942,12 +1034,12 @@
 </li>
 </ul>
 </li>
-<li><p>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="external">Buildpacks</a>,<br><code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：</p>
+<li><p>因为 Heroku 上是没有默认的 swift 编译环境的，所以这个时候我们要借助于它的一个功能 <a href="https://devcenter.heroku.com/articles/buildpacks" target="_blank" rel="noopener">Buildpacks</a>,<br><code>Vapor</code>项目是可以部署到<code>Heroku</code>上的，并且我们在github上可以找到很多其<code>Buildpacks</code>,例如：</p>
 <ul>
-<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="external">vapor/heroku-buildpack</a></li>
-<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="external">kylef/heroku-buildpack-swift</a></li>
-<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="external">IBM-Swift/swift-buildpack</a></li>
-<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="external">cloudfoundry-community/swift-buildpack</a></li>
+<li><a href="https://github.com/vapor/heroku-buildpack" target="_blank" rel="noopener">vapor/heroku-buildpack</a></li>
+<li><a href="https://github.com/kylef/heroku-buildpack-swift" target="_blank" rel="noopener">kylef/heroku-buildpack-swift</a></li>
+<li><a href="https://github.com/IBM-Swift/swift-buildpack" target="_blank" rel="noopener">IBM-Swift/swift-buildpack</a></li>
+<li><a href="https://github.com/cloudfoundry-community/swift-buildpack" target="_blank" rel="noopener">cloudfoundry-community/swift-buildpack</a></li>
 </ul>
 <p>创建方法也有两种：</p>
 <ol>
@@ -969,16 +1061,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -988,6 +1083,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -995,13 +1094,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/10/07/Vapor 之 Mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1009,55 +1122,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/10/07/Vapor 之 Mysql/" itemprop="url">
-                  Vapor 之 MySql
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/10/07/Vapor 之 Mysql/" itemprop="url">Vapor 之 MySql</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T20:27:48+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T20:27:48+08:00">
+                2016-10-07
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/07/Vapor 之 Mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/Vapor 之 Mysql/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1096,16 +1205,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1115,6 +1227,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1122,13 +1238,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/09/17/React-Native-ES6 函数篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1136,55 +1266,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/09/17/React-Native-ES6 函数篇/" itemprop="url">
-                  React-Native ES6函数篇
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/09/17/React-Native-ES6 函数篇/" itemprop="url">React-Native ES6函数篇</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-17T21:44:02+08:00" content="2016-09-17">
-              2016-09-17
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-17T21:44:02+08:00">
+                2016-09-17
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/17/React-Native-ES6 函数篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/React-Native-ES6 函数篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1216,16 +1342,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1235,6 +1364,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1242,13 +1375,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/09/04/Cocoapods 高级篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1256,55 +1403,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/09/04/Cocoapods 高级篇/" itemprop="url">
-                  Cocoapods 高级篇
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/09/04/Cocoapods 高级篇/" itemprop="url">Cocoapods 高级篇</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T13:16:02+08:00" content="2016-09-04">
-              2016-09-04
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-04T13:16:02+08:00">
+                2016-09-04
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/04/Cocoapods 高级篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/04/Cocoapods 高级篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1333,7 +1476,7 @@
 <p>这个时候 <code>View</code>和<code>Category</code>文件夹没有了，如果我们这个pod库有很多文件的时候，那么文件都<br>只在MaNong，这能容忍，ugly.</p>
 <h3 id="那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"><a href="#那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到" class="headerlink" title="那么如何解决这个问题？ 细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"></a>那么如何解决这个问题？ 细心的你可能会发现<code>AFNetwork</code>的文件目录很清晰，从中我们可以看到</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line"> s.subspec &apos;Serialization&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.h&apos;</div><div class="line">   ss.watchos.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.ios.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.osx.frameworks = &apos;CoreServices&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Security&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFSecurityPolicy.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFSecurityPolicy.h&apos;</div><div class="line">   ss.frameworks = &apos;Security&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Reachability&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.osx.deployment_target = &apos;10.9&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AFNetworkReachabilityManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFNetworkReachabilityManager.h&apos;</div><div class="line"></div><div class="line">   ss.frameworks = &apos;SystemConfiguration&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;NSURLSession&apos; do |ss|</div><div class="line">   ss.dependency &apos;AFNetworking/Serialization&apos;</div><div class="line">   ss.ios.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.osx.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.tvos.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/Security&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.h&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;UIKit&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/NSURLSession&apos;</div><div class="line"></div><div class="line">   ss.public_header_files = &apos;UIKit+AFNetworking/*.h&apos;</div><div class="line">   ss.source_files = &apos;UIKit+AFNetworking&apos;</div><div class="line"> end</div></pre></td></tr></table></figure>
 <p>我们上面是没有<code>s.subspec</code>， 聪明的你应该不难发现应该是这个<code>subspec</code>这个家伙起了作用。</p>
-<h3 id="subspec是干嘛的？"><a href="#subspec是干嘛的？" class="headerlink" title="subspec是干嘛的？"></a><code>subspec</code>是干嘛的？</h3><p>这种问题，只能说，老老实实的看官方文档吧，—&gt; <a href="http://guides.cocoapods.org/syntax/podspec.html#subspec" target="_blank" rel="external">文档</a></p>
+<h3 id="subspec是干嘛的？"><a href="#subspec是干嘛的？" class="headerlink" title="subspec是干嘛的？"></a><code>subspec</code>是干嘛的？</h3><p>这种问题，只能说，老老实实的看官方文档吧，—&gt; <a href="http://guides.cocoapods.org/syntax/podspec.html#subspec" target="_blank" rel="noopener">文档</a></p>
 <p>其实这东西 有点像”圈圈里面包含圈圈的感觉”, 我们的每个文件的内容可以独立，当然也可以依赖。 这东西还有个作用就是这个库，我只想用它里面的某个子模块的东西，我不需要它的全部。废话不多说，直接上demo:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'MaNong'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'MaNong.'</span></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">g description of the pod here.这个是我的测试pod 私有库的创建</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'OHeroJ'</span> =&gt; <span class="string">'1814345797@qq.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'7.0'</span></div><div class="line">  <span class="comment">#s.source_files = 'MaNong/Classes/*'</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'View'</span> <span class="keyword">do</span> <span class="params">|view|</span></div><div class="line">    view.source_files = <span class="string">'MaNong/Classes/View/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'Category'</span> <span class="keyword">do</span> <span class="params">|category|</span></div><div class="line">    category.source_files = <span class="string">'MaNong/Classes/Category/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>然后从新在<code>pod update</code>，结果那是必须的ok~</p>
@@ -1345,24 +1488,27 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s.resource_bundles = &#123;</div><div class="line">  &apos;MaNong&apos; =&gt; [&apos;MaNong/Assets/*.png&apos;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="http://blog.startry.com/2015/12/22/pod-repo-dev-quick-start/" target="_blank" rel="external">Pods依赖库快速开发入门</a></li>
-<li><a href="http://guides.cocoapods.org/syntax/podspec.html#resource_bundles" target="_blank" rel="external">Podspec Syntax Reference</a></li>
+<li><a href="http://blog.startry.com/2015/12/22/pod-repo-dev-quick-start/" target="_blank" rel="noopener">Pods依赖库快速开发入门</a></li>
+<li><a href="http://guides.cocoapods.org/syntax/podspec.html#resource_bundles" target="_blank" rel="noopener">Podspec Syntax Reference</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1372,6 +1518,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1379,13 +1529,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/31/设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1393,55 +1557,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/31/设计/" itemprop="url">
-                  设计
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/31/设计/" itemprop="url">设计</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T21:54:58+08:00" content="2016-08-31">
-              2016-08-31
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-31T21:54:58+08:00">
+                2016-08-31
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/31/设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/设计/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1510,16 +1670,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1529,6 +1692,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1561,65 +1728,67 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
+
+      
 
       
 
@@ -1633,44 +1802,50 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -1693,72 +1868,10 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -1766,15 +1879,109 @@
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
 
 
   
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

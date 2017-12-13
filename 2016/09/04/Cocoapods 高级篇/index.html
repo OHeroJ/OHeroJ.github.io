@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,45 +34,38 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Cocoapods," />
@@ -77,51 +77,56 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-
-
-
-
-<meta name="description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。
-
-pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
+<meta name="description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。  pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
+<meta name="keywords" content="Cocoapods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cocoapods 高级篇">
 <meta property="og:url" content="http://loveli.site/2016/09/04/Cocoapods 高级篇/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。
-
-pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
+<meta property="og:description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。  pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-13T05:05:49.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods 高级篇">
-<meta name="twitter:description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。
-
-pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
+<meta name="twitter:description" content="之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。  pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;#39;~&amp;gt; 3.1&amp;#39;， 这些指定source就可以安装到指定tag的版本的代码使用指定git不同版本的代码使用git的master分支上的代码1pod &apos;AFNetworki">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Cocoapods 高级篇 | loveli </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/2016/09/04/Cocoapods 高级篇/"/>
+
+
+
+
+
+  <title>Cocoapods 高级篇 | loveli</title>
   
 
 
@@ -131,36 +136,42 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -181,31 +192,11 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -216,6 +207,8 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -230,66 +223,77 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/09/04/Cocoapods 高级篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Cocoapods 高级篇
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Cocoapods 高级篇</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T13:16:02+08:00" content="2016-09-04">
-              2016-09-04
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-04T13:16:02+08:00">
+                2016-09-04
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/04/Cocoapods 高级篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/04/Cocoapods 高级篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -316,7 +320,7 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 <p>这个时候 <code>View</code>和<code>Category</code>文件夹没有了，如果我们这个pod库有很多文件的时候，那么文件都<br>只在MaNong，这能容忍，ugly.</p>
 <h3 id="那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"><a href="#那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到" class="headerlink" title="那么如何解决这个问题？ 细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"></a>那么如何解决这个问题？ 细心的你可能会发现<code>AFNetwork</code>的文件目录很清晰，从中我们可以看到</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line"> s.subspec &apos;Serialization&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.h&apos;</div><div class="line">   ss.watchos.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.ios.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.osx.frameworks = &apos;CoreServices&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Security&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFSecurityPolicy.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFSecurityPolicy.h&apos;</div><div class="line">   ss.frameworks = &apos;Security&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Reachability&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.osx.deployment_target = &apos;10.9&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AFNetworkReachabilityManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFNetworkReachabilityManager.h&apos;</div><div class="line"></div><div class="line">   ss.frameworks = &apos;SystemConfiguration&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;NSURLSession&apos; do |ss|</div><div class="line">   ss.dependency &apos;AFNetworking/Serialization&apos;</div><div class="line">   ss.ios.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.osx.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.tvos.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/Security&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.h&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;UIKit&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/NSURLSession&apos;</div><div class="line"></div><div class="line">   ss.public_header_files = &apos;UIKit+AFNetworking/*.h&apos;</div><div class="line">   ss.source_files = &apos;UIKit+AFNetworking&apos;</div><div class="line"> end</div></pre></td></tr></table></figure>
 <p>我们上面是没有<code>s.subspec</code>， 聪明的你应该不难发现应该是这个<code>subspec</code>这个家伙起了作用。</p>
-<h3 id="subspec是干嘛的？"><a href="#subspec是干嘛的？" class="headerlink" title="subspec是干嘛的？"></a><code>subspec</code>是干嘛的？</h3><p>这种问题，只能说，老老实实的看官方文档吧，—&gt; <a href="http://guides.cocoapods.org/syntax/podspec.html#subspec" target="_blank" rel="external">文档</a></p>
+<h3 id="subspec是干嘛的？"><a href="#subspec是干嘛的？" class="headerlink" title="subspec是干嘛的？"></a><code>subspec</code>是干嘛的？</h3><p>这种问题，只能说，老老实实的看官方文档吧，—&gt; <a href="http://guides.cocoapods.org/syntax/podspec.html#subspec" target="_blank" rel="noopener">文档</a></p>
 <p>其实这东西 有点像”圈圈里面包含圈圈的感觉”, 我们的每个文件的内容可以独立，当然也可以依赖。 这东西还有个作用就是这个库，我只想用它里面的某个子模块的东西，我不需要它的全部。废话不多说，直接上demo:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'MaNong'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'MaNong.'</span></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">g description of the pod here.这个是我的测试pod 私有库的创建</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'OHeroJ'</span> =&gt; <span class="string">'1814345797@qq.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'7.0'</span></div><div class="line">  <span class="comment">#s.source_files = 'MaNong/Classes/*'</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'View'</span> <span class="keyword">do</span> <span class="params">|view|</span></div><div class="line">    view.source_files = <span class="string">'MaNong/Classes/View/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'Category'</span> <span class="keyword">do</span> <span class="params">|category|</span></div><div class="line">    category.source_files = <span class="string">'MaNong/Classes/Category/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>然后从新在<code>pod update</code>，结果那是必须的ok~</p>
@@ -328,54 +332,33 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s.resource_bundles = &#123;</div><div class="line">  &apos;MaNong&apos; =&gt; [&apos;MaNong/Assets/*.png&apos;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="http://blog.startry.com/2015/12/22/pod-repo-dev-quick-start/" target="_blank" rel="external">Pods依赖库快速开发入门</a></li>
-<li><a href="http://guides.cocoapods.org/syntax/podspec.html#resource_bundles" target="_blank" rel="external">Podspec Syntax Reference</a></li>
+<li><a href="http://blog.startry.com/2015/12/22/pod-repo-dev-quick-start/" target="_blank" rel="noopener">Pods依赖库快速开发入门</a></li>
+<li><a href="http://guides.cocoapods.org/syntax/podspec.html#resource_bundles" target="_blank" rel="noopener">Podspec Syntax Reference</a></li>
 </ol>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+    
 
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Cocoapods/" rel="tag">#Cocoapods</a>
+            <a href="/tags/Cocoapods/" rel="tag"># Cocoapods</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -387,6 +370,8 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -401,30 +386,15 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2016/09/04/Cocoapods 高级篇/"
-     data-title="Cocoapods 高级篇"
-     data-content=""
-     data-url="http://loveli.site/2016/09/04/Cocoapods 高级篇/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -433,18 +403,11 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/09/04/Cocoapods 高级篇/"
-           data-title="Cocoapods 高级篇" data-url="http://loveli.site/2016/09/04/Cocoapods 高级篇/">
-      </div>
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -460,86 +423,93 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pod的引入"><span class="nav-number">1.</span> <span class="nav-text">pod的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般的情况我们会用-pod-39-AFNetworking-39-39-gt-3-1-39-，-这些指定source就可以安装到指定tag的版本的代码"><span class="nav-number">1.1.</span> <span class="nav-text">一般的情况我们会用 pod 'AFNetworking','~> 3.1'， 这些指定source就可以安装到指定tag的版本的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用指定git不同版本的代码"><span class="nav-number">1.2.</span> <span class="nav-text">使用指定git不同版本的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用git的master分支上的代码"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用git的master分支上的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用其他分支的repo"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用其他分支的repo:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用指定tag的代码"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用指定tag的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用某个指定的-commit的代码："><span class="nav-number">1.2.4.</span> <span class="nav-text">使用某个指定的 commit的代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用spec-repo-之外的podspec-可自己指定-podspec"><span class="nav-number">1.3.</span> <span class="nav-text">用spec repo 之外的podspec, 可自己指定 podspec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以指定安装特定的subspec，-如"><span class="nav-number">1.4.</span> <span class="nav-text">可以指定安装特定的subspec， 如</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件夹映射"><span class="nav-number">2.</span> <span class="nav-text">文件夹映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"><span class="nav-number">2.1.</span> <span class="nav-text">那么如何解决这个问题？ 细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subspec是干嘛的？"><span class="nav-number">2.2.</span> <span class="nav-text">subspec是干嘛的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源文件"><span class="nav-number">3.</span> <span class="nav-text">资源文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pod的引入"><span class="nav-number">1.</span> <span class="nav-text"><a href="#pod&#x7684;&#x5F15;&#x5165;" class="headerlink" title="pod&#x7684;&#x5F15;&#x5165;"></a><code>pod</code>&#x7684;&#x5F15;&#x5165;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般的情况我们会用-pod-39-AFNetworking-39-39-gt-3-1-39-，-这些指定source就可以安装到指定tag的版本的代码"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x822C;&#x7684;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4F1A;&#x7528;-pod-39-AFNetworking-39-39-gt-3-1-39-&#xFF0C;-&#x8FD9;&#x4E9B;&#x6307;&#x5B9A;source&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5230;&#x6307;&#x5B9A;tag&#x7684;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x4E00;&#x822C;&#x7684;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4F1A;&#x7528; pod &apos;AFNetworking&apos;,&apos;~&gt; 3.1&apos;&#xFF0C; &#x8FD9;&#x4E9B;&#x6307;&#x5B9A;source&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5230;&#x6307;&#x5B9A;tag&#x7684;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;"></a>&#x4E00;&#x822C;&#x7684;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4F1A;&#x7528; <code>pod &apos;AFNetworking&apos;,&apos;~&gt; 3.1&apos;</code>&#xFF0C; &#x8FD9;&#x4E9B;&#x6307;&#x5B9A;<code>source</code>&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5230;&#x6307;&#x5B9A;<code>tag</code>&#x7684;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用指定git不同版本的代码"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x6307;&#x5B9A;git&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x4F7F;&#x7528;&#x6307;&#x5B9A;git&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;"></a>&#x4F7F;&#x7528;&#x6307;&#x5B9A;git&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用git的master分支上的代码"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;git&#x7684;master&#x5206;&#x652F;&#x4E0A;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x4F7F;&#x7528;git&#x7684;master&#x5206;&#x652F;&#x4E0A;&#x7684;&#x4EE3;&#x7801;"></a>&#x4F7F;&#x7528;git&#x7684;<code>master</code>&#x5206;&#x652F;&#x4E0A;&#x7684;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用其他分支的repo"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x5206;&#x652F;&#x7684;repo" class="headerlink" title="&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x5206;&#x652F;&#x7684;repo:"></a>&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x5206;&#x652F;&#x7684;repo:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用指定tag的代码"><span class="nav-number">1.2.3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x6307;&#x5B9A;tag&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x4F7F;&#x7528;&#x6307;&#x5B9A;tag&#x7684;&#x4EE3;&#x7801;"></a>&#x4F7F;&#x7528;&#x6307;&#x5B9A;tag&#x7684;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用某个指定的-commit的代码："><span class="nav-number">1.2.4.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x67D0;&#x4E2A;&#x6307;&#x5B9A;&#x7684;-commit&#x7684;&#x4EE3;&#x7801;&#xFF1A;" class="headerlink" title="&#x4F7F;&#x7528;&#x67D0;&#x4E2A;&#x6307;&#x5B9A;&#x7684; commit&#x7684;&#x4EE3;&#x7801;&#xFF1A;"></a>&#x4F7F;&#x7528;&#x67D0;&#x4E2A;&#x6307;&#x5B9A;&#x7684; commit&#x7684;&#x4EE3;&#x7801;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用spec-repo-之外的podspec-可自己指定-podspec"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x7528;spec-repo-&#x4E4B;&#x5916;&#x7684;podspec-&#x53EF;&#x81EA;&#x5DF1;&#x6307;&#x5B9A;-podspec" class="headerlink" title="&#x7528;spec repo &#x4E4B;&#x5916;&#x7684;podspec, &#x53EF;&#x81EA;&#x5DF1;&#x6307;&#x5B9A; podspec"></a>&#x7528;spec repo &#x4E4B;&#x5916;&#x7684;podspec, &#x53EF;&#x81EA;&#x5DF1;&#x6307;&#x5B9A; podspec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以指定安装特定的subspec，-如"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5B89;&#x88C5;&#x7279;&#x5B9A;&#x7684;subspec&#xFF0C;-&#x5982;" class="headerlink" title="&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5B89;&#x88C5;&#x7279;&#x5B9A;&#x7684;subspec&#xFF0C; &#x5982;"></a>&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5B89;&#x88C5;&#x7279;&#x5B9A;&#x7684;<code>subspec</code>&#xFF0C; &#x5982;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件夹映射"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6587;&#x4EF6;&#x5939;&#x6620;&#x5C04;" class="headerlink" title="&#x6587;&#x4EF6;&#x5939;&#x6620;&#x5C04;"></a>&#x6587;&#x4EF6;&#x5939;&#x6620;&#x5C04;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF1F;-&#x7EC6;&#x5FC3;&#x7684;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;AFNetwork&#x7684;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x5F88;&#x6E05;&#x6670;&#xFF0C;&#x4ECE;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;" class="headerlink" title="&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF1F; &#x7EC6;&#x5FC3;&#x7684;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;AFNetwork&#x7684;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x5F88;&#x6E05;&#x6670;&#xFF0C;&#x4ECE;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;"></a>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF1F; &#x7EC6;&#x5FC3;&#x7684;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;<code>AFNetwork</code>&#x7684;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x5F88;&#x6E05;&#x6670;&#xFF0C;&#x4ECE;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subspec是干嘛的？"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#subspec&#x662F;&#x5E72;&#x561B;&#x7684;&#xFF1F;" class="headerlink" title="subspec&#x662F;&#x5E72;&#x561B;&#x7684;&#xFF1F;"></a><code>subspec</code>&#x662F;&#x5E72;&#x561B;&#x7684;&#xFF1F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源文件"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8D44;&#x6E90;&#x6587;&#x4EF6;" class="headerlink" title="&#x8D44;&#x6E90;&#x6587;&#x4EF6;"></a>&#x8D44;&#x6E90;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -552,44 +522,50 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -612,76 +588,10 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -689,15 +599,113 @@ pod的引入一般的情况我们会用 pod &amp;#39;AFNetworking&amp;#39;,&amp;
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
+  
 
   
+
+  
+
+  
+
 </body>
 </html>

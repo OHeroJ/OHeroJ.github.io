@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,45 +34,38 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
 
 
   <meta name="keywords" content="iOS,直播," />
@@ -77,54 +77,56 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-
-
-
-
-<meta name="description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
-协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS
-
-RTMP(Real Time Mes">
+<meta name="description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。 协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS  RTMP(Real Time Mes">
+<meta name="keywords" content="iOS,直播">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 直播 Tutorials">
 <meta property="og:url" content="http://loveli.site/2016/07/02/iOS 直播 Tutorials/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
-协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS
-
-RTMP(Real Time Mes">
+<meta property="og:description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。 协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS  RTMP(Real Time Mes">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-13T05:05:17.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 直播 Tutorials">
-<meta name="twitter:description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
-协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS
-
-RTMP(Real Time Mes">
+<meta name="twitter:description" content="1.直播相关基本知识服务器* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。 协议:国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS  RTMP(Real Time Mes">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> iOS 直播 Tutorials | loveli </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/2016/07/02/iOS 直播 Tutorials/"/>
+
+
+
+
+
+  <title>iOS 直播 Tutorials | loveli</title>
   
 
 
@@ -134,36 +136,42 @@ RTMP(Real Time Mes">
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -184,31 +192,11 @@ RTMP(Real Time Mes">
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -219,6 +207,8 @@ RTMP(Real Time Mes">
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -233,66 +223,77 @@ RTMP(Real Time Mes">
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/02/iOS 直播 Tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                iOS 直播 Tutorials
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">iOS 直播 Tutorials</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
-              2016-07-02
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-02T20:05:33+08:00">
+                2016-07-02
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/02/iOS 直播 Tutorials/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/iOS 直播 Tutorials/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -302,14 +303,14 @@ RTMP(Real Time Mes">
         <h2 id="1-直播相关基本知识"><a href="#1-直播相关基本知识" class="headerlink" title="1.直播相关基本知识"></a>1.直播相关基本知识</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
 </code></pre><h3 id="协议"><a href="#协议" class="headerlink" title="协议:"></a>协议:</h3><p>国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
 <ul>
-<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="external">Real Time Messaging Protocol</a>) 协议</p>
+<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="noopener">Real Time Messaging Protocol</a>) 协议</p>
 <p>  Adobe公司为Flash播放器和服务器之间音、视频及数据传输开发的实时消息传送协议。协议中，视频必须是H264编码，音频必须是AAC或MP3编码，且多以flv格式封包</p>
 <ol>
 <li>开源软件和开源库的支持稳定完整。如斗鱼主播常用的OBS软件，开源的librtmp库，服务端有nginx-rtmp插件。</li>
 <li>播放端安装率高。只要浏览器支持FlashPlayer就能非常简易的播放RTMP的直播，协议详解可以Google了解。相对其他协议而言，RTMP协议初次建立连接的时候握手过程过于复杂（底层基于TCP，这里说的是RTMP协议本身的交互），视不同的网络状况会带来给首开带来100ms以上的延迟。基于RTMP的直播一般内容延迟在2~5秒。</li>
 </ol>
 </li>
-<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="external">HTTP Live Streaming</a>) 协议</p>
+<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="noopener">HTTP Live Streaming</a>) 协议</p>
 <p>  是由Apple公司定义的基于HTTP的流媒体实时传输协议。它的原理是将整个流分为一个一个小的文件来下载，每次只下载若干个。传输内容包括两部分：一是<code>M3U8</code>描述文件，二是<code>TS</code>媒体文件。TS媒体文件中的视频必须是<code>H264</code>编码,音频必须是<code>AAC</code>或<code>MP3</code>编码。</p>
 <p>  HLS协议在服务器端将直播数据流存储为连续的、很短时长的媒体文件（MPEG-TS格式），而客户端则不断的下载并播放这些小文件，因为服务器端总是会将最新的直播数据生成新的小文件，这样客户端只要不停的按顺序播放从服务器获取到的文件，就实现了直播。由此可见，基本上可以认为，HLS是以点播的技术方式来实现直播。由于数据通过HTTP协议传输，所以完全不用考虑防火墙或者代理的问题，而且分段文件的时长很短，客户端可以很快的选择和切换码率，以适应不同带宽条件下的播放。不过HLS的这种技术特点，决定了它的延迟一般总是会高于普通的流媒体直播协议。</p>
 <p>  HLS有一个非常大的<code>优点</code>：HTML5可以直接打开播放；这个意味着可以把一个直播链接通过微信等转发分享，不需要安装任何独立的APP，有浏览器即可，所以流行度很高。社交直播APP，HLS可以说是刚需</p>
@@ -318,7 +319,7 @@ RTMP(Real Time Mes">
 <h2 id="2-步骤："><a href="#2-步骤：" class="headerlink" title="2.步骤："></a>2.步骤：</h2><h3 id="音视频的采集"><a href="#音视频的采集" class="headerlink" title="音视频的采集"></a>音视频的采集</h3><p>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据</p>
 <h3 id="对视频进行H264编码，对音频进行AAC编码"><a href="#对视频进行H264编码，对音频进行AAC编码" class="headerlink" title="对视频进行H264编码，对音频进行AAC编码"></a>对视频进行H264编码，对音频进行AAC编码</h3><p>将原始视频编码过程中，有两种方案：</p>
 <ol>
-<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">FFmpeg</a> 进行编码</li>
+<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="noopener">FFmpeg</a> 进行编码</li>
 <li>利用iOS自身的AVAssetWriter 或VideoToolBox.framework的VTCompressionSession进行编码。</li>
 </ol>
 <h3 id="编码："><a href="#编码：" class="headerlink" title="编码："></a>编码：</h3><ol>
@@ -430,7 +431,7 @@ rtmp {
 </code></pre><blockquote>
 <p>注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，<br>跟你的rtmp-nginx-module这个版本有关系吧， 可以 <code>cd /usr/local/Cellar/rtmp-nginx-module/</code> 来查看</p>
 </blockquote>
-<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></p>
+<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></p>
 <p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
 <ol>
 <li>mac 和手机在同一局域网(共连一个wifi)</li>
@@ -445,58 +446,37 @@ rtmp {
 <pre><code>brew unlink ffmpeg
 brew install ffmpeg --with-ffplay
 </code></pre><h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4.参考文献"></a>4.参考文献</h2><ol>
-<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="external">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
-<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="external"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
-<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="external">FFmpeg相关资料 专栏文章</a></li>
-<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="noopener">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
+<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="noopener"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
+<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="noopener">FFmpeg相关资料 专栏文章</a></li>
+<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></li>
 </ol>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+    
 
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/直播/" rel="tag">#直播</a>
+            <a href="/tags/直播/" rel="tag"># 直播</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -508,6 +488,8 @@ brew install ffmpeg --with-ffplay
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -522,30 +504,15 @@ brew install ffmpeg --with-ffplay
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2016/07/02/iOS 直播 Tutorials/"
-     data-title="iOS 直播 Tutorials"
-     data-content=""
-     data-url="http://loveli.site/2016/07/02/iOS 直播 Tutorials/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -554,18 +521,11 @@ brew install ffmpeg --with-ffplay
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/02/iOS 直播 Tutorials/"
-           data-title="iOS 直播 Tutorials" data-url="http://loveli.site/2016/07/02/iOS 直播 Tutorials/">
-      </div>
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -581,86 +541,93 @@ brew install ffmpeg --with-ffplay
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-直播相关基本知识"><span class="nav-number">1.</span> <span class="nav-text">1.直播相关基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">1.2.</span> <span class="nav-text">协议:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-步骤："><span class="nav-number">2.</span> <span class="nav-text">2.步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音视频的采集"><span class="nav-number">2.1.</span> <span class="nav-text">音视频的采集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对视频进行H264编码，对音频进行AAC编码"><span class="nav-number">2.2.</span> <span class="nav-text">对视频进行H264编码，对音频进行AAC编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码："><span class="nav-number">2.3.</span> <span class="nav-text">编码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上推到服务端。"><span class="nav-number">2.4.</span> <span class="nav-text">上推到服务端。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放端-拉流-解密"><span class="nav-number">2.5.</span> <span class="nav-text">播放端 拉流 解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-IOS手机直播Demo流程"><span class="nav-number">3.</span> <span class="nav-text">3.IOS手机直播Demo流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建本地测试服务器【Mac-os-10-11】"><span class="nav-number">3.1.</span> <span class="nav-text">搭建本地测试服务器【Mac os 10.11】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器搭建"><span class="nav-number">3.1.1.</span> <span class="nav-text">服务器搭建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件"><span class="nav-number">3.1.2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑好后，-进行-sudo-nginx-s-reload"><span class="nav-number">3.1.3.</span> <span class="nav-text">编辑好后， 进行  sudo nginx -s reload</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采集音视频"><span class="nav-number">3.2.</span> <span class="nav-text">采集音视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放端"><span class="nav-number">3.3.</span> <span class="nav-text">播放端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-参考文献"><span class="nav-number">4.</span> <span class="nav-text">4.参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-直播相关基本知识"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x76F4;&#x64AD;&#x76F8;&#x5173;&#x57FA;&#x672C;&#x77E5;&#x8BC6;" class="headerlink" title="1.&#x76F4;&#x64AD;&#x76F8;&#x5173;&#x57FA;&#x672C;&#x77E5;&#x8BC6;"></a>1.&#x76F4;&#x64AD;&#x76F8;&#x5173;&#x57FA;&#x672C;&#x77E5;&#x8BC6;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;"></a>&#x670D;&#x52A1;&#x5668;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x534F;&#x8BAE;" class="headerlink" title="&#x534F;&#x8BAE;:"></a>&#x534F;&#x8BAE;:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-步骤："><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x6B65;&#x9AA4;&#xFF1A;" class="headerlink" title="2.&#x6B65;&#x9AA4;&#xFF1A;"></a>2.&#x6B65;&#x9AA4;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音视频的采集"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x97F3;&#x89C6;&#x9891;&#x7684;&#x91C7;&#x96C6;" class="headerlink" title="&#x97F3;&#x89C6;&#x9891;&#x7684;&#x91C7;&#x96C6;"></a>&#x97F3;&#x89C6;&#x9891;&#x7684;&#x91C7;&#x96C6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对视频进行H264编码，对音频进行AAC编码"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x89C6;&#x9891;&#x8FDB;&#x884C;H264&#x7F16;&#x7801;&#xFF0C;&#x5BF9;&#x97F3;&#x9891;&#x8FDB;&#x884C;AAC&#x7F16;&#x7801;" class="headerlink" title="&#x5BF9;&#x89C6;&#x9891;&#x8FDB;&#x884C;H264&#x7F16;&#x7801;&#xFF0C;&#x5BF9;&#x97F3;&#x9891;&#x8FDB;&#x884C;AAC&#x7F16;&#x7801;"></a>&#x5BF9;&#x89C6;&#x9891;&#x8FDB;&#x884C;H264&#x7F16;&#x7801;&#xFF0C;&#x5BF9;&#x97F3;&#x9891;&#x8FDB;&#x884C;AAC&#x7F16;&#x7801;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码："><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x7F16;&#x7801;&#xFF1A;" class="headerlink" title="&#x7F16;&#x7801;&#xFF1A;"></a>&#x7F16;&#x7801;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上推到服务端。"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x4E0A;&#x63A8;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x3002;" class="headerlink" title="&#x4E0A;&#x63A8;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x3002;"></a>&#x4E0A;&#x63A8;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x3002;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放端-拉流-解密"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#&#x64AD;&#x653E;&#x7AEF;-&#x62C9;&#x6D41;-&#x89E3;&#x5BC6;" class="headerlink" title="&#x64AD;&#x653E;&#x7AEF; &#x62C9;&#x6D41; &#x89E3;&#x5BC6;"></a>&#x64AD;&#x653E;&#x7AEF; &#x62C9;&#x6D41; &#x89E3;&#x5BC6;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-IOS手机直播Demo流程"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-IOS&#x624B;&#x673A;&#x76F4;&#x64AD;Demo&#x6D41;&#x7A0B;" class="headerlink" title="3.IOS&#x624B;&#x673A;&#x76F4;&#x64AD;Demo&#x6D41;&#x7A0B;"></a>3.IOS&#x624B;&#x673A;&#x76F4;&#x64AD;Demo&#x6D41;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建本地测试服务器【Mac-os-10-11】"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x642D;&#x5EFA;&#x672C;&#x5730;&#x6D4B;&#x8BD5;&#x670D;&#x52A1;&#x5668;&#x3010;Mac-os-10-11&#x3011;" class="headerlink" title="&#x642D;&#x5EFA;&#x672C;&#x5730;&#x6D4B;&#x8BD5;&#x670D;&#x52A1;&#x5668;&#x3010;Mac os 10.11&#x3011;"></a>&#x642D;&#x5EFA;&#x672C;&#x5730;&#x6D4B;&#x8BD5;&#x670D;&#x52A1;&#x5668;&#x3010;Mac os 10.11&#x3011;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器搭建"><span class="nav-number">3.1.1.</span> <span class="nav-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x642D;&#x5EFA;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x642D;&#x5EFA;"></a>&#x670D;&#x52A1;&#x5668;&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件"><span class="nav-number">3.1.2.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑好后，-进行-sudo-nginx-s-reload"><span class="nav-number">3.1.3.</span> <span class="nav-text"><a href="#&#x7F16;&#x8F91;&#x597D;&#x540E;&#xFF0C;-&#x8FDB;&#x884C;-sudo-nginx-s-reload" class="headerlink" title="&#x7F16;&#x8F91;&#x597D;&#x540E;&#xFF0C; &#x8FDB;&#x884C;  sudo nginx -s reload"></a>&#x7F16;&#x8F91;&#x597D;&#x540E;&#xFF0C; &#x8FDB;&#x884C;  sudo nginx -s reload</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采集音视频"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x91C7;&#x96C6;&#x97F3;&#x89C6;&#x9891;" class="headerlink" title="&#x91C7;&#x96C6;&#x97F3;&#x89C6;&#x9891;"></a>&#x91C7;&#x96C6;&#x97F3;&#x89C6;&#x9891;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放端"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x64AD;&#x653E;&#x7AEF;" class="headerlink" title="&#x64AD;&#x653E;&#x7AEF;"></a>&#x64AD;&#x653E;&#x7AEF;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-参考文献"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x53C2;&#x8003;&#x6587;&#x732E;" class="headerlink" title="4.&#x53C2;&#x8003;&#x6587;&#x732E;"></a>4.&#x53C2;&#x8003;&#x6587;&#x732E;</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -673,44 +640,50 @@ brew install ffmpeg --with-ffplay
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -733,76 +706,10 @@ brew install ffmpeg --with-ffplay
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -810,15 +717,113 @@ brew install ffmpeg --with-ffplay
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
+  
 
   
+
+  
+
+  
+
 </body>
 </html>

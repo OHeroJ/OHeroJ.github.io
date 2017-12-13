@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,48 +34,41 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,Vapor,全栈," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vapor,Swift,全栈," />
 
 
 
@@ -77,102 +77,101 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-
-
-
-
-<meta name="description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。
-
-上线服务器选择
-数据库选择
-环境搭建
-
-上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta name="description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta name="keywords" content="Vapor,Swift,全栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="全栈后台上线之 Swift Vapor">
 <meta property="og:url" content="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。
-
-上线服务器选择
-数据库选择
-环境搭建
-
-上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta property="og:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-13T05:06:24.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全栈后台上线之 Swift Vapor">
-<meta name="twitter:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。
-
-上线服务器选择
-数据库选择
-环境搭建
-
-上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta name="twitter:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> 全栈后台上线之 Swift Vapor | loveli </title>
+
+
+  <link rel="canonical" href="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/"/>
+
+
+
+
+
+  <title>全栈后台上线之 Swift Vapor | loveli</title>
+  
+
+
+
+
+
+
+
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
-
-
-
-
-
-
-
-
-
-
-  
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -193,31 +192,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -228,6 +207,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -242,66 +223,77 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                全栈后台上线之 Swift Vapor
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">全栈后台上线之 Swift Vapor</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-09T14:34:12+08:00" content="2017-10-09">
-              2017-10-09
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T14:34:12+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/10/09/全栈后台上线之Swift-Vapor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/09/全栈后台上线之Swift-Vapor/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -318,8 +310,8 @@
 <p>各种坑的到来，使我的身心严重受挫，此路不能走，那我就走其他路，然后通过知乎，对比一些推荐的国外的云主机，我最后选择了搬瓦工的，果然国外的东西用起来没这么啰嗦，果断选了个，发现不仅可以自己更换操作系统，还可以直接绑定域名，当然我是在阿里云买的，还需要进行域名的相关设置，但是这比备案，那是简单的不能简单了。然后很愉快的就用这个服务器了。鉴于阿里云买了一年的服务器，我这次在搬瓦工仅买了一个月的，体验一下再看看。</p>
 <h2 id="数据库选择"><a href="#数据库选择" class="headerlink" title="数据库选择"></a>数据库选择</h2><p>期初我的项目是跑在 heroku 上的，但是慢慢发现免费的终究有很多限制，并且它仅仅免费提供 postgresql. 其实 vapor 官方是提供的 mysql 支持的， postgresql 是社区进行维护的，其实两者在 vapor 层面基本上行是没啥大的区别。在怂恿 postgresql 的时候有个命令  “vapor prepare” 这个命令还存在问题。</p>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>登入服务器是用 ssh，代码托管采用 github . 所以服务器上安装 git, swift , cmysql，vapor 相关工具。<br>代码+环境准备好后，就运行项目，“vapor run”, 我们本地进行访问成功，但是当我把 ssh 的链接终端关闭，我的服务器就不能访问了， how ?</p>
-<p>转到vapor 的官方文档，问题的解决方案就找到了 <a href="https://docs.vapor.codes/2.0/deploy/supervisor/" target="_blank" rel="external">Supervisor</a>。</p>
-<p>为了解决端口不显示暴露，采用了 <a href="https://docs.vapor.codes/2.0/deploy/nginx/" target="_blank" rel="external">nginx</a></p>
+<p>转到vapor 的官方文档，问题的解决方案就找到了 <a href="https://docs.vapor.codes/2.0/deploy/supervisor/" target="_blank" rel="noopener">Supervisor</a>。</p>
+<p>为了解决端口不显示暴露，采用了 <a href="https://docs.vapor.codes/2.0/deploy/nginx/" target="_blank" rel="noopener">nginx</a></p>
 <p>很多遇到的问题官方文档上都可以找到相应的解决方案。</p>
 <h2 id="Vapor使用过程的不爽之处"><a href="#Vapor使用过程的不爽之处" class="headerlink" title="Vapor使用过程的不爽之处"></a>Vapor使用过程的不爽之处</h2><p>更改model的相关属性，数据库并没有随之更改。</p>
 <h2 id="相关的命令参考"><a href="#相关的命令参考" class="headerlink" title="相关的命令参考"></a>相关的命令参考</h2><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>服务开启</p>
@@ -330,52 +322,31 @@
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+    
 
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
           
-            <a href="/tags/Vapor/" rel="tag">#Vapor</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/全栈/" rel="tag">#全栈</a>
+            <a href="/tags/全栈/" rel="tag"># 全栈</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -387,6 +358,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -401,30 +374,15 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2017/10/09/全栈后台上线之Swift-Vapor/"
-     data-title="全栈后台上线之 Swift Vapor"
-     data-content=""
-     data-url="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -433,18 +391,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/10/09/全栈后台上线之Swift-Vapor/"
-           data-title="全栈后台上线之 Swift Vapor" data-url="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/">
-      </div>
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -460,86 +411,93 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上线服务器选择"><span class="nav-number">1.</span> <span class="nav-text">上线服务器选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库选择"><span class="nav-number">2.</span> <span class="nav-text">数据库选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vapor使用过程的不爽之处"><span class="nav-number">4.</span> <span class="nav-text">Vapor使用过程的不爽之处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关的命令参考"><span class="nav-number">5.</span> <span class="nav-text">相关的命令参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">5.1.</span> <span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-supervisor"><span class="nav-number">5.2.</span> <span class="nav-text">nginx supervisor</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上线服务器选择"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;" class="headerlink" title="&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;"></a>&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库选择"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;"></a>&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;&#x642D;&#x5EFA;" class="headerlink" title="&#x73AF;&#x5883;&#x642D;&#x5EFA;"></a>&#x73AF;&#x5883;&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vapor使用过程的不爽之处"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;" class="headerlink" title="Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;"></a>Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关的命令参考"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;" class="headerlink" title="&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;"></a>&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-supervisor"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#nginx-supervisor" class="headerlink" title="nginx supervisor"></a>nginx supervisor</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -552,44 +510,50 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -612,76 +576,10 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -689,15 +587,113 @@
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
+  
 
   
+
+  
+
+  
+
 </body>
 </html>

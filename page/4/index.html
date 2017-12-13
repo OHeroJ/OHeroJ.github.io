@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,48 +34,13 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="oheroj iOS python" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -76,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
 
 
 
@@ -88,30 +83,45 @@
 <meta property="og:title" content="loveli">
 <meta property="og:url" content="http://loveli.site/page/4/index.html">
 <meta property="og:site_name" content="loveli">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="loveli">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> loveli -  </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/page/4/"/>
+
+
+
+
+
+  <title>loveli</title>
   
 
 
@@ -121,38 +131,43 @@
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -173,31 +188,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -208,6 +203,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -222,13 +219,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/24/iOS 开发技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -236,55 +247,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/24/iOS 开发技巧/" itemprop="url">
-                  iOS 开发技巧
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/24/iOS 开发技巧/" itemprop="url">iOS 开发技巧</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T08:42:11+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-24T08:42:11+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/24/iOS 开发技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/iOS 开发技巧/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -305,7 +312,7 @@
 <li><p>忽略编译警告</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Warc-retain-cycles&quot;</div><div class="line">    self.completionBlock = ^ &#123;</div><div class="line">        ...</div><div class="line">    &#125;;</div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure>
 </li>
-<li><p><a href="http://ios.jobbole.com/85019/" target="_blank" rel="external">剖析@weakify 和 @strongify：</a></p>
+<li><p><a href="http://ios.jobbole.com/85019/" target="_blank" rel="noopener">剖析@weakify 和 @strongify：</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#define weakify(...)</div><div class="line">    rac_keywordify</div><div class="line">    metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)</div><div class="line"> </div><div class="line">#define strongify(...)</div><div class="line">    rac_keywordify</div><div class="line">    _Pragma(&quot;clang diagnostic push&quot;)</div><div class="line">    _Pragma(&quot;clang diagnostic ignored &quot;-Wshadow&quot;&quot;)</div><div class="line">    metamacro_foreach(rac_strongify_,, __VA_ARGS__)</div><div class="line">    _Pragma(&quot;clang diagnostic pop&quot;)</div></pre></td></tr></table></figure>
 </li>
 <li><p>断言的使用</p>
@@ -321,16 +328,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -340,6 +350,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -347,13 +361,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/23/iOS 之 AOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -361,55 +389,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/23/iOS 之 AOP/" itemprop="url">
-                  iOS 之 AOP
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/23/iOS 之 AOP/" itemprop="url">iOS 之 AOP</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T22:37:39+08:00" content="2016-08-23">
-              2016-08-23
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-23T22:37:39+08:00">
+                2016-08-23
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/23/iOS 之 AOP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/iOS 之 AOP/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -427,7 +451,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">NSDictionary *analyticsConfiguration()</div><div class="line">&#123;</div><div class="line">    return @&#123;</div><div class="line">             @&quot;trackedScreens&quot; : @[    // 页面统计</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Main screen&quot;</div><div class="line">                         &#125;</div><div class="line">                     ],</div><div class="line">             @&quot;trackedEvents&quot; : @[  // 交互事件统计</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginViewFetchedUserInfo:user:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Login with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginViewShowingLoggedOutUser:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Logout with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;loginView:handleError:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Login error with Facebook&quot;</div><div class="line">                         &#125;,</div><div class="line">                     @&#123;</div><div class="line">                         @&quot;class&quot; : @&quot;ZOCMainViewController&quot;,</div><div class="line">                         @&quot;selector&quot; : @&quot;shareButtonPressed:&quot;,</div><div class="line">                         @&quot;label&quot; : @&quot;Share button&quot;</div><div class="line">                         &#125;</div><div class="line">                     ]</div><div class="line">             &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>然后就是 进行 method_swizzing,</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">// .h</div><div class="line">@interface YTViewControllerIntercepter : NSObject</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">// .m</div><div class="line">@implementation YTViewControllerIntercepter</div><div class="line"></div><div class="line">+ (void)load &#123;</div><div class="line">    [super load];</div><div class="line">    [YTViewControllerIntercepter shareInstance];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (instancetype)shareInstance &#123;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    static YTViewControllerIntercepter *sharedInstance;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        sharedInstance = [[YTViewControllerIntercepter alloc] init];</div><div class="line">    &#125;);</div><div class="line">    return sharedInstance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (instancetype)init &#123;</div><div class="line">    if (self = [super init]) &#123;</div><div class="line"></div><div class="line">         /* 在这里做好方法拦截 */</div><div class="line">        [self setupWithConfiguration:analyticsConfiguration()];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setupWithConfiguration:(NSDictionary *)configuration &#123;</div><div class="line"></div><div class="line">    for (NSDictionary *trackedScreen in configuration[@&quot;trackedScreens&quot;]) &#123;</div><div class="line">        Class clazz = NSClassFromString(trackedScreen[@&quot;class&quot;]);</div><div class="line"></div><div class="line">        [clazz aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</div><div class="line">            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</div><div class="line">                NSString *viewName = trackedScreen[@&quot;label&quot;];</div><div class="line">//                [tracker trackScreenHitWithName:viewName];</div><div class="line"></div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;error:nil];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // events tracking</div><div class="line">    for (NSDictionary *trackedEvents in configuration[@&quot;trackedEvents&quot;]) &#123;</div><div class="line">        Class clazz = NSClassFromString(trackedEvents[@&quot;class&quot;]);</div><div class="line">        SEL selektor = NSSelectorFromString(trackedEvents[@&quot;selector&quot;]);</div><div class="line"></div><div class="line">        [clazz aspect_hookSelector:selektor</div><div class="line">                       withOptions:AspectPositionAfter</div><div class="line">                        usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</div><div class="line">                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),</div><div class="line">                                           ^&#123;</div><div class="line">//                                               UserActivityButtonPressedEvent *buttonPressEvent =</div><div class="line">//                                               [UserActivityButtonPressedEvent</div><div class="line">//                                                eventWithLabel:trackedEvents[@&quot;label&quot;]];</div><div class="line">//                                               [tracker trackEvent:buttonPressEvent];</div><div class="line">                                           &#125;);</div><div class="line">                        &#125;</div><div class="line">                             error:nil];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下面有个提示，摘抄自<a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">nshsipster</a></p>
+<p>下面有个提示，摘抄自<a href="http://nshipster.com/method-swizzling/" target="_blank" rel="noopener">nshsipster</a></p>
 <blockquote>
 <p> Swizzling should always be done in +load ?<br>+load is sent when the class is initially loaded, while +initialize is called just before the application calls its first method on that class or an instance of that class. Both are optional, and are executed only if the method is implemented.<br>Because method swizzling affects global state, it is important to minimize the possibility of race conditions. +load is guaranteed to be loaded during class initialization, which provides a modicum of consistency for changing system-wide behavior. By contrast, +initialize provides no such guarantee of when it will be executed—in fact, it may never be called, if that class is never messaged directly by the app.</p>
 </blockquote>
@@ -439,26 +463,29 @@
 <li>这个方法被重构了。或者新加的方法忘了加统计了</li>
 </ol>
 <h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
-<li><a href="http://nshipster.com/method-swizzling/" target="_blank" rel="external">Method Swizzling</a></li>
-<li><a href="http://my.oschina.net/leejun2005/blog/504732" target="_blank" rel="external">iOS 统计打点那些事</a></li>
-<li><a href="https://github.com/oa414/objc-zen-book-cn#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B" target="_blank" rel="external">禅与 Objective-C 编程艺术</a></li>
-<li><a href="http://ios.jobbole.com/86612/?utm_source=top.caibaojian.com/112246" target="_blank" rel="external">漫谈iOS AOP编程之路</a></li>
+<li><a href="http://nshipster.com/method-swizzling/" target="_blank" rel="noopener">Method Swizzling</a></li>
+<li><a href="http://my.oschina.net/leejun2005/blog/504732" target="_blank" rel="noopener">iOS 统计打点那些事</a></li>
+<li><a href="https://github.com/oa414/objc-zen-book-cn#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B" target="_blank" rel="noopener">禅与 Objective-C 编程艺术</a></li>
+<li><a href="http://ios.jobbole.com/86612/?utm_source=top.caibaojian.com/112246" target="_blank" rel="noopener">漫谈iOS AOP编程之路</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -468,6 +495,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -475,13 +506,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/21/React-Native入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -489,55 +534,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/21/React-Native入门/" itemprop="url">
-                  React-Native 入门
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/21/React-Native入门/" itemprop="url">React-Native 入门</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T18:51:28+08:00" content="2016-08-21">
-              2016-08-21
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-21T18:51:28+08:00">
+                2016-08-21
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/React-Native入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/React-Native入门/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -564,16 +605,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -583,6 +627,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -590,13 +638,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/10/优雅处理-bad-enum-configurations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -604,55 +666,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/10/优雅处理-bad-enum-configurations/" itemprop="url">
-                  优雅处理 bad enum configurations
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/10/优雅处理-bad-enum-configurations/" itemprop="url">优雅处理 bad enum configurations</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T23:10:48+08:00" content="2016-08-10">
-              2016-08-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-10T23:10:48+08:00">
+                2016-08-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/10/优雅处理-bad-enum-configurations/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/优雅处理-bad-enum-configurations/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -675,24 +733,27 @@
 
 
 <h3 id="扩展阅读："><a href="#扩展阅读：" class="headerlink" title="扩展阅读："></a>扩展阅读：</h3><ul>
-<li><a href="http://www.jessesquires.com/enums-as-configs/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=web&amp;utm_source=This_Week_in_Swift_98" target="_blank" rel="external">Enums as configuration: the anti-pattern</a></li>
-<li><a href="https://realm.io/cn/news/tryswift-daniel-steinberg-blending-cultures/" target="_blank" rel="external">文化碰撞：函数式、面向协议、面向对象编程的最佳实践</a></li>
+<li><a href="http://www.jessesquires.com/enums-as-configs/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=web&amp;utm_source=This_Week_in_Swift_98" target="_blank" rel="noopener">Enums as configuration: the anti-pattern</a></li>
+<li><a href="https://realm.io/cn/news/tryswift-daniel-steinberg-blending-cultures/" target="_blank" rel="noopener">文化碰撞：函数式、面向协议、面向对象编程的最佳实践</a></li>
 </ul>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -702,6 +763,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -709,13 +774,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/07/私有 Cocoapods 的创建和维护/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -723,55 +802,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="url">
-                  私有 Cocoapods 的创建和维护
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="url">私有 Cocoapods 的创建和维护</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-07T21:53:39+08:00" content="2016-08-07">
-              2016-08-07
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-07T21:53:39+08:00">
+                2016-08-07
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/07/私有 Cocoapods 的创建和维护/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -792,14 +867,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit <span class="_">-s</span> -m <span class="string">"First Commit of Lib"</span></div></pre></td></tr></table></figure>
 <p>这个时候你在gitlab上创建个项目：<br><img src="/images/pod-file05.png" alt="pod lib create xcode gitlab"></p>
 <p>将本地代码库与远程代码库关联<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@gitlab.com:oheroj/RoundButton.git <span class="comment">#添加远端仓库</span></div><div class="line">git push origin master <span class="comment"># 提交到远端仓库</span></div></pre></td></tr></table></figure></p>
-<p>这里我们也会遇到一个问题就是 git 提交人的信息有问题，默认提交者为你设置的全局的git的ueser， 所以这个时候就得改名字了， 比如我这边要改为 oheroj , 然后邮箱改为gmail邮箱。<br>有这么一段脚本可以 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="external">参考执行</a>：</p>
+<p>这里我们也会遇到一个问题就是 git 提交人的信息有问题，默认提交者为你设置的全局的git的ueser， 所以这个时候就得改名字了， 比如我这边要改为 oheroj , 然后邮箱改为gmail邮箱。<br>有这么一段脚本可以 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">参考执行</a>：</p>
 <p>有这么个脚本  change.sh, 里面的内容是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure>
 <p>这个时候你直接替换相应的内容，然后执行 <code>sh change.sh</code></p>
 <blockquote>
 <p>这里需要注意的是每当你向Pod中添加了新的文件或者以后更新了podspec的版本都需要重新执行一遍pod update命令</p>
 </blockquote>
-<p>接下来就是编辑<code>podspec</code>文件了, 涉及到的字段可以到 <a href="http://guides.cocoapods.org/syntax/podspec.html#specification" target="_blank" rel="external">官方文档</a> 查阅<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'RoundButton'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'A Custom Round Button of Button.'</span></div><div class="line"></div><div class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></div><div class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></div><div class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></div><div class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></div><div class="line"><span class="comment">#   * Finally, don't worry about the indent, CocoaPods strips it!</span></div><div class="line"></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">创建一个带有圆角的UIButton, 并且用block封装回调</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://gitlab.com/oheroj/RoundButton'</span></div><div class="line">  <span class="comment"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'oheroj'</span> =&gt; <span class="string">'oheroj@gmail.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://gitlab.com/oheroj/RoundButton.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line">  <span class="comment"># s.social_media_url = 'https://twitter.com/&lt;TWITTER_USERNAME&gt;'</span></div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'8.0'</span></div><div class="line"></div><div class="line">  s.source_files = <span class="string">'RoundButton/Classes/**/*'</span></div><div class="line"></div><div class="line">  <span class="comment"># s.resource_bundles = &#123;</span></div><div class="line">  <span class="comment">#   'RoundButton' =&gt; ['RoundButton/Assets/*.png']</span></div><div class="line">  <span class="comment"># &#125;</span></div><div class="line"></div><div class="line">  <span class="comment"># s.public_header_files = 'Pod/Classes/**/*.h'</span></div><div class="line">  <span class="comment"># s.frameworks = 'UIKit', 'MapKit'</span></div><div class="line">  <span class="comment"># s.dependency 'AFNetworking', '~&gt; 2.3'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>接下来就是编辑<code>podspec</code>文件了, 涉及到的字段可以到 <a href="http://guides.cocoapods.org/syntax/podspec.html#specification" target="_blank" rel="noopener">官方文档</a> 查阅<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'RoundButton'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'A Custom Round Button of Button.'</span></div><div class="line"></div><div class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></div><div class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></div><div class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></div><div class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></div><div class="line"><span class="comment">#   * Finally, don't worry about the indent, CocoaPods strips it!</span></div><div class="line"></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">创建一个带有圆角的UIButton, 并且用block封装回调</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://gitlab.com/oheroj/RoundButton'</span></div><div class="line">  <span class="comment"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'oheroj'</span> =&gt; <span class="string">'oheroj@gmail.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://gitlab.com/oheroj/RoundButton.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line">  <span class="comment"># s.social_media_url = 'https://twitter.com/&lt;TWITTER_USERNAME&gt;'</span></div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'8.0'</span></div><div class="line"></div><div class="line">  s.source_files = <span class="string">'RoundButton/Classes/**/*'</span></div><div class="line"></div><div class="line">  <span class="comment"># s.resource_bundles = &#123;</span></div><div class="line">  <span class="comment">#   'RoundButton' =&gt; ['RoundButton/Assets/*.png']</span></div><div class="line">  <span class="comment"># &#125;</span></div><div class="line"></div><div class="line">  <span class="comment"># s.public_header_files = 'Pod/Classes/**/*.h'</span></div><div class="line">  <span class="comment"># s.frameworks = 'UIKit', 'MapKit'</span></div><div class="line">  <span class="comment"># s.dependency 'AFNetworking', '~&gt; 2.3'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
 <p>进行提交，并且打<code>tag</code></p>
 <blockquote>
 <p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
@@ -833,28 +908,31 @@
 <h5 id="删除本地一个私有Spec-Repo"><a href="#删除本地一个私有Spec-Repo" class="headerlink" title="删除本地一个私有Spec Repo"></a>删除本地一个私有<code>Spec Repo</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo remove WTSpecs</div></pre></td></tr></table></figure>
 <h5 id="删除私有Spec-Repo某一个podspec"><a href="#删除私有Spec-Repo某一个podspec" class="headerlink" title="删除私有Spec Repo某一个podspec"></a>删除私有<code>Spec Repo</code>某一个<code>podspec</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/.cocoapods/repos/MySpecs</div><div class="line">rm -rf RoundButton</div><div class="line">git commit -a -m &quot;Feat: RoundButton podspec&quot;</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <h5 id="8-参考文献"><a href="#8-参考文献" class="headerlink" title="8. 参考文献"></a>8. 参考文献</h5><ol>
-<li><a href="http://guides.cocoapods.org/making/private-cocoapods.html" target="_blank" rel="external">Private Pods</a></li>
-<li><a href="http://blog.grio.com/2014/11/creating-a-private-cocoapod.html" target="_blank" rel="external">Creating a Private CocoaPod</a></li>
-<li><a href="https://objectpartners.com/2014/06/25/developing-private-in-house-libraries-with-cocoapods/" target="_blank" rel="external">Developing Private In-House Libraries with CocoaPods</a></li>
-<li><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="external">使用Cocoapods创建私有podspec</a></li>
-<li><a href="http://www.pluto-y.com/cocoapod-private-pods-and-module-manager/" target="_blank" rel="external">Cocoapods系列教程(三)——私有库管理和模块化管理</a></li>
-<li><a href="http://xiongzenghuidegithub.github.io/blog/2015/12/25/frameworksan-,-shi-yong-di-san-ku/" target="_blank" rel="external">一个iOS菜菜的白话文记录</a></li>
+<li><a href="http://guides.cocoapods.org/making/private-cocoapods.html" target="_blank" rel="noopener">Private Pods</a></li>
+<li><a href="http://blog.grio.com/2014/11/creating-a-private-cocoapod.html" target="_blank" rel="noopener">Creating a Private CocoaPod</a></li>
+<li><a href="https://objectpartners.com/2014/06/25/developing-private-in-house-libraries-with-cocoapods/" target="_blank" rel="noopener">Developing Private In-House Libraries with CocoaPods</a></li>
+<li><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="noopener">使用Cocoapods创建私有podspec</a></li>
+<li><a href="http://www.pluto-y.com/cocoapod-private-pods-and-module-manager/" target="_blank" rel="noopener">Cocoapods系列教程(三)——私有库管理和模块化管理</a></li>
+<li><a href="http://xiongzenghuidegithub.github.io/blog/2015/12/25/frameworksan-,-shi-yong-di-san-ku/" target="_blank" rel="noopener">一个iOS菜菜的白话文记录</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -864,6 +942,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -871,13 +953,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/28/自定义 Xcode 模板/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -885,55 +981,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/28/自定义 Xcode 模板/" itemprop="url">
-                  自定义 Xcode 模板
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/28/自定义 Xcode 模板/" itemprop="url">自定义 Xcode 模板</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T22:52:23+08:00" content="2016-07-28">
-              2016-07-28
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-28T22:52:23+08:00">
+                2016-07-28
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/28/自定义 Xcode 模板/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/自定义 Xcode 模板/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -974,16 +1066,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -993,6 +1088,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1000,13 +1099,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/24/Gitlab 之 Gitbook 自动集成/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1014,55 +1127,51 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/24/Gitlab 之 Gitbook 自动集成/" itemprop="url">
-                  Gitlab 之 Gitbook 自动集成
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/24/Gitlab 之 Gitbook 自动集成/" itemprop="url">Gitlab 之 Gitbook 自动集成</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T22:21:38+08:00" content="2016-07-24">
-              2016-07-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-24T22:21:38+08:00">
+                2016-07-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/24/Gitlab 之 Gitbook 自动集成/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/Gitlab 之 Gitbook 自动集成/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1084,19 +1193,19 @@
 <li>可以把一个新技术的探研做成一份学习路线文档，这样后来人就可以减少学习的成本</li>
 </ol>
 <h3 id="需要的工具"><a href="#需要的工具" class="headerlink" title="需要的工具"></a>需要的工具</h3><ol>
-<li><a href="https://www.sourcetreeapp.com" target="_blank" rel="external">SourceTree</a></li>
-<li><a href="https://www.gitbook.com/editor/" target="_blank" rel="external">GitBookEditor</a></li>
-<li><a href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md" target="_blank" rel="external">GitBook</a></li>
+<li><a href="https://www.sourcetreeapp.com" target="_blank" rel="noopener">SourceTree</a></li>
+<li><a href="https://www.gitbook.com/editor/" target="_blank" rel="noopener">GitBookEditor</a></li>
+<li><a href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md" target="_blank" rel="noopener">GitBook</a></li>
 </ol>
-<h3 id="文档编写-markdown"><a href="#文档编写-markdown" class="headerlink" title="文档编写 markdown"></a>文档编写 <code>markdown</code></h3><p>语法可 <a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">参考</a></p>
-<h3 id="gitbook-基本使用"><a href="#gitbook-基本使用" class="headerlink" title="gitbook 基本使用"></a><code>gitbook</code> 基本使用</h3><p>使用可 <a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="external">参考</a></p>
+<h3 id="文档编写-markdown"><a href="#文档编写-markdown" class="headerlink" title="文档编写 markdown"></a>文档编写 <code>markdown</code></h3><p>语法可 <a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="noopener">参考</a></p>
+<h3 id="gitbook-基本使用"><a href="#gitbook-基本使用" class="headerlink" title="gitbook 基本使用"></a><code>gitbook</code> 基本使用</h3><p>使用可 <a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="noopener">参考</a></p>
 <h3 id="gitlab上持续集成的步骤"><a href="#gitlab上持续集成的步骤" class="headerlink" title="gitlab上持续集成的步骤"></a><code>gitlab</code>上持续集成的步骤</h3><ol>
 <li>在gitlab新建一个resposity</li>
 <li>checkout到本地</li>
 <li>在项目上新增一个 .gitlab-ci.yml 文件 并提交到 Gitlab</li>
 </ol>
 <h3 id="gitlab-的-gitlab-ci-yml文件的编写"><a href="#gitlab-的-gitlab-ci-yml文件的编写" class="headerlink" title="gitlab 的 .gitlab-ci.yml文件的编写"></a><code>gitlab</code> 的 <code>.gitlab-ci.yml</code>文件的编写</h3><ol>
-<li><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">.gitlab-ci.yml 指南</a></li>
+<li><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">.gitlab-ci.yml 指南</a></li>
 <li><p>文件参考书写：</p>
 <pre><code>before_script:
 - env
@@ -1119,31 +1228,34 @@ image: shuoshuo/gitbook-builder:latest
 </code></pre></li>
 </ol>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
-<li><a href="http://www.jianshu.com/p/e650aac83f7a" target="_blank" rel="external">gitbook在私有gitlab上持续集成</a></li>
-<li><p><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="external">Configuration of your builds with .gitlab-ci.yml</a></p>
+<li><a href="http://www.jianshu.com/p/e650aac83f7a" target="_blank" rel="noopener">gitbook在私有gitlab上持续集成</a></li>
+<li><p><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">Configuration of your builds with .gitlab-ci.yml</a></p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a></p>
+<li><p><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="noopener">献给写作者的 Markdown 新手指南</a></p>
 </li>
-<li><a href="http://www.jianshu.com/p/168c0c1c7e4f" target="_blank" rel="external">敏捷开发之API管理之道</a></li>
-<li><a href="http://www.jianshu.com/p/2b43151fb92e/comments/2348175" target="_blank" rel="external">GitLab-CI与GitLab-Runner</a></li>
-<li><a href="https://yudachi.biz/2016/05/27/moving-to-gitlab-pages/" target="_blank" rel="external">基地转移！从 GitHub Pages 转移到 GitLab Pages</a></li>
-<li><a href="https://medium.com/@shuoshuo/多人共筆且自動產生-pdf-版電子書-5a0f1053c069#.8qic6kquk" target="_blank" rel="external">多人共筆且自動產生 PDF 版電子書</a></li>
+<li><a href="http://www.jianshu.com/p/168c0c1c7e4f" target="_blank" rel="noopener">敏捷开发之API管理之道</a></li>
+<li><a href="http://www.jianshu.com/p/2b43151fb92e/comments/2348175" target="_blank" rel="noopener">GitLab-CI与GitLab-Runner</a></li>
+<li><a href="https://yudachi.biz/2016/05/27/moving-to-gitlab-pages/" target="_blank" rel="noopener">基地转移！从 GitHub Pages 转移到 GitLab Pages</a></li>
+<li><a href="https://medium.com/@shuoshuo/多人共筆且自動產生-pdf-版電子書-5a0f1053c069#.8qic6kquk" target="_blank" rel="noopener">多人共筆且自動產生 PDF 版電子書</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1153,6 +1265,10 @@ image: shuoshuo/gitbook-builder:latest
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1160,13 +1276,27 @@ image: shuoshuo/gitbook-builder:latest
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/16/iOS 之 Cocoapods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1174,55 +1304,51 @@ image: shuoshuo/gitbook-builder:latest
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/16/iOS 之 Cocoapods/" itemprop="url">
-                  iOS 之 Cocoapods
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/16/iOS 之 Cocoapods/" itemprop="url">iOS 之 Cocoapods</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-16T07:06:01+08:00" content="2016-07-16">
-              2016-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T07:06:01+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/16/iOS 之 Cocoapods/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/16/iOS 之 Cocoapods/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1232,7 +1358,7 @@ image: shuoshuo/gitbook-builder:latest
         
           
             <blockquote>
-<p>很多东西就不在此啰嗦了， 根据 <a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">这篇博客</a> 就可以很愉快的玩上你的cocoapods了</p>
+<p>很多东西就不在此啰嗦了， 根据 <a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">这篇博客</a> 就可以很愉快的玩上你的cocoapods了</p>
 </blockquote>
 <p>今天想说的是关于自己在使用上遇到的一些问题：</p>
 <h3 id="1-cocoapods-重装问题"><a href="#1-cocoapods-重装问题" class="headerlink" title="1. cocoapods 重装问题"></a>1. cocoapods 重装问题</h3><h4 id="1-卸载"><a href="#1-卸载" class="headerlink" title="1. 卸载"></a>1. 卸载</h4><pre><code>sudo gem uninstall cocoapods
@@ -1269,26 +1395,29 @@ pod search AFNetworking
 pod update --verbose --no-repo-update
 </code></pre><p>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少</p>
 <h4 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h4><ol>
-<li><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">用CocoaPods做iOS程序的依赖管理</a></li>
-<li><a href="https://segmentfault.com/a/1190000005011497" target="_blank" rel="external">拥抱 CocoaPods 1.0</a></li>
-<li><a href="http://www.jianshu.com/p/f79589c21dc4" target="_blank" rel="external">Cocoapods安装使用以及完全卸载</a></li>
-<li><a href="http://my.oschina.net/u/2559341/blog/592738#OSC_h3_10" target="_blank" rel="external">CocoaPods详解之—-使用篇 pod install/pod update更新慢的问题</a></li>
+<li><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">用CocoaPods做iOS程序的依赖管理</a></li>
+<li><a href="https://segmentfault.com/a/1190000005011497" target="_blank" rel="noopener">拥抱 CocoaPods 1.0</a></li>
+<li><a href="http://www.jianshu.com/p/f79589c21dc4" target="_blank" rel="noopener">Cocoapods安装使用以及完全卸载</a></li>
+<li><a href="http://my.oschina.net/u/2559341/blog/592738#OSC_h3_10" target="_blank" rel="noopener">CocoaPods详解之—-使用篇 pod install/pod update更新慢的问题</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1298,6 +1427,10 @@ pod update --verbose --no-repo-update
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1305,13 +1438,27 @@ pod update --verbose --no-repo-update
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1319,55 +1466,51 @@ pod update --verbose --no-repo-update
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/10/Swift 之后台 Vapor 初步/" itemprop="url">
-                  Swift 之后台 Vapor 初步
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/10/Swift 之后台 Vapor 初步/" itemprop="url">Swift 之后台 Vapor 初步</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T17:27:32+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T17:27:32+08:00">
+                2016-07-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/Swift 之后台 Vapor 初步/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/Swift 之后台 Vapor 初步/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1426,9 +1569,9 @@ drop.start()
 <li>用xcode 运行这个项目（选中你这个项目）, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
 </ol>
 <h3 id="如何体验-vapor的更多功能"><a href="#如何体验-vapor的更多功能" class="headerlink" title="如何体验 vapor的更多功能"></a>如何体验 vapor的更多功能</h3><ol>
-<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="external">doc</a></p>
+<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="noopener">doc</a></p>
 </li>
-<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="external">教学视频</a></p>
+<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="noopener">教学视频</a></p>
 </li>
 </ol>
 
@@ -1436,16 +1579,19 @@ drop.start()
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1455,6 +1601,10 @@ drop.start()
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1462,13 +1612,27 @@ drop.start()
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/02/iOS 直播 Tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
@@ -1476,55 +1640,51 @@ drop.start()
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/02/iOS 直播 Tutorials/" itemprop="url">
-                  iOS 直播 Tutorials
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/02/iOS 直播 Tutorials/" itemprop="url">iOS 直播 Tutorials</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-02T20:05:33+08:00" content="2016-07-02">
-              2016-07-02
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-02T20:05:33+08:00">
+                2016-07-02
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/02/iOS 直播 Tutorials/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/iOS 直播 Tutorials/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1536,14 +1696,14 @@ drop.start()
             <h2 id="1-直播相关基本知识"><a href="#1-直播相关基本知识" class="headerlink" title="1.直播相关基本知识"></a>1.直播相关基本知识</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
 </code></pre><h3 id="协议"><a href="#协议" class="headerlink" title="协议:"></a>协议:</h3><p>国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
 <ul>
-<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="external">Real Time Messaging Protocol</a>) 协议</p>
+<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="noopener">Real Time Messaging Protocol</a>) 协议</p>
 <p>  Adobe公司为Flash播放器和服务器之间音、视频及数据传输开发的实时消息传送协议。协议中，视频必须是H264编码，音频必须是AAC或MP3编码，且多以flv格式封包</p>
 <ol>
 <li>开源软件和开源库的支持稳定完整。如斗鱼主播常用的OBS软件，开源的librtmp库，服务端有nginx-rtmp插件。</li>
 <li>播放端安装率高。只要浏览器支持FlashPlayer就能非常简易的播放RTMP的直播，协议详解可以Google了解。相对其他协议而言，RTMP协议初次建立连接的时候握手过程过于复杂（底层基于TCP，这里说的是RTMP协议本身的交互），视不同的网络状况会带来给首开带来100ms以上的延迟。基于RTMP的直播一般内容延迟在2~5秒。</li>
 </ol>
 </li>
-<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="external">HTTP Live Streaming</a>) 协议</p>
+<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="noopener">HTTP Live Streaming</a>) 协议</p>
 <p>  是由Apple公司定义的基于HTTP的流媒体实时传输协议。它的原理是将整个流分为一个一个小的文件来下载，每次只下载若干个。传输内容包括两部分：一是<code>M3U8</code>描述文件，二是<code>TS</code>媒体文件。TS媒体文件中的视频必须是<code>H264</code>编码,音频必须是<code>AAC</code>或<code>MP3</code>编码。</p>
 <p>  HLS协议在服务器端将直播数据流存储为连续的、很短时长的媒体文件（MPEG-TS格式），而客户端则不断的下载并播放这些小文件，因为服务器端总是会将最新的直播数据生成新的小文件，这样客户端只要不停的按顺序播放从服务器获取到的文件，就实现了直播。由此可见，基本上可以认为，HLS是以点播的技术方式来实现直播。由于数据通过HTTP协议传输，所以完全不用考虑防火墙或者代理的问题，而且分段文件的时长很短，客户端可以很快的选择和切换码率，以适应不同带宽条件下的播放。不过HLS的这种技术特点，决定了它的延迟一般总是会高于普通的流媒体直播协议。</p>
 <p>  HLS有一个非常大的<code>优点</code>：HTML5可以直接打开播放；这个意味着可以把一个直播链接通过微信等转发分享，不需要安装任何独立的APP，有浏览器即可，所以流行度很高。社交直播APP，HLS可以说是刚需</p>
@@ -1552,7 +1712,7 @@ drop.start()
 <h2 id="2-步骤："><a href="#2-步骤：" class="headerlink" title="2.步骤："></a>2.步骤：</h2><h3 id="音视频的采集"><a href="#音视频的采集" class="headerlink" title="音视频的采集"></a>音视频的采集</h3><p>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据</p>
 <h3 id="对视频进行H264编码，对音频进行AAC编码"><a href="#对视频进行H264编码，对音频进行AAC编码" class="headerlink" title="对视频进行H264编码，对音频进行AAC编码"></a>对视频进行H264编码，对音频进行AAC编码</h3><p>将原始视频编码过程中，有两种方案：</p>
 <ol>
-<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">FFmpeg</a> 进行编码</li>
+<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="noopener">FFmpeg</a> 进行编码</li>
 <li>利用iOS自身的AVAssetWriter 或VideoToolBox.framework的VTCompressionSession进行编码。</li>
 </ol>
 <h3 id="编码："><a href="#编码：" class="headerlink" title="编码："></a>编码：</h3><ol>
@@ -1664,7 +1824,7 @@ rtmp {
 </code></pre><blockquote>
 <p>注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，<br>跟你的rtmp-nginx-module这个版本有关系吧， 可以 <code>cd /usr/local/Cellar/rtmp-nginx-module/</code> 来查看</p>
 </blockquote>
-<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></p>
+<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></p>
 <p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
 <ol>
 <li>mac 和手机在同一局域网(共连一个wifi)</li>
@@ -1679,26 +1839,29 @@ rtmp {
 <pre><code>brew unlink ffmpeg
 brew install ffmpeg --with-ffplay
 </code></pre><h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4.参考文献"></a>4.参考文献</h2><ol>
-<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="external">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
-<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="external"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
-<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="external">FFmpeg相关资料 专栏文章</a></li>
-<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="external">LiveVideoCoreSDK</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="noopener">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
+<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="noopener"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
+<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="noopener">FFmpeg相关资料 专栏文章</a></li>
+<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></li>
 </ol>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1708,6 +1871,10 @@ brew install ffmpeg --with-ffplay
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1740,65 +1907,67 @@ brew install ffmpeg --with-ffplay
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
+
+      
 
       
 
@@ -1812,44 +1981,50 @@ brew install ffmpeg --with-ffplay
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -1872,72 +2047,10 @@ brew install ffmpeg --with-ffplay
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -1945,15 +2058,109 @@ brew install ffmpeg --with-ffplay
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
 
 
   
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

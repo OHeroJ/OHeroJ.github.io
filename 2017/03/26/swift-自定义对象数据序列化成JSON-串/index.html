@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,45 +34,38 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Swift," />
@@ -77,54 +77,56 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-
-
-
-
-<meta name="description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。
-应用一
-为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。
-123456789101112131415161718192021222324252627">
+<meta name="description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。 应用一 为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。 123456789101112131415161718192021222324252627">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift 自定义对象数据序列化成 JSON 串">
 <meta property="og:url" content="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。
-应用一
-为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。
-123456789101112131415161718192021222324252627">
+<meta property="og:description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。 应用一 为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。 123456789101112131415161718192021222324252627">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-13T05:04:19.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 自定义对象数据序列化成 JSON 串">
-<meta name="twitter:description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。
-应用一
-为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。
-123456789101112131415161718192021222324252627">
+<meta name="twitter:description" content="Mirror一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。 应用一 为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。 123456789101112131415161718192021222324252627">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Swift 自定义对象数据序列化成 JSON 串 | loveli </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/"/>
+
+
+
+
+
+  <title>Swift 自定义对象数据序列化成 JSON 串 | loveli</title>
   
 
 
@@ -134,36 +136,42 @@
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -184,31 +192,11 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -219,6 +207,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -233,66 +223,77 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Swift 自定义对象数据序列化成 JSON 串
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Swift 自定义对象数据序列化成 JSON 串</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T10:43:03+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T10:43:03+08:00">
+                2017-03-26
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Swift-自定义对象数据序列化成JSON-串/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -305,52 +306,31 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> nickname: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> age: <span class="type">Int</span>?</div><div class="line">    <span class="keyword">var</span> emails:[<span class="type">String</span>]?</div><div class="line">    <span class="keyword">var</span> tels:[<span class="type">Telephone</span>]?</div><div class="line">    <span class="keyword">var</span> createTime: <span class="type">Date</span> = <span class="type">Date</span>()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Telephone</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> title: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> number: <span class="type">String</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将自定义数据转化成 JSON 串</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>?</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">JSON</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">if</span> mirror.children.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</div><div class="line">            <span class="keyword">var</span> result: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</div><div class="line"></div><div class="line">            <span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> (lable?, value) <span class="keyword">in</span> mirror.children &#123;</div><div class="line">                <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line"></div><div class="line">                    result[lable] = jsonValue.toJSONModel()</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> result <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">        <span class="keyword">let</span> jsonModel = <span class="keyword">self</span>.toJSONModel()</div><div class="line">        <span class="keyword">let</span> data: <span class="type">Data</span>! = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.data(withJSONObject: jsonModel!, options: [])</div><div class="line">        <span class="keyword">let</span> str = <span class="type">String</span>(data: data, encoding: .utf8)</div><div class="line">        <span class="keyword">return</span> str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Optional</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> x = <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> value = x <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line">                <span class="keyword">return</span> value.toJSONModel()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展 swift 的基本数据类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Bool</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Dictionary</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="comment">//将数据转成可用的JSON模型</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">var</span> result: [<span class="type">Any</span>] = []</div><div class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> ,</div><div class="line">               <span class="keyword">let</span> jsonModel = jsonValue.toJSONModel()&#123;</div><div class="line"></div><div class="line">                result.append(jsonModel)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> dformatter = <span class="type">DateFormatter</span>()</div><div class="line">        dformatter.dateFormat = <span class="string">"yyyy 年 MM 月 dd 日 HH:mm:ss"</span></div><div class="line">        <span class="keyword">let</span> datestr = dformatter.string(from: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">return</span> datestr</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展自定义类型，使其遵守 JSON 协议</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> user = <span class="type">User</span>()</div><div class="line">user.name = <span class="string">"hange"</span></div><div class="line">user.age = <span class="number">100</span></div><div class="line">user.emails = [<span class="string">"hagn@hagnge.com"</span>, <span class="string">"system@hagn.com"</span>]</div><div class="line"><span class="keyword">let</span> tel = <span class="type">Telephone</span>(title: <span class="string">"手机"</span>, number: <span class="string">"12333"</span>)</div><div class="line"><span class="keyword">let</span> tel1 = <span class="type">Telephone</span>(title: <span class="string">"公司座机"</span>, number: <span class="string">"001-0358"</span>)</div><div class="line">user.tels = [tel1, tel]</div><div class="line"></div><div class="line"><span class="built_in">print</span>(user)</div></pre></td></tr></table></figure>
 <p><strong>应用二</strong></p>
 <p>取值</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xiaoMing = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> mirror.children.startIndex..&lt;mirror.children.endIndex &#123;</div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = mirror.children[i]</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoMing, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过 key 得到值: \(name)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xiaoMing = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> mirror.children.startIndex..&lt;mirror.children.endIndex &#123;</div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = mirror.children[i]</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoMing, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过 key 得到值: <span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+    
 
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -362,6 +342,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -376,30 +358,15 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2017/03/26/Swift-自定义对象数据序列化成JSON-串/"
-     data-title="Swift 自定义对象数据序列化成 JSON 串"
-     data-content=""
-     data-url="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -408,18 +375,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/03/26/Swift-自定义对象数据序列化成JSON-串/"
-           data-title="Swift 自定义对象数据序列化成 JSON 串" data-url="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/">
-      </div>
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -435,86 +395,93 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mirror"><span class="nav-number">1.</span> <span class="nav-text">Mirror</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mirror"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Mirror" class="headerlink" title="Mirror"></a>Mirror</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -527,44 +494,50 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -587,76 +560,10 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -664,15 +571,113 @@
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
+  
 
   
+
+  
+
+  
+
 </body>
 </html>

@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,45 +34,38 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Swift," />
@@ -77,48 +77,56 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-
-
-
-
-<meta name="description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。
-ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
+<meta name="description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。 ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift 优雅的封装 OC 的命名前缀问题">
 <meta property="og:url" content="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。
-ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
+<meta property="og:description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。 ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-13T05:06:15.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 优雅的封装 OC 的命名前缀问题">
-<meta name="twitter:description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。
-ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
+<meta name="twitter:description" content="swift 风格对于 OC 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个前缀_,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。 ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get set&amp;#125;var y: CGFloat &amp;#123;get se">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 6263237426282497000,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Swift 优雅的封装 OC 的命名前缀问题 | loveli </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/"/>
+
+
+
+
+
+  <title>Swift 优雅的封装 OC 的命名前缀问题 | loveli</title>
   
 
 
@@ -128,36 +136,42 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
 
 
+</head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">loveli</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">loveli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">浮生流年</p>
+      
   </div>
-  <p class="site-subtitle">浮生流年</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -178,31 +192,11 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -213,6 +207,8 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -227,66 +223,77 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Swift 优雅的封装 OC 的命名前缀问题
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Swift 优雅的封装 OC 的命名前缀问题</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-15T16:05:51+08:00" content="2017-08-15">
-              2017-08-15
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T16:05:51+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -313,48 +320,27 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您觉得这篇值得，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weXin.png" alt="loveli WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/zhiFuBao.png" alt="loveli Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+    
 
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -366,6 +352,8 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -380,30 +368,15 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2017/08/15/用优雅的封装-OC-的命名前缀问题/"
-     data-title="Swift 优雅的封装 OC 的命名前缀问题"
-     data-content=""
-     data-url="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -412,18 +385,11 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/08/15/用优雅的封装-OC-的命名前缀问题/"
-           data-title="Swift 优雅的封装 OC 的命名前缀问题" data-url="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/">
-      </div>
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -439,86 +405,93 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/12316547.jpeg"
-               alt="loveli" />
-          <p class="site-author-name" itemprop="name">loveli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">loveli</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
           </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
           
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#swift-风格"><span class="nav-number">1.</span> <span class="nav-text">swift 风格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-Frame-swift"><span class="nav-number">2.1.</span> <span class="nav-text">UIView+Frame.swift</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明-protocol"><span class="nav-number">2.1.1.</span> <span class="nav-text">声明 protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-protocol"><span class="nav-number">2.1.2.</span> <span class="nav-text">实现 protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对接-UIView-增加-wrapper"><span class="nav-number">2.1.3.</span> <span class="nav-text">对接 UIView,增加 wrapper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">3.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NamespaceWrapable"><span class="nav-number">3.1.</span> <span class="nav-text">NamespaceWrapable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeWrapperProtocol"><span class="nav-number">3.2.</span> <span class="nav-text">TypeWrapperProtocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NamespaceWrapper-包装的类"><span class="nav-number">3.3.</span> <span class="nav-text">NamespaceWrapper 包装的类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展-NamespaceWrapable"><span class="nav-number">3.4.</span> <span class="nav-text">扩展 NamespaceWrapable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展-UILabel"><span class="nav-number">3.5.</span> <span class="nav-text">扩展 UILabel</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#swift-风格"><span class="nav-number">1.</span> <span class="nav-text"><a href="#swift-&#x98CE;&#x683C;" class="headerlink" title="swift &#x98CE;&#x683C;"></a>swift &#x98CE;&#x683C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Example" class="headerlink" title="Example"></a>Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView-Frame-swift"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#UIView-Frame-swift" class="headerlink" title="UIView+Frame.swift"></a>UIView+Frame.swift</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明-protocol"><span class="nav-number">2.1.1.</span> <span class="nav-text"><a href="#&#x58F0;&#x660E;-protocol" class="headerlink" title="&#x58F0;&#x660E; protocol"></a>&#x58F0;&#x660E; protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-protocol"><span class="nav-number">2.1.2.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;-protocol" class="headerlink" title="&#x5B9E;&#x73B0; protocol"></a>&#x5B9E;&#x73B0; protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对接-UIView-增加-wrapper"><span class="nav-number">2.1.3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x63A5;-UIView-&#x589E;&#x52A0;-wrapper" class="headerlink" title="&#x5BF9;&#x63A5; UIView,&#x589E;&#x52A0; wrapper"></a>&#x5BF9;&#x63A5; UIView,&#x589E;&#x52A0; wrapper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6539;&#x8FDB;" class="headerlink" title="&#x6539;&#x8FDB;"></a>&#x6539;&#x8FDB;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NamespaceWrapable"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#NamespaceWrapable" class="headerlink" title="NamespaceWrapable"></a>NamespaceWrapable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeWrapperProtocol"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#TypeWrapperProtocol" class="headerlink" title="TypeWrapperProtocol"></a>TypeWrapperProtocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NamespaceWrapper-包装的类"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#NamespaceWrapper-&#x5305;&#x88C5;&#x7684;&#x7C7B;" class="headerlink" title="NamespaceWrapper &#x5305;&#x88C5;&#x7684;&#x7C7B;"></a>NamespaceWrapper &#x5305;&#x88C5;&#x7684;&#x7C7B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展-NamespaceWrapable"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x6269;&#x5C55;-NamespaceWrapable" class="headerlink" title="&#x6269;&#x5C55; NamespaceWrapable"></a>&#x6269;&#x5C55; NamespaceWrapable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展-UILabel"><span class="nav-number">3.5.</span> <span class="nav-text"><a href="#&#x6269;&#x5C55;-UILabel" class="headerlink" title="&#x6269;&#x5C55; UILabel"></a>&#x6269;&#x5C55; UILabel</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -531,44 +504,50 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">loveli</span>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -591,76 +570,10 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"loveli"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
@@ -668,15 +581,113 @@ ExampleUIView+Frame.swift声明 protocol123456789var x: CGFloat &amp;#123;get se
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
+  
 
   
+
+  
+
+  
+
 </body>
 </html>
