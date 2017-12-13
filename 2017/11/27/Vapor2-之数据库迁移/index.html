@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Vapor,Swift," />
+  <meta name="keywords" content="Swift,Vapor," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻  Preparations相当于迁移，因为它允许修改已经创建的模式  方案一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体： 1234567891011struct AddFooToBar">
-<meta name="keywords" content="Vapor,Swift">
+<meta name="keywords" content="Swift,Vapor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vapor2 之数据库迁移">
 <meta property="og:url" content="http://loveli.site/2017/11/27/Vapor2-之数据库迁移/index.html">
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -161,7 +161,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">浮生流年</p>
+        <h1 class="site-subtitle" itemprop="description">浮生流年</h1>
       
   </div>
 
@@ -238,7 +238,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="loveli">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/12316547.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vapor2 之数据库迁移</h1>
+          <h2 class="post-title" itemprop="name headline">Vapor2 之数据库迁移</h2>
         
 
         <div class="post-meta">
@@ -324,9 +324,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
-          
             <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
           
         </div>
       
@@ -398,6 +398,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -416,6 +418,10 @@
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/12316547.jpeg"
+                alt="loveli" />
             
               <p class="site-author-name" itemprop="name">loveli</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -452,6 +458,14 @@
           
 
           <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/OHeroJ" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
             
           </div>
 
