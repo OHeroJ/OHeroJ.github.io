@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="loveli">
 <meta property="og:description" content="Enum 声明普通枚举123456enum LoginType &amp;#123;    case email    case wechat    case qq    case weibo&amp;#125;
 存值枚举123456enum LoginType: String &amp;#123;    case email  = &quot;email&quot;    case wechat = &quot;wechat&quot;    case qq">
-<meta property="og:updated_time" content="2017-12-13T03:17:07.292Z">
+<meta property="og:updated_time" content="2017-12-13T03:22:27.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 之 Enum 的思考">
 <meta name="twitter:description" content="Enum 声明普通枚举123456enum LoginType &amp;#123;    case email    case wechat    case qq    case weibo&amp;#125;
@@ -311,6 +311,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QQLoginProvider</span>: <span class="title">LoginProvider</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>那么如果我要增加一个 <code>phone</code>， 只需</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PhoneLoginProvider</span>: <span class="title">LoginProvider</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>类似例子之前有一篇：<a href="http://www.loveli.site/2016/08/10/优雅处理-bad-enum-configurations/" target="_blank" rel="external">优雅处理-bad-enum-configurations</a></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>思想源远流长。 那些好的，依旧可以大行其道。</p>
 
       
