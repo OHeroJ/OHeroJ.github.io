@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://loveli.site/2017/12/14/Swift-%E4%B9%8B-Observable-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2017-12-14T03:49:22.654Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 之 Observable 源码解读</title>
+        <pubTime>2017-12-14T03:12:24.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>源码解读</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://loveli.site/2016/08/10/%E4%BC%98%E9%9B%85%E5%A4%84%E7%90%86-bad-enum-configurations/</loc>
     <lastmod>2017-12-13T05:06:31.918Z</lastmod>
     <data>
@@ -125,9 +144,9 @@
         <title>Gitlab 之 Gitbook 自动集成</title>
         <pubTime>2016-07-24T14:21:38.000Z</pubTime>
         
-        <tag>Gitlab</tag>
-         
         <tag>Gitbook</tag>
+         
+        <tag>Gitlab</tag>
          
         <tag>敏捷开发</tag>
          
@@ -258,9 +277,9 @@
         <title>React-Native 入门</title>
         <pubTime>2016-08-21T10:51:28.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>React-Native</tag>
+         
+        <tag>iOS</tag>
          
          
            
