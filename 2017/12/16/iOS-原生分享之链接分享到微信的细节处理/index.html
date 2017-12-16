@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://obp26pczx.bkt.clouddn.com/C756E7426178BBCBB2526A230C7280C8.jpg">
 <meta property="og:image" content="http://obp26pczx.bkt.clouddn.com/4FA32C7CDC60E4045DAB4792783F7597.jpg">
 <meta property="og:image" content="http://obp26pczx.bkt.clouddn.com/A67551AA555B2DCBCF556F88B309FB36.jpg">
-<meta property="og:updated_time" content="2017-12-16T09:17:35.409Z">
+<meta property="og:updated_time" content="2017-12-16T09:24:32.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 原生分享之链接分享到微信的细节处理">
 <meta name="twitter:description" content="iOS 的原生分享的 API 的使用挺简单的，无非就是组装 UIActivityViewController，但是还是有些细节你未必都知道。 问题 如何实现分享到微信朋友后，要显示 title, desc, icon. 你可能会想当然的跟我一样 123456789101112131415161718static func share(inVc: UIViewController,     imag">
@@ -375,6 +375,10 @@
 <p>直接搜索 <code>阅读评论、比较用户评分、查看屏幕快照并进一步了解“再书-二手书”。下载“再书-二手书</code></p>
 <p>你会发现你想要的答案，步骤太简单，依葫芦画瓢，后续自个琢磨。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>善于追求细节，善于玩 App。多思考</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul>
+<li><a href="https://shrikar.com/ios-sharing-with-uiactivityviewcontroller-in-swift/" target="_blank" rel="noopener">iOS sharing with UIActivityViewController in Swift</a></li>
+<li><a href="https://github.com/liugangios/IFMShare" target="_blank" rel="noopener">liugangios/IFMShare</a></li>
+</ul>
 
       
     </div>
@@ -557,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95EE;&#x9898;" class="headerlink" title="&#x95EE;&#x9898;"></a>&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只能传-3-个参数么？"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53EA;&#x80FD;&#x4F20;-3-&#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;" class="headerlink" title="&#x53EA;&#x80FD;&#x4F20; 3 &#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;"></a>&#x53EA;&#x80FD;&#x4F20; 3 &#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发现"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x53D1;&#x73B0;" class="headerlink" title="&#x53D1;&#x73B0;"></a>&#x53D1;&#x73B0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一切都归功于我的-html-知识"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684;-html-&#x77E5;&#x8BC6;" class="headerlink" title="&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684; html &#x77E5;&#x8BC6;"></a>&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684; <code>html</code> &#x77E5;&#x8BC6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95EE;&#x9898;" class="headerlink" title="&#x95EE;&#x9898;"></a>&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只能传-3-个参数么？"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53EA;&#x80FD;&#x4F20;-3-&#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;" class="headerlink" title="&#x53EA;&#x80FD;&#x4F20; 3 &#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;"></a>&#x53EA;&#x80FD;&#x4F20; 3 &#x4E2A;&#x53C2;&#x6570;&#x4E48;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发现"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x53D1;&#x73B0;" class="headerlink" title="&#x53D1;&#x73B0;"></a>&#x53D1;&#x73B0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一切都归功于我的-html-知识"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684;-html-&#x77E5;&#x8BC6;" class="headerlink" title="&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684; html &#x77E5;&#x8BC6;"></a>&#x4E00;&#x5207;&#x90FD;&#x5F52;&#x529F;&#x4E8E;&#x6211;&#x7684; <code>html</code> &#x77E5;&#x8BC6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x6269;&#x5C55;" class="headerlink" title="&#x6269;&#x5C55;"></a>&#x6269;&#x5C55;</span></a></li></ol></div>
             
 
           </div>
