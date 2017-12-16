@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/05/05/Swift-的相关编码样式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/05/Swift-的相关编码样式/" itemprop="url">Swift 的相关编码样式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T20:16:49+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/05/Swift-的相关编码样式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/05/05/Swift-的相关编码样式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/05/Swift-的相关编码样式/" class="leancloud_visitors" data-flag-title="Swift 的相关编码样式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="书写延迟加载属性"><a href="#书写延迟加载属性" class="headerlink" title="书写延迟加载属性"></a>书写延迟加载属性</h2><h3 id="闭包方式"><a href="#闭包方式" class="headerlink" title="闭包方式"></a>闭包方式</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> collectionView: <span class="type">UICollectionView</span>  = &#123;</div><div class="line">        <span class="keyword">let</span> layout = <span class="type">UICollectionViewFlowLayout</span>()</div><div class="line">        layout.scrollDirection = .horizontal</div><div class="line">        layout.minimumInteritemSpacing = <span class="number">0</span></div><div class="line">        layout.minimumLineSpacing = <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> cv: <span class="type">UICollectionView</span> = <span class="type">UICollectionView</span>.<span class="keyword">init</span>(frame: <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="type">UIScreen</span>.main.bounds.width, height: (<span class="keyword">self</span>.view.bounds.height)), collectionViewLayout: layout)</div><div class="line">        cv.delegate = <span class="keyword">self</span></div><div class="line">        cv.dataSource = <span class="keyword">self</span></div><div class="line">        cv.showsHorizontalScrollIndicator = <span class="literal">false</span></div><div class="line">        cv.backgroundColor = <span class="type">UIColor</span>.clear</div><div class="line">        cv.bounces = <span class="literal">false</span></div><div class="line">        cv.isPagingEnabled = <span class="literal">true</span></div><div class="line">        cv.isDirectionalLockEnabled = <span class="literal">true</span></div><div class="line">        <span class="keyword">return</span> cv</div><div class="line">    &#125;()</div></pre></td></tr></table></figure>
+<h3 id="函数方式"><a href="#函数方式" class="headerlink" title="函数方式"></a>函数方式</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> locationManager: <span class="type">CLLocationManager</span> = <span class="keyword">self</span>.makeLocationManager()</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">makeLocationManager</span><span class="params">()</span></span> -&gt; <span class="type">CLLocationManager</span> &#123;</div><div class="line">  <span class="keyword">let</span> manager = <span class="type">CLLocationManager</span>()</div><div class="line">  manager.desiredAccuracy = kCLLocationAccuracyBest</div><div class="line">  manager.delegate = <span class="keyword">self</span></div><div class="line">  manager.requestAlwaysAuthorization()</div><div class="line">  <span class="keyword">return</span> manager</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="weak-的正确使用方式"><a href="#weak-的正确使用方式" class="headerlink" title="weak 的正确使用方式"></a>weak 的正确使用方式</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">resource.request().onComplete &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] response <span class="keyword">in</span></div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> strongSelf = <span class="keyword">self</span> <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> model = strongSelf.updateModel(response)</div><div class="line">  strongSelf.updateUI(model)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 Cocoa 使用 protocol 的时候</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">weak</span> <span class="keyword">var</span> delegate: <span class="type">MyProtocol</span></div></pre></td></tr></table></figure>
+<p>这个时候记得<code>MyProtocol</code>要继承 <code>NSObjectProtocol</code>，即:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span>: <span class="title">NSObjectProtocol</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="常量的使用姿势"><a href="#常量的使用姿势" class="headerlink" title="常量的使用姿势"></a>常量的使用姿势</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Math</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">let</span> e = <span class="number">2.718281828459045235360287</span></div><div class="line">  <span class="keyword">static</span> <span class="keyword">let</span> root2 = <span class="number">1.41421356237309504880168872</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> hypotenuse = side * <span class="type">Math</span>.root2</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PhysicsModel</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> speedOfLightInAVacuum = <span class="number">299_792_458</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spaceship</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> topSpeed = <span class="type">PhysicsModel</span>.speedOfLightInAVacuum</div><div class="line">    <span class="keyword">var</span> speed: <span class="type">Int</span>?</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">fullSpeedAhead</span><span class="params">()</span></span> &#123;</div><div class="line">        speed = <span class="type">Spaceship</span>.topSpeed</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="单例的命名"><a href="#单例的命名" class="headerlink" title="单例的命名"></a>单例的命名</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">URLCredentialStorage</span>.shared</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1707,181 +1857,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/09/04/Cocoapods 高级篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/04/Cocoapods 高级篇/" itemprop="url">Cocoapods 高级篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-04T13:16:02+08:00">
-                2016-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/04/Cocoapods 高级篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/04/Cocoapods 高级篇/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/04/Cocoapods 高级篇/" class="leancloud_visitors" data-flag-title="Cocoapods 高级篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>之前有篇文章是讲cocoapods 初级篇的，但是随着项目的积累，发现基础篇的知识貌似还不是很能满足一些特定的情况。</p>
-</blockquote>
-<h2 id="pod的引入"><a href="#pod的引入" class="headerlink" title="pod的引入"></a><code>pod</code>的引入</h2><h3 id="一般的情况我们会用-pod-39-AFNetworking-39-39-gt-3-1-39-，-这些指定source就可以安装到指定tag的版本的代码"><a href="#一般的情况我们会用-pod-39-AFNetworking-39-39-gt-3-1-39-，-这些指定source就可以安装到指定tag的版本的代码" class="headerlink" title="一般的情况我们会用 pod &#39;AFNetworking&#39;,&#39;~&gt; 3.1&#39;， 这些指定source就可以安装到指定tag的版本的代码"></a>一般的情况我们会用 <code>pod &#39;AFNetworking&#39;,&#39;~&gt; 3.1&#39;</code>， 这些指定<code>source</code>就可以安装到指定<code>tag</code>的版本的代码</h3><h3 id="使用指定git不同版本的代码"><a href="#使用指定git不同版本的代码" class="headerlink" title="使用指定git不同版本的代码"></a>使用指定git不同版本的代码</h3><h4 id="使用git的master分支上的代码"><a href="#使用git的master分支上的代码" class="headerlink" title="使用git的master分支上的代码"></a>使用git的<code>master</code>分支上的代码</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="string">'AFNetworking'</span>, <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/AFNetworking/AFNetworking.git'</span></div></pre></td></tr></table></figure>
-<h4 id="使用其他分支的repo"><a href="#使用其他分支的repo" class="headerlink" title="使用其他分支的repo:"></a>使用其他分支的repo:</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="string">'AFNetowring'</span>, <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/AFNetworking/AFNetworking.git'</span>, <span class="symbol">:branch</span> =&gt; <span class="string">'2.x'</span></div></pre></td></tr></table></figure>
-<h4 id="使用指定tag的代码"><a href="#使用指定tag的代码" class="headerlink" title="使用指定tag的代码"></a>使用指定tag的代码</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="string">'AFNetowring'</span>, <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/AFNetworking/AFNetworking.git'</span>, <span class="symbol">:tag</span> =&gt; <span class="string">'3.1'</span></div></pre></td></tr></table></figure>
-<h4 id="使用某个指定的-commit的代码："><a href="#使用某个指定的-commit的代码：" class="headerlink" title="使用某个指定的 commit的代码："></a>使用某个指定的 commit的代码：</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'AFNetowring'</span>, <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/AFNetworking/AFNetworking.git'</span>, <span class="symbol">:commit</span> =&gt; <span class="string">'f51f0b8'</span></div></pre></td></tr></table></figure>
-<h3 id="用spec-repo-之外的podspec-可自己指定-podspec"><a href="#用spec-repo-之外的podspec-可自己指定-podspec" class="headerlink" title="用spec repo 之外的podspec, 可自己指定 podspec"></a>用spec repo 之外的podspec, 可自己指定 podspec</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod&apos;JSONKit&apos;, :podspec=&gt;&apos;https://example.com/JSONKit.podspec&apos;</div></pre></td></tr></table></figure>
-<h3 id="可以指定安装特定的subspec，-如"><a href="#可以指定安装特定的subspec，-如" class="headerlink" title="可以指定安装特定的subspec， 如"></a>可以指定安装特定的<code>subspec</code>， 如</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;QueryKit/Attribute&apos;</div></pre></td></tr></table></figure>
-<p>或者指定部分的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;QueryKit&apos;,:subspecs=&gt;[&apos;Attribute&apos;,&apos;QuerySet&apos;]</div></pre></td></tr></table></figure>
-<h2 id="文件夹映射"><a href="#文件夹映射" class="headerlink" title="文件夹映射"></a>文件夹映射</h2><p>如果我们在某个pod中，文件的目录树如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Assets</div><div class="line">└── Classes</div><div class="line">    ├── Category</div><div class="line">    │   ├── UIView+Layer.h</div><div class="line">    │   └── UIView+Layer.m</div><div class="line">    └── View</div><div class="line">        ├── JHView.h</div><div class="line">        └── JHView.m</div></pre></td></tr></table></figure>
-<p>且，我们的<code>MaNong.podspec</code>的如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line">  s.name             = &apos;MaNong&apos;</div><div class="line">  s.version          = &apos;0.1.0&apos;</div><div class="line">  s.summary          = &apos;MaNong.&apos;</div><div class="line">  s.description      = &lt;&lt;-DESC</div><div class="line">g description of the pod here.这个是我的测试pod 私有库的创建</div><div class="line">                       DESC</div><div class="line">  s.homepage         = &apos;https://git.coding.net/ljhhua/MaNong.git&apos;</div><div class="line">  s.license          = &#123; :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; &#125;</div><div class="line">  s.author           = &#123; &apos;OHeroJ&apos; =&gt; &apos;1814345797@qq.com&apos; &#125;</div><div class="line">  s.source           = &#123; :git =&gt; &apos;https://git.coding.net/ljhhua/MaNong.git&apos;, :tag =&gt; s.version.to_s &#125;</div><div class="line">  s.ios.deployment_target = &apos;7.0&apos;</div><div class="line">  s.source_files = &apos;MaNong/Classes/*&apos;</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>然后我们在一个项目中引入了这个库，在<code>pod update</code>后，其<code>MaNong</code>这个库的文件的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">└── MaNong</div><div class="line">    ├── UIView+Layer.h</div><div class="line">    ├── UIView+Layer.m│  </div><div class="line">    ├── JHView.h</div><div class="line">    └── JHView.m</div></pre></td></tr></table></figure>
-<p>这个时候 <code>View</code>和<code>Category</code>文件夹没有了，如果我们这个pod库有很多文件的时候，那么文件都<br>只在MaNong，这能容忍，ugly.</p>
-<h3 id="那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"><a href="#那么如何解决这个问题？-细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到" class="headerlink" title="那么如何解决这个问题？ 细心的你可能会发现AFNetwork的文件目录很清晰，从中我们可以看到"></a>那么如何解决这个问题？ 细心的你可能会发现<code>AFNetwork</code>的文件目录很清晰，从中我们可以看到</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line"> s.subspec &apos;Serialization&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFURL&#123;Request,Response&#125;Serialization.h&apos;</div><div class="line">   ss.watchos.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.ios.frameworks = &apos;MobileCoreServices&apos;, &apos;CoreGraphics&apos;</div><div class="line">   ss.osx.frameworks = &apos;CoreServices&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Security&apos; do |ss|</div><div class="line">   ss.source_files = &apos;AFNetworking/AFSecurityPolicy.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFSecurityPolicy.h&apos;</div><div class="line">   ss.frameworks = &apos;Security&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;Reachability&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.osx.deployment_target = &apos;10.9&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AFNetworkReachabilityManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AFNetworkReachabilityManager.h&apos;</div><div class="line"></div><div class="line">   ss.frameworks = &apos;SystemConfiguration&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;NSURLSession&apos; do |ss|</div><div class="line">   ss.dependency &apos;AFNetworking/Serialization&apos;</div><div class="line">   ss.ios.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.osx.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.tvos.dependency &apos;AFNetworking/Reachability&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/Security&apos;</div><div class="line"></div><div class="line">   ss.source_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.&#123;h,m&#125;&apos;</div><div class="line">   ss.public_header_files = &apos;AFNetworking/AF&#123;URL,HTTP&#125;SessionManager.h&apos;</div><div class="line"> end</div><div class="line"></div><div class="line"> s.subspec &apos;UIKit&apos; do |ss|</div><div class="line">   ss.ios.deployment_target = &apos;7.0&apos;</div><div class="line">   ss.tvos.deployment_target = &apos;9.0&apos;</div><div class="line">   ss.dependency &apos;AFNetworking/NSURLSession&apos;</div><div class="line"></div><div class="line">   ss.public_header_files = &apos;UIKit+AFNetworking/*.h&apos;</div><div class="line">   ss.source_files = &apos;UIKit+AFNetworking&apos;</div><div class="line"> end</div></pre></td></tr></table></figure>
-<p>我们上面是没有<code>s.subspec</code>， 聪明的你应该不难发现应该是这个<code>subspec</code>这个家伙起了作用。</p>
-<h3 id="subspec是干嘛的？"><a href="#subspec是干嘛的？" class="headerlink" title="subspec是干嘛的？"></a><code>subspec</code>是干嘛的？</h3><p>这种问题，只能说，老老实实的看官方文档吧，—&gt; <a href="http://guides.cocoapods.org/syntax/podspec.html#subspec" target="_blank" rel="noopener">文档</a></p>
-<p>其实这东西 有点像”圈圈里面包含圈圈的感觉”, 我们的每个文件的内容可以独立，当然也可以依赖。 这东西还有个作用就是这个库，我只想用它里面的某个子模块的东西，我不需要它的全部。废话不多说，直接上demo:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'MaNong'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'MaNong.'</span></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">g description of the pod here.这个是我的测试pod 私有库的创建</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'OHeroJ'</span> =&gt; <span class="string">'1814345797@qq.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://git.coding.net/ljhhua/MaNong.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'7.0'</span></div><div class="line">  <span class="comment">#s.source_files = 'MaNong/Classes/*'</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'View'</span> <span class="keyword">do</span> <span class="params">|view|</span></div><div class="line">    view.source_files = <span class="string">'MaNong/Classes/View/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  s.subspec <span class="string">'Category'</span> <span class="keyword">do</span> <span class="params">|category|</span></div><div class="line">    category.source_files = <span class="string">'MaNong/Classes/Category/**/*'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>然后从新在<code>pod update</code>，结果那是必须的ok~</p>
-<h2 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h2><p>有些时候我们的库，也会用到一些图片哇，这个时候我们又该怎么办？在网上我们可以搜索到很多答案，说用<code>bundle</code>,那我们也不例外。根据一些人的博客：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s.resource = &apos;YTKeyBoardView/Classes/keyboard.bundle&apos;</div></pre></td></tr></table></figure>
-<p>这种方式首先得创建个bundle,在库内访问图片的时候我们要根据bundle来访问。但是在官网上推荐的做法：</p>
-<blockquote>
-<p>We strongly recommend library developers to adopt <code>resource bundles</code> as there can be name collisions using the resources attribute. Moreover, resources specified with this attribute are copied directly to the client target and therefore they are not optimised by Xcode</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s.resource_bundles = &#123;</div><div class="line">  &apos;MaNong&apos; =&gt; [&apos;MaNong/Assets/*.png&apos;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="http://blog.startry.com/2015/12/22/pod-repo-dev-quick-start/" target="_blank" rel="noopener">Pods依赖库快速开发入门</a></li>
-<li><a href="http://guides.cocoapods.org/syntax/podspec.html#resource_bundles" target="_blank" rel="noopener">Podspec Syntax Reference</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1934,7 +1909,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
