@@ -249,6 +249,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/24/Gitlab 之 Gitbook 自动集成/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/24/Gitlab 之 Gitbook 自动集成/" itemprop="url">Gitlab 之 Gitbook 自动集成</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-24T22:21:38+08:00">
+                2016-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/24/Gitlab 之 Gitbook 自动集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/24/Gitlab 之 Gitbook 自动集成/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/07/24/Gitlab 之 Gitbook 自动集成/" class="leancloud_visitors" data-flag-title="Gitlab 之 Gitbook 自动集成">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>最近有个任务是 想通过 <code>gitlab</code> 的 CI 来管理 API 文档，很多时候我们都可以在 gitbook 上看到有很多人写书，<br>排版使用 markdown, 个人钟爱 markdown, 在这个任务之前，鄙人没有接触过 gitlab, 接触过一段时间，感觉杠杠的，<br>很喜欢这个它的持续化集成的功能，然后还有可以免费创建私有仓库。</p>
+</blockquote>
+<p>今天植入主题，我们该如何在 <strong>gitlab</strong> 上持续集成我们的 <strong>gitbook</strong> 文档。</p>
+<h3 id="为什么需要文档？"><a href="#为什么需要文档？" class="headerlink" title="为什么需要文档？"></a>为什么需要文档？</h3><p>个人觉得：</p>
+<ol>
+<li>如果是新人入职的话，有文档那很多东西就方便多了；</li>
+<li>开发一个组件，写出文档，很多东西就不需要重复介绍给使用的人</li>
+<li>降低沟通成本和维护成本</li>
+<li>提高开发效率</li>
+<li>可以把一个新技术的探研做成一份学习路线文档，这样后来人就可以减少学习的成本</li>
+</ol>
+<h3 id="需要的工具"><a href="#需要的工具" class="headerlink" title="需要的工具"></a>需要的工具</h3><ol>
+<li><a href="https://www.sourcetreeapp.com" target="_blank" rel="noopener">SourceTree</a></li>
+<li><a href="https://www.gitbook.com/editor/" target="_blank" rel="noopener">GitBookEditor</a></li>
+<li><a href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md" target="_blank" rel="noopener">GitBook</a></li>
+</ol>
+<h3 id="文档编写-markdown"><a href="#文档编写-markdown" class="headerlink" title="文档编写 markdown"></a>文档编写 <code>markdown</code></h3><p>语法可 <a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="noopener">参考</a></p>
+<h3 id="gitbook-基本使用"><a href="#gitbook-基本使用" class="headerlink" title="gitbook 基本使用"></a><code>gitbook</code> 基本使用</h3><p>使用可 <a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="noopener">参考</a></p>
+<h3 id="gitlab上持续集成的步骤"><a href="#gitlab上持续集成的步骤" class="headerlink" title="gitlab上持续集成的步骤"></a><code>gitlab</code>上持续集成的步骤</h3><ol>
+<li>在gitlab新建一个resposity</li>
+<li>checkout到本地</li>
+<li>在项目上新增一个 .gitlab-ci.yml 文件 并提交到 Gitlab</li>
+</ol>
+<h3 id="gitlab-的-gitlab-ci-yml文件的编写"><a href="#gitlab-的-gitlab-ci-yml文件的编写" class="headerlink" title="gitlab 的 .gitlab-ci.yml文件的编写"></a><code>gitlab</code> 的 <code>.gitlab-ci.yml</code>文件的编写</h3><ol>
+<li><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">.gitlab-ci.yml 指南</a></li>
+<li><p>文件参考书写：</p>
+<pre><code>before_script:
+- env
+- export LC_ALL=zh_TW.UTF-8
+
+stages:
+- build
+
+ebook:
+stage: build
+script:
+- gitbook pdf
+artifacts:
+paths:
+  - book.pdf
+only:
+- master
+
+image: shuoshuo/gitbook-builder:latest
+</code></pre></li>
+</ol>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://www.jianshu.com/p/e650aac83f7a" target="_blank" rel="noopener">gitbook在私有gitlab上持续集成</a></li>
+<li><p><a href="http://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">Configuration of your builds with .gitlab-ci.yml</a></p>
+</li>
+<li><p><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="noopener">献给写作者的 Markdown 新手指南</a></p>
+</li>
+<li><a href="http://www.jianshu.com/p/168c0c1c7e4f" target="_blank" rel="noopener">敏捷开发之API管理之道</a></li>
+<li><a href="http://www.jianshu.com/p/2b43151fb92e/comments/2348175" target="_blank" rel="noopener">GitLab-CI与GitLab-Runner</a></li>
+<li><a href="https://yudachi.biz/2016/05/27/moving-to-gitlab-pages/" target="_blank" rel="noopener">基地转移！从 GitHub Pages 转移到 GitLab Pages</a></li>
+<li><a href="https://medium.com/@shuoshuo/多人共筆且自動產生-pdf-版電子書-5a0f1053c069#.8qic6kquk" target="_blank" rel="noopener">多人共筆且自動產生 PDF 版電子書</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/16/iOS 之 Cocoapods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1599,7 +1797,7 @@ tags:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
