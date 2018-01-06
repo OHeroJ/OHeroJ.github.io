@@ -249,6 +249,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/04/RxSwift-对-MJRefresh-使用的封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/" itemprop="url">RxSwift 对 MJRefresh 使用的封装</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T17:35:38+08:00">
+                2017-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/04/RxSwift-对-MJRefresh-使用的封装/" class="leancloud_visitors" data-flag-title="RxSwift 对 MJRefresh 使用的封装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于一个很常用的两个库， MJRefresh 如何可以像 UIButton 使用方式呢：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">btn.rx.tap.subscribe(...)</div></pre></td></tr></table></figure>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> MJRefresh</div><div class="line"><span class="keyword">import</span> RxSwift</div><div class="line"><span class="keyword">import</span> RxCocoa</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RxTarget</span>: <span class="title">NSObject</span>, <span class="title">Disposable</span> </span>&#123;  <span class="comment">// RxTarget 是 Rxswift 源码</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> retainSelf: <span class="type">RxTarget</span>?</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="keyword">self</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.retainSelf = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RefreshTarget</span>&lt;<span class="title">Component</span>:<span class="title">MJRefreshComponent</span>&gt;: <span class="title">RxTarget</span> </span>&#123;</div><div class="line">    <span class="keyword">typealias</span> <span class="type">Callback</span> = <span class="type">MJRefreshComponentRefreshingBlock</span></div><div class="line">    <span class="keyword">var</span> callback: <span class="type">Callback</span>?</div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> component:<span class="type">Component</span>?</div><div class="line"></div><div class="line">    <span class="keyword">let</span> selector = #selector(<span class="type">RefreshTarget</span>.eventHandler)</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> component: <span class="type">Component</span>,callback:@escaping <span class="type">Callback</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.callback = callback</div><div class="line">        <span class="keyword">self</span>.component = component</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        component.setRefreshingTarget(<span class="keyword">self</span>, refreshingAction: selector)</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">eventHandler</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> callback = <span class="keyword">self</span>.callback &#123;</div><div class="line">            callback()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.dispose()</div><div class="line">        <span class="keyword">self</span>.component?.refreshingBlock = <span class="literal">nil</span></div><div class="line">        <span class="keyword">self</span>.callback = <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">MJRefreshComponent</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> event: <span class="type">ControlEvent</span>&lt;<span class="type">Base</span>&gt; &#123;</div><div class="line">        <span class="keyword">let</span> source: <span class="type">Observable</span>&lt;<span class="type">Base</span>&gt; = <span class="type">Observable</span>.create &#123; [<span class="keyword">weak</span> control = <span class="keyword">self</span>.base] observer  <span class="keyword">in</span></div><div class="line">            <span class="type">MainScheduler</span>.ensureExecutingOnScheduler()</div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> control = control <span class="keyword">else</span> &#123;</div><div class="line">                observer.on(.completed)</div><div class="line">                <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">let</span> observer = <span class="type">RefreshTarget</span>(control) &#123;</div><div class="line">                observer.on(.next(control))</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> observer</div><div class="line">        &#125;.takeUntil(deallocated)</div><div class="line">        <span class="keyword">return</span> <span class="type">ControlEvent</span>(events: source)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/01/LaunchScreen-storyboard-换图的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1597,188 +1741,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-自动化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/Docker-Gitlab-Nginx-自动化/" itemprop="url">Docker+gitlab+nginx 自动化</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T14:50:20+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/10/Docker-Gitlab-Nginx-自动化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/10/Docker-Gitlab-Nginx-自动化/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/10/Docker-Gitlab-Nginx-自动化/" class="leancloud_visitors" data-flag-title="Docker+gitlab+nginx 自动化">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Docker-Gitlab-Nginx-自动化集成"><a href="#Docker-Gitlab-Nginx-自动化集成" class="headerlink" title="Docker + Gitlab + Nginx 自动化集成"></a>Docker + Gitlab + Nginx 自动化集成</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><ol>
-<li>mac os</li>
-<li>Kitematic + docker</li>
-<li>然后依次添加 docker image :<ul>
-<li>gilab-ce</li>
-<li>nginx</li>
-</ul>
-</li>
-<li><p>用终端下载 gitlab-runner:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-darwin-amd64</div><div class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-ci-multi-runner</div></pre></td></tr></table></figure>
-<p>gitlab-runner 的常用命令有，一般不用 <code>sudo</code>:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gitlab-ci-multi-runner register</div><div class="line">gitlab-ci-multi-runner run</div><div class="line"></div><div class="line"><span class="comment"># 还有其他 install uninstall start stop restart status</span></div></pre></td></tr></table></figure>
-<p>添加 sudo 的话是以root用户运行，那么配置文件默认是 /etc/gitlab-runner-config.toml， 反之<br>以非 root 用户运行，那么配置文件默认是~/.gitlab-runner/comfig.toml</p>
-<h2 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h2><p>Runner 可以分布在不同的主机上，同一个主机上也可以有多个 Runner.<br>gitlab-runner 可以分为两种类型：</p>
-</li>
-</ol>
-<ul>
-<li><code>Shared Runner</code> : 系统管理员创建</li>
-<li><code>Specific Runner</code>: 有该工程访问权限的人可以创建<blockquote>
-<p>每次 gitlab-ci-multi-runner 注册完成之后，还必须执行 <code>run</code> 操作，否则它无法使用</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a>.gitlab-ci.yml</h2><p>该文件的配置，请移步到<a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">官方文档</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">stages:</div><div class="line"> - build</div><div class="line"></div><div class="line">before_script:</div><div class="line"> - gitbook --version</div><div class="line"></div><div class="line">build www:</div><div class="line">    stage: build</div><div class="line">    script:</div><div class="line">     - gitbook build . ~/nginx/some/www/  <span class="comment">## 注意这条命令 '~/nginx/some/www/'，这个是 nginx 映射过来的</span></div><div class="line">     - docker restart some_nginx</div></pre></td></tr></table></figure></p>
-<p>如果你在构建的时候遇到:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Running with gitlab-ci-multi-runner 9.4.2 (6d06f2e)</div><div class="line">  on mac (22376a88)</div><div class="line">Using Shell executor...</div><div class="line">Running on gangyan.local...</div><div class="line">Cloning repository...</div><div class="line">Cloning into <span class="string">'/Users/aa/test/builds/22376a88/0/leo/ios'</span>...</div><div class="line">fatal: unable to access <span class="string">'http://gitlab-ci-token:xxxxxxxxxxxxxxxxxxxx@gygitlab/leo/ios.git/'</span>: Failed to connect to gygitlab port 80: Connection refused</div><div class="line">ERROR: Job failed: <span class="built_in">exit</span> status 1</div></pre></td></tr></table></figure></p>
-<p>需要做域名端口映射。我们 docker 里面配置的 gitlab 的映射到本地的端口是 <code>32788</code>, 而现在报错的是 <code>80</code>端口，那么这个时候说明端口有问题，如何解决呢？</p>
-<ol>
-<li><p>修改<code>/etc/hosts</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192.168.1.129 gygitlab</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>/etc/pf.conf</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">nat-anchor <span class="string">"gygitlab"</span></div><div class="line">rdr-anchor <span class="string">"gygitlab"</span></div><div class="line">anchor <span class="string">"gygitlab"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"gygitlab"</span> from <span class="string">"/etc/pf.anchors/gygitlab"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>修改 <code>etc/pf.anchors</code>,添加<code>gygitlab</code>，且编辑内容：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rdr pass on lo0 inet proto tcp from any to self port 80 -&gt; 192.168.1.129 port 32788</div></pre></td></tr></table></figure>
-</li>
-<li><p>部署</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pfctl <span class="_">-f</span> /etc/pf.conf</div><div class="line">sudo pfctl <span class="_">-e</span> <span class="comment">## 开启</span></div><div class="line">sudo pfctl <span class="_">-d</span> <span class="comment">##  关闭</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="nginx-docker"><a href="#nginx-docker" class="headerlink" title="nginx(docker)"></a>nginx(docker)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name some_nginx -v ~/nginx/some/www:/usr/share/nginx/html:ro <span class="_">-d</span> nginx</div></pre></td></tr></table></figure>
-<p>其他相关可以<a href="https://yeasy.gitbooks.io/docker_practice/content/appendix/repo/nginx.html" target="_blank" rel="noopener">参考</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1831,7 +1793,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1844,7 +1806,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
