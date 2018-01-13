@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="loveli">
 <meta property="og:description" content="之前设置了LaunchScreen.storyboard，在这个storyboard中加了一个imageView，里面设置了一张图片launch.png，今天需要更换这个启动图片，我就直接去工程里面，把launch.png,launch@2x.png,launch@3x.png这三张图片直接用其他图片覆盖了，然后打开这个storyboard，这个storyboard里面的imageView的确变">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-01T05:34:39.000Z">
+<meta property="og:updated_time" content="2018-01-13T01:09:53.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LaunchScreen.storyboard 换图的问题">
 <meta name="twitter:description" content="之前设置了LaunchScreen.storyboard，在这个storyboard中加了一个imageView，里面设置了一张图片launch.png，今天需要更换这个启动图片，我就直接去工程里面，把launch.png,launch@2x.png,launch@3x.png这三张图片直接用其他图片覆盖了，然后打开这个storyboard，这个storyboard里面的imageView的确变">
@@ -351,6 +351,7 @@
 </ol>
 <p>但是，并没有卵用。</p>
 <p>正确的解决办法是 <code>Assets.xcassets</code> 替换图片的时候，把图片名字也替换掉。然后在 <code>LaunchScreen.storyboard</code> 更换用新的图片名字即可。</p>
+<p>如果上面方法依旧不行，那就将图片拖入工程，不放到 <code>Assets.xcassets</code> 中。</p>
 
       
     </div>
