@@ -249,6 +249,362 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/16/tmux-工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/tmux-工具/" itemprop="url">tmux 工具</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T15:37:07+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/16/tmux-工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/16/tmux-工具/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/16/tmux-工具/" class="leancloud_visitors" data-flag-title="tmux 工具">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>此篇文章其目的是做一下 <code>tmux</code> 的快捷键的梳理。方便以后回顾查找。<br>推荐也玩玩 <code>tmux</code>。 </p>
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><h3 id="新建一个会话"><a href="#新建一个会话" class="headerlink" title="新建一个会话"></a>新建一个会话</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tmux  <span class="comment"># 新建一个无名称的会话</span></div><div class="line">tmux new <span class="_">-s</span> demo <span class="comment"># 新建一个名称为 demo 的会话</span></div></pre></td></tr></table></figure>
+<h3 id="断开当前会话"><a href="#断开当前会话" class="headerlink" title="断开当前会话"></a>断开当前会话</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tmux detach <span class="comment"># 断开当前会话，会话在后台运行</span></div></pre></td></tr></table></figure>
+<h3 id="进入之前的会话"><a href="#进入之前的会话" class="headerlink" title="进入之前的会话"></a>进入之前的会话</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tmux a <span class="comment"># 默认进入第一个会话</span></div><div class="line">tmux a -t demo <span class="comment"># 进入到名称为 demo 的会话</span></div></pre></td></tr></table></figure>
+<h3 id="关闭会话"><a href="#关闭会话" class="headerlink" title="关闭会话"></a>关闭会话</h3><p>会话的是使命完成后，一定要关闭的。 我们可以使用 tmux 的 kill 命令 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tmux kill-pan </div><div class="line">tmux kill-server</div><div class="line">tmux kill-session </div><div class="line">tmux kill-window </div><div class="line"></div><div class="line">tmux kill-session -t demo # 关闭demo会话</div><div class="line">tmux kill-server # 关闭服务器，所有的会话都将关闭</div></pre></td></tr></table></figure>
+<h3 id="查看所有会话"><a href="#查看所有会话" class="headerlink" title="查看所有会话"></a>查看所有会话</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tmux list-session # 查看所有会话</div><div class="line">tmux ls # 查看所有会话，提倡使用简写形式</div></pre></td></tr></table></figure>
+<h3 id="快捷键指令"><a href="#快捷键指令" class="headerlink" title="快捷键指令"></a>快捷键指令</h3><p>关于快捷指令，首先要认识到的是： tmux 的所有指令， 都包含同一个前缀，默认为 <code>Ctrl + b</code>, 输入完<br>前缀过后， 控制台激活，命令按键才能生效。 前面 tmux 会话的操作中，我们共用到了两个快捷键 <code>ctrl + b + d</code> 、 <code>ctrl + b + s</code></p>
+<h3 id="系统指令"><a href="#系统指令" class="headerlink" title="系统指令:"></a>系统指令:</h3><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctrl + b</td>
+<td>?</td>
+<td>显示快捷键帮助文档</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>d</td>
+<td>断开当前会话</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>D</td>
+<td>选择要断开的会话</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>ctrl + z</td>
+<td>挂起当前会话</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>r</td>
+<td>强制重载当前会话</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>s</td>
+<td>显示会话列表用户选择并切换</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>:</td>
+<td>进入命令模式，此时可以直接输入 ls 等命令</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>[</td>
+<td>进入赋值模式， 按 q 退出</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>]</td>
+<td>粘贴复制模式中的复制文本</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>~</td>
+<td>列出信息缓存</td>
+</tr>
+</tbody>
+</table>
+<h3 id="窗口指令"><a href="#窗口指令" class="headerlink" title="窗口指令"></a>窗口指令</h3><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctrl + b</td>
+<td>c</td>
+<td>新建窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>&amp;</td>
+<td>关闭当前窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>0~9</td>
+<td>切换到指定窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>p</td>
+<td>切换到上一个窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>n</td>
+<td>切换到下一个窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>w</td>
+<td>打开窗口列表， 用于切换窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>,</td>
+<td>重命名当前窗口</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>.</td>
+<td>修改当前创库编号(用户窗口的重新排序)</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>f</td>
+<td>快速定位到窗口(输入关键字匹配窗口名称)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="面板指令"><a href="#面板指令" class="headerlink" title="面板指令"></a>面板指令</h3><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctrl + b</td>
+<td>“</td>
+<td>当前面板上下一分为二，下侧新建面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>%</td>
+<td>当前面板左右一分为二，右侧新建面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>x</td>
+<td>关闭当前面板（关闭前需输入y or n确认）</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>z</td>
+<td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>!</td>
+<td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>;</td>
+<td>切换到最后一次使用的面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>q</td>
+<td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>{</td>
+<td>向前置换当前面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>}</td>
+<td>向后置换当前面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>Ctrl+o</td>
+<td>顺时针旋转当前窗口中的所有面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>方向键</td>
+<td>移动光标切换面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>o</td>
+<td>选择下一面板</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>空格键</td>
+<td>在自带的面板布局中循环切换</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>Alt+方向键</td>
+<td>以5个单元格为单位调整当前面板边缘</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>Ctrl+方向键</td>
+<td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+</tr>
+<tr>
+<td>ctrl + b</td>
+<td>t</td>
+<td>显示时钟</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/06/阅读第一期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1010,7 +1366,7 @@
 <p>可以把这些<code>Dispose</code>对象存放到一个容器中。</p>
 <h3 id="扩展-Disposables"><a href="#扩展-Disposables" class="headerlink" title="扩展 Disposables"></a>扩展 <code>Disposables</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Disposables</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> diposes: [<span class="type">Disposable</span>] = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> dis: Disposable)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.diposes.append(dis)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Disposable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">(by: Disposables)</span></span> &#123;</div><div class="line">        by.add(<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用代码</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-\(user)"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-\(user)"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有没有发现这个 <code>.dispose(by: dispose)</code> 跟 <code>RxSwift</code> 的很像。😆</p>
 
           
@@ -1468,7 +1824,7 @@
 <li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
 </ul>
 <p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(selement)</span> -- <span class="subst">\(element)</span>"</span>)</div></pre></td></tr></table></figure>
 <p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
 <ul>
 <li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
@@ -1664,173 +2020,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" itemprop="url">Swift Vapor2 在 Ubuntu 1分钟搭建完成</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T13:07:39+08:00">
-                2017-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/" class="leancloud_visitors" data-flag-title="Swift Vapor2 在 Ubuntu 1分钟搭建完成">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="运行环境："><a href="#运行环境：" class="headerlink" title="运行环境："></a>运行环境：</h2><ul>
-<li>Ubuntu 16.04</li>
-<li>ssh</li>
-</ul>
-<h2 id="ssh-登入"><a href="#ssh-登入" class="headerlink" title="ssh 登入"></a>ssh 登入</h2><p>ssh -p 端口 xx@ip  (ssh 默认是22端口)</p>
-<p>可以指定端口，例如: ssh -p 123 root@98.1.2.3</p>
-<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(curl -sL https://apt.vapor.sh)</span>"</span></div></pre></td></tr></table></figure>
-<h2 id="安装-swift-和-vapor"><a href="#安装-swift-和-vapor" class="headerlink" title="安装 swift 和 vapor"></a>安装 swift 和 vapor</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install swift vapor</div></pre></td></tr></table></figure>
-<p>结果 ：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># swift --version</span></div><div class="line">Swift version 4.0.2 (swift-4.0.2-RELEASE)</div><div class="line">Target: x86_64-unknown-linux-gnu</div><div class="line">~<span class="comment"># vapor --version</span></div><div class="line">Vapor Toolbox: 3.1.2</div><div class="line">~<span class="comment">#</span></div></pre></td></tr></table></figure>
-<h2 id="创建-Hello-world"><a href="#创建-Hello-world" class="headerlink" title="创建 Hello world"></a>创建 Hello world</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vapor new helloworld</div></pre></td></tr></table></figure>
-<p><code>tree</code> 结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">-- helloworld</div><div class="line">    |-- circle.yml</div><div class="line">    |-- cloud.yml</div><div class="line">    |-- Config</div><div class="line">    |   |-- app.json</div><div class="line">    |   |-- crypto.json</div><div class="line">    |   |-- droplet.json</div><div class="line">    |   |-- fluent.json</div><div class="line">    |   `-- server.json</div><div class="line">    |-- license</div><div class="line">    |-- Package.resolved</div><div class="line">    |-- Package.swift</div><div class="line">    |-- Public</div><div class="line">    |-- README.md</div><div class="line">    |-- Sources</div><div class="line">    |   |-- App</div><div class="line">    |   |   |-- Controllers</div><div class="line">    |   |   |   `-- PostController.swift</div><div class="line">    |   |   |-- Models</div><div class="line">    |   |   |   `-- Post.swift</div><div class="line">    |   |   |-- Routes</div><div class="line">    |   |   |   `-- Routes.swift</div><div class="line">    |   |   `-- Setup</div><div class="line">    |   |       |-- Config+Setup.swift</div><div class="line">    |   |       `-- Droplet+Setup.swift</div><div class="line">    |   `-- Run</div><div class="line">    |       `-- main.swift</div><div class="line">    `-- Tests</div><div class="line">        |-- AppTests</div><div class="line">        |   |-- PostControllerTests.swift</div><div class="line">        |   |-- RouteTests.swift</div><div class="line">        |   `-- Utilities.swift</div><div class="line">        `-- LinuxMain.swift</div></pre></td></tr></table></figure>
-<p>在 <code>Sources/App/Routes/Routes.swift</code> 可以看到:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Droplet</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setupRoutes</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="keyword">get</span>(<span class="string">"hello"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">var</span> json = <span class="type">JSON</span>()</div><div class="line">            <span class="keyword">try</span> json.<span class="keyword">set</span>(<span class="string">"hello"</span>, <span class="string">"world"</span>)</div><div class="line">            <span class="keyword">return</span> json</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">get</span>(<span class="string">"plaintext"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> <span class="string">"Hello, world!"</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// response to requests to /info domain</span></div><div class="line">        <span class="comment">// with a description of the request</span></div><div class="line">        <span class="keyword">get</span>(<span class="string">"info"</span>) &#123; req <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> req.description</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">get</span>(<span class="string">"description"</span>) &#123; req <span class="keyword">in</span> <span class="keyword">return</span> req.description &#125;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> resource(<span class="string">"posts"</span>, <span class="type">PostController</span>.<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><h3 id="vapor-相关命令"><a href="#vapor-相关命令" class="headerlink" title="vapor 相关命令"></a>vapor 相关命令</h3><ul>
-<li>vapor build 编译</li>
-<li>vapor run serve  运行</li>
-</ul>
-<p>更多命令可以</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vapor --help</span></div><div class="line">Usage: vapor <span class="built_in">command</span></div><div class="line"></div><div class="line">Join our Slack <span class="keyword">if</span> you have questions, need <span class="built_in">help</span>,</div><div class="line">or want to contribute: http://vapor.team</div><div class="line"></div><div class="line">Commands:</div><div class="line">       new Creates a new Vapor application from a template.</div><div class="line">           Use --template=repo/template <span class="keyword">for</span> github templates</div><div class="line">           Use --template=full-url-here.git <span class="keyword">for</span> non github templates</div><div class="line">           Use --web to create a new web app</div><div class="line">           Use --auth to create a new authenticated API app</div><div class="line">           Use --api (default) to create a new API</div><div class="line">     build Compiles the application.</div><div class="line">       run Runs the compiled application.</div><div class="line">     fetch Fetches the application<span class="string">'s dependencies.</span></div><div class="line">    update Updates your dependencies.</div><div class="line">     clean Cleans temporary files--usually fixes</div><div class="line">           a plethora of bizarre build errors.</div><div class="line">      test Runs the application's tests.</div><div class="line">     xcode Generates an Xcode project <span class="keyword">for</span> development.</div><div class="line">           Additionally links commonly used libraries.</div><div class="line">   version Displays Vapor CLI version</div><div class="line">     cloud Commands <span class="keyword">for</span> interacting with Vapor Cloud.</div><div class="line">    heroku Commands to <span class="built_in">help</span> deploy to Heroku.</div><div class="line">  provider Commands to <span class="built_in">help</span> manage providers.</div><div class="line"></div><div class="line">Use `vapor <span class="built_in">command</span> --help` <span class="keyword">for</span> more information on a command.</div></pre></td></tr></table></figure>
-<p>我们执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vapor run serve</div></pre></td></tr></table></figure>
-<h2 id="打开浏览器访问"><a href="#打开浏览器访问" class="headerlink" title="打开浏览器访问"></a>打开浏览器访问</h2><p>Config/server.json 中可以看到</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"The $PORT:8080 call tells the json file to see if there"</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"is any value at the 'PORT' environment variable."</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"If there is no value there, it will fallback to '8080'"</span>,</div><div class="line">    <span class="attr">"port"</span>: <span class="string">"$PORT:8080"</span>,</div><div class="line"></div><div class="line">    <span class="attr">"host"</span>: <span class="string">"0.0.0.0"</span>,</div><div class="line"></div><div class="line">    <span class="attr">"//"</span>: <span class="string">"It's very rare that a server manages its own TLS."</span>,</div><div class="line">    <span class="attr">"//"</span>: <span class="string">"More commonly, vapor is served behind a proxy like nginx."</span>,</div><div class="line">    <span class="attr">"securityLayer"</span>: <span class="string">"none"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>默认是 8080 端口，那我们可以直接在浏览器中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://&lt;yourip&gt;:8080/hello</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1883,7 +2072,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

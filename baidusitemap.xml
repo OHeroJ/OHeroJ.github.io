@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://loveli.site/2018/01/16/tmux-%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2018-01-16T07:39:21.025Z</lastmod>
+    <data>
+        <display>
+        <title>tmux 工具</title>
+        <pubTime>2018-01-16T07:37:07.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://loveli.site/2017/11/01/LaunchScreen-storyboard-%E6%8D%A2%E5%9B%BE%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-01-13T01:09:53.502Z</lastmod>
     <data>
@@ -179,9 +196,9 @@
         <title>私有 Cocoapods 的创建和维护</title>
         <pubTime>2016-08-07T13:53:39.000Z</pubTime>
         
-        <tag>Cocoapods</tag>
-         
         <tag>Gitlab</tag>
+         
+        <tag>Cocoapods</tag>
          
         <tag>iOS</tag>
          
