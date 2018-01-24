@@ -249,6 +249,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/27/Vapor2-之数据库迁移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/27/Vapor2-之数据库迁移/" itemprop="url">Vapor2 之数据库迁移</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T15:28:24+08:00">
+                2017-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/27/Vapor2-之数据库迁移/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/Vapor2-之数据库迁移/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/27/Vapor2-之数据库迁移/" class="leancloud_visitors" data-flag-title="Vapor2 之数据库迁移">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻</p>
+<blockquote>
+<p>Preparations相当于迁移，因为它允许修改已经创建的模式</p>
+</blockquote>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddFooToBar</span>: <span class="title">Preparation</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="comment">/// bar 是表名</span></div><div class="line">        <span class="keyword">try</span> database.modify(<span class="type">Bar</span>.<span class="keyword">self</span>, closure: &#123; bar <span class="keyword">in</span></div><div class="line">            bar.string(<span class="string">"foo"</span>, length: <span class="number">150</span>, <span class="keyword">optional</span>: <span class="literal">false</span>, unique: <span class="literal">false</span>, <span class="keyword">default</span>: <span class="literal">nil</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">revert</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后记得 <code>drop.preparations.append(AddFooToBar.self)</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/27/Swift-Vapor2-在-Ubuntu-1分钟搭建完成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1583,163 +1730,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/08/15/用优雅的封装-OC-的命名前缀问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="url">Swift 优雅的封装 OC 的命名前缀问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T16:05:51+08:00">
-                2017-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/15/用优雅的封装-OC-的命名前缀问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/15/用优雅的封装-OC-的命名前缀问题/" class="leancloud_visitors" data-flag-title="Swift 优雅的封装 OC 的命名前缀问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="swift-风格"><a href="#swift-风格" class="headerlink" title="swift 风格"></a>swift 风格</h2><p>对于 <code>OC</code> 我们知道它是没有命名空间的，为了解决命名冲突问题，就有个前缀的遗留问题，不得不说在方法上加个<code>前缀_</code>,有些时候有些 api 真的看得很尴尬。不多说，直接上案例。</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="UIView-Frame-swift"><a href="#UIView-Frame-swift" class="headerlink" title="UIView+Frame.swift"></a>UIView+Frame.swift</h3><h4 id="声明-protocol"><a href="#声明-protocol" class="headerlink" title="声明 protocol"></a>声明 protocol</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> y: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> width: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> height: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">right</span>: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> top: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> bottom: <span class="type">CGFloat</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line"><span class="keyword">var</span> center: <span class="type">CGPoint</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div></pre></td></tr></table></figure>
-<h4 id="实现-protocol"><a href="#实现-protocol" class="headerlink" title="实现 protocol"></a>实现 protocol</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BaseFrame</span>: <span class="title">Framable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> view: <span class="type">UIView</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(view: <span class="type">UIView</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.view = view</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> x: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:newValue ,y:frame.origin.y), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> y: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> width: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span>&#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: newValue, height: frame.size.height)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> height: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span>&#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: frame.size.width, height: newValue)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> <span class="keyword">left</span>: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:newValue ,y:frame.origin.y), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> <span class="keyword">right</span>: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.x + view.frame.size.width</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: newValue - frame.origin.x, height: frame.size.height)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: frame.origin, size: size)</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> top: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: frame.size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> bottom: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.frame.size.height + view.frame.origin.y</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">let</span> frame = view.frame</div><div class="line">            <span class="keyword">let</span> size = <span class="type">CGSize</span>(width: frame.origin.x, height: newValue - frame.origin.y)</div><div class="line">            view.frame = <span class="type">CGRect</span>(origin: <span class="type">CGPoint</span>(x:frame.origin.x ,y:newValue), size: size)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> center: <span class="type">CGPoint</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> view.center</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            view.center = center</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="对接-UIView-增加-wrapper"><a href="#对接-UIView-增加-wrapper" class="headerlink" title="对接 UIView,增加 wrapper"></a>对接 UIView,增加 wrapper</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UIView</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> bf: <span class="type">Framable</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">BaseFrame</span>(view: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> button: <span class="type">UIButton</span> = <span class="type">UIButton</span>()</div><div class="line">button.bf.x = <span class="number">30</span></div><div class="line">button.bf.y = <span class="number">50</span></div></pre></td></tr></table></figure>
-<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>当你使用上面的方法的时候，其实还是有些小问题的，最近阅读相关的开源源码后，总结了一个比较通用的方法。</p>
-<p>假设要为 <code>UILable</code> 添加一些我们自己的方法且不想用 <code>mg_func</code></p>
-<p>那么：</p>
-<ul>
-<li>UILable.mg.create()</li>
-<li>label.mg.x</li>
-</ul>
-<h3 id="NamespaceWrapable"><a href="#NamespaceWrapable" class="headerlink" title="NamespaceWrapable"></a>NamespaceWrapable</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">NamespaceWrapable</span> </span>&#123;</div><div class="line">    associatedtype <span class="type">TypeWrapper</span></div><div class="line">    <span class="comment">// 对象</span></div><div class="line">    <span class="keyword">var</span> mg: <span class="type">TypeWrapper</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="comment">// 静态方法</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> mg: <span class="type">TypeWrapper</span>.<span class="type">Type</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="TypeWrapperProtocol"><a href="#TypeWrapperProtocol" class="headerlink" title="TypeWrapperProtocol"></a>TypeWrapperProtocol</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TypeWrapperProtocol</span> </span>&#123;</div><div class="line">    associatedtype <span class="type">Wrapper</span></div><div class="line">    <span class="keyword">var</span> wrappedValue: <span class="type">Wrapper</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">init</span>(val: <span class="type">Wrapper</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="NamespaceWrapper-包装的类"><a href="#NamespaceWrapper-包装的类" class="headerlink" title="NamespaceWrapper 包装的类"></a>NamespaceWrapper 包装的类</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">NamespaceWrapper</span>&lt;<span class="title">Wrapper</span>&gt;: <span class="title">TypeWrapperProtocol</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> wrappedValue: <span class="type">Wrapper</span>  <span class="comment">// 这个是被包装的对象</span></div><div class="line">    <span class="keyword">init</span>(val: <span class="type">Wrapper</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.wrappedValue = val</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="扩展-NamespaceWrapable"><a href="#扩展-NamespaceWrapable" class="headerlink" title="扩展 NamespaceWrapable"></a>扩展 NamespaceWrapable</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">NamespaceWrapable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> mg: <span class="type">NamespaceWrapper</span>&lt;<span class="type">Self</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">NamespaceWrapper</span>(val: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> mg: <span class="type">NamespaceWrapper</span>&lt;<span class="type">Self</span>&gt;.<span class="type">Type</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">NamespaceWrapper</span>.<span class="keyword">self</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="扩展-UILabel"><a href="#扩展-UILabel" class="headerlink" title="扩展 UILabel"></a>扩展 UILabel</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">TypeWrapperProtocol</span> <span class="title">where</span> <span class="title">Wrapper</span> == <span class="title">UILabel</span> </span>&#123;</div><div class="line">    <span class="comment">/// 遍历构造法</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">create</span><span class="params">(frame: CGRect, text: String, textColor: UIColor, font: UIFont, textAligment: NSTextAlignment)</span></span> -&gt; <span class="type">UILabel</span> &#123;</div><div class="line">        <span class="keyword">let</span> label = <span class="type">UILabel</span>(frame: frame)</div><div class="line">        label.textAlignment = textAligment</div><div class="line">        label.text = text</div><div class="line">        label.textColor = textColor</div><div class="line">        label.font = font</div><div class="line">        <span class="keyword">return</span> label</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> x: <span class="type">CGFloat</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.frame.origin.x</div><div class="line">        &#125; <span class="keyword">set</span> &#123;</div><div class="line">            <span class="keyword">var</span> frame = <span class="keyword">self</span>.frame</div><div class="line">            frame.origin.x = newValue</div><div class="line">            <span class="keyword">self</span>.frame = frame</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1792,7 +1782,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1805,7 +1795,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

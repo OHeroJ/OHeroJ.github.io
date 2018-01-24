@@ -354,7 +354,7 @@
 <li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
 </ul>
 <p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(selement)</span> -- <span class="subst">\(element)</span>"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
 <p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
 <ul>
 <li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
@@ -498,7 +498,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -511,7 +511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
