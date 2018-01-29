@@ -249,6 +249,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/29/Swift-之-Package-Manage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/29/Swift-之-Package-Manage/" itemprop="url">Swift 之 Package Manage</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:50:43+08:00">
+                2018-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/29/Swift-之-Package-Manage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/29/Swift-之-Package-Manage/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/29/Swift-之-Package-Manage/" class="leancloud_visitors" data-flag-title="Swift 之 Package Manage">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># swift --version</div><div class="line">Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)</div><div class="line">Target: x86_64-apple-macosx10.9</div><div class="line"></div><div class="line"># swift package --version</div><div class="line">Apple Swift Package Manager - Swift 4.0.0-dev (swiftpm-13752)</div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>swift package init</strong> 初始化包</p>
+</li>
+<li><p><strong>swift package update</strong> 更新包的依赖</p>
+</li>
+<li><p><strong>swift package generate-xcodeproj</strong> 生成一个 xcode 项目</p>
+</li>
+</ul>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><h3 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a>Flag</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir Flag </div><div class="line">cd Flag </div><div class="line">swift package init --type executable</div></pre></td></tr></table></figure>
+<h4 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── Flag</div><div class="line">│       └── main.swift</div><div class="line">└── Tests</div></pre></td></tr></table></figure>
+<ul>
+<li><em>Package.swift</em> 是对这个包的描述，库的依赖也在这里说明 </li>
+<li><em>Sources/</em>， 将 swift 的源代码文件放入到这个目录下</li>
+<li><em>Tests/</em> 是测试代码， <code>XCTest</code></li>
+</ul>
+<h4 id="swift-build"><a href="#swift-build" class="headerlink" title="swift build"></a>swift build</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift build</div></pre></td></tr></table></figure>
+<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.build/debug/Flag</div></pre></td></tr></table></figure>
+<p>将会打印 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello, world!</div></pre></td></tr></table></figure>
+<h2 id="创建-Library"><a href="#创建-Library" class="headerlink" title="创建 Library"></a>创建 Library</h2><p>来创建一个 <code>Atlas</code>的 library， 然后在 <code>Flag</code> 中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">mkdir Atlas</div><div class="line">cd Atlas</div><div class="line">swift package init --type library</div></pre></td></tr></table></figure>
+<p><strong>tree</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── Altas</div><div class="line">│       └── Altas.swift</div><div class="line">└── Tests</div><div class="line">    ├── AltasTests</div><div class="line">    │   └── AltasTests.swift</div><div class="line">    └── LinuxMain.swift</div></pre></td></tr></table></figure>
+<p>对比 Flag 的项目，我们会发现这个文件目录下没有 <code>main.swift</code>, 而是生成了 <code>Altas.swift</code><br>这个时候我们一般使用测试来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift test</div></pre></td></tr></table></figure>
+<h3 id="Atlas-swift"><a href="#Atlas-swift" class="headerlink" title="Atlas.swift"></a>Atlas.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Atlas.swift</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">Country</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">let</span> code: <span class="type">String</span> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(code: <span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.code = code</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> emojiFlag: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> code.unicodeScalars.<span class="built_in">map</span> &#123; <span class="type">String</span>(regionalIndicatorSymbol(unicodeScalar: $<span class="number">0</span>)!) &#125; .joined()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">regionalIndicatorSymbol</span><span class="params">(unicodeScalar: UnicodeScalar)</span></span> -&gt; <span class="type">UnicodeScalar</span>? &#123;</div><div class="line">        <span class="keyword">let</span> uppercaseA = <span class="type">UnicodeScalar</span>(<span class="string">"A"</span>)!</div><div class="line">        <span class="keyword">let</span> regionalIndicatorSymbolA = <span class="type">UnicodeScalar</span>(<span class="string">"\u&#123;1f1e6&#125;"</span>)!</div><div class="line">        <span class="keyword">let</span> <span class="built_in">distance</span> = unicodeScalar.value - uppercaseA.value</div><div class="line">        <span class="keyword">return</span> <span class="type">UnicodeScalar</span>(regionalIndicatorSymbolA.value + <span class="built_in">distance</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> XCTest</div><div class="line"><span class="meta">@testable</span> <span class="keyword">import</span> Altas</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AltasTests</span>: <span class="title">XCTestCase</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testAustria</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="type">XCTAssertEqual</span>(<span class="type">Country</span>(code: <span class="string">"AT"</span>).emojiFlag, <span class="string">"\u&#123;1f1e6&#125;\u&#123;1f1f9&#125;"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testTurkey</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="type">XCTAssertEqual</span>(<span class="type">Country</span>(code: <span class="string">"TR"</span>).emojiFlag, <span class="string">"\u&#123;1f1f9&#125;\u&#123;1f1f7&#125;"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testUnitedStates</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="type">XCTAssertEqual</span>(<span class="type">Country</span>(code: <span class="string">"US"</span>).emojiFlag, <span class="string">"\u&#123;1f1fa&#125;\u&#123;1f1f8&#125;"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">AltasTests</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> allTests = [</div><div class="line">        (<span class="string">"testAustria"</span>, testAustria),</div><div class="line">        (<span class="string">"testTurkey"</span>, testTurkey),</div><div class="line">        (<span class="string">"testUnitedStates"</span>, testUnitedStates)</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift test</div></pre></td></tr></table></figure>
+<h3 id="添加代码版本管理"><a href="#添加代码版本管理" class="headerlink" title="添加代码版本管理"></a>添加代码版本管理</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">"Initial commit"</span></div><div class="line">git tag 1.0.0</div></pre></td></tr></table></figure>
+<h2 id="Flag-引入-Altas-依赖"><a href="#Flag-引入-Altas-依赖" class="headerlink" title="Flag 引入 Altas 依赖"></a>Flag 引入 Altas 依赖</h2><p>打开 Flag 项目, 打开 <code>Package.swift</code>.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Package.swift</span></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"Flag"</span>,</div><div class="line">    dependencies: [</div><div class="line">        .package(url: <span class="string">"../Altas"</span>, from: <span class="string">"1.0.0"</span>)  <span class="comment">// "1.0.0" 跟 tag 有关 </span></div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"Flag"</span>,</div><div class="line">            dependencies: [<span class="string">"Altas"</span>]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>进行拉取依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift package resolve</div><div class="line">swift package generate-xcodeproj # 用 xcode 打开</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// main.swift </div><div class="line">import Altas</div><div class="line"></div><div class="line">let arguments = CommandLine.arguments</div><div class="line"></div><div class="line">if arguments.count != 2 &#123;</div><div class="line">    print(&quot;bad&quot;)</div><div class="line">&#125; else &#123;</div><div class="line">    let code = arguments[1]</div><div class="line"></div><div class="line">    let country = Altas.Country(code: code)</div><div class="line">    print(country.emojiFlag)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift build </div><div class="line">.build/debug/Flag US</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://swift.org/getting-started/#installing-swift" target="_blank" rel="noopener">Getting Started</a></li>
+<li><a href="https://github.com/apple/swift-package-manager/tree/master/Documentation" target="_blank" rel="noopener">Swift Package Manager</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/24/https-免费证书配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1552,7 +1734,7 @@
 <p>可以把这些<code>Dispose</code>对象存放到一个容器中。</p>
 <h3 id="扩展-Disposables"><a href="#扩展-Disposables" class="headerlink" title="扩展 Disposables"></a>扩展 <code>Disposables</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Disposables</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> diposes: [<span class="type">Disposable</span>] = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> dis: Disposable)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.diposes.append(dis)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Disposable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">(by: Disposables)</span></span> &#123;</div><div class="line">        by.add(<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用代码</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-\(user)"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-\(user)"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有没有发现这个 <code>.dispose(by: dispose)</code> 跟 <code>RxSwift</code> 的很像。😆</p>
 
           
@@ -1892,178 +2074,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/12/08/Swift-之惰性求值/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/08/Swift-之惰性求值/" itemprop="url">Swift 之惰性求值</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T11:25:13+08:00">
-                2017-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/08/Swift-之惰性求值/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/08/Swift-之惰性求值/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/08/Swift-之惰性求值/" class="leancloud_visitors" data-flag-title="Swift 之惰性求值">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在 <code>Haskell</code> 中的函数有一个特性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">函数的返回可能是一个块(一个被延迟计算的表达式)</div></pre></td></tr></table></figure>
-<p>从而引出一个概念 <code>惰性求值</code></p>
-<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">isOdd</span> n = mod n <span class="number">2</span> == <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>下面有段 <a href="https://rwh.readthedocs.io/en/latest/chp/2.html#function-types" target="_blank" rel="noopener">分析</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在使用严格求值的语言里，函数的参数总是在应用函数之前被求值。以 isOdd 为例子：子表达式 (1 + 2)</div><div class="line">会首先被求值，得出结果 3 。接着，将 3 绑定到变量 n ，应用到函数 isOdd 。最后， mod 3 2 返回</div><div class="line">1 ，而 1 == 1 返回 True 。</div><div class="line"></div><div class="line">Haskell 使用了另外一种求值方式 —— 非严格求值。在这种情况下，求值 isOdd (1 + 2) 并不会即刻使得</div><div class="line">子表达式 1 + 2 被求值为 3 ，相反，编译器做出了一个“承诺”，说，“当真正有需要的时候，我有办法计算</div><div class="line">出 isOdd (1 + 2) 的值”。</div></pre></td></tr></table></figure>
-<h2 id="惰性求值的优点"><a href="#惰性求值的优点" class="headerlink" title="惰性求值的优点"></a>惰性求值的优点</h2><p>简单理解<code>惰性求值</code>: 在使用惰性计算时，表达式不在它被绑定到变量之后就立即求值，而是在该值被取用的时候求值。</p>
-<ul>
-<li>可以创建无限序列数据类型， 比如无穷大，由于字节的限制，很多语言并不能描述出无穷大</li>
-<li>减少存储空间, 在要求值的时候才会发生计算。 这个跟 <code>lazy</code> 属性一样的作用</li>
-<li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
-</ul>
-<p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
-<p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
-<ul>
-<li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
-<li>对于 <code>2</code>：因为是惰性求值，会先从 array 取出第4个元素， 然后 <code>* 2</code> , 1+1 = 2</li>
-</ul>
-<h2 id="lazy-到底为何物"><a href="#lazy-到底为何物" class="headerlink" title="lazy 到底为何物?"></a><code>lazy</code> 到底为何物?</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> <span class="built_in">lazy</span>: <span class="type">LazyRandomAccessCollection</span>&lt;<span class="type">Array</span>&lt;<span class="type">Element</span>&gt;&gt; &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>LazyRandomAccessCollection</code>  Conforms To<br><code>LazyCollectionProtocol</code></p>
-<p><code>LazyCollectionProtocol</code> Conforms To<br><code>LazySequenceProtocol</code></p>
-<h2 id="构建无穷大序列-swift4"><a href="#构建无穷大序列-swift4" class="headerlink" title="构建无穷大序列 (swift4)"></a>构建无穷大序列 (swift4)</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Stream</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">    <span class="keyword">case</span> cons(()-&gt;<span class="type">T</span>, ()-&gt; <span class="type">Stream</span>&lt;<span class="type">T</span>&gt;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Stream</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> empty: <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> .empty</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> tail: <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> .empty</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .cons(<span class="number">_</span>, tail):</div><div class="line">            <span class="keyword">return</span> tail()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> toArray: [<span class="type">T</span>] &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .cons(h, t):</div><div class="line">            <span class="keyword">return</span> [h()] + t().toArray</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">take</span><span class="params">(n: Int)</span></span> -&gt; <span class="type">Stream</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span> &#123;</div><div class="line">            <span class="keyword">return</span> empty</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">case</span> .empty:</div><div class="line">                <span class="keyword">return</span> .empty</div><div class="line">            <span class="keyword">case</span> <span class="keyword">let</span> .cons(h, t):</div><div class="line">                <span class="keyword">return</span> <span class="type">Stream</span>.cons(h, &#123;t().take(n: n-<span class="number">1</span>)&#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">onses</span><span class="params">()</span></span> -&gt; <span class="type">Stream</span>&lt;<span class="type">Int</span>&gt; &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">Stream</span>&lt;<span class="type">Int</span>&gt;.cons(&#123;<span class="number">1</span>&#125;, &#123;onses()&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">print</span>(onses().take(n: <span class="number">5</span>).toArray)</div></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://lincode.github.io/Swift-Lazy" target="_blank" rel="noopener">Swift 函数式编程－惰性计算</a></li>
-<li><a href="http://www.bijishequ.com/detail/266436?p=" target="_blank" rel="noopener">Swift函数式编程(二)：惰性求值与无穷数据流</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2111,7 +2126,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
