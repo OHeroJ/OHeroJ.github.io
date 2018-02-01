@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Vapor,Swift,后台," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
-<meta name="keywords" content="Vapor,Swift,后台">
+<meta name="description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift 之后台 Vapor 初步">
-<meta property="og:url" content="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/index.html">
+<meta property="og:title" content="如何用 SwiftPM 桥接 C 库">
+<meta property="og:url" content="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta property="og:description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-13T05:04:59.139Z">
+<meta property="og:updated_time" content="2018-02-01T01:49:35.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift 之后台 Vapor 初步">
-<meta name="twitter:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta name="twitter:title" content="如何用 SwiftPM 桥接 C 库">
+<meta name="twitter:description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/"/>
+  <link rel="canonical" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/"/>
 
 
 
 
 
-  <title>Swift 之后台 Vapor 初步 | loveli</title>
+  <title>如何用 SwiftPM 桥接 C 库 | loveli</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="loveli">
@@ -270,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Swift 之后台 Vapor 初步</h2>
+          <h2 class="post-title" itemprop="name headline">如何用 SwiftPM 桥接 C 库</h2>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T17:27:32+08:00">
-                2016-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T09:48:49+08:00">
+                2018-02-01
               </time>
             
 
@@ -301,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/10/Swift 之后台 Vapor 初步/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/07/10/Swift 之后台 Vapor 初步/" itemprop="commentsCount"></span>
+                <a href="/2018/02/01/如何用-SwiftPM-桥接-C-库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/01/如何用-SwiftPM-桥接-C-库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,7 +310,7 @@
 
           
           
-             <span id="/2016/07/10/Swift 之后台 Vapor 初步/" class="leancloud_visitors" data-flag-title="Swift 之后台 Vapor 初步">
+             <span id="/2018/02/01/如何用-SwiftPM-桥接-C-库/" class="leancloud_visitors" data-flag-title="如何用 SwiftPM 桥接 C 库">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,62 +341,43 @@
       
 
       
-        <blockquote>
-<p>近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写<br>“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.”<br>如果使用PHP Laravel的同学应该知道，这个库的很有艺术性，很优美<br>“The PHP Framework For Web Artisans”<br>swift的年轻所以有很多地方也造就了vapor的年轻<br>所以在使用vapor的时候并不是那么方便，坑还是不少的。</p>
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># swift --version</div><div class="line">Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)</div><div class="line">Target: x86_64-apple-macosx10.9</div><div class="line"></div><div class="line"># swift package --version</div><div class="line">Apple Swift Package Manager - Swift 4.0.0-dev (swiftpm-13752)</div></pre></td></tr></table></figure>
+<h2 id="用-cmark-制作-Swift-SwiftPM-库"><a href="#用-cmark-制作-Swift-SwiftPM-库" class="headerlink" title="用 cmark 制作 Swift SwiftPM 库"></a>用 cmark 制作 Swift SwiftPM 库</h2><p><code>[cmark](https://github.com/commonmark/cmark)</code> 是 <code>CommonMark</code>  C 的一个解析库。</p>
+<blockquote>
+<p>CommonMark parsing and rendering library and program in C</p>
 </blockquote>
-<hr>
-<p>环境：  xcode7.3.1  macOS 10.11.6</p>
-<h3 id="swift-版本的选择"><a href="#swift-版本的选择" class="headerlink" title="swift 版本的选择"></a>swift 版本的选择</h3><p>对于这个问题，我想说用swiftenv来解决吧</p>
-<pre><code>brew install kylef/formulae/swiftenv
-</code></pre><h3 id="vapor-CLI的安装"><a href="#vapor-CLI的安装" class="headerlink" title="vapor CLI的安装"></a>vapor CLI的安装</h3><pre><code>curl -L cli.qutheory.io -o vapor
-chmod +x vapor
-sudo mv vapor /usr/local/bin
-</code></pre><h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>如果你想使用vapor 的demo的话，直接用<code>vapor new yourDemo</code>, 这个时候你的项目就不是纯净的，当然可能会引发出相关问题，我这边碰到的是 ， vapor CLI的版本是5.3, 这个版本对应的swift版本是<code>DEVELOPMENT-SNAPSHOT-2016-06-06-a</code>, 但是这个时候这个new出来的项目的版本是 <code>DEVELOPMENT-SNAPSHOT-2016-06-20-a</code>,所以这就在‘vapor new’的时候会出现失败, 并且xcode7 也不能打开这个项目。</p>
-<h4 id="如何构建一个纯净版的Vapor项目"><a href="#如何构建一个纯净版的Vapor项目" class="headerlink" title="如何构建一个纯净版的Vapor项目?"></a>如何构建一个纯净版的Vapor项目?</h4><ol>
-<li><code>mkdir blog</code>创建一个blog文件夹</li>
-<li><code>swift package init</code> 创建一个基本项目</li>
-<li><p><code>atom Package.swift</code> 修改 Package.swift, 这里举例：</p>
-<pre><code>import PackageDescription
-
-let package = Package(
-    name: &quot;blog&quot;,
-    dependencies: [
-        .Package(url: &quot;https://github.com/qutheory/vapor.git&quot;, majorVersion: 0, minor: 12),
-
-    ],
-    exclude: [
-        &quot;Config&quot;,
-        &quot;Database&quot;,
-        &quot;Localization&quot;,
-        &quot;Public&quot;,
-        &quot;Resources&quot;,
-        &quot;Tests&quot;,
-    ]
-)
-</code></pre></li>
-<li><p>Source文件夹下的文件改名为 <code>main.swift</code>， 在里面编写如下一段代码：</p>
-<pre><code>import Vapor
-
-let drop = Application()
-
-drop.get(&quot;welcome&quot;) { request in
-
-    return  &quot;hello, world&quot;
-}
-
-drop.start()
-</code></pre></li>
-<li><p>先<code>vapor build</code>,然后 <code>vapor xcode</code>， 会自动用xcode打开这个项目.</p>
+<h3 id="Installing-cmark"><a href="#Installing-cmark" class="headerlink" title="Installing cmark"></a>Installing cmark</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install cmark</div></pre></td></tr></table></figure>
+<h3 id="包装-cmark-为一个-module"><a href="#包装-cmark-为一个-module" class="headerlink" title="包装 cmark 为一个 module"></a>包装 cmark 为一个 module</h3><p>swift 是不能直接处理 c 语言的头文件，依赖于模块。</p>
+<h4 id="用-SwiftPM-创建-Ccmark-package"><a href="#用-SwiftPM-创建-Ccmark-package" class="headerlink" title="用 SwiftPM 创建 Ccmark package"></a>用 SwiftPM 创建 Ccmark <code>package</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir Ccmark</div><div class="line">cd Ccmark</div><div class="line">swift package init --type system-module</div></pre></td></tr></table></figure>
+<p>然后查看下目录树, 在终端上键入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tree</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">└── module.modulemap</div></pre></td></tr></table></figure>
+<h4 id="配置-Package-swift"><a href="#配置-Package-swift" class="headerlink" title="配置 Package.swift"></a>配置 <code>Package.swift</code></h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// swift-tools-version:4.0</span></div><div class="line"><span class="comment">// The swift-tools-version declares the minimum version of Swift required to build this package.</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"Ccmark"</span>,</div><div class="line">    pkgConfig: <span class="string">"libcmark"</span>,</div><div class="line">    providers: [</div><div class="line">        .brew([<span class="string">"cmark"</span>])</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong><a href="https://zh.wikipedia.org/wiki/Pkg-config" target="_blank" rel="noopener">pkg-config</a></strong></p>
+<p>  参数指出需要倒入库的名字，告诉 <code>SwiftPM</code>在哪里可以找到导入库的头文件以及库的搜索路径。</p>
 </li>
-<li>用xcode 运行这个项目（选中你这个项目）, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
-</ol>
-<h3 id="如何体验-vapor的更多功能"><a href="#如何体验-vapor的更多功能" class="headerlink" title="如何体验 vapor的更多功能"></a>如何体验 vapor的更多功能</h3><ol>
-<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="noopener">doc</a></p>
+<li><p><strong>providers</strong> 是非必填</p>
+<p>  如果这个库没有安装，会给用户提示</p>
 </li>
-<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="noopener">教学视频</a></p>
-</li>
-</ol>
-
+</ul>
+<h4 id="创建-shim-h"><a href="#创建-shim-h" class="headerlink" title="创建 shim.h"></a>创建 <code>shim.h</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmark.h&gt;</span> <span class="comment">// 引入</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* shim_h */</span></span></div></pre></td></tr></table></figure>
+<h4 id="编写-modelu-modulemap"><a href="#编写-modelu-modulemap" class="headerlink" title="编写 modelu.modulemap"></a>编写 modelu.modulemap</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module Ccmark [system] &#123;</div><div class="line">  header &quot;shim.h&quot;</div><div class="line">  link &quot;cmark&quot;</div><div class="line">  export *</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么要创建 <code>shim.h</code> 这个文件呢？</p>
+<p>主要是因为 module maps 必须是绝对路径或者是本地路径。如果你不添加 <code>shim.h</code>, 那么</p>
+<p><code>header</code> 就得写绝对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/cmark/0.28.3/include/cmark.h</div></pre></td></tr></table></figure>
+<p>作为程序员，我们很讨厌 hadercode 并且把一个库的路径写死会影响一个库的使用的灵活性。</p>
+<p><code>shim.h</code>的添加后， 包管理器会从pkg-config文件搜索正确的路径，并将其添加到编译器调用</p>
+<h4 id="添加版本管理"><a href="#添加版本管理" class="headerlink" title="添加版本管理"></a>添加版本管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git init </div><div class="line">git add .</div><div class="line">git commit -m &quot;Initial commit&quot;</div></pre></td></tr></table></figure>
+<p>如果要上传到 <code>github</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/***/**.git</div></pre></td></tr></table></figure>
+<h2 id="使用这个库"><a href="#使用这个库" class="headerlink" title="使用这个库"></a>使用这个库</h2><h3 id="创建-CmarkExample-package"><a href="#创建-CmarkExample-package" class="headerlink" title="创建 CmarkExample package"></a>创建 CmarkExample package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">mkdir CmarkExample</div><div class="line">cd CmarkExample</div><div class="line">swift package init --type executable</div></pre></td></tr></table></figure>
+<h3 id="编写依赖"><a href="#编写依赖" class="headerlink" title="编写依赖"></a>编写依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import PackageDescription</div><div class="line"></div><div class="line">let package = Package(</div><div class="line">    name: &quot;CmarkExample&quot;,</div><div class="line">    dependencies: [</div><div class="line">        .package(url: &quot;../Ccmark&quot;, .branch(&quot;master&quot;)) </div><div class="line">        // 如果你上传到了 github</div><div class="line">        // .package(url: &quot;https://github.com/***/**.git&quot;, .branch(&quot;master&quot;)) </div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: &quot;CmarkExample&quot;,</div><div class="line">            dependencies: [&quot;Ccmark&quot;]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="main-swift"><a href="#main-swift" class="headerlink" title="main.swift"></a>main.swift</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Ccmark</div><div class="line"></div><div class="line">let markdown = &quot;*Hello World*&quot;</div><div class="line">let cString = cmark_markdown_to_html(markdown, markdown.utf8.count, 0)!</div><div class="line">defer &#123;</div><div class="line">    free(cString)</div><div class="line">&#125;</div><div class="line">let html = String(cString: cString)</div><div class="line">print(html)</div></pre></td></tr></table></figure>
+<p>运行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift run</div><div class="line"># &lt;p&gt;&lt;em&gt;Hello World&lt;/em&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+<h2 id="OK-完成"><a href="#OK-完成" class="headerlink" title="OK,完成"></a>OK,完成</h2>
       
     </div>
     
@@ -413,11 +394,7 @@ drop.start()
       
         <div class="post-tags">
           
-            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
-          
             <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
-            <a href="/tags/后台/" rel="tag"># 后台</a>
           
         </div>
       
@@ -430,8 +407,8 @@ drop.start()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/02/iOS 直播 Tutorials/" rel="next" title="iOS 直播 Tutorials">
-                <i class="fa fa-chevron-left"></i> iOS 直播 Tutorials
+              <a href="/2018/01/29/Swift-之-Package-Manage/" rel="next" title="Swift 之 Package Manage">
+                <i class="fa fa-chevron-left"></i> Swift 之 Package Manage
               </a>
             
           </div>
@@ -439,10 +416,6 @@ drop.start()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/16/iOS 之 Cocoapods/" rel="prev" title="iOS 之 Cocoapods">
-                iOS 之 Cocoapods <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -584,7 +557,7 @@ drop.start()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-版本的选择"><span class="nav-number">1.</span> <span class="nav-text"><a href="#swift-&#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;" class="headerlink" title="swift &#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;"></a>swift &#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor-CLI的安装"><span class="nav-number">2.</span> <span class="nav-text"><a href="#vapor-CLI&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="vapor CLI&#x7684;&#x5B89;&#x88C5;"></a>vapor CLI&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor"><span class="nav-number">3.</span> <span class="nav-text"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何构建一个纯净版的Vapor项目"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;" class="headerlink" title="&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;?"></a>&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何体验-vapor的更多功能"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x4F53;&#x9A8C;-vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;" class="headerlink" title="&#x5982;&#x4F55;&#x4F53;&#x9A8C; vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;"></a>&#x5982;&#x4F55;&#x4F53;&#x9A8C; vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;" class="headerlink" title="&#x73AF;&#x5883;"></a>&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-cmark-制作-Swift-SwiftPM-库"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7528;-cmark-&#x5236;&#x4F5C;-Swift-SwiftPM-&#x5E93;" class="headerlink" title="&#x7528; cmark &#x5236;&#x4F5C; Swift SwiftPM &#x5E93;"></a>&#x7528; cmark &#x5236;&#x4F5C; Swift SwiftPM &#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-cmark"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#Installing-cmark" class="headerlink" title="Installing cmark"></a>Installing cmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包装-cmark-为一个-module"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5305;&#x88C5;-cmark-&#x4E3A;&#x4E00;&#x4E2A;-module" class="headerlink" title="&#x5305;&#x88C5; cmark &#x4E3A;&#x4E00;&#x4E2A; module"></a>&#x5305;&#x88C5; cmark &#x4E3A;&#x4E00;&#x4E2A; module</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用-SwiftPM-创建-Ccmark-package"><span class="nav-number">2.2.1.</span> <span class="nav-text"><a href="#&#x7528;-SwiftPM-&#x521B;&#x5EFA;-Ccmark-package" class="headerlink" title="&#x7528; SwiftPM &#x521B;&#x5EFA; Ccmark package"></a>&#x7528; SwiftPM &#x521B;&#x5EFA; Ccmark <code>package</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-Package-swift"><span class="nav-number">2.2.2.</span> <span class="nav-text"><a href="#&#x914D;&#x7F6E;-Package-swift" class="headerlink" title="&#x914D;&#x7F6E; Package.swift"></a>&#x914D;&#x7F6E; <code>Package.swift</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-shim-h"><span class="nav-number">2.2.3.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;-shim-h" class="headerlink" title="&#x521B;&#x5EFA; shim.h"></a>&#x521B;&#x5EFA; <code>shim.h</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写-modelu-modulemap"><span class="nav-number">2.2.4.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;-modelu-modulemap" class="headerlink" title="&#x7F16;&#x5199; modelu.modulemap"></a>&#x7F16;&#x5199; modelu.modulemap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加版本管理"><span class="nav-number">2.2.5.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;" class="headerlink" title="&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;"></a>&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用这个库"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;" class="headerlink" title="&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;"></a>&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-CmarkExample-package"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;-CmarkExample-package" class="headerlink" title="&#x521B;&#x5EFA; CmarkExample package"></a>&#x521B;&#x5EFA; CmarkExample package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写依赖"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x4F9D;&#x8D56;" class="headerlink" title="&#x7F16;&#x5199;&#x4F9D;&#x8D56;"></a>&#x7F16;&#x5199;&#x4F9D;&#x8D56;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-swift"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#main-swift" class="headerlink" title="main.swift"></a>main.swift</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OK-完成"><span class="nav-number">4.</span> <span class="nav-text"><a href="#OK-&#x5B8C;&#x6210;" class="headerlink" title="OK,&#x5B8C;&#x6210;"></a>OK,&#x5B8C;&#x6210;</span></a></li></ol></div>
             
 
           </div>
