@@ -82,14 +82,14 @@
 <meta name="description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
 <meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何用 SwiftPM 桥接 C 库">
-<meta property="og:url" content="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/index.html">
+<meta property="og:title" content="SwiftPM 制作自己 C 库">
+<meta property="og:url" content="http://loveli.site/2018/02/01/SwiftPM-制作自己-C-库/index.html">
 <meta property="og:site_name" content="loveli">
 <meta property="og:description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-01T01:49:35.825Z">
+<meta property="og:updated_time" content="2018-02-01T07:26:50.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何用 SwiftPM 桥接 C 库">
+<meta name="twitter:title" content="SwiftPM 制作自己 C 库">
 <meta name="twitter:description" content="环境123456# swift --versionApple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)Target: x86_64-apple-macosx10.9# swift package --versionApple Swift Package Manager - Swift 4.0.0-dev (swiftpm">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/"/>
+  <link rel="canonical" href="http://loveli.site/2018/02/01/SwiftPM-制作自己-C-库/"/>
 
 
 
 
 
-  <title>如何用 SwiftPM 桥接 C 库 | loveli</title>
+  <title>SwiftPM 制作自己 C 库 | loveli</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/SwiftPM-制作自己-C-库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="loveli">
@@ -270,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">如何用 SwiftPM 桥接 C 库</h2>
+          <h2 class="post-title" itemprop="name headline">SwiftPM 制作自己 C 库</h2>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T09:48:49+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T15:26:14+08:00">
                 2018-02-01
               </time>
             
@@ -301,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/01/如何用-SwiftPM-桥接-C-库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/01/如何用-SwiftPM-桥接-C-库/" itemprop="commentsCount"></span>
+                <a href="/2018/02/01/SwiftPM-制作自己-C-库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/01/SwiftPM-制作自己-C-库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,7 +310,7 @@
 
           
           
-             <span id="/2018/02/01/如何用-SwiftPM-桥接-C-库/" class="leancloud_visitors" data-flag-title="如何用 SwiftPM 桥接 C 库">
+             <span id="/2018/02/01/SwiftPM-制作自己-C-库/" class="leancloud_visitors" data-flag-title="SwiftPM 制作自己 C 库">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -342,42 +342,33 @@
 
       
         <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># swift --version</div><div class="line">Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)</div><div class="line">Target: x86_64-apple-macosx10.9</div><div class="line"></div><div class="line"># swift package --version</div><div class="line">Apple Swift Package Manager - Swift 4.0.0-dev (swiftpm-13752)</div></pre></td></tr></table></figure>
-<h2 id="用-cmark-制作-Swift-SwiftPM-库"><a href="#用-cmark-制作-Swift-SwiftPM-库" class="headerlink" title="用 cmark 制作 Swift SwiftPM 库"></a>用 cmark 制作 Swift SwiftPM 库</h2><p><code>[cmark](https://github.com/commonmark/cmark)</code> 是 <code>CommonMark</code>  C 的一个解析库。</p>
-<blockquote>
-<p>CommonMark parsing and rendering library and program in C</p>
-</blockquote>
-<h3 id="Installing-cmark"><a href="#Installing-cmark" class="headerlink" title="Installing cmark"></a>Installing cmark</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install cmark</div></pre></td></tr></table></figure>
-<h3 id="包装-cmark-为一个-module"><a href="#包装-cmark-为一个-module" class="headerlink" title="包装 cmark 为一个 module"></a>包装 cmark 为一个 module</h3><p>swift 是不能直接处理 c 语言的头文件，依赖于模块。</p>
-<h4 id="用-SwiftPM-创建-Ccmark-package"><a href="#用-SwiftPM-创建-Ccmark-package" class="headerlink" title="用 SwiftPM 创建 Ccmark package"></a>用 SwiftPM 创建 Ccmark <code>package</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir Ccmark</div><div class="line">cd Ccmark</div><div class="line">swift package init --type system-module</div></pre></td></tr></table></figure>
-<p>然后查看下目录树, 在终端上键入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tree</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">└── module.modulemap</div></pre></td></tr></table></figure>
-<h4 id="配置-Package-swift"><a href="#配置-Package-swift" class="headerlink" title="配置 Package.swift"></a>配置 <code>Package.swift</code></h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// swift-tools-version:4.0</span></div><div class="line"><span class="comment">// The swift-tools-version declares the minimum version of Swift required to build this package.</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"Ccmark"</span>,</div><div class="line">    pkgConfig: <span class="string">"libcmark"</span>,</div><div class="line">    providers: [</div><div class="line">        .brew([<span class="string">"cmark"</span>])</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
-<ul>
-<li><p><strong><a href="https://zh.wikipedia.org/wiki/Pkg-config" target="_blank" rel="noopener">pkg-config</a></strong></p>
-<p>  参数指出需要倒入库的名字，告诉 <code>SwiftPM</code>在哪里可以找到导入库的头文件以及库的搜索路径。</p>
-</li>
-<li><p><strong>providers</strong> 是非必填</p>
-<p>  如果这个库没有安装，会给用户提示</p>
-</li>
-</ul>
-<h4 id="创建-shim-h"><a href="#创建-shim-h" class="headerlink" title="创建 shim.h"></a>创建 <code>shim.h</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmark.h&gt;</span> <span class="comment">// 引入</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* shim_h */</span></span></div></pre></td></tr></table></figure>
-<h4 id="编写-modelu-modulemap"><a href="#编写-modelu-modulemap" class="headerlink" title="编写 modelu.modulemap"></a>编写 modelu.modulemap</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module Ccmark [system] &#123;</div><div class="line">  header &quot;shim.h&quot;</div><div class="line">  link &quot;cmark&quot;</div><div class="line">  export *</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>为什么要创建 <code>shim.h</code> 这个文件呢？</p>
-<p>主要是因为 module maps 必须是绝对路径或者是本地路径。如果你不添加 <code>shim.h</code>, 那么</p>
-<p><code>header</code> 就得写绝对路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/cmark/0.28.3/include/cmark.h</div></pre></td></tr></table></figure>
-<p>作为程序员，我们很讨厌 hadercode 并且把一个库的路径写死会影响一个库的使用的灵活性。</p>
-<p><code>shim.h</code>的添加后， 包管理器会从pkg-config文件搜索正确的路径，并将其添加到编译器调用</p>
-<h4 id="添加版本管理"><a href="#添加版本管理" class="headerlink" title="添加版本管理"></a>添加版本管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git init </div><div class="line">git add .</div><div class="line">git commit -m &quot;Initial commit&quot;</div></pre></td></tr></table></figure>
-<p>如果要上传到 <code>github</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/***/**.git</div></pre></td></tr></table></figure>
-<h2 id="使用这个库"><a href="#使用这个库" class="headerlink" title="使用这个库"></a>使用这个库</h2><h3 id="创建-CmarkExample-package"><a href="#创建-CmarkExample-package" class="headerlink" title="创建 CmarkExample package"></a>创建 CmarkExample package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">mkdir CmarkExample</div><div class="line">cd CmarkExample</div><div class="line">swift package init --type executable</div></pre></td></tr></table></figure>
-<h3 id="编写依赖"><a href="#编写依赖" class="headerlink" title="编写依赖"></a>编写依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import PackageDescription</div><div class="line"></div><div class="line">let package = Package(</div><div class="line">    name: &quot;CmarkExample&quot;,</div><div class="line">    dependencies: [</div><div class="line">        .package(url: &quot;../Ccmark&quot;, .branch(&quot;master&quot;)) </div><div class="line">        // 如果你上传到了 github</div><div class="line">        // .package(url: &quot;https://github.com/***/**.git&quot;, .branch(&quot;master&quot;)) </div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: &quot;CmarkExample&quot;,</div><div class="line">            dependencies: [&quot;Ccmark&quot;]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
-<h3 id="main-swift"><a href="#main-swift" class="headerlink" title="main.swift"></a>main.swift</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Ccmark</div><div class="line"></div><div class="line">let markdown = &quot;*Hello World*&quot;</div><div class="line">let cString = cmark_markdown_to_html(markdown, markdown.utf8.count, 0)!</div><div class="line">defer &#123;</div><div class="line">    free(cString)</div><div class="line">&#125;</div><div class="line">let html = String(cString: cString)</div><div class="line">print(html)</div></pre></td></tr></table></figure>
+<h2 id="创建-lclib"><a href="#创建-lclib" class="headerlink" title="创建 lclib"></a>创建 lclib</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir lclib</div><div class="line">$ cd lclib</div><div class="line">$ swift package init --type library</div></pre></td></tr></table></figure>
+<p>看下目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ tree</div><div class="line"></div><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── lclib</div><div class="line">│       └── lclib.swift</div><div class="line">└── Tests</div><div class="line">    ├── LinuxMain.swift</div><div class="line">    └── lclibTests</div><div class="line">        └── lclibTests.swift</div></pre></td></tr></table></figure>
+<p>创建 xcode 项目, 便于编写代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift package generate-xcodeproj</div><div class="line">$ open lclib.xcodeproj</div></pre></td></tr></table></figure>
+<p>因为这个是一个 c 库，所以把生成的 <code>lclib.swift</code> 删除</p>
+<h3 id="添加-c-代码"><a href="#添加-c-代码" class="headerlink" title="添加 c 代码"></a>添加 c 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── lclib</div><div class="line">│       ├── include</div><div class="line">│       │   └── lclib.h</div><div class="line">│       └── lclib.c</div><div class="line">├── Tests</div><div class="line">│   ├── LinuxMain.swift</div><div class="line">│   └── lclibTests</div><div class="line">│       └── lclibTests.swift</div><div class="line">└── lclib.xcodeproj</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lclib.h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> lclib_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lclib_h</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* lclib_h */</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// lclib.c </div><div class="line">long factorial(int n) &#123;</div><div class="line">    if (n == 0 || n == 1) return 1;</div><div class="line">    return n * factorial(n-1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Package-swift"><a href="#Package-swift" class="headerlink" title="Package.swift"></a>Package.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"lclib"</span>,</div><div class="line">    products: [</div><div class="line">        .library(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            targets: [<span class="string">"lclib"</span>]),</div><div class="line">    ],</div><div class="line">    dependencies: [</div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            path: <span class="string">"./Sources/lclib"</span>),</div><div class="line">        .testTarget(</div><div class="line">            name: <span class="string">"lclibTests"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import XCTest</div><div class="line">@testable import lclib</div><div class="line"></div><div class="line">class lclibTests: XCTestCase &#123;</div><div class="line">    func testExample() &#123;</div><div class="line">        XCTAssertEqual(factorial(0), 1)</div><div class="line">        XCTAssertEqual(factorial(1), 1)</div><div class="line">        XCTAssertEqual(factorial(2), 2)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static var allTests = [</div><div class="line">        (&quot;testExample&quot;, testExample),</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>运行 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift run</div><div class="line"># &lt;p&gt;&lt;em&gt;Hello World&lt;/em&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
-<h2 id="OK-完成"><a href="#OK-完成" class="headerlink" title="OK,完成"></a>OK,完成</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift build</div><div class="line">$ swift test</div></pre></td></tr></table></figure>
+<h2 id="添加版本管理"><a href="#添加版本管理" class="headerlink" title="添加版本管理"></a>添加版本管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;First Init&quot;</div></pre></td></tr></table></figure>
+<h2 id="添加一个可执行的-target"><a href="#添加一个可执行的-target" class="headerlink" title="添加一个可执行的 target"></a>添加一个可执行的 target</h2><p>添加文件到 <code>Sources/App/main.swift</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.resolved</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   ├── app</div><div class="line">│   │   └── main.swift</div><div class="line">│   └── lclib</div><div class="line">│       ├── include</div><div class="line">│       │   └── lclib.h</div><div class="line">│       └── lclib.c</div><div class="line">├── Tests</div><div class="line">│   ├── LinuxMain.swift</div><div class="line">│   └── lclibTests</div><div class="line">│       └── lclibTests.swift</div><div class="line">└── lclib.xcodeproj</div></pre></td></tr></table></figure>
+<p>在 <code>main.swift</code> 上： </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.swift</span></div><div class="line"><span class="keyword">import</span> lclib</div><div class="line"><span class="built_in">print</span>(factorial(<span class="number">10</span>))</div></pre></td></tr></table></figure>
+<p>这样能运行么，当然不能，配置一下<code>Package.swift</code>: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"lclib"</span>,</div><div class="line">    products: [</div><div class="line">        .library(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            targets: [<span class="string">"lclib"</span>]),</div><div class="line">        .executable(</div><div class="line">            name:<span class="string">"app"</span>,</div><div class="line">            targets: [<span class="string">"app"</span>])</div><div class="line"></div><div class="line">    ],</div><div class="line">    dependencies: [</div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            path: <span class="string">"./Sources/lclib"</span>),</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"app"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">        .testTarget(</div><div class="line">            name: <span class="string">"lclibTests"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift run </div><div class="line">3628800</div></pre></td></tr></table></figure>
+<p>这样就可以实现一个工程既有 Swift 又有 C.</p>
+<h2 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h2><ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0038-swiftpm-c-language-targets.md" target="_blank" rel="noopener">Build C language targets with SPM</a></li>
+<li><a href="https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md" target="_blank" rel="noopener">SwiftPM Usage</a></li>
+</ul>
+
       
     </div>
     
@@ -407,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/29/Swift-之-Package-Manage/" rel="next" title="Swift 之 Package Manage">
-                <i class="fa fa-chevron-left"></i> Swift 之 Package Manage
+              <a href="/2018/02/01/如何用-SwiftPM-桥接-C-库/" rel="next" title="如何用 SwiftPM 桥接 C 库">
+                <i class="fa fa-chevron-left"></i> 如何用 SwiftPM 桥接 C 库
               </a>
             
           </div>
@@ -416,10 +407,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/01/SwiftPM-制作自己-C-库/" rel="prev" title="SwiftPM 制作自己 C 库">
-                SwiftPM 制作自己 C 库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;" class="headerlink" title="&#x73AF;&#x5883;"></a>&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-cmark-制作-Swift-SwiftPM-库"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7528;-cmark-&#x5236;&#x4F5C;-Swift-SwiftPM-&#x5E93;" class="headerlink" title="&#x7528; cmark &#x5236;&#x4F5C; Swift SwiftPM &#x5E93;"></a>&#x7528; cmark &#x5236;&#x4F5C; Swift SwiftPM &#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-cmark"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#Installing-cmark" class="headerlink" title="Installing cmark"></a>Installing cmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包装-cmark-为一个-module"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5305;&#x88C5;-cmark-&#x4E3A;&#x4E00;&#x4E2A;-module" class="headerlink" title="&#x5305;&#x88C5; cmark &#x4E3A;&#x4E00;&#x4E2A; module"></a>&#x5305;&#x88C5; cmark &#x4E3A;&#x4E00;&#x4E2A; module</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用-SwiftPM-创建-Ccmark-package"><span class="nav-number">2.2.1.</span> <span class="nav-text"><a href="#&#x7528;-SwiftPM-&#x521B;&#x5EFA;-Ccmark-package" class="headerlink" title="&#x7528; SwiftPM &#x521B;&#x5EFA; Ccmark package"></a>&#x7528; SwiftPM &#x521B;&#x5EFA; Ccmark <code>package</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-Package-swift"><span class="nav-number">2.2.2.</span> <span class="nav-text"><a href="#&#x914D;&#x7F6E;-Package-swift" class="headerlink" title="&#x914D;&#x7F6E; Package.swift"></a>&#x914D;&#x7F6E; <code>Package.swift</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-shim-h"><span class="nav-number">2.2.3.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;-shim-h" class="headerlink" title="&#x521B;&#x5EFA; shim.h"></a>&#x521B;&#x5EFA; <code>shim.h</code></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写-modelu-modulemap"><span class="nav-number">2.2.4.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;-modelu-modulemap" class="headerlink" title="&#x7F16;&#x5199; modelu.modulemap"></a>&#x7F16;&#x5199; modelu.modulemap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加版本管理"><span class="nav-number">2.2.5.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;" class="headerlink" title="&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;"></a>&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用这个库"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;" class="headerlink" title="&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;"></a>&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-CmarkExample-package"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;-CmarkExample-package" class="headerlink" title="&#x521B;&#x5EFA; CmarkExample package"></a>&#x521B;&#x5EFA; CmarkExample package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写依赖"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x4F9D;&#x8D56;" class="headerlink" title="&#x7F16;&#x5199;&#x4F9D;&#x8D56;"></a>&#x7F16;&#x5199;&#x4F9D;&#x8D56;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-swift"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#main-swift" class="headerlink" title="main.swift"></a>main.swift</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OK-完成"><span class="nav-number">4.</span> <span class="nav-text"><a href="#OK-&#x5B8C;&#x6210;" class="headerlink" title="OK,&#x5B8C;&#x6210;"></a>OK,&#x5B8C;&#x6210;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;" class="headerlink" title="&#x73AF;&#x5883;"></a>&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-lclib"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;-lclib" class="headerlink" title="&#x521B;&#x5EFA; lclib"></a>&#x521B;&#x5EFA; lclib</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;" class="headerlink" title="&#x51C6;&#x5907;"></a>&#x51C6;&#x5907;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-c-代码"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;-c-&#x4EE3;&#x7801;" class="headerlink" title="&#x6DFB;&#x52A0; c &#x4EE3;&#x7801;"></a>&#x6DFB;&#x52A0; c &#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-swift"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#Package-swift" class="headerlink" title="Package.swift"></a>Package.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写测试"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x7F16;&#x5199;&#x6D4B;&#x8BD5;"></a>&#x7F16;&#x5199;&#x6D4B;&#x8BD5;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加版本管理"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;" class="headerlink" title="&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;"></a>&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x7BA1;&#x7406;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加一个可执行的-target"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x7684;-target" class="headerlink" title="&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x7684; target"></a>&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x7684; target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参阅"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x9605;" class="headerlink" title="&#x53C2;&#x9605;"></a>&#x53C2;&#x9605;</span></a></li></ol></div>
             
 
           </div>

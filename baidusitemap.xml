@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://loveli.site/2018/02/01/SwiftPM-%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1-C-%E5%BA%93/</loc>
+    <lastmod>2018-02-01T07:26:50.239Z</lastmod>
+    <data>
+        <display>
+        <title>SwiftPM 制作自己 C 库</title>
+        <pubTime>2018-02-01T07:26:14.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://loveli.site/2018/02/01/%E5%A6%82%E4%BD%95%E7%94%A8-SwiftPM-%E6%A1%A5%E6%8E%A5-C-%E5%BA%93/</loc>
     <lastmod>2018-02-01T01:49:35.825Z</lastmod>
     <data>
@@ -249,9 +266,9 @@
         <title>私有 Cocoapods 的创建和维护</title>
         <pubTime>2016-08-07T13:53:39.000Z</pubTime>
         
-        <tag>Cocoapods</tag>
-         
         <tag>Gitlab</tag>
+         
+        <tag>Cocoapods</tag>
          
         <tag>iOS</tag>
          

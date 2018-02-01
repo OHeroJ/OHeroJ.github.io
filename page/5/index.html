@@ -249,6 +249,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/24/iOS 开发技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/24/iOS 开发技巧/" itemprop="url">iOS 开发技巧</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-24T08:42:11+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/24/iOS 开发技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/08/24/iOS 开发技巧/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/24/iOS 开发技巧/" class="leancloud_visitors" data-flag-title="iOS 开发技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="XCode快捷键"><a href="#XCode快捷键" class="headerlink" title="XCode快捷键"></a>XCode快捷键</h2><ol>
+<li><code>cmd + shift + j</code> : 定位当前代码文件所在的目录中的位置</li>
+<li><code>cmd + shift + o</code> : 寻找类对应的代码文件</li>
+<li><code>cmd + shift + f</code> : 从全局搜索全局文件</li>
+<li><code>cmd + \</code> : 取消断点  或者打断点</li>
+<li><code>cmd + alt +  &lt;-</code> : 折叠代码</li>
+<li><code>cmd + alt +  -&gt;</code> : 展开代码</li>
+</ol>
+<h2 id="封装库的代码细节处理"><a href="#封装库的代码细节处理" class="headerlink" title="封装库的代码细节处理"></a>封装库的代码细节处理</h2><ol>
+<li><p>忽略编译警告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Warc-retain-cycles&quot;</div><div class="line">    self.completionBlock = ^ &#123;</div><div class="line">        ...</div><div class="line">    &#125;;</div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure>
+</li>
+<li><p><a href="http://ios.jobbole.com/85019/" target="_blank" rel="noopener">剖析@weakify 和 @strongify：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#define weakify(...)</div><div class="line">    rac_keywordify</div><div class="line">    metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)</div><div class="line"> </div><div class="line">#define strongify(...)</div><div class="line">    rac_keywordify</div><div class="line">    _Pragma(&quot;clang diagnostic push&quot;)</div><div class="line">    _Pragma(&quot;clang diagnostic ignored &quot;-Wshadow&quot;&quot;)</div><div class="line">    metamacro_foreach(rac_strongify_,, __VA_ARGS__)</div><div class="line">    _Pragma(&quot;clang diagnostic pop&quot;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>断言的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">NSParameterAssert(playButtonImage != nil);</div><div class="line">NSParameterAssert(pauseButtonImage != nil);</div><div class="line">NSParameterAssert(labelFont != nil);</div><div class="line">NSParameterAssert(backgroundColor != nil);</div><div class="line">NSParameterAssert(tintColor != nil);</div><div class="line">NSParameterAssert(audioCategory != nil);</div></pre></td></tr></table></figure>
+</li>
+<li><p>通知的移除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)dealloc</div><div class="line">&#123;</div><div class="line">    [[NSNotificationCenter defaultCenter] removeObserver:self];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="xocde-字体设置："><a href="#xocde-字体设置：" class="headerlink" title="xocde 字体设置："></a>xocde 字体设置：</h2><p>Xcode我喜欢的字体是 Courier New 16号字体</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/23/iOS 之 AOP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1946,309 +2109,6 @@ brew install ffmpeg --with-ffplay
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/06/27/iOS 多线程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/27/iOS 多线程/" itemprop="url">iOS 多线程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-27T11:44:00+08:00">
-                2016-06-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/27/iOS 多线程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/06/27/iOS 多线程/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/06/27/iOS 多线程/" class="leancloud_visitors" data-flag-title="iOS 多线程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="多线程的优缺点"><a href="#多线程的优缺点" class="headerlink" title="多线程的优缺点"></a>多线程的优缺点</h2><p><code>优点</code>: 多线程能够适当提高程序的执行效率，适当提高资源利用率(CPU、内存利用率)。</p>
-<p><code>缺点</code>: 每开启一条线程需要占用一定的内存空间，那么可想而知，如果开启大量的线程就会消耗大量的内存空间，从而降低程序的性能。</p>
-<h2 id="Objective-C中实现多线程"><a href="#Objective-C中实现多线程" class="headerlink" title="Objective-C中实现多线程"></a>Objective-C中实现多线程</h2><p><code>performSelectors</code>:</p>
-<p>NSObject 提供了以performSelector 为前缀的一些列方法。它们可以让用户在指定的线程中，或者立即，或者延迟执行某个方法调用</p>
-<h3 id="在当前线程中执行方法："><a href="#在当前线程中执行方法：" class="headerlink" title="在当前线程中执行方法："></a>在当前线程中执行方法：</h3><pre><code>- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
-
-- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray *)modes
-</code></pre><h3 id="在指定线程中执行方法："><a href="#在指定线程中执行方法：" class="headerlink" title="在指定线程中执行方法："></a>在指定线程中执行方法：</h3><pre><code>- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait
-
-- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
-</code></pre><h3 id="在主线程中执行方法："><a href="#在主线程中执行方法：" class="headerlink" title="在主线程中执行方法："></a>在主线程中执行方法：</h3><pre><code>-(void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument
-waitUntilDone:(BOOL)wait
-
--(void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg
-waitUntilDone:(BOOL)wait
-modes:(NSArray *)array
-</code></pre><h3 id="在后台线程中执行方法："><a href="#在后台线程中执行方法：" class="headerlink" title="在后台线程中执行方法："></a>在后台线程中执行方法：</h3><pre><code>-(void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
-</code></pre><h2 id="NSThread-pthread"><a href="#NSThread-pthread" class="headerlink" title="NSThread / pthread"></a>NSThread / pthread</h2><p>pthread_t 和 NSThread是一一对应的。</p>
-<h3 id="三种实现开启线程的方式："><a href="#三种实现开启线程的方式：" class="headerlink" title="三种实现开启线程的方式："></a>三种实现开启线程的方式：</h3><pre><code>1. 动态实例化
-
-        NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
-
-        thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
-
-        [thread start];
-
-2. 静态实例化【分离线程】
-
-        [NSThread detachNewThreadSelector:@selector(loadImageSource:) toTarget:self withObject:imgUrl];
-
-3. 隐式实例化
-
-        [self performSelectorInBackground:@selector(loadImageSource:) withObject:imgUrl];
-</code></pre><h3 id="线程间的通信"><a href="#线程间的通信" class="headerlink" title="线程间的通信"></a>线程间的通信</h3><pre><code>1. performSelector On The thread
-
-        //在指定线程上执行操作
-        [self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES];
-        //在主线程上执行操作
-        [self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES];
-        //在当前线程执行操作
-        [self performSelector:@selector(run) withObject:nil];
-
-2. Mach Port (了解)
-
-    父线程创建了一个NSMachPort对象，在创建子线程的时候一参数的方式将其传递给子线程，这样子线程就可以向这个传过来的NSMachPort对象发送消息，如果想让父线程也可以向子线程发个特殊消息，传过来的是自己创建的另一个NSMachPort对象，这样父线程便持有了子线程创建的port对象，可以向这个子线程的port对象发送消息。
-
-    当然各自的port对象需要设置delegate以及schdule到自己所在线程的RunLoop中，这样来了消息后，处理port消息的delegate方法会被调用，你就可以自己处理消息了
-</code></pre><h2 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h2><p>通过继承NSOperation,可以使子类获得一些线程相关的特性，进而安全的管理线程生命周期，配合NSOperationQueue, 可以控制线程间的优先级和依赖性。</p>
-<p>NSOperation是个抽象类，但同时也提供了两个可以直接使用的子类： NSInvocationOperation 和NSBlockOperation.[任务的封装方式]</p>
-<p>NSOperationQueue则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation被添加到NSOperationQueue中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象被自动执行。</p>
-<h3 id="NSOperation-提供一下任务优先级："><a href="#NSOperation-提供一下任务优先级：" class="headerlink" title="NSOperation 提供一下任务优先级："></a>NSOperation 提供一下任务优先级：</h3><pre><code>NSOperationQueuePriorityVeryHigh
-NSOperationQueuePriorityHigh
-NSOperationQueuePriorityNormal
-NSOperationQueuePriorityLow
-NSOperationQueuePriorityVeryLow
-</code></pre><h3 id="NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"><a href="#NSOperation-使用状态模型来表示状态，可以使用KVO观察任务的执行状态。" class="headerlink" title="NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。"></a>NSOperation 使用状态模型来表示状态，可以使用KVO观察任务的执行状态。</h3><pre><code>isReady
-isExecuting
-isFinished
-</code></pre><h3 id="NSOperation-对象间的依赖性可以："><a href="#NSOperation-对象间的依赖性可以：" class="headerlink" title="NSOperation 对象间的依赖性可以："></a>NSOperation 对象间的依赖性可以：</h3><pre><code>[refreshUIOperation addDependency:requestDataOperation];
-[operationQueue addOperation:requestDataOperation];
-[operationQueue addOperation:refreshUIOperation];
-</code></pre><h3 id="NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源"><a href="#NSOperation还有一个“取消”功能。调用NSOperation-的-cancle-方法即可以取消该任务，有利于节省系统资源" class="headerlink" title="NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源"></a>NSOperation还有一个“取消”功能。调用NSOperation 的 cancle: 方法即可以取消该任务，有利于节省系统资源</h3><h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><h3 id="GCD的分发队列："><a href="#GCD的分发队列：" class="headerlink" title="GCD的分发队列："></a>GCD的分发队列：</h3><pre><code> 1. `串行队列` Serial dispatch queue
-
-串行分发队列，按照顺序执行队列中的任务，且同一时间只会执行一个任务。串行队列常用于实现同步锁, 由于在串行队列中不会有两个任务并发运行，因此不会出现同时访问临界区的风险；相对于这些任务来说，这就从竞态条件下保护了临界区。所以如果访问临界区的唯一方式是通过提交到调度队列的任务，那么你就不需要担心临界区的安全问题了
-
- 2. `并发队列` Concurrent dispatch queue
-
- 在并发队列中的任务能得到的保证是它们会按照被添加的顺序开始执行，但这就是全部的保证了。任务可能以任意顺序完成，你不会知道何时开始运行下一个任务，或者任意时刻有多少 Block 在运行。再说一遍，这完全取决于 GCD 。对于n个并发队列，GCD不会创建对应的n个线程而是进行适当的优化
-</code></pre><h3 id="队列类型"><a href="#队列类型" class="headerlink" title="队列类型"></a>队列类型</h3><pre><code>首先，系统提供给你一个叫做 `主队列`（main queue） 的特殊队列。和其它串行队列一样，这个队列中的任务一次只能执行一个。然而，它能保证所有的任务都在主线程执行，而主线程是唯一可用于更新 UI 的线程。这个队列就是用于发生消息给 UIView 或发送通知的。
-
-系统同时提供给你好几个并发队列。它们叫做 `全局调度队列`（Global Dispatch Queues） 。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple 的 API 也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。
-</code></pre><h3 id="GCD任务执行方式"><a href="#GCD任务执行方式" class="headerlink" title="GCD任务执行方式"></a>GCD任务执行方式</h3><pre><code>1. `异步`(dispatch_async): 将任务放入队列之后，主线程不会等待 block 的返回结果，而是立即继续执行下去。 gcd管理的线程池中有空闲线程就会从队列中取出任务，会开启线程。
-2. `同步`(dispatch_sync): 任务放入队列之后，主线程被阻塞，需要等待 block 的执行结果返回，才能继续执行下去。不会开启新线程，在当前线程执行
-</code></pre><h3 id="几种类型"><a href="#几种类型" class="headerlink" title="几种类型"></a>几种类型</h3><pre><code>很明显两种执行方式，两种队列。那么就有4中情况： 串行队列同步执行、串行队列异步执行、并行队列同步执行、并行队列异步执行。哪一种会开启新的线程？开几条？是否并发？记忆起来比较绕，但是只要抓住基本的就可以，为了方便理解，现分析如下：
-
-1. 串行队列，同步执行
-
-        串行队列意味着顺序执行，同步执行意味着不开启线程(在当前线程执行)
-
-2. 串行队列，异步执行
-
-        串行队列顺序执行，异步执行说明要开线程，如果开多个线程的话，不能保证串行队列顺序执行，所以只开一个线程
-
-3. 并行队列，异步执行
-
-        并行队列执行顺序不确定，异步意味着会开启线程，而并行队列又允许不按顺序执行，所以为了提高性能会开启多个线程来队列取任务.（队列中任务取出任然是顺序取出来的，只是线程执行无序）
-
-4. 并行队列，同步执行
-
-        同步意味着不离开线程，则肯定是顺序执行
-</code></pre><h2 id="iOS多线程对比"><a href="#iOS多线程对比" class="headerlink" title="iOS多线程对比"></a>iOS多线程对比</h2><table>
-<thead>
-<tr>
-<th>采用技术</th>
-<th>描述</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>NSThread</td>
-<td>每个NSThread对象对应一个线程，真正最原始的线程。</td>
-<td>NSThread 轻量级最低，相对简单</td>
-<td>手动管理所有的线程活动，如生命周期、线程同步、睡眠等</td>
-</tr>
-<tr>
-<td>NSOperation</td>
-<td>自带线程管理的抽象类</td>
-<td>自带线程周期管理，操作上可更注重自己逻辑</td>
-<td>面向对象的抽象类，只能实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation</td>
-</tr>
-<tr>
-<td>GCD</td>
-<td>Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法</td>
-<td>最高效，避开并发陷阱</td>
-<td>基于C实现</td>
-</tr>
-</tbody>
-</table>
-<h2 id="实际开发中的选择-（GCD-or-NSOperation）"><a href="#实际开发中的选择-（GCD-or-NSOperation）" class="headerlink" title="实际开发中的选择 （GCD or NSOperation）"></a>实际开发中的选择 （GCD or NSOperation）</h2><p>GCD 虽然在很多地方值得提倡，但并不是任务管理和多线程地唯一解决方案，并不是说所有的地方都应该使用 GCD。GCD 是一个纯 C API，NSOperation 是 Objective-C 类，在一些地方对象编程是有优势的。NSOperation 也提供了一些 GCD 无法实现，或者 GCD 所没有的功能。</p>
-<p>考略使用NSOperation的一些：</p>
-<ul>
-<li>当你需要取消线程任务时，GCD 无法提供取消任务的操作。而 NSOperation 提供了取消任务的操作;</li>
-<li>当你需要更细的粒度地观察任务改变了状态时，由于 NSOperation 是一个对象，比较 GCD 使用的 block 而言，通过对 NSOperation 对象进行键值观察（KVO）能很容易观察到任务的状态改变;<br>*<br>当你需要重用线程任务时，NSOperation 作为一个普通的 Objective-C 对象，可以存储任何信息。对象就是为重用而设计的，这时，NSOperation 比 GCD 使用的 block 要更方便。</li>
-</ul>
-<p>建议：</p>
-<ul>
-<li>能够使用 GCD 的地方，尽量使用 GCD</li>
-<li>在需要更细粒度控制线程时，考虑 NSOperation</li>
-</ul>
-<h2 id="iOS多线程与RunLoop的关系"><a href="#iOS多线程与RunLoop的关系" class="headerlink" title="iOS多线程与RunLoop的关系"></a>iOS多线程与RunLoop的关系</h2><p>一般来说，一个线程一次只能执行一个任务，执行完成后就会退出，如果我们需要一个机制，让线程能随时处理事件而不退出，那么这就牵扯到我下篇的博客文章了。RunLoop是线程的基本 <code>架构模式</code>，关键点在于： 如何处理事件/消息，如何让线程在没有处理消息的时候休眠以避免资源的占用、在有消息的到来时立刻被唤醒。</p>
-<blockquote>
-<p>Run loops are part of the fundamental infrastructure associated with threads. A run loop is an event processing loop that you use to schedule work and coordinate the receipt of incoming events. The purpose of a run loop is to keep your thread busy when there is work to do and put your thread to sleep when there is none.</p>
-</blockquote>
-<p>从CFRunLoopGetMain()和CFRunLoopGetCurrent()的两个函数的内部逻辑中，很容易看出，线程和RunLoop之间是一一对应的，其关系保存在一个全局的Directory里。并且runloop是一种懒加载的形式，线程创建时并没有RunLoop，如果你不主动获取，那么它一直都不会有【一般情况下我们是没有必要去启用线程的RunLoop的，除非你在一个单独的线程中需要长久的检测某个事件， 假设我们想在新开的线程中使用NSTimer，就必须开启runloop，可以使用[[NSRunLoop currentRunLoop] run]开启当前线程，这是就要自己管理线程的回收等工作。】。RunLoop的创建是发生在第一次获取时，RunLoop的销毁时发生在线程结束时。 并且你只能在一个线程的内部获取其RunLoop(主线程除外， currentRunLoop就能获取).</p>
-<pre><code>1.每条线程都有唯一的一个与之对应的RunLoop对象
-2.主线程的RunLoop已经自动创建好了，子线程的RunLoop需要主动创建
-3.RunLoop在第一次获取时创建，在线程结束时销毁
-</code></pre><h2 id="iOS多线程死锁问题"><a href="#iOS多线程死锁问题" class="headerlink" title="iOS多线程死锁问题"></a>iOS多线程死锁问题</h2><p><img src="/images/sisuo.png" alt=""></p>
-<p>在串行队列中，当线程开始执行block1时，必须要执行里面的block2,而由于是串行队列， block2只能等block1执行完才能执行, 这样block1和block2线程的执行就会互相等待，造成死锁。</p>
-<h3 id="死锁举例："><a href="#死锁举例：" class="headerlink" title="死锁举例："></a>死锁举例：</h3><h4 id="主队列死锁："><a href="#主队列死锁：" class="headerlink" title="主队列死锁："></a>主队列死锁：</h4><pre><code>dispatch_sync(dispatch_get_main_queue(), ^{
-    // 发生死锁下面的代码不会执行
-    NSLog(@&quot;middle&quot;);
-});
-</code></pre><h4 id="其他线程死锁"><a href="#其他线程死锁" class="headerlink" title="其他线程死锁"></a>其他线程死锁</h4><pre><code>dispatch_queue_t serialQueue = dispatch_queue_create(&quot;serial_queue&quot;, DISPATCH_QUEUE_SERIAL);
-dispatch_async(serialQueue, ^{
-    // 串行队列block1
-    NSLog(@&quot;begin&quot;);
-    dispatch_sync(serialQueue, ^{
-        // 串行队列block2 发生死锁，下面的代码不会执行
-        NSLog(@&quot;middle&quot;);
-    });
-    // 不会打印
-    NSLog(@&quot;end&quot;);
-});
-</code></pre><h2 id="拓展异步编程模型知识"><a href="#拓展异步编程模型知识" class="headerlink" title="拓展异步编程模型知识"></a>拓展异步编程模型知识</h2><h3 id="单线程同步模型"><a href="#单线程同步模型" class="headerlink" title="单线程同步模型"></a>单线程同步模型</h3><p><img src="/images/p01_sync.png" alt="同步模型"></p>
-<p>在一个时刻，只能有一个任务在执行，并且前一个任务结束后一个任务才能开始。如果任务都能按照事先规定好的顺序执行，最后一个任务的完成意味着前面所有的任务都已无任何差错地完成并输出其可用的结果—这是多么简单的逻辑.</p>
-<h3 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h3><p><img src="/images/p01_threaded.png" alt="线程模型"></p>
-<p>每个任务都在单独的线程中完成。这些线程都是由操作系统来管理，若在多处理机、多核处理机的系统中可能会相互独立的运行，若在单处理机上，则会交错运行。关键点在于，在线程模式中，具体哪个任务执行由操作系统来处理。但编程人员则只需简单地认为：它们的指令流是相互独立且可以并行执行。</p>
-<h3 id="异步模型"><a href="#异步模型" class="headerlink" title="异步模型"></a>异步模型</h3><p><img src="/images/p01_async.png" alt="异步模型"></p>
-<p>单线程多个任务分时完成(任务是交错完成)。</p>
-<p>在异步编程模型与多线程模型之间还有一个不同：在多线程程序中，对于停止某个线程启动另外一个线程，其决定权并不在程序员手里而在操作系统那里，在编写程序过程中必须要假设在任何时候一个线程都有可能被停止而启动另外一个线程。相反，在异步模型中，一个任务要想运行必须显式放弃当前运行的任务的控制权。这也是相比多线程模型来说，最简洁的地方。 值得注意的是：<code>将异步编程模型与同步模型混合在同一个系统中是可以的</code>。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2301,7 +2161,7 @@ dispatch_async(serialQueue, ^{
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
