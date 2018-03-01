@@ -4,6 +4,456 @@
 
     
   <url>
+    <loc>http://loveli.site/2016/10/16/Vapor%20%E4%B9%8B%20Heroku/</loc>
+    <lastmod>2018-03-01T07:25:34.139Z</lastmod>
+    <data>
+        <display>
+        <title>Vapor 之 Heroku</title>
+        <pubTime>2016-10-16T02:28:18.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/08/21/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E5%B0%8F%E8%AE%B0/</loc>
+    <lastmod>2018-03-01T07:25:06.062Z</lastmod>
+    <data>
+        <display>
+        <title> Swift 函数式小记</title>
+        <pubTime>2017-08-21T07:56:43.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/12/14/Swift-%E4%B9%8B-Observable-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2018-03-01T07:24:55.279Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 之 Observable 源码解读</title>
+        <pubTime>2017-12-14T03:12:24.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/12/08/Swift-%E4%B9%8B%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC/</loc>
+    <lastmod>2018-03-01T07:24:37.565Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 之惰性求值</title>
+        <pubTime>2017-12-08T03:25:13.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/07/10/Swift%20%E4%B9%8B%E5%90%8E%E5%8F%B0%20Vapor%20%E5%88%9D%E6%AD%A5/</loc>
+    <lastmod>2018-03-01T07:24:30.496Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 之后台 Vapor 初步</title>
+        <pubTime>2016-07-10T09:27:32.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/11/04/RxSwift-%E5%AF%B9-MJRefresh-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B0%81%E8%A3%85/</loc>
+    <lastmod>2018-03-01T07:24:22.056Z</lastmod>
+    <data>
+        <display>
+        <title>RxSwift 对 MJRefresh 使用的封装</title>
+        <pubTime>2017-11-04T09:35:38.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/09/17/React-Native-ES6%20%E5%87%BD%E6%95%B0%E7%AF%87/</loc>
+    <lastmod>2018-03-01T07:24:16.521Z</lastmod>
+    <data>
+        <display>
+        <title>React-Native ES6函数篇</title>
+        <pubTime>2016-09-17T13:44:02.000Z</pubTime>
+        
+        <tag>React</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/08/12/MacOS-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</loc>
+    <lastmod>2018-03-01T07:24:02.341Z</lastmod>
+    <data>
+        <display>
+        <title>MacOS 端口转发</title>
+        <pubTime>2017-08-12T02:53:36.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/12/16/iOS-%E5%8E%9F%E7%94%9F%E5%88%86%E4%BA%AB%E4%B9%8B%E9%93%BE%E6%8E%A5%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E4%BF%A1%E7%9A%84%E7%BB%86%E8%8A%82%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2018-03-01T07:23:45.831Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 原生分享之链接分享到微信的细节处理</title>
+        <pubTime>2017-12-16T08:37:59.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/07/02/iOS%20%E7%9B%B4%E6%92%AD%20Tutorials/</loc>
+    <lastmod>2018-03-01T07:23:39.544Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 直播 Tutorials</title>
+        <pubTime>2016-07-02T12:05:33.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/06/27/iOS%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2018-03-01T07:23:34.471Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 多线程</title>
+        <pubTime>2016-06-27T03:44:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/07/16/iOS%20%E4%B9%8B%20Cocoapods/</loc>
+    <lastmod>2018-03-01T07:23:30.785Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 之 Cocoapods</title>
+        <pubTime>2016-07-15T23:06:01.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/08/23/iOS%20%E4%B9%8B%20AOP/</loc>
+    <lastmod>2018-03-01T07:23:27.012Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 之 AOP</title>
+        <pubTime>2016-08-23T14:37:39.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2018/01/24/https-%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2018-03-01T07:23:20.616Z</lastmod>
+    <data>
+        <display>
+        <title>https 免费证书配置</title>
+        <pubTime>2018-01-24T08:57:12.000Z</pubTime>
+        
+        <tag>HTTPS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/07/24/Gitlab%20%E4%B9%8B%20Gitbook%20%E8%87%AA%E5%8A%A8%E9%9B%86%E6%88%90/</loc>
+    <lastmod>2018-03-01T07:22:12.340Z</lastmod>
+    <data>
+        <display>
+        <title>Gitlab 之 Gitbook 自动集成</title>
+        <pubTime>2016-07-24T14:21:38.000Z</pubTime>
+        
+        <tag>Gitbook</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/12/13/Git-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E6%8F%90%E4%BA%A4%E4%BA%BA%E7%9A%84%E9%82%AE%E7%AE%B1/</loc>
+    <lastmod>2018-03-01T07:21:46.092Z</lastmod>
+    <data>
+        <display>
+        <title>Git 修改历史提交人的邮箱</title>
+        <pubTime>2017-12-13T04:57:59.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
+    <lastmod>2018-03-01T07:21:42.091Z</lastmod>
+    <data>
+        <display>
+        <title>Docker+gitlab+nginx 自动化</title>
+        <pubTime>2017-08-10T06:50:20.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/09/04/Cocoapods%20%E9%AB%98%E7%BA%A7%E7%AF%87/</loc>
+    <lastmod>2018-03-01T07:21:20.451Z</lastmod>
+    <data>
+        <display>
+        <title>Cocoapods 高级篇</title>
+        <pubTime>2016-09-04T05:16:02.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2018/02/23/2018-%E5%B9%B4%E4%B8%BB%E7%BA%BF/</loc>
+    <lastmod>2018-03-01T07:21:13.637Z</lastmod>
+    <data>
+        <display>
+        <title>2018 年主线</title>
+        <pubTime>2018-02-23T02:35:55.000Z</pubTime>
+        
+        <tag>计划</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/01/01/2016-2017/</loc>
+    <lastmod>2018-03-01T07:20:58.900Z</lastmod>
+    <data>
+        <display>
+        <title>2016 -> 2017</title>
+        <pubTime>2017-01-01T15:13:26.000Z</pubTime>
+        
+        <tag>总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2018/01/06/%E9%98%85%E8%AF%BB%E7%AC%AC%E4%B8%80%E6%9C%9F/</loc>
+    <lastmod>2018-03-01T07:20:50.747Z</lastmod>
+    <data>
+        <display>
+        <title>阅读第一期</title>
+        <pubTime>2018-01-06T09:03:06.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/07/28/%E8%87%AA%E5%AE%9A%E4%B9%89%20Xcode%20%E6%A8%A1%E6%9D%BF/</loc>
+    <lastmod>2018-03-01T07:20:34.646Z</lastmod>
+    <data>
+        <display>
+        <title>自定义 Xcode 模板</title>
+        <pubTime>2016-07-28T14:52:23.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/08/07/%E7%A7%81%E6%9C%89%20Cocoapods%20%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%B4%E6%8A%A4/</loc>
+    <lastmod>2018-03-01T07:20:26.646Z</lastmod>
+    <data>
+        <display>
+        <title>私有 Cocoapods 的创建和维护</title>
+        <pubTime>2016-08-07T13:53:39.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2016/11/16/%E5%9F%BA%E4%BA%8E-Django-%E6%90%AD%E5%BB%BA-Zip-%E7%9A%AE%E8%82%A4%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95%E5%90%8E%E5%8F%B0/</loc>
+    <lastmod>2018-03-01T07:20:07.323Z</lastmod>
+    <data>
+        <display>
+        <title>基于 Django 搭建 Zip 皮肤包下载功能测试后台</title>
+        <pubTime>2016-11-16T15:02:22.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2017/10/09/%E5%85%A8%E6%A0%88%E5%90%8E%E5%8F%B0%E4%B8%8A%E7%BA%BF%E4%B9%8BSwift-Vapor/</loc>
+    <lastmod>2018-03-01T07:20:01.525Z</lastmod>
+    <data>
+        <display>
+        <title>全栈后台上线之 Swift Vapor</title>
+        <pubTime>2017-10-09T06:34:12.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://loveli.site/2018/03/01/Swift-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%BB%83%E4%B9%A0%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-03-01T07:17:17.539Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 设计模式之策略模式练习实现</title>
+        <pubTime>2018-03-01T07:16:53.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://loveli.site/2018/03/01/Swift-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2018-03-01T07:11:30.630Z</lastmod>
     <data>
@@ -52,23 +502,6 @@
         <tag>Swift</tag>
          
         <tag>设计模式</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2018/02/23/2018-%E5%B9%B4%E4%B8%BB%E7%BA%BF/</loc>
-    <lastmod>2018-02-23T02:38:20.467Z</lastmod>
-    <data>
-        <display>
-        <title>2018 年主线</title>
-        <pubTime>2018-02-23T02:35:55.000Z</pubTime>
-        
-        <tag>主线</tag>
          
          
            
@@ -129,25 +562,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2018/01/24/https-%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-01-24T08:59:07.674Z</lastmod>
-    <data>
-        <display>
-        <title>https 免费证书配置</title>
-        <pubTime>2018-01-24T08:57:12.000Z</pubTime>
-        
-        <tag>Nginx</tag>
-         
-        <tag>HTTPS</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2018/01/16/tmux-%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2018-01-16T07:39:21.025Z</lastmod>
     <data>
@@ -181,23 +595,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://loveli.site/2018/01/06/%E9%98%85%E8%AF%BB%E7%AC%AC%E4%B8%80%E6%9C%9F/</loc>
-    <lastmod>2018-01-06T09:03:47.361Z</lastmod>
-    <data>
-        <display>
-        <title>阅读第一期</title>
-        <pubTime>2018-01-06T09:03:06.000Z</pubTime>
-        
-        <tag>阅读期刊</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://loveli.site/2018/01/03/Swift-%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-Tree/</loc>
@@ -238,44 +635,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2017/12/16/iOS-%E5%8E%9F%E7%94%9F%E5%88%86%E4%BA%AB%E4%B9%8B%E9%93%BE%E6%8E%A5%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E4%BF%A1%E7%9A%84%E7%BB%86%E8%8A%82%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2017-12-16T09:24:32.791Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 原生分享之链接分享到微信的细节处理</title>
-        <pubTime>2017-12-16T08:37:59.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>Swift</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/12/14/Swift-%E4%B9%8B-Observable-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
-    <lastmod>2017-12-14T03:49:22.654Z</lastmod>
-    <data>
-        <display>
-        <title>Swift 之 Observable 源码解读</title>
-        <pubTime>2017-12-14T03:12:24.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>源码解读</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2016/08/10/%E4%BC%98%E9%9B%85%E5%A4%84%E7%90%86-bad-enum-configurations/</loc>
     <lastmod>2017-12-13T05:06:31.918Z</lastmod>
     <data>
@@ -286,27 +645,6 @@
         <tag>Swift</tag>
          
         <tag>设计模式</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/10/09/%E5%85%A8%E6%A0%88%E5%90%8E%E5%8F%B0%E4%B8%8A%E7%BA%BF%E4%B9%8BSwift-Vapor/</loc>
-    <lastmod>2017-12-13T05:06:24.095Z</lastmod>
-    <data>
-        <display>
-        <title>全栈后台上线之 Swift Vapor</title>
-        <pubTime>2017-10-09T06:34:12.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>Vapor</tag>
-         
-        <tag>全栈</tag>
          
          
            
@@ -333,141 +671,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2016/08/07/%E7%A7%81%E6%9C%89%20Cocoapods%20%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%B4%E6%8A%A4/</loc>
-    <lastmod>2017-12-13T05:06:08.485Z</lastmod>
-    <data>
-        <display>
-        <title>私有 Cocoapods 的创建和维护</title>
-        <pubTime>2016-08-07T13:53:39.000Z</pubTime>
-        
-        <tag>Cocoapods</tag>
-         
-        <tag>Gitlab</tag>
-         
-        <tag>iOS</tag>
-         
-        <tag>工具</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/07/28/%E8%87%AA%E5%AE%9A%E4%B9%89%20Xcode%20%E6%A8%A1%E6%9D%BF/</loc>
-    <lastmod>2017-12-13T05:06:02.134Z</lastmod>
-    <data>
-        <display>
-        <title>自定义 Xcode 模板</title>
-        <pubTime>2016-07-28T14:52:23.000Z</pubTime>
-        
-        <tag>工具</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/09/04/Cocoapods%20%E9%AB%98%E7%BA%A7%E7%AF%87/</loc>
-    <lastmod>2017-12-13T05:05:49.850Z</lastmod>
-    <data>
-        <display>
-        <title>Cocoapods 高级篇</title>
-        <pubTime>2016-09-04T05:16:02.000Z</pubTime>
-        
-        <tag>Cocoapods</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/07/24/Gitlab%20%E4%B9%8B%20Gitbook%20%E8%87%AA%E5%8A%A8%E9%9B%86%E6%88%90/</loc>
-    <lastmod>2017-12-13T05:05:42.618Z</lastmod>
-    <data>
-        <display>
-        <title>Gitlab 之 Gitbook 自动集成</title>
-        <pubTime>2016-07-24T14:21:38.000Z</pubTime>
-        
-        <tag>Gitlab</tag>
-         
-        <tag>Gitbook</tag>
-         
-        <tag>敏捷开发</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/08/23/iOS%20%E4%B9%8B%20AOP/</loc>
-    <lastmod>2017-12-13T05:05:32.166Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 之 AOP</title>
-        <pubTime>2016-08-23T14:37:39.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>AOP</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/07/16/iOS%20%E4%B9%8B%20Cocoapods/</loc>
-    <lastmod>2017-12-13T05:05:28.822Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 之 Cocoapods</title>
-        <pubTime>2016-07-15T23:06:01.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>工具</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/06/27/iOS%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2017-12-13T05:05:22.512Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 多线程</title>
-        <pubTime>2016-06-27T03:44:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2016/08/24/iOS%20%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2017-12-13T05:05:19.859Z</lastmod>
     <data>
@@ -476,44 +679,6 @@
         <pubTime>2016-08-24T00:42:11.000Z</pubTime>
         
         <tag>iOS</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/07/02/iOS%20%E7%9B%B4%E6%92%AD%20Tutorials/</loc>
-    <lastmod>2017-12-13T05:05:17.253Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 直播 Tutorials</title>
-        <pubTime>2016-07-02T12:05:33.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>直播</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/08/12/MacOS-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</loc>
-    <lastmod>2017-12-13T05:05:10.988Z</lastmod>
-    <data>
-        <display>
-        <title>MacOS 端口转发</title>
-        <pubTime>2017-08-12T02:53:36.000Z</pubTime>
-        
-        <tag>Gitlab</tag>
-         
-        <tag>Macos</tag>
          
          
            
@@ -533,27 +698,6 @@
         <tag>iOS</tag>
          
         <tag>React-Native</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/07/10/Swift%20%E4%B9%8B%E5%90%8E%E5%8F%B0%20Vapor%20%E5%88%9D%E6%AD%A5/</loc>
-    <lastmod>2017-12-13T05:04:59.139Z</lastmod>
-    <data>
-        <display>
-        <title>Swift 之后台 Vapor 初步</title>
-        <pubTime>2016-07-10T09:27:32.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>Vapor</tag>
-         
-        <tag>后台</tag>
          
          
            
@@ -635,25 +779,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2017/08/21/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2017-12-13T05:04:29.041Z</lastmod>
-    <data>
-        <display>
-        <title> Swift 函数式小记</title>
-        <pubTime>2017-08-21T07:56:43.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>函数式</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2017/05/05/Swift-%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BC%96%E7%A0%81%E6%A0%B7%E5%BC%8F/</loc>
     <lastmod>2017-12-13T05:04:22.112Z</lastmod>
     <data>
@@ -705,25 +830,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2016/10/16/Vapor%20%E4%B9%8B%20Heroku/</loc>
-    <lastmod>2017-12-13T05:04:08.912Z</lastmod>
-    <data>
-        <display>
-        <title>Vapor 之 Heroku</title>
-        <pubTime>2016-10-16T02:28:18.000Z</pubTime>
-        
-        <tag>Vapor</tag>
-         
-        <tag>Hexoku</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2016/10/07/Vapor%20%E4%B9%8B%20Mysql/</loc>
     <lastmod>2017-12-13T05:04:05.396Z</lastmod>
     <data>
@@ -762,23 +868,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2017/12/13/Git-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E6%8F%90%E4%BA%A4%E4%BA%BA%E7%9A%84%E9%82%AE%E7%AE%B1/</loc>
-    <lastmod>2017-12-13T05:03:09.295Z</lastmod>
-    <data>
-        <display>
-        <title>Git 修改历史提交人的邮箱</title>
-        <pubTime>2017-12-13T04:57:59.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2017/12/13/Swift-%E4%B9%8B-Enum-%E7%9A%84%E6%80%9D%E8%80%83/</loc>
     <lastmod>2017-12-13T03:25:35.348Z</lastmod>
     <data>
@@ -787,80 +876,6 @@
         <pubTime>2017-12-13T02:42:25.000Z</pubTime>
         
         <tag>Swift</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/11/16/%E5%9F%BA%E4%BA%8E-Django-%E6%90%AD%E5%BB%BA-Zip-%E7%9A%AE%E8%82%A4%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95%E5%90%8E%E5%8F%B0/</loc>
-    <lastmod>2017-12-13T02:13:12.208Z</lastmod>
-    <data>
-        <display>
-        <title>基于 Django 搭建 Zip 皮肤包下载功能测试后台</title>
-        <pubTime>2016-11-16T15:02:22.000Z</pubTime>
-        
-        <tag>Django</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/01/01/2016-2017/</loc>
-    <lastmod>2017-12-13T02:12:48.736Z</lastmod>
-    <data>
-        <display>
-        <title>2016 -> 2017</title>
-        <pubTime>2017-01-01T15:13:26.000Z</pubTime>
-        
-        <tag>总结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    <lastmod>2017-12-13T02:12:26.535Z</lastmod>
-    <data>
-        <display>
-        <title>Docker+gitlab+nginx 自动化</title>
-        <pubTime>2017-08-10T06:50:20.000Z</pubTime>
-        
-        <tag>Gitlab</tag>
-         
-        <tag>Docker</tag>
-         
-        <tag>Nginx</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2016/09/17/React-Native-ES6%20%E5%87%BD%E6%95%B0%E7%AF%87/</loc>
-    <lastmod>2017-12-13T02:11:37.453Z</lastmod>
-    <data>
-        <display>
-        <title>React-Native ES6函数篇</title>
-        <pubTime>2016-09-17T13:44:02.000Z</pubTime>
-        
-        <tag>React-Native</tag>
          
          
            
@@ -899,44 +914,6 @@
         <tag>Swift</tag>
          
         <tag>Vapor</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/12/08/Swift-%E4%B9%8B%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC/</loc>
-    <lastmod>2017-12-08T03:26:09.505Z</lastmod>
-    <data>
-        <display>
-        <title>Swift 之惰性求值</title>
-        <pubTime>2017-12-08T03:25:13.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>函数式编程</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://loveli.site/2017/11/04/RxSwift-%E5%AF%B9-MJRefresh-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B0%81%E8%A3%85/</loc>
-    <lastmod>2017-11-04T09:36:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>RxSwift 对 MJRefresh 使用的封装</title>
-        <pubTime>2017-11-04T09:35:38.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-        <tag>RxSwift</tag>
          
          
            
