@@ -249,6 +249,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift设计模式之访问者/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/01/Swift设计模式之访问者/" itemprop="url">Swift设计模式之访问者</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T10:27:16+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/Swift设计模式之访问者/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/01/Swift设计模式之访问者/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/01/Swift设计模式之访问者/" class="leancloud_visitors" data-flag-title="Swift设计模式之访问者">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>访问者模式(Visitor Pattern):提供一个作用于某对象结构中的各元素的操作表示，<br>它使我们可以在不改变各元素的类的前提下定义作用于这些元素的新操作。<br>访问者模式是一种对象行为型模式。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line">struct Car &#123; // 车</div><div class="line">    let make: String</div><div class="line">    let model: String</div><div class="line">    let mileage: Int</div><div class="line"></div><div class="line">    init(make: String, model: String, mileage: Int) &#123;</div><div class="line">        self.make = make</div><div class="line">        self.model = model</div><div class="line">        self.mileage = mileage</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct Mechanic &#123; // 机械师</div><div class="line">    let name: String</div><div class="line">    init(name: String) &#123;</div><div class="line">        self.name = name</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct Customer &#123; // 客户 </div><div class="line">    let name: String</div><div class="line">    let email: String</div><div class="line">    let zipcode: String</div><div class="line">    let address: String</div><div class="line"></div><div class="line">    init(name: String, email: String, zipcode: String, address: String) &#123;</div><div class="line">        self.name = name</div><div class="line">        self.email = email</div><div class="line">        self.zipcode = zipcode</div><div class="line">        self.address = address</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Documentable &#123;  //</div><div class="line">    func accpet(documenter: Documenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Documenter &#123; // 复杂结构</div><div class="line">    func process(documentable: Quote)</div><div class="line">    func process(documentable: Appointment)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Quote: Documentable &#123; // 报价 </div><div class="line">    var customer: Customer</div><div class="line">    var price: Double</div><div class="line">    var car: Car</div><div class="line"></div><div class="line">    init(customer: Customer, price: Double, car: Car) &#123;</div><div class="line">        self.car = car</div><div class="line">        self.customer = customer</div><div class="line">        self.price = price</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func accpet(documenter: Documenter) &#123;</div><div class="line">        documenter.process(documentable: self)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/// 约定</div><div class="line">class Appointment: Documentable &#123; </div><div class="line">    var customer: Customer</div><div class="line">    var mechanic: Mechanic</div><div class="line">    var price: Double</div><div class="line">    var date: Date</div><div class="line"></div><div class="line">    init(customer: Customer, mechanic: Mechanic, price: Double, date: Date) &#123;</div><div class="line">        self.customer = customer</div><div class="line">        self.mechanic = mechanic</div><div class="line">        self.price = price</div><div class="line">        self.date = date</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func accpet(documenter: Documenter) &#123;</div><div class="line">        documenter.process(documentable: self)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct Email &#123; // 邮件 </div><div class="line">    let from:String</div><div class="line">    let to: String</div><div class="line">    let subject: String</div><div class="line">    let body: String</div><div class="line"></div><div class="line">    init(from: String="hi@example.com", to: String, subject: String = "", body:String = "") &#123;</div><div class="line">        self.from = from</div><div class="line">        self.to = to</div><div class="line">        self.subject = subject</div><div class="line">        self.body = body</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func output() &#123;</div><div class="line">        print("""</div><div class="line">            from: \(self.from)</div><div class="line">            to: \(self.to)</div><div class="line">            subject: \(self.subject)</div><div class="line">            body: \(self.body)</div><div class="line">        """)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct Report &#123; // 报告</div><div class="line">    enum ReportType &#123;</div><div class="line">        case quoto</div><div class="line">        case appointment</div><div class="line">    &#125;</div><div class="line">    let reportType: ReportType</div><div class="line">    let title: String</div><div class="line">    let content: String</div><div class="line"></div><div class="line">    init(reportType: ReportType, title:String, content: String) &#123;</div><div class="line">        self.reportType = reportType</div><div class="line">        self.title = title</div><div class="line">        self.content = content</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class EmailDocumenter: Documenter &#123;</div><div class="line">    func process(documentable: Quote) &#123;</div><div class="line">        var content = "Hello \(documentable.customer.name) \n"</div><div class="line">        content += "We have a quote for your \(documentable.car.make) \(documentable.car.model) \n"</div><div class="line">        content += "For the services you have requested in \(documentable.customer.address) \n"</div><div class="line">        content += "We have generated a quote priced at \(documentable.price) \n"</div><div class="line">        let email = Email(to: documentable.customer.email,</div><div class="line">                          subject: "Here is a quote for your \(documentable.car.make)",</div><div class="line">            body: content)</div><div class="line">        email.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func process(documentable: Appointment) &#123;</div><div class="line">        var content = "Hello \(documentable.customer.name) \n"</div><div class="line">        content += "We have booked your appointment for \(documentable.date.shortDateAndTime) \n"</div><div class="line">        content += "make sure you have not driven your car for an hour before the appointment \n"</div><div class="line">        content += "\(documentable.mechanic.name) will be more than happy " +</div><div class="line">        "to answer any questions you might have \n"</div><div class="line">        content += "You card will be billed for \(documentable.price) " +</div><div class="line">        "once the appointment is finished \n"</div><div class="line"></div><div class="line">        let email = Email(to: documentable.customer.email,</div><div class="line">                          subject: "Your appointment is set for \(documentable.date.shortDateAndTime)",</div><div class="line">            body: content)</div><div class="line"></div><div class="line">        email.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class ReportDocumenter: Documenter &#123;</div><div class="line">    func process(documentable: Quote) &#123;</div><div class="line">        var content = "Quote for \(documentable.car.make) \(documentable.car.model) was generated \n"</div><div class="line">        content += "Customer:\t \(documentable.customer.name) \n"</div><div class="line">        content += "Address:\t \(documentable.customer.address) \n"</div><div class="line">        content += "Quoted Price:\t \(documentable.price)"</div><div class="line"></div><div class="line">        let report = Report(reportType: .quoto,</div><div class="line">                            title: "Quote Generation Report for \(documentable.customer.name)",</div><div class="line">            content: content)</div><div class="line"></div><div class="line">        report.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func process(documentable: Appointment) &#123;</div><div class="line">        var content = "Appointment for \(documentable.customer.name) was generated\n"</div><div class="line">        content += "Customer:\t \(documentable.customer.name)\n"</div><div class="line">        content += "Mechanic:\t \(documentable.mechanic.name)\n"</div><div class="line">        content += "Time:\t \(documentable.date.shortDateAndTime)"</div><div class="line">        content += "Price:\t \(documentable.price)"</div><div class="line"></div><div class="line">        let report = Report(reportType: .appointment,</div><div class="line">                            title: "Appointment Generation Report for \(documentable.customer.name)",</div><div class="line">            content: content)</div><div class="line">        report.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个例子：</p>
+<p><code>Customer</code> 在平台发送请求报价，然后根据请求发送一份电子邮件以及创建一个内部报告。<br>客户如果决定预定，将会确定一份<code>Appointment</code>, 这个时候也会创建一份电子邮件和内部报告。<br>其中电子邮件和内部报告都是自动生成。</p>
+<p>分析上面的案例，我们首先可以确定两个 <code>Email</code> 和 <code>Report</code> 这两个类<br>然后是 <code>Customer, Mechanic, Car</code></p>
+<p>两个操作 <code>报价</code> 和 <code>预定</code>。</p>
+<p>报价(Quote)       –&gt; 生成 Email, Report<br>预定(Appointment) –&gt; 生成 Emial, Report </p>
+<p>这两个都可以进行相同的操作，那么我们进行抽象 <code>Documentable</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">protocol Documentable &#123;  //</div><div class="line">    func accpet(documenter: Documenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Documenter &#123; // 相同的操作 </div><div class="line">    func process(documentable: Quote)</div><div class="line">    func process(documentable: Appointment)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>抽象访问者定义了访问元素对象的方法，通常为每一种类型的元素对象都提供一个访问方法，而具体访问者可以实现这些访问方法</p>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">var joe = Mechanic(name: &quot;Joe Stevenson&quot;)</div><div class="line">var mike = Mechanic (name: &quot;Mike Dundee&quot;)</div><div class="line"></div><div class="line">var reza = Customer(name: &quot;Reza Shirazian&quot;,</div><div class="line">                    email: &quot;reza@example.com&quot;,</div><div class="line">                    zipcode: &quot;94043&quot;,</div><div class="line">                    address: &quot;N Rengstorff ave&quot;)</div><div class="line"></div><div class="line">var lyanne = Customer(name: &quot;Lyanne Borne&quot;,</div><div class="line">                      email: &quot;jb_hhm@example.com&quot;,</div><div class="line">                      zipcode: &quot;37110&quot;,</div><div class="line">                      address: &quot;E Main St McMinnvile TN&quot;)</div><div class="line"></div><div class="line">var sam = Customer(name: &quot;Sam Lee&quot;,</div><div class="line">                   email: &quot;lee.sam.3oo@example.com&quot;,</div><div class="line">                   zipcode: &quot;95060&quot;,</div><div class="line">                   address: &quot;Pacific Ave, Santa Cruz&quot;)</div><div class="line"></div><div class="line">var quote1 = Quote(customer: reza,</div><div class="line">                   price: 55.00,</div><div class="line">                   car: Car(make: &quot;Ford&quot;, model: &quot;Mustang&quot;, mileage: 9500))</div><div class="line"></div><div class="line">var quote2 = Quote(customer: lyanne,</div><div class="line">                   price: 463.25,</div><div class="line">                   car: Car(make: &quot;Chevrolet&quot;, model: &quot;Silverado&quot;,</div><div class="line">                   mileage: 15200))</div><div class="line"></div><div class="line">var quote3 = Quote(customer: sam,</div><div class="line">                   price: 1155.00,</div><div class="line">                   car: Car(make: &quot;Honda&quot;, model: &quot;Civic&quot;,</div><div class="line">                   mileage: 78000))</div><div class="line"></div><div class="line">var appointment1 = Appointment(customer: reza,</div><div class="line">                               mechanic: joe,</div><div class="line">                               price: 455.88,</div><div class="line">                               date: NSDate.generateDateFromArray([2016, 5, 12, 14, 30, 00])!)</div><div class="line"></div><div class="line">var appointment2 = Appointment(customer: sam,</div><div class="line">                               mechanic: mike,</div><div class="line">                               price: 554.00,</div><div class="line">                               date: NSDate.generateDateFromArray([2016, 5, 23, 20, 00, 00])!)</div><div class="line"></div><div class="line">var quotes = [quote1, quote2, quote3]</div><div class="line">var appointments = [appointment1, appointment2]</div><div class="line"></div><div class="line">var emailDocumenter = EmailDocumenter()</div><div class="line"></div><div class="line">var reportDocumenter = ReportDocumenter()</div><div class="line"></div><div class="line">for quote in quotes &#123;</div><div class="line">  quote.accept(emailDocumenter)</div><div class="line">  quote.accept(reportDocumenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line">for appointment in appointments &#123;</div><div class="line">  appointment.accept(emailDocumenter)</div><div class="line">  appointment.accept(reportDocumenter)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li><p>增加新的访问操作就意味着增加一个新的具体访问者类，实现简单，无须修改源代码，符合“开闭原则”。</p>
+</li>
+<li><p>将有关元素对象的访问行为集中到一个访问者对象中，而不是分散在一个个的元素类中。类的职责更加清晰，有利于对象结构中元素对象的复用，相同的对象结构可以供多个不同的访问者访问</p>
+</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>增加新的元素类就得增加新的抽象操作，违背了<code>开闭原则</code></li>
+<li>元素对象有时候必须暴露一些自己的内部操作和内部状态</li>
+</ol>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ol>
+<li>对象结构中对象对应的类很少改变，但经常需要在此对象结构上定义新的操作</li>
+<li>需要对一个对象结构中的对象进行很多不同的并且不相关的操作</li>
+</ol>
+<h2 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h2><ul>
+<li><a href="http://blog.csdn.net/lovelion/article/details/7433591" target="_blank" rel="noopener">访问者模式</a></li>
+<li><a href="https://github.com/kingreza/Swift-Visitor" target="_blank" rel="noopener">kingreza/Swift-Visitor</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/23/2018-年主线/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1943,178 +2115,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/" itemprop="url">iOS 原生分享之链接分享到微信的细节处理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T16:37:59+08:00">
-                2017-12-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/" class="leancloud_visitors" data-flag-title="iOS 原生分享之链接分享到微信的细节处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>iOS 的原生分享的 API 的使用挺简单的，无非就是组装 <code>UIActivityViewController</code>，但是还是有些细节你未必都知道。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><img src="http://obp26pczx.bkt.clouddn.com/60EACEA8E87A838AC346D24DECA1F84D.jpg" alt="60EACEA8E87A838AC346D24DECA1F84D-w314"></p>
-<p>如何实现分享到微信朋友后，要显示 title, desc, icon. 你可能会想当然的跟我一样</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">share</span><span class="params">(inVc: UIViewController, </span></span></div><div class="line">    image: UIImage, </div><div class="line">    title: String, </div><div class="line">    desc: String,</div><div class="line">    urlToShare: URL, </div><div class="line">    success: ShareResult? = <span class="literal">nil</span>) &#123;</div><div class="line">    </div><div class="line">        <span class="keyword">let</span> actitityController = <span class="type">UIActivityViewController</span>(activityItems: [image,title, urlToShare, desc], applicationActivities: <span class="literal">nil</span>)</div><div class="line">        actitityController.completionWithItemsHandler = &#123; (type, flag, array, error) <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> flag &#123;</div><div class="line">                success?(<span class="type">MonkeyKing</span>.<span class="type">DeliverResult</span>.success(<span class="literal">nil</span>))</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                success?(<span class="type">MonkeyKing</span>.<span class="type">DeliverResult</span>.failure(<span class="type">MonkeyKing</span>.<span class="type">Error</span>.messageCanNotBeDelivered))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        actitityController.excludedActivityTypes = [.airDrop, .postToVimeo, .postToFlickr, .addToReadingList, .mail, .<span class="built_in">print</span>, .copyToPasteboard, .assignToContact]</div><div class="line">        inVc.present(actitityController, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>假设我们调用这个接口</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="type">ShareCenter</span>.share(inVc: <span class="keyword">self</span>, </div><div class="line">    image: image, </div><div class="line">    title: <span class="string">"一份来自香港美妆的大礼包"</span>, </div><div class="line">    desc: <span class="string">"Text"</span>, </div><div class="line">    urlToShare: <span class="string">"http://119.23.153.227:9090/inviteFinish.html?userId...."</span>)</div></pre></td></tr></table></figure>
-<p>可惜事与愿违。</p>
-<p><img src="http://obp26pczx.bkt.clouddn.com/149D92497D7BEAF5816F3CBE591CD57C.jpg" alt="149D92497D7BEAF5816F3CBE591CD57-w318"> </p>
-<ul>
-<li><strong><code>desc</code> 仅仅是起一个覆盖 <code>title</code> 的作用。</strong></li>
-<li><strong><code>urlToShare</code> 并没有隐藏</strong>，直接就展现出来了。</li>
-<li><code>image</code> 显示是正确的</li>
-</ul>
-<p><strong>Too Young Too Simple</strong></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">share</span><span class="params">(inVc: UIViewController, </span></span></div><div class="line">    image: UIImage, </div><div class="line">    title: String, </div><div class="line">    urlToShare: URL, </div><div class="line">    success: ShareResult? = <span class="literal">nil</span>) &#123;</div></pre></td></tr></table></figure>
-<p><img src="http://obp26pczx.bkt.clouddn.com/C756E7426178BBCBB2526A230C7280C8.jpg" alt="C756E7426178BBCBB2526A230C7280-w320"></p>
-<h2 id="只能传-3-个参数么？"><a href="#只能传-3-个参数么？" class="headerlink" title="只能传 3 个参数么？"></a>只能传 3 个参数么？</h2><p>当然不是，可以传两个，你可以试一试不传 <code>title</code> 上去。</p>
-<p>→ 可能你会有灵感了 😆</p>
-<h2 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h2><p>细心观察的我，在转发自己的 <a href="https://itunes.apple.com/cn/app/%E5%86%8D%E4%B9%A6-%E4%BA%8C%E6%89%8B%E4%B9%A6/id1298408631?mt=8" target="_blank" rel="noopener"><code>再书</code></a> </p>
-<p><img src="http://obp26pczx.bkt.clouddn.com/4FA32C7CDC60E4045DAB4792783F7597.jpg" alt="4FA32C7CDC60E4045DAB4792783F7597-w320"></p>
-<p>这是从 <code>AppStore</code> 上分享出来的， 神奇的副标题怎么做到的？</p>
-<p>这是我最后的实现结果：</p>
-<p><img src="http://obp26pczx.bkt.clouddn.com/A67551AA555B2DCBCF556F88B309FB36.jpg" alt="A67551AA555B2DCBCF556F88B309FB36-w316"></p>
-<h2 id="一切都归功于我的-html-知识"><a href="#一切都归功于我的-html-知识" class="headerlink" title="一切都归功于我的 html 知识"></a>一切都归功于我的 <code>html</code> 知识</h2><p>用 <code>google chrom</code> 打开的<a href="https://itunes.apple.com/cn/app/再书-二手书/id1298408631?mt=8" target="_blank" rel="noopener">源码</a> 然后鼠标右击-&gt; <code>View Page Source</code>:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">prefix</span>=<span class="string">"og: http://ogp.me/ns#"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.apple.com/itms/"</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"再书-二手书、JiHua Lai、工具, 图书、ios apps、app、appstore、app store、iphone、ipad、ipod touch、itouch、itunes"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"阅读评论、比较用户评分、查看屏幕快照并进一步了解“再书-二手书”。下载“再书-二手书”，并在您的 iPhone、iPad 和 iPod touch 上尽情享用。"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"platform-cache-id"</span> <span class="attr">content</span>=<span class="string">"8"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple:content_id"</span> <span class="attr">content</span>=<span class="string">"1298408631"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"再书-二手书：在 App Store 上的内容"</span> <span class="attr">property</span>=<span class="string">"og:title"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"阅读评论、比较用户评分、查看屏幕快照并进一步了解“再书-二手书”。下载“再书-二手书”，并在您的 iPhone、iPad 和 iPod touch 上尽情享用。"</span> <span class="attr">property</span>=<span class="string">"og:description"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"App Store"</span> <span class="attr">property</span>=<span class="string">"og:site_name"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"116556461780510"</span> <span class="attr">property</span>=<span class="string">"fb:app_id"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:title"</span> <span class="attr">content</span>=<span class="string">"再书-二手书：在 App Store 上的内容"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:description"</span> <span class="attr">content</span>=<span class="string">"阅读评论、比较用户评分、查看屏幕快照并进一步了解“再书-二手书”。下载“再书-二手书”，并在您的 iPhone、iPad 和 iPod touch 上尽情享用。"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:site"</span> <span class="attr">content</span>=<span class="string">"@AppStore"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:domain"</span> <span class="attr">content</span>=<span class="string">"App Store"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:card"</span> <span class="attr">content</span>=<span class="string">"summary_large_image"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"twitter:image"</span> <span class="attr">content</span>=<span class="string">"http://is5.mzstatic.com/image/thumb/Purple128/v4/ca/c2/c7/cac2c78a-4ce8-6b3b-d492-2d3296c58db1/source/1200x630bb.jpg"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"http://is5.mzstatic.com/image/thumb/Purple128/v4/ca/c2/c7/cac2c78a-4ce8-6b3b-d492-2d3296c58db1/source/1200x630bb.jpg"</span> <span class="attr">property</span>=<span class="string">"og:image"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"https://is5-ssl.mzstatic.com/image/thumb/Purple128/v4/ca/c2/c7/cac2c78a-4ce8-6b3b-d492-2d3296c58db1/source/1200x630bb.jpg"</span> <span class="attr">property</span>=<span class="string">"og:image:secure_url"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"image/jpg"</span> <span class="attr">property</span>=<span class="string">"og:image:type"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"1200"</span> <span class="attr">property</span>=<span class="string">"og:image:width"</span> /&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"630"</span> <span class="attr">property</span>=<span class="string">"og:image:height"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"canonical"</span> <span class="attr">href</span>=<span class="string">"https://itunes.apple.com/cn/app/%E5%86%8D%E4%B9%A6-%E4%BA%8C%E6%89%8B%E4%B9%A6/id1298408631?mt=8"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>再书-二手书：在 App Store 上的内容<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>直接搜索 <code>阅读评论、比较用户评分、查看屏幕快照并进一步了解“再书-二手书”。下载“再书-二手书</code></p>
-<p>你会发现你想要的答案，步骤太简单，依葫芦画瓢，后续自个琢磨。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>善于追求细节，善于玩 App。多思考</p>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul>
-<li><a href="https://shrikar.com/ios-sharing-with-uiactivityviewcontroller-in-swift/" target="_blank" rel="noopener">iOS sharing with UIActivityViewController in Swift</a></li>
-<li><a href="https://github.com/liugangios/IFMShare" target="_blank" rel="noopener">liugangios/IFMShare</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2167,7 +2167,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
