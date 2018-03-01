@@ -249,6 +249,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift-设计模式之访问者模式练习实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/01/Swift-设计模式之访问者模式练习实现/" itemprop="url">Swift 设计模式之访问者模式练习实现</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T11:45:15+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/Swift-设计模式之访问者模式练习实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/01/Swift-设计模式之访问者模式练习实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/01/Swift-设计模式之访问者模式练习实现/" class="leancloud_visitors" data-flag-title="Swift 设计模式之访问者模式练习实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Sunny软件公司欲为某高校开发一套奖励审批系统，该系统可以实现教师奖励和学生奖励的审批(Award Check)，如果教师发表论文数超过10篇或者学生论文超过2篇可以评选科研奖，如果教师教学反馈分大于等于90分或者学生平均成绩大于等于90分可以评选成绩优秀奖。试使用访问者模式设计该系统，以判断候选人集合中的教师或学生是否符合某种获奖要求。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Teacher</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> feedback: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, feedback: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.feedback = feedback</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> score: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, score: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.score = score</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Award</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Category</span>: <span class="title">String</span> </span>&#123;</div><div class="line">        <span class="keyword">case</span> cientific = <span class="string">"科研奖"</span><span class="comment">// 科研奖</span></div><div class="line">        <span class="keyword">case</span> excellent = <span class="string">"优秀奖"</span><span class="comment">// 优秀奖</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">none</span> = <span class="string">"无"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> award: <span class="type">String</span> &#123; <span class="keyword">return</span> type.rawValue &#125;</div><div class="line">    <span class="keyword">let</span> type: <span class="type">Category</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, type: <span class="type">Category</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.type = type</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">output</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Teacher: \(name) ---- \(award)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CientificAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">2</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">10</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcellentAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.feedback &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.score &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> tearch1 = <span class="type">Teacher</span>(name: <span class="string">"李老师"</span>, paperCount: <span class="number">5</span>, feedback: <span class="number">91</span>)</div><div class="line"><span class="keyword">let</span> tearch2 = <span class="type">Teacher</span>(name: <span class="string">"张老师"</span>, paperCount: <span class="number">12</span>, feedback: <span class="number">80</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> student1 = <span class="type">Student</span>(name: <span class="string">"小明"</span>, paperCount: <span class="number">1</span>, score: <span class="number">95</span>)</div><div class="line"><span class="keyword">let</span> student2 = <span class="type">Student</span>(name: <span class="string">"小华"</span>, paperCount: <span class="number">2</span>, score: <span class="number">88</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> ccheck = <span class="type">CientificAwardCheck</span>()</div><div class="line"><span class="keyword">let</span> echeck = <span class="type">ExcellentAwardCheck</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> allTeacher = [tearch1, tearch2]</div><div class="line"><span class="keyword">let</span> allStudent = [student1, student2]</div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: stu)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: stu)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift设计模式之访问者/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,10 +494,10 @@
 <p>两个操作 <code>报价</code> 和 <code>预定</code>。</p>
 <p>报价(Quote)       –&gt; 生成 Email, Report<br>预定(Appointment) –&gt; 生成 Emial, Report </p>
 <p>这两个都可以进行相同的操作，那么我们进行抽象 <code>Documentable</code>,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">protocol Documentable &#123;  //</div><div class="line">    func accpet(documenter: Documenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Documenter &#123; // 相同的操作 </div><div class="line">    func process(documentable: Quote)</div><div class="line">    func process(documentable: Appointment)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Documentable</span> </span>&#123;  <span class="comment">//</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accpet</span><span class="params">(documenter: Documenter)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Documenter</span> </span>&#123; <span class="comment">// 相同的操作 </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(documentable: Quote)</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(documentable: Appointment)</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>抽象访问者定义了访问元素对象的方法，通常为每一种类型的元素对象都提供一个访问方法，而具体访问者可以实现这些访问方法</p>
 <p>使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">var joe = Mechanic(name: &quot;Joe Stevenson&quot;)</div><div class="line">var mike = Mechanic (name: &quot;Mike Dundee&quot;)</div><div class="line"></div><div class="line">var reza = Customer(name: &quot;Reza Shirazian&quot;,</div><div class="line">                    email: &quot;reza@example.com&quot;,</div><div class="line">                    zipcode: &quot;94043&quot;,</div><div class="line">                    address: &quot;N Rengstorff ave&quot;)</div><div class="line"></div><div class="line">var lyanne = Customer(name: &quot;Lyanne Borne&quot;,</div><div class="line">                      email: &quot;jb_hhm@example.com&quot;,</div><div class="line">                      zipcode: &quot;37110&quot;,</div><div class="line">                      address: &quot;E Main St McMinnvile TN&quot;)</div><div class="line"></div><div class="line">var sam = Customer(name: &quot;Sam Lee&quot;,</div><div class="line">                   email: &quot;lee.sam.3oo@example.com&quot;,</div><div class="line">                   zipcode: &quot;95060&quot;,</div><div class="line">                   address: &quot;Pacific Ave, Santa Cruz&quot;)</div><div class="line"></div><div class="line">var quote1 = Quote(customer: reza,</div><div class="line">                   price: 55.00,</div><div class="line">                   car: Car(make: &quot;Ford&quot;, model: &quot;Mustang&quot;, mileage: 9500))</div><div class="line"></div><div class="line">var quote2 = Quote(customer: lyanne,</div><div class="line">                   price: 463.25,</div><div class="line">                   car: Car(make: &quot;Chevrolet&quot;, model: &quot;Silverado&quot;,</div><div class="line">                   mileage: 15200))</div><div class="line"></div><div class="line">var quote3 = Quote(customer: sam,</div><div class="line">                   price: 1155.00,</div><div class="line">                   car: Car(make: &quot;Honda&quot;, model: &quot;Civic&quot;,</div><div class="line">                   mileage: 78000))</div><div class="line"></div><div class="line">var appointment1 = Appointment(customer: reza,</div><div class="line">                               mechanic: joe,</div><div class="line">                               price: 455.88,</div><div class="line">                               date: NSDate.generateDateFromArray([2016, 5, 12, 14, 30, 00])!)</div><div class="line"></div><div class="line">var appointment2 = Appointment(customer: sam,</div><div class="line">                               mechanic: mike,</div><div class="line">                               price: 554.00,</div><div class="line">                               date: NSDate.generateDateFromArray([2016, 5, 23, 20, 00, 00])!)</div><div class="line"></div><div class="line">var quotes = [quote1, quote2, quote3]</div><div class="line">var appointments = [appointment1, appointment2]</div><div class="line"></div><div class="line">var emailDocumenter = EmailDocumenter()</div><div class="line"></div><div class="line">var reportDocumenter = ReportDocumenter()</div><div class="line"></div><div class="line">for quote in quotes &#123;</div><div class="line">  quote.accept(emailDocumenter)</div><div class="line">  quote.accept(reportDocumenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line">for appointment in appointments &#123;</div><div class="line">  appointment.accept(emailDocumenter)</div><div class="line">  appointment.accept(reportDocumenter)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> joe = <span class="type">Mechanic</span>(name: <span class="string">"Joe Stevenson"</span>)</div><div class="line"><span class="keyword">var</span> mike = <span class="type">Mechanic</span> (name: <span class="string">"Mike Dundee"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> reza = <span class="type">Customer</span>(name: <span class="string">"Reza Shirazian"</span>,</div><div class="line">                    email: <span class="string">"reza@example.com"</span>,</div><div class="line">                    zipcode: <span class="string">"94043"</span>,</div><div class="line">                    address: <span class="string">"N Rengstorff ave"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> lyanne = <span class="type">Customer</span>(name: <span class="string">"Lyanne Borne"</span>,</div><div class="line">                      email: <span class="string">"jb_hhm@example.com"</span>,</div><div class="line">                      zipcode: <span class="string">"37110"</span>,</div><div class="line">                      address: <span class="string">"E Main St McMinnvile TN"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> sam = <span class="type">Customer</span>(name: <span class="string">"Sam Lee"</span>,</div><div class="line">                   email: <span class="string">"lee.sam.3oo@example.com"</span>,</div><div class="line">                   zipcode: <span class="string">"95060"</span>,</div><div class="line">                   address: <span class="string">"Pacific Ave, Santa Cruz"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> quote1 = <span class="type">Quote</span>(customer: reza,</div><div class="line">                   price: <span class="number">55.00</span>,</div><div class="line">                   car: <span class="type">Car</span>(make: <span class="string">"Ford"</span>, model: <span class="string">"Mustang"</span>, mileage: <span class="number">9500</span>))</div><div class="line"></div><div class="line"><span class="keyword">var</span> quote2 = <span class="type">Quote</span>(customer: lyanne,</div><div class="line">                   price: <span class="number">463.25</span>,</div><div class="line">                   car: <span class="type">Car</span>(make: <span class="string">"Chevrolet"</span>, model: <span class="string">"Silverado"</span>,</div><div class="line">                   mileage: <span class="number">15200</span>))</div><div class="line"></div><div class="line"><span class="keyword">var</span> quote3 = <span class="type">Quote</span>(customer: sam,</div><div class="line">                   price: <span class="number">1155.00</span>,</div><div class="line">                   car: <span class="type">Car</span>(make: <span class="string">"Honda"</span>, model: <span class="string">"Civic"</span>,</div><div class="line">                   mileage: <span class="number">78000</span>))</div><div class="line"></div><div class="line"><span class="keyword">var</span> appointment1 = <span class="type">Appointment</span>(customer: reza,</div><div class="line">                               mechanic: joe,</div><div class="line">                               price: <span class="number">455.88</span>,</div><div class="line">                               date: <span class="type">NSDate</span>.generateDateFromArray([<span class="number">2016</span>, <span class="number">5</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">30</span>, <span class="number">00</span>])!)</div><div class="line"></div><div class="line"><span class="keyword">var</span> appointment2 = <span class="type">Appointment</span>(customer: sam,</div><div class="line">                               mechanic: mike,</div><div class="line">                               price: <span class="number">554.00</span>,</div><div class="line">                               date: <span class="type">NSDate</span>.generateDateFromArray([<span class="number">2016</span>, <span class="number">5</span>, <span class="number">23</span>, <span class="number">20</span>, <span class="number">00</span>, <span class="number">00</span>])!)</div><div class="line"></div><div class="line"><span class="keyword">var</span> quotes = [quote1, quote2, quote3]</div><div class="line"><span class="keyword">var</span> appointments = [appointment1, appointment2]</div><div class="line"></div><div class="line"><span class="keyword">var</span> emailDocumenter = <span class="type">EmailDocumenter</span>()</div><div class="line"></div><div class="line"><span class="keyword">var</span> reportDocumenter = <span class="type">ReportDocumenter</span>()</div><div class="line"></div><div class="line"><span class="keyword">for</span> quote <span class="keyword">in</span> quotes &#123;</div><div class="line">  quote.accept(emailDocumenter)</div><div class="line">  quote.accept(reportDocumenter)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> appointment <span class="keyword">in</span> appointments &#123;</div><div class="line">  appointment.accept(emailDocumenter)</div><div class="line">  appointment.accept(reportDocumenter)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
 <li>增加新的访问操作就意味着增加一个新的具体访问者类，实现简单，无须修改源代码，符合“开闭原则”。</li>
 <li>将有关元素对象的访问行为集中到一个访问者对象中，而不是分散在一个个的元素类中。类的职责更加清晰，有利于对象结构中元素对象的复用，相同的对象结构可以供多个不同的访问者访问</li>
@@ -1963,156 +2106,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/03/Swift-之数据结构-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/03/Swift-之数据结构-List/" itemprop="url">Swift 之数据结构 List</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T11:09:31+08:00">
-                2018-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/03/Swift-之数据结构-List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/03/Swift-之数据结构-List/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/03/Swift-之数据结构-List/" class="leancloud_visitors" data-flag-title="Swift 之数据结构 List">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>在 <code>Haskell</code> 的递归类型：用它自己定义自己。 </p>
-<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> <span class="type">List</span> a = <span class="type">Cons</span> a (<span class="type">List</span> <span class="title">a</span>)</span></div><div class="line">            | <span class="type">Nil</span></div><div class="line">            <span class="keyword">deriving</span> (<span class="type">Show</span>)</div></pre></td></tr></table></figure>
-<p>借助这种思想，swift 如何定义类似 <code>List</code>。<br><code>List</code> 的结构特点是，该节点的值和指向下一个节点的指针组成<br>从上面的 List 的定义，用到了模式匹配和递归，那么 <code>swift</code> 的 <code>enum</code> 可符合这种特性。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">List</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Element</span>, <span class="type">List</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line">    <span class="keyword">case</span> end</div><div class="line"></div><div class="line">    <span class="comment">// construction 构建 </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">cons</span><span class="params">(x: Elemet)</span></span> -&gt; <span class="type">List</span>&lt;<span class="type">Element</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> .node(x, <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="字面量初始化"><a href="#字面量初始化" class="headerlink" title="字面量初始化"></a>字面量初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let l: List = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</div></pre></td></tr></table></figure>
-<p>如果要达到上方的目的，那么我们需要实现 <code>ExpressibleByArrayLiteral</code> </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">List</span>: <span class="title">ExpressibleByArrayLiteral</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(arrayLiteral elements: <span class="type">Element</span>...) &#123;</div><div class="line">        <span class="keyword">self</span> = elements.reversed().<span class="built_in">reduce</span>(.end) &#123; (result, ele) -&gt; <span class="type">List</span> <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> result.cons(x: ele)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="实现-for…in"><a href="#实现-for…in" class="headerlink" title="实现 for…in"></a>实现 for…in</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">List</span>: <span class="title">Sequence</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeIterator</span><span class="params">()</span></span> -&gt; <span class="type">ListIterator</span>&lt;<span class="type">Element</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">ListIterator</span>(list: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// 迭代器</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListIterator</span>&lt;<span class="title">T</span>&gt;: <span class="title">IteratorProtocol</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> current: <span class="type">List</span>&lt;<span class="type">T</span>&gt;</div><div class="line">    <span class="keyword">init</span>(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;) &#123;</div><div class="line">        <span class="keyword">self</span>.current = list</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span> -&gt; <span class="type">T</span>? &#123;</div><div class="line">        <span class="keyword">switch</span> current &#123;</div><div class="line">        <span class="keyword">case</span> .end: <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(x, next):</div><div class="line">            current = next</div><div class="line">            <span class="keyword">return</span> x</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">这样我们就可以 </div><div class="line"></div><div class="line">```swift </div><div class="line"><span class="keyword">for</span> ele <span class="keyword">in</span> l &#123;</div><div class="line">    <span class="built_in">print</span>(ele)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="实现-List-拼接"><a href="#实现-List-拼接" class="headerlink" title="实现 List 拼接"></a>实现 List 拼接</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> +&lt;T&gt;<span class="params">(lhs: List&lt;T&gt;, rhs: List&lt;T&gt;)</span></span> -&gt; <span class="type">List</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">    <span class="keyword">switch</span> lhs &#123;</div><div class="line">    <span class="keyword">case</span> .end: <span class="keyword">return</span> rhs</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .node(x, xs): <span class="keyword">return</span> (xs + rhs).cons(x: x)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> l: <span class="type">List</span> = [<span class="string">"11"</span>, <span class="string">"12"</span>, <span class="string">"13"</span>]</div><div class="line"><span class="keyword">let</span> r: <span class="type">List</span> = [<span class="string">"000"</span>, <span class="string">"0001"</span>]</div><div class="line"><span class="keyword">let</span> result = l + r</div><div class="line"><span class="keyword">for</span> ele <span class="keyword">in</span> result &#123;</div><div class="line">    <span class="built_in">print</span>(ele)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2165,7 +2158,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
