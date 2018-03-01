@@ -249,6 +249,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/01/LaunchScreen-storyboard-换图的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/01/LaunchScreen-storyboard-换图的问题/" itemprop="url">LaunchScreen.storyboard 换图的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T13:29:52+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/01/LaunchScreen-storyboard-换图的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/01/LaunchScreen-storyboard-换图的问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/01/LaunchScreen-storyboard-换图的问题/" class="leancloud_visitors" data-flag-title="LaunchScreen.storyboard 换图的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>之前设置了<code>LaunchScreen.storyboard</code>，在这个storyboard中加了一个imageView，里面设置了一张图片launch.png，今天需要更换这个启动<br>图片，我就直接去工程里面，把launch.png,launch@2x.png,launch@3x.png这三张图片直接用其他图片覆盖了<br>，然后打开这个storyboard，这个storyboard里面的imageView的确变了，但是运行工程，并没有改变，显示的还是原来的图片</p>
+</blockquote>
+<p>有人提出这两种办法:</p>
+<ol>
+<li>删除重新安装，删除driverData，但是并没有卵用，老图片还是顽固的存在</li>
+<li>把这个storyboard的Use as launch Screen选项取消掉，然后再重新选择</li>
+</ol>
+<p>但是，并没有卵用。</p>
+<p>正确的解决办法是 <code>Assets.xcassets</code> 替换图片的时候，把图片名字也替换掉。然后在 <code>LaunchScreen.storyboard</code> 更换用新的图片名字即可。</p>
+<p>如果上面方法依旧不行，那就将图片拖入工程，不放到 <code>Assets.xcassets</code> 中。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1629,152 +1780,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/06/12/Swift-之-silgen-name/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/Swift-之-silgen-name/" itemprop="url">Swift 之 @_silgen_name</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T22:50:34+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/Swift-之-silgen-name/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/12/Swift-之-silgen-name/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/12/Swift-之-silgen-name/" class="leancloud_visitors" data-flag-title="Swift 之 @_silgen_name">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="silgen-name"><a href="#silgen-name" class="headerlink" title="@_silgen_name"></a><code>@_silgen_name</code></h2><p>swift2.0 之后， <code>Darwin</code>已经更改为全局类库，不需要进行导入。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C 函数</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">printC</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">"This is c Printf Func"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// &#123;product-module-name&#125;-Bridging-Header.h</span></div><div class="line"><span class="meta">#import <span class="meta-string">"CAPI"</span>.h</span></div></pre></td></tr></table></figure>
-<p>这样设置之后，就可以在 swift 文件中使用 C 语言的接口 printC 了。 但是这种方式带来了弊端就是，如果 C 语言的函数散落在多个 C 语言文件中，那么在桥接文件中就需要导入多个 C 语言头文件才可以。</p>
-<p><code>@_silgen_name</code>其实是 Swift 的一个隐藏符号，作用是将某个 C 语言函数直接映射为 Swift 函数,这样就不需要在桥接文件中导入C语言头文件，甚至可以直接删掉C语言头文件。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@_silgen_name(<span class="string">"printC"</span>) <span class="function"><span class="keyword">func</span> <span class="title">swift_print</span><span class="params">()</span></span> -&gt; <span class="type">CInt</span></div></pre></td></tr></table></figure>
-<p>这样进行映射后，在Swift中，就可以直接使用 swift_print 函数了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1827,7 +1832,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
