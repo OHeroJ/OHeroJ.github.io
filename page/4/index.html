@@ -249,6 +249,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/08/12/MacOS-端口转发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/12/MacOS-端口转发/" itemprop="url">MacOS 端口转发</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T10:53:36+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/12/MacOS-端口转发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/12/MacOS-端口转发/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/12/MacOS-端口转发/" class="leancloud_visitors" data-flag-title="MacOS 端口转发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="如何使Mac-OS-X的端口转发"><a href="#如何使Mac-OS-X的端口转发" class="headerlink" title="如何使Mac OS X的端口转发"></a>如何使Mac OS X的端口转发</h1><h2 id="etc-hosts"><a href="#etc-hosts" class="headerlink" title="etc/hosts"></a>etc/hosts</h2><blockquote>
+<p>hosts文件(域名解析文件[1])是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。</p>
+<p>Hosts 文件本来是用来提高解析效率。在进行 DNS 请求以前，系统会先检查自己的 Hosts 文件中是否有这个地址映射关系，如果有则调用这个 IP 地址映射，如果没有再向已知的 DNS 服务器提出域名解析。也就是说 Hosts 的请求级别比 DNS 高。当你的 Hosts 文件里面有对应的 IP 时，它就会直接访问那个 IP，而不用通过 DNS</p>
+</blockquote>
+<p>其实它存放的就是一些常用的网站主机的域名和其对应的 IP 地址， 默认是 <code>80</code> 端口。</p>
+<h2 id="80-端口"><a href="#80-端口" class="headerlink" title="80 端口"></a>80 端口</h2><p>HTTP 的默认端口是 80<br>8080 一般用来连接代理</p>
+<h2 id="那么如何实现输入一个域名后，访问的不是-80-端口呢？"><a href="#那么如何实现输入一个域名后，访问的不是-80-端口呢？" class="headerlink" title="那么如何实现输入一个域名后，访问的不是 80 端口呢？"></a>那么如何实现输入一个域名后，访问的不是 80 端口呢？</h2><p>通过修改 hosts 文件是行不通的。 比如 有个自定义的域名是 mygitlab, 想映射到 192.168.1.129:32788<br>那么如何实现呢？  <code>pf or ipfw</code></p>
+<ul>
+<li>首先修改 <code>/etc/hosts</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#...</span></div><div class="line"><span class="comment"># 添加一个</span></div><div class="line"></div><div class="line">192.168.2.129 mygitlab</div><div class="line"></div><div class="line"><span class="comment">#...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在 <code>/etc/pf.anchors/</code>新建一个 <code>mygitlab</code> 文件内容如下：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rdr pass on lo0 inet proto tcp from any to 192.168.2.129 port 80 -&gt; 192.168.1.129 port 32788</div></pre></td></tr></table></figure>
+<p>其中 <code>lo0</code>是ifconfig查询到的网卡的名字,<code>80</code> 是默认端口</p>
+<ul>
+<li>添加到主配置文件中</li>
+</ul>
+<p>pf 启动时会自动装载 <code>/etc/pf.conf</code> 文件，因此需要将 mygitlab 文件链接到 <code>/etc/pf.conf</code> 文件，实现转发</p>
+<p>修改后的文件内容如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">scrub-anchor <span class="string">"com.apple/*"</span></div><div class="line">nat-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"com.apple/*"</span></div><div class="line">rdr-anchor <span class="string">"mygitlab"</span></div><div class="line"></div><div class="line">dummynet-anchor <span class="string">"com.apple/*"</span></div><div class="line">anchor <span class="string">"com.apple/*"</span></div><div class="line"></div><div class="line">load anchor <span class="string">"com.apple"</span> from <span class="string">"/etc/pf.anchors/com.apple"</span></div><div class="line">load anchor <span class="string">"mygitlab"</span> from <span class="string">"/etc/pf.anchors/mygitlab"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>导入并运行 PF 命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pfctl -evf /etc/pf.anchors/mygitlab</div></pre></td></tr></table></figure>
+<ul>
+<li>设置 pf 开机自启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pfctl -e</div><div class="line"></div><div class="line"># sudo pfctl -d 关闭</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-自动化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,160 +1853,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="url">基于 Django 搭建 Zip 皮肤包下载功能测试后台</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-16T23:02:22+08:00">
-                2016-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" class="leancloud_visitors" data-flag-title="基于 Django 搭建 Zip 皮肤包下载功能测试后台">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>不求人不求人，自给自足。</p>
-<p>最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。</p>
-<p><code>iOS</code>端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。<br>因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。<br>但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一样，<br>半成品的东西最后还是不能给你打勾。没有实现等于没有完成，中间过程忽略不计，这是我的做事风格。</p>
-<h2 id="后台需求："><a href="#后台需求：" class="headerlink" title="后台需求："></a>后台需求：</h2><ol>
-<li>提供一个 皮肤包 zip 下载的接口，里面的数据我们自己造。</li>
-<li>实现对文件进行 zip 打包，留着以后遇到 zip 相关就可以快速找到实现方案。</li>
-</ol>
-<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>后台技能树： node.js | python | swift | go<br>选择个人较为容易的 Python, 且使用我以前现有的 Django 项目，添加一个接口即可</p>
-<h2 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点"></a>实现要点</h2><ul>
-<li>zip 下载接口</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># view 中代码</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> StreamingHttpResponse</div><div class="line"><span class="keyword">import</span> os,zipfile</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">big_file_download</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">file_iterator</span><span class="params">(file_name, chunk_size=<span class="number">512</span>)</span>:</span></div><div class="line">        <span class="keyword">with</span> open (file_name, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                c = f.read(chunk_size)</div><div class="line">                <span class="keyword">if</span> c:</div><div class="line">                    <span class="keyword">yield</span> c</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line"></div><div class="line">    the_file_name = <span class="string">"tmp.zip"</span></div><div class="line">    filepath = os.path.join(BASE_DIR, the_file_name)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</div><div class="line">        zipFile(<span class="string">'tmp'</span>) <span class="comment">#不存在就进行压缩</span></div><div class="line">    response = StreamingHttpResponse(file_iterator(filepath))</div><div class="line">    response[<span class="string">'Content-Type'</span>] = <span class="string">'application/octest-stream'</span></div><div class="line">    response[<span class="string">'Content-Disposition'</span>] = <span class="string">'attachment; filename="&#123;0&#125;"'</span>.format(the_file_name)</div><div class="line">    <span class="keyword">return</span> response</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zipFile</span><span class="params">(dir)</span>:</span></div><div class="line">    the_zip = zipfile.ZipFile(<span class="string">'tmp.zip'</span>, <span class="string">'w'</span>, zipfile.ZIP_DEFLATED)</div><div class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir):</div><div class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</div><div class="line">            the_zip.write(os.path.join(dirpath,filename))</div><div class="line">    the_zip.close()</div></pre></td></tr></table></figure>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>自完备性: 在做一些库的时候，我们不想依赖其他库，然后自己写了一套实现。<br>在开发中，联调一个功能是一个常常会发生的一个事情，环境的模拟也是每个程序员应具备的能力，自给自足，这也恰恰体现了一个程序员的自我修养，程序员是一个能改变世界的人。我们是创造者也是实现着。<br>依赖是必须的，减少依赖也是必须的。当有能力去做的时候，还是自己动手吧。</p>
-<p>总之，求人不如求己。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1890,7 +1905,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1903,7 +1918,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

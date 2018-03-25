@@ -249,6 +249,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="url">基于 Django 搭建 Zip 皮肤包下载功能测试后台</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-16T23:02:22+08:00">
+                2016-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/11/16/基于-Django-搭建-Zip-皮肤包下载功能测试后台/" class="leancloud_visitors" data-flag-title="基于 Django 搭建 Zip 皮肤包下载功能测试后台">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不求人不求人，自给自足。</p>
+<p>最近在写个皮肤管理的功能，要支持后台下发皮肤包，本地默认包，有点像 QQ 换肤的那种功能。</p>
+<p><code>iOS</code>端的功能逻辑都写好了，本地皮肤包的管理都进行了相关测试，但是后台下发的功能未进行正式测试。<br>因为涉及到一些网络请求，以及请求涉及到的的一些文件管理的，仅仅通过本地的假数据来是完全不够的。<br>但是后台那边尚未动手这块。性子急的我可不想在过两个礼拜进行测试这些代码。工作就要有一样完成一样，<br>半成品的东西最后还是不能给你打勾。没有实现等于没有完成，中间过程忽略不计，这是我的做事风格。</p>
+<h2 id="后台需求："><a href="#后台需求：" class="headerlink" title="后台需求："></a>后台需求：</h2><ol>
+<li>提供一个 皮肤包 zip 下载的接口，里面的数据我们自己造。</li>
+<li>实现对文件进行 zip 打包，留着以后遇到 zip 相关就可以快速找到实现方案。</li>
+</ol>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>后台技能树： node.js | python | swift | go<br>选择个人较为容易的 Python, 且使用我以前现有的 Django 项目，添加一个接口即可</p>
+<h2 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点"></a>实现要点</h2><ul>
+<li>zip 下载接口</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># view 中代码</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> StreamingHttpResponse</div><div class="line"><span class="keyword">import</span> os,zipfile</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">big_file_download</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">file_iterator</span><span class="params">(file_name, chunk_size=<span class="number">512</span>)</span>:</span></div><div class="line">        <span class="keyword">with</span> open (file_name, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                c = f.read(chunk_size)</div><div class="line">                <span class="keyword">if</span> c:</div><div class="line">                    <span class="keyword">yield</span> c</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line"></div><div class="line">    the_file_name = <span class="string">"tmp.zip"</span></div><div class="line">    filepath = os.path.join(BASE_DIR, the_file_name)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</div><div class="line">        zipFile(<span class="string">'tmp'</span>) <span class="comment">#不存在就进行压缩</span></div><div class="line">    response = StreamingHttpResponse(file_iterator(filepath))</div><div class="line">    response[<span class="string">'Content-Type'</span>] = <span class="string">'application/octest-stream'</span></div><div class="line">    response[<span class="string">'Content-Disposition'</span>] = <span class="string">'attachment; filename="&#123;0&#125;"'</span>.format(the_file_name)</div><div class="line">    <span class="keyword">return</span> response</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zipFile</span><span class="params">(dir)</span>:</span></div><div class="line">    the_zip = zipfile.ZipFile(<span class="string">'tmp.zip'</span>, <span class="string">'w'</span>, zipfile.ZIP_DEFLATED)</div><div class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir):</div><div class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</div><div class="line">            the_zip.write(os.path.join(dirpath,filename))</div><div class="line">    the_zip.close()</div></pre></td></tr></table></figure>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>自完备性: 在做一些库的时候，我们不想依赖其他库，然后自己写了一套实现。<br>在开发中，联调一个功能是一个常常会发生的一个事情，环境的模拟也是每个程序员应具备的能力，自给自足，这也恰恰体现了一个程序员的自我修养，程序员是一个能改变世界的人。我们是创造者也是实现着。<br>依赖是必须的，减少依赖也是必须的。当有能力去做的时候，还是自己动手吧。</p>
+<p>总之，求人不如求己。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/10/16/Vapor 之 Heroku/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1750,206 +1904,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/07/私有 Cocoapods 的创建和维护/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="url">私有 Cocoapods 的创建和维护</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-07T21:53:39+08:00">
-                2016-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/07/私有 Cocoapods 的创建和维护/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/08/07/私有 Cocoapods 的创建和维护/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/07/私有 Cocoapods 的创建和维护/" class="leancloud_visitors" data-flag-title="私有 Cocoapods 的创建和维护">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="使用cocoapods创建私有podspec"><a href="#使用cocoapods创建私有podspec" class="headerlink" title="使用cocoapods创建私有podspec"></a>使用cocoapods创建私有<code>podspec</code></h3><h4 id="创建私有podspec的步骤"><a href="#创建私有podspec的步骤" class="headerlink" title="创建私有podspec的步骤"></a>创建私有<code>podspec</code>的步骤</h4><h5 id="1-创建并设置一个私有的Spec-Repo"><a href="#1-创建并设置一个私有的Spec-Repo" class="headerlink" title="1. 创建并设置一个私有的Spec Repo"></a>1. 创建并设置一个私有的<code>Spec Repo</code></h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo add MySpecs <span class="symbol">https:</span>/<span class="regexp">/gitlab.com/oheroj</span><span class="regexp">/spects.git</span></div></pre></td></tr></table></figure>
-<p>验证是否成功的话，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/.cocoapods/repos/MySpecs</div></pre></td></tr></table></figure></p>
-<p><img src="/images/pod-file01.png" alt="eg"></p>
-<h5 id="2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址"><a href="#2-创建Pod所需要的项目工程文件，-并且有可访问的项目版本控制地址" class="headerlink" title="2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址"></a>2. 创建Pod所需要的项目工程文件， 并且有可访问的项目版本控制地址</h5><h5 id="3-创建Pod所对应的podspec文件"><a href="#3-创建Pod所对应的podspec文件" class="headerlink" title="3. 创建Pod所对应的podspec文件"></a>3. 创建Pod所对应的<code>podspec</code>文件</h5><p>一般情况下2，3 两步骤是在一起的， 使用<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod lib create RoundButton</div></pre></td></tr></table></figure></p>
-<p><img src="/images/pod-file02.png" alt="pod lib create eg"></p>
-<p><img src="/images/pod-file03.png" alt="pod lib create xocde eg"></p>
-<p>接下来就是在pod文件夹中添加文件和资源， 并配置<code>podspec</code>文件。</p>
-<p><img src="/images/pod-file04.png" alt="pod lib create xcode add"></p>
-<p>将代码推送到远端：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit <span class="_">-s</span> -m <span class="string">"First Commit of Lib"</span></div></pre></td></tr></table></figure>
-<p>这个时候你在gitlab上创建个项目：<br><img src="/images/pod-file05.png" alt="pod lib create xcode gitlab"></p>
-<p>将本地代码库与远程代码库关联<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@gitlab.com:oheroj/RoundButton.git <span class="comment">#添加远端仓库</span></div><div class="line">git push origin master <span class="comment"># 提交到远端仓库</span></div></pre></td></tr></table></figure></p>
-<p>这里我们也会遇到一个问题就是 git 提交人的信息有问题，默认提交者为你设置的全局的git的ueser， 所以这个时候就得改名字了， 比如我这边要改为 oheroj , 然后邮箱改为gmail邮箱。<br>有这么一段脚本可以 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">参考执行</a>：</p>
-<p>有这么个脚本  change.sh, 里面的内容是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure>
-<p>这个时候你直接替换相应的内容，然后执行 <code>sh change.sh</code></p>
-<blockquote>
-<p>这里需要注意的是每当你向Pod中添加了新的文件或者以后更新了podspec的版本都需要重新执行一遍pod update命令</p>
-</blockquote>
-<p>接下来就是编辑<code>podspec</code>文件了, 涉及到的字段可以到 <a href="http://guides.cocoapods.org/syntax/podspec.html#specification" target="_blank" rel="noopener">官方文档</a> 查阅<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></div><div class="line">  s.name             = <span class="string">'RoundButton'</span></div><div class="line">  s.version          = <span class="string">'0.1.0'</span></div><div class="line">  s.summary          = <span class="string">'A Custom Round Button of Button.'</span></div><div class="line"></div><div class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></div><div class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></div><div class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></div><div class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></div><div class="line"><span class="comment">#   * Finally, don't worry about the indent, CocoaPods strips it!</span></div><div class="line"></div><div class="line">  s.description      = <span class="string">&lt;&lt;-DESC</span></div><div class="line">创建一个带有圆角的UIButton, 并且用block封装回调</div><div class="line">                       DESC</div><div class="line"></div><div class="line">  s.homepage         = <span class="string">'https://gitlab.com/oheroj/RoundButton'</span></div><div class="line">  <span class="comment"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span></div><div class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</div><div class="line">  s.author           = &#123; <span class="string">'oheroj'</span> =&gt; <span class="string">'oheroj@gmail.com'</span> &#125;</div><div class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://gitlab.com/oheroj/RoundButton.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</div><div class="line">  <span class="comment"># s.social_media_url = 'https://twitter.com/&lt;TWITTER_USERNAME&gt;'</span></div><div class="line"></div><div class="line">  s.ios.deployment_target = <span class="string">'8.0'</span></div><div class="line"></div><div class="line">  s.source_files = <span class="string">'RoundButton/Classes/**/*'</span></div><div class="line"></div><div class="line">  <span class="comment"># s.resource_bundles = &#123;</span></div><div class="line">  <span class="comment">#   'RoundButton' =&gt; ['RoundButton/Assets/*.png']</span></div><div class="line">  <span class="comment"># &#125;</span></div><div class="line"></div><div class="line">  <span class="comment"># s.public_header_files = 'Pod/Classes/**/*.h'</span></div><div class="line">  <span class="comment"># s.frameworks = 'UIKit', 'MapKit'</span></div><div class="line">  <span class="comment"># s.dependency 'AFNetworking', '~&gt; 2.3'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>进行提交，并且打<code>tag</code></p>
-<blockquote>
-<p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git commit -a -m &quot;podspec modif&quot;</div><div class="line">git push origin master</div><div class="line"></div><div class="line">git tag -m &quot;first release&quot; 0.1.0</div><div class="line">git push --tags</div></pre></td></tr></table></figure>
-<h5 id="4-本地测试配置好的podsepc文件是否可用"><a href="#4-本地测试配置好的podsepc文件是否可用" class="headerlink" title="4. 本地测试配置好的podsepc文件是否可用"></a>4. 本地测试配置好的<code>podsepc</code>文件是否可用</h5><p>编辑完<code>podspec</code>文件后，需要验证一下这个文件是否可用，如果有任何WARNING或者ERROR都是不可以的，它就不能被添加到Spec Repo中，不过xcode的WARNING是可以存在的，验证需要执行一下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod lib lint</div></pre></td></tr></table></figure>
-<p><img src="/images/pod-file06.png" alt="pod lib lint"></p>
-<h6 id="创建podspec-文件-此步骤是对有现存项目的"><a href="#创建podspec-文件-此步骤是对有现存项目的" class="headerlink" title="创建podspec 文件(此步骤是对有现存项目的)"></a>创建podspec 文件(此步骤是对有现存项目的)</h6><p>如果有现成项目的话， 我们就需要给这个项目创建个<code>podspec</code>文件,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod sepc create RoundButton git@gitlab.com:oheroj/RoundButton.git</div></pre></td></tr></table></figure></p>
-<p>执行完之后，就创建了一个podspec文件，他其中会包含很多内容，可以按照我之前介绍的进行编辑，没用的删掉。编辑完成之后使用验证命令验证一下.</p>
-<h5 id="5-向私有的Spec-Repo-中提交-podsepc"><a href="#5-向私有的Spec-Repo-中提交-podsepc" class="headerlink" title="5. 向私有的Spec Repo 中提交 podsepc"></a>5. 向私有的<code>Spec Repo</code> 中提交 podsepc</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MySpecs RoundButton.podspec</div></pre></td></tr></table></figure>
-<p><img src="/images/pod-file07.png" alt="pod repos push "></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search RoundButton</div></pre></td></tr></table></figure>
-<p><img src="/images/pod-file08.png" alt="pod search"></p>
-<h5 id="6-在个人项目中的Podfile中增加刚刚制作好的Pod使用"><a href="#6-在个人项目中的Podfile中增加刚刚制作好的Pod使用" class="headerlink" title="6. 在个人项目中的Podfile中增加刚刚制作好的Pod使用"></a>6. 在个人项目中的<code>Podfile</code>中增加刚刚制作好的<code>Pod</code>使用</h5><p>在其他项目中使用的时候, 在podfile中添加如下：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'https://github.com/CocoaPods/Specs.git'</span> <span class="comment">#公有库</span></div><div class="line">source <span class="string">'https://gitlab.com/oheroj/spects.git'</span></div><div class="line"></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">"8.0"</span></div><div class="line"></div><div class="line">target <span class="string">'ModelPro'</span> <span class="keyword">do</span></div><div class="line">    pod <span class="string">'RoundButton'</span>, <span class="string">'~&gt; 0.1.0'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>然后执行pod install 即可</p>
-<h5 id="7-更新维护podspec"><a href="#7-更新维护podspec" class="headerlink" title="7. 更新维护podspec"></a>7. 更新维护<code>podspec</code></h5><h5 id="版本规范（版本tag）"><a href="#版本规范（版本tag）" class="headerlink" title="版本规范（版本tag）"></a>版本规范（版本tag）</h5><p><strong>major.minor.patch</strong></p>
-<p>App主项目依赖  <code>pod &#39;AFNetworking&#39;, &#39;~&gt; 3.1.0&#39;</code></p>
-<ul>
-<li>修改bug和一些其他不重要修改（修改README，Format等），增加patch版本号。用户可以放心升级。</li>
-<li>曾加功能并且向前兼容，增加minor版本号。用户可以考虑升级。（推荐升级）</li>
-<li>不向前兼容或重大修改或重构，增加major版本号。用户应当慎重决定是否升级。</li>
-<li>当major为0时，表示该库为beta版本。不是稳定版本，所以会经常修改，并很容易造成向前不兼容的情况。开发者需要认真评估major版本号。 此时发生向前不兼容的情况，开发者应当升级minor版本号。其他同上面的规范。</li>
-</ul>
-<h5 id="维护、增加新功能"><a href="#维护、增加新功能" class="headerlink" title="维护、增加新功能"></a>维护、增加新功能</h5><p>将源文件添加到<code>Pod/Classes</code>中， 在测试项目里<code>pod update</code>一下， 写代码验证无误之后，就可以将这个工程 <code>push</code> 到远端仓库， 并且打上新的 tag， tag 号遵从上面的版本规范来制定。</p>
-<p>然后修改<code>podspec</code>上的<code>s.version</code>为我们的 tag 号。最后再次使用<code>pod lib lint</code>验证编辑好的<code>podsepc</code>文件，没有自身的WARNING或者ERROR之后，就可以再次提交到Spec Repo中了，命令跟之前是一样的</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MySpecs RoundButton.podspec</div></pre></td></tr></table></figure>
-<p>之后再次到~/.cocoapods/repos/MySpecs目录下查看, eg:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── YTNSFoundation</div><div class="line">│   └── 0.1.0</div><div class="line">│       └── YTNSFoundation.podspec</div><div class="line">├── YTNetworking</div><div class="line">│   └── 1.0.12</div><div class="line">│       └── YTNetworking.podspec</div><div class="line">└── YTUIKit</div><div class="line">    ├── 0.1.0</div><div class="line">    │   └── YTUIKit.podspec</div><div class="line">    └── 0.1.1</div><div class="line">        └── YTUIKit.podspec</div></pre></td></tr></table></figure>
-<h5 id="删除本地一个私有Spec-Repo"><a href="#删除本地一个私有Spec-Repo" class="headerlink" title="删除本地一个私有Spec Repo"></a>删除本地一个私有<code>Spec Repo</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo remove WTSpecs</div></pre></td></tr></table></figure>
-<h5 id="删除私有Spec-Repo某一个podspec"><a href="#删除私有Spec-Repo某一个podspec" class="headerlink" title="删除私有Spec Repo某一个podspec"></a>删除私有<code>Spec Repo</code>某一个<code>podspec</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/.cocoapods/repos/MySpecs</div><div class="line">rm -rf RoundButton</div><div class="line">git commit -a -m &quot;Feat: RoundButton podspec&quot;</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h5 id="8-参考文献"><a href="#8-参考文献" class="headerlink" title="8. 参考文献"></a>8. 参考文献</h5><ol>
-<li><a href="http://guides.cocoapods.org/making/private-cocoapods.html" target="_blank" rel="noopener">Private Pods</a></li>
-<li><a href="http://blog.grio.com/2014/11/creating-a-private-cocoapod.html" target="_blank" rel="noopener">Creating a Private CocoaPod</a></li>
-<li><a href="https://objectpartners.com/2014/06/25/developing-private-in-house-libraries-with-cocoapods/" target="_blank" rel="noopener">Developing Private In-House Libraries with CocoaPods</a></li>
-<li><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="noopener">使用Cocoapods创建私有podspec</a></li>
-<li><a href="http://www.pluto-y.com/cocoapod-private-pods-and-module-manager/" target="_blank" rel="noopener">Cocoapods系列教程(三)——私有库管理和模块化管理</a></li>
-<li><a href="http://xiongzenghuidegithub.github.io/blog/2015/12/25/frameworksan-,-shi-yong-di-san-ku/" target="_blank" rel="noopener">一个iOS菜菜的白话文记录</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2002,7 +1956,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2015,7 +1969,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
