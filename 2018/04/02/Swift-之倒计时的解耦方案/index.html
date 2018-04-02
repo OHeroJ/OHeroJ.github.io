@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Vapor,Swift," />
+  <meta name="keywords" content="iOS,Swift," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
-<meta name="keywords" content="Vapor,Swift">
+<meta name="description" content="最近在做一个商品的限时抢购功能，在 TableView 上的 Cell 有个倒计时的显示，很多人觉得这有什么难的，直接加个定时器不就好了么，那么问题来了，你要怎么加这个定时器，一个？或者多个？ 加到哪里，VC or Cell? Timer 这家伙有一些不好的问题，弄不好容易出现循环引用，内存暴涨。 对于这些技术点，有些人选择给每个 cell 添加定时器，然后在 cell 内部管理显示，这里就有个问">
+<meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift 之后台 Vapor 初步">
-<meta property="og:url" content="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/index.html">
+<meta property="og:title" content="Swift 之倒计时的解耦方案">
+<meta property="og:url" content="http://loveli.site/2018/04/02/Swift-之倒计时的解耦方案/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta property="og:description" content="最近在做一个商品的限时抢购功能，在 TableView 上的 Cell 有个倒计时的显示，很多人觉得这有什么难的，直接加个定时器不就好了么，那么问题来了，你要怎么加这个定时器，一个？或者多个？ 加到哪里，VC or Cell? Timer 这家伙有一些不好的问题，弄不好容易出现循环引用，内存暴涨。 对于这些技术点，有些人选择给每个 cell 添加定时器，然后在 cell 内部管理显示，这里就有个问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T07:24:30.496Z">
+<meta property="og:updated_time" content="2018-04-02T09:44:14.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift 之后台 Vapor 初步">
-<meta name="twitter:description" content="近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for">
+<meta name="twitter:title" content="Swift 之倒计时的解耦方案">
+<meta name="twitter:description" content="最近在做一个商品的限时抢购功能，在 TableView 上的 Cell 有个倒计时的显示，很多人觉得这有什么难的，直接加个定时器不就好了么，那么问题来了，你要怎么加这个定时器，一个？或者多个？ 加到哪里，VC or Cell? Timer 这家伙有一些不好的问题，弄不好容易出现循环引用，内存暴涨。 对于这些技术点，有些人选择给每个 cell 添加定时器，然后在 cell 内部管理显示，这里就有个问">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/"/>
+  <link rel="canonical" href="http://loveli.site/2018/04/02/Swift-之倒计时的解耦方案/"/>
 
 
 
 
 
-  <title>Swift 之后台 Vapor 初步 | loveli</title>
+  <title>Swift 之倒计时的解耦方案 | loveli</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/04/02/Swift-之倒计时的解耦方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="loveli">
@@ -270,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Swift 之后台 Vapor 初步</h2>
+          <h2 class="post-title" itemprop="name headline">Swift 之倒计时的解耦方案</h2>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T17:27:32+08:00">
-                2016-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T17:31:54+08:00">
+                2018-04-02
               </time>
             
 
@@ -301,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/10/Swift 之后台 Vapor 初步/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/07/10/Swift 之后台 Vapor 初步/" itemprop="commentsCount"></span>
+                <a href="/2018/04/02/Swift-之倒计时的解耦方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/02/Swift-之倒计时的解耦方案/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,7 +310,7 @@
 
           
           
-             <span id="/2016/07/10/Swift 之后台 Vapor 初步/" class="leancloud_visitors" data-flag-title="Swift 之后台 Vapor 初步">
+             <span id="/2018/04/02/Swift-之倒计时的解耦方案/" class="leancloud_visitors" data-flag-title="Swift 之倒计时的解耦方案">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,61 +341,22 @@
       
 
       
-        <blockquote>
-<p>近日，发现Vapor相应功能都基本完工了。之前的早期版本自己也尝试过，感觉这个库很符合自己的口味。早期vapor定位是swift版的Laravel.正如它自己描写<br>“Vapor is the first true web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.”<br>如果使用PHP Laravel的同学应该知道，这个库的很有艺术性，很优美<br>“The PHP Framework For Web Artisans”<br>swift的年轻所以有很多地方也造就了vapor的年轻<br>所以在使用vapor的时候并不是那么方便，坑还是不少的。</p>
-</blockquote>
-<hr>
-<p>环境：  xcode7.3.1  macOS 10.11.6</p>
-<h3 id="swift-版本的选择"><a href="#swift-版本的选择" class="headerlink" title="swift 版本的选择"></a>swift 版本的选择</h3><p>对于这个问题，我想说用swiftenv来解决吧</p>
-<pre><code>brew install kylef/formulae/swiftenv
-</code></pre><h3 id="vapor-CLI的安装"><a href="#vapor-CLI的安装" class="headerlink" title="vapor CLI的安装"></a>vapor CLI的安装</h3><pre><code>curl -L cli.qutheory.io -o vapor
-chmod +x vapor
-sudo mv vapor /usr/local/bin
-</code></pre><h3 id="vapor"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</h3><p>如果你想使用vapor 的demo的话，直接用<code>vapor new yourDemo</code>, 这个时候你的项目就不是纯净的，当然可能会引发出相关问题，我这边碰到的是 ， vapor CLI的版本是5.3, 这个版本对应的swift版本是<code>DEVELOPMENT-SNAPSHOT-2016-06-06-a</code>, 但是这个时候这个new出来的项目的版本是 <code>DEVELOPMENT-SNAPSHOT-2016-06-20-a</code>,所以这就在‘vapor new’的时候会出现失败, 并且xcode7 也不能打开这个项目。</p>
-<h4 id="如何构建一个纯净版的Vapor项目"><a href="#如何构建一个纯净版的Vapor项目" class="headerlink" title="如何构建一个纯净版的Vapor项目?"></a>如何构建一个纯净版的Vapor项目?</h4><ol>
-<li><code>mkdir blog</code>创建一个blog文件夹</li>
-<li><code>swift package init</code> 创建一个基本项目</li>
-<li><p><code>atom Package.swift</code> 修改 Package.swift, 这里举例：</p>
-<pre><code>import PackageDescription
-
-let package = Package(
-    name: &quot;blog&quot;,
-    dependencies: [
-        .Package(url: &quot;https://github.com/qutheory/vapor.git&quot;, majorVersion: 0, minor: 12),
-
-    ],
-    exclude: [
-        &quot;Config&quot;,
-        &quot;Database&quot;,
-        &quot;Localization&quot;,
-        &quot;Public&quot;,
-        &quot;Resources&quot;,
-        &quot;Tests&quot;,
-    ]
-)
-</code></pre></li>
-<li><p>Source文件夹下的文件改名为 <code>main.swift</code>， 在里面编写如下一段代码：</p>
-<pre><code>import Vapor
-
-let drop = Application()
-
-drop.get(&quot;welcome&quot;) { request in
-
-    return  &quot;hello, world&quot;
-}
-
-drop.start()
-</code></pre></li>
-<li><p>先<code>vapor build</code>,然后 <code>vapor xcode</code>， 会自动用xcode打开这个项目.</p>
-</li>
-<li>用xcode 运行这个项目（选中你这个项目）, 然后在浏览器中输入:<code>0.0.0.0:8080/welcome</code>, 你会神奇的发现出现了<code>hello, world</code>。</li>
-</ol>
-<h3 id="如何体验-vapor的更多功能"><a href="#如何体验-vapor的更多功能" class="headerlink" title="如何体验 vapor的更多功能"></a>如何体验 vapor的更多功能</h3><ol>
-<li><p>请参考其 <a href="https://vapor.readme.io/docs" target="_blank" rel="noopener">doc</a></p>
-</li>
-<li><p>vapor的鼻祖的<a href="https://www.youtube.com/watch?v=OuPT2FFKCos" target="_blank" rel="noopener">教学视频</a></p>
-</li>
-</ol>
+        <p>最近在做一个商品的限时抢购功能，在 TableView 上的 Cell 有个倒计时的显示，很多人<br>觉得这有什么难的，直接加个定时器不就好了么，那么问题来了，你要怎么加这个定时器，<br>一个？或者多个？ 加到哪里，VC or Cell?</p>
+<p><code>Timer</code> 这家伙有一些不好的问题，弄不好容易出现循环引用，内存暴涨。</p>
+<p>对于这些技术点，有些人选择给每个 cell 添加定时器，然后在 cell 内部管理显示，<br>这里就有个问题了，cell 中的定时器何时释放？</p>
+<p>上面的疑问我不多说，自个脑补</p>
+<p>我这边采用的方案：</p>
+<ul>
+<li><code>TableView 的显示永远用数据驱动</code></li>
+<li>枚举代替具体</li>
+<li>DRY （don’t repeat yourself）</li>
+</ul>
+<p>所以： </p>
+<p>我只用一个定时器，我只用数据驱动 <code>TableView</code> 的显示, 下面我只写一下我封装的<br>定时器的倒计时功能</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCountDown</span> </span>&#123;</div><div class="line">        <span class="keyword">typealias</span> <span class="type">Time</span> = (start: <span class="type">Date</span>, end: <span class="type">Date</span>)</div><div class="line">        <span class="keyword">typealias</span> <span class="type">HMS</span> = (hour: <span class="type">String</span>, minute: <span class="type">String</span>, second: <span class="type">String</span>)</div><div class="line">        <span class="keyword">private</span> <span class="keyword">var</span> timer: <span class="type">DispatchSourceTimer</span>?</div><div class="line"></div><div class="line">        <span class="keyword">init</span>(times: [<span class="type">Time</span>], complete: @escaping ([<span class="type">HMS</span>]) -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            setup(times: times, complete: complete)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">setup</span><span class="params">(times: [Time] ,complete: @escaping <span class="params">([HMS])</span></span></span> -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            timer = <span class="type">DispatchSource</span>.makeTimerSource(flags: .strict, queue: .global())</div><div class="line">            timer?.schedule(deadline: .now(), repeating: .seconds(<span class="number">1</span>))</div><div class="line">            <span class="keyword">var</span> items: [<span class="type">HMS</span>] = <span class="type">Array</span>.<span class="keyword">init</span>(repeating: (<span class="string">"00"</span>, <span class="string">"00"</span>, <span class="string">"00"</span>), <span class="built_in">count</span>: times.<span class="built_in">count</span>)</div><div class="line">            <span class="keyword">var</span> intervals: [<span class="type">TimeInterval</span>] = times.<span class="built_in">map</span> &#123; (time) -&gt; <span class="type">TimeInterval</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">return</span> time.end.timeIntervalSince(time.start)</div><div class="line">            &#125;</div><div class="line">            timer?.setEventHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">                <span class="keyword">guard</span> <span class="keyword">let</span> `<span class="keyword">self</span>` = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</div><div class="line">                <span class="keyword">for</span> (index, <span class="number">_</span>) <span class="keyword">in</span> times.enumerated() &#123;</div><div class="line">                    <span class="keyword">let</span> timeout = intervals[index]</div><div class="line">                    <span class="keyword">if</span> timeout &lt;= <span class="number">0</span> &#123;</div><div class="line">                        items[index] = (<span class="string">"00"</span>,<span class="string">"00"</span>,<span class="string">"00"</span>)</div><div class="line">                        <span class="keyword">if</span> times.<span class="built_in">count</span> == <span class="number">1</span> &#123; <span class="comment">// 如果只有一个的话就进行暂停</span></div><div class="line">                            <span class="keyword">self</span>.timer?.cancel()</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">let</span> hours = <span class="type">Int</span>(timeout) / <span class="number">3600</span></div><div class="line">                        <span class="keyword">let</span> minute = (<span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> ) / <span class="number">60</span></div><div class="line">                        <span class="keyword">let</span> second = <span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> - minute * <span class="number">60</span></div><div class="line">                        items[index] = (<span class="keyword">self</span>.panZero(item: hours), <span class="keyword">self</span>.panZero(item: minute), <span class="keyword">self</span>.panZero(item: second))</div><div class="line">                    &#125;</div><div class="line">                    intervals[index] = timeout - <span class="number">1</span></div><div class="line">                &#125;</div><div class="line">                <span class="type">DispatchQueue</span>.main.async &#123;</div><div class="line">                    complete(items)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            timer?.resume()</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">panZero</span><span class="params">(item: Int)</span></span> -&gt; <span class="type">String</span> &#123;</div><div class="line">            <span class="keyword">return</span> item &lt; <span class="number">10</span> ? <span class="string">"0"</span>+<span class="string">"<span class="subst">\(item)</span>"</span> : <span class="string">"<span class="subst">\(item)</span>"</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">deinit</span> &#123;</div><div class="line">            log.debug(<span class="string">"TimeCountDown deinit"</span>)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">func</span> <span class="title">stopTimer</span><span class="params">()</span></span> &#123;</div><div class="line">            timer?.cancel()</div><div class="line">            timer = <span class="literal">nil</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>使用的代码 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class UserInfoViewController: UIViewController &#123;</div><div class="line">    </div><div class="line"></div><div class="line">    // 属性，依赖个人倾向作为属性</div><div class="line">    var down: LimitTimeViewController.TimeCountDown?</div><div class="line"></div><div class="line">    override func viewDidLoad() &#123;</div><div class="line">        super.viewDidLoad()</div><div class="line">        view.backgroundColor = .white</div><div class="line">        self.title = Strings.s115.s</div><div class="line">        setup()</div><div class="line"></div><div class="line">        down = LimitTimeViewController.TimeCountDown(times: [(Date(), Date().addingTimeInterval(10))]) &#123; (times) in</div><div class="line">            print(times)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这个倒计时你可以不用管是否引用问题。</p>
 
       
     </div>
@@ -413,7 +374,7 @@ drop.start()
       
         <div class="post-tags">
           
-            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
@@ -428,8 +389,8 @@ drop.start()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/02/iOS 直播 Tutorials/" rel="next" title="iOS 直播 Tutorials">
-                <i class="fa fa-chevron-left"></i> iOS 直播 Tutorials
+              <a href="/2018/03/25/《程序员修炼之道》读书笔记/" rel="next" title="《程序员修炼之道》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《程序员修炼之道》读书笔记
               </a>
             
           </div>
@@ -437,10 +398,6 @@ drop.start()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/16/iOS 之 Cocoapods/" rel="prev" title="iOS 之 Cocoapods">
-                iOS 之 Cocoapods <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -501,17 +458,8 @@ drop.start()
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -572,22 +520,6 @@ drop.start()
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-版本的选择"><span class="nav-number">1.</span> <span class="nav-text"><a href="#swift-&#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;" class="headerlink" title="swift &#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;"></a>swift &#x7248;&#x672C;&#x7684;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor-CLI的安装"><span class="nav-number">2.</span> <span class="nav-text"><a href="#vapor-CLI&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="vapor CLI&#x7684;&#x5B89;&#x88C5;"></a>vapor CLI&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapor"><span class="nav-number">3.</span> <span class="nav-text"><a href="#vapor" class="headerlink" title="vapor"></a>vapor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何构建一个纯净版的Vapor项目"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;" class="headerlink" title="&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;?"></a>&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x7EAF;&#x51C0;&#x7248;&#x7684;Vapor&#x9879;&#x76EE;?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何体验-vapor的更多功能"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x4F53;&#x9A8C;-vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;" class="headerlink" title="&#x5982;&#x4F55;&#x4F53;&#x9A8C; vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;"></a>&#x5982;&#x4F55;&#x4F53;&#x9A8C; vapor&#x7684;&#x66F4;&#x591A;&#x529F;&#x80FD;</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

@@ -249,6 +249,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/24/https-免费证书配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/24/https-免费证书配置/" itemprop="url">https 免费证书配置</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T16:57:12+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/24/https-免费证书配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/24/https-免费证书配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/24/https-免费证书配置/" class="leancloud_visitors" data-flag-title="https 免费证书配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[toc]</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><h3 id="为什么要搭建-https-服务"><a href="#为什么要搭建-https-服务" class="headerlink" title="为什么要搭建 https 服务"></a>为什么要搭建 https 服务</h3><p>最近有计划写一个小程序， 发现有硬性条件，请求需要 https, 图片除外。<br>在我的记忆中，https 需要配置证书，并且基本上都是收费的，且价格昂贵。<br>以前阿里云是支持免费的 https 配置，现在也收费了。奈何资本只想体验下<br>程序开发，不想拖入太贵的成本。有没有免费搭建的呢？</p>
+<h2 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h2><h3 id="Let’s-Encrypt？"><a href="#Let’s-Encrypt？" class="headerlink" title="Let’s Encrypt？"></a>Let’s Encrypt？</h3><blockquote>
+<p>Let’s Encrypt是一个于2015年三季度推出的数字证书认证机构，旨在以自动化流程消除手动创建和安装证书的复杂流程，并推广使万维网服务器的加密连接无所不在，为安全网站提供免费的SSL/TLS证书。</p>
+<p>Let’s Encrypt由互联网安全研究小组（英语：Internet Security Research Group）（缩写ISRG）提供服务。主要赞助商包括电子前哨基金会、Mozilla基金会、Akamai以及思科。2015年4月9日，ISRG与Linux基金会宣布合作。</p>
+</blockquote>
+<p>摘自 <a href="https://zh.wikipedia.org/wiki/Let%27s_Encrypt" target="_blank" rel="noopener">维基百科</a></p>
+<p><code>Let&#39;s Encrypt</code> 的真正意义在于加密流量。<br><code>Let&#39;s Encrypt</code> 的最大的意义就是推动基础DV HTTPS证书的普及，换句话说就是，推动HTTPS的普及。<br><code>Let&#39;s Encrypt</code> 的最大贡献是它的 <code>ACME</code> 协议，第一份全自动服务器身份验证协议，以及配套的基础设施和客户端。<br>废话不多说，怎么做？</p>
+<h3 id="ACME-协议？"><a href="#ACME-协议？" class="headerlink" title="ACME 协议？"></a>ACME 协议？</h3><p><strong>自动证书管理环境 (Automated Certificate Management Environment)</strong></p>
+<blockquote>
+<p><code>Let&#39;s Encrypt</code> 服务所签发的证书为域名认证证书（DV，Domain-validated Certificate）</p>
+<p>签发这类证书需要域名所有者完成以下一种 <code>Challenge</code> 以证明自己对域名的所有权：</p>
+<ul>
+<li>验证申请人对域名的 <code>Whois</code> 信息中邮箱的控制权；</li>
+<li>验证申请人对域名的常见管理员邮箱（如以 admin@、postmaster@ 开头的邮箱等）的控制权；</li>
+<li>在 <code>DNS</code> 的 <code>TXT</code> 记录中发布一条 <code>CA</code> 提供的字符串；</li>
+<li>在包含域名的网址中特定路径发布一条 <code>CA</code> 提供的字符串。</li>
+</ul>
+<p>不难发现，其中最容易实现自动化的一种操作必然为最后一条，ACME 协议中的 <code>Simple HTTP</code> 认证即是用一种类似的方法对从未签发过任何证书的域名进行认证。该协议要求在访问 <code>http://域名/.well-known/acme-challenge/指定字符串</code> 时返回特定的字符串。</p>
+</blockquote>
+<p>摘自 <a href="https://linux.cn/article-6565-1.html" target="_blank" rel="noopener">SSL/TLS 加密新纪元 - Let’s Encrypt</a></p>
+<h2 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h2><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li><a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">acme.sh</a></li>
+</ul>
+<blockquote>
+<ol>
+<li>安装 acme.sh</li>
+<li>生成证书</li>
+<li>copy 证书到 nginx/apache 或者其他服务</li>
+<li>更新证书</li>
+<li>更新 acme.sh</li>
+</ol>
+</blockquote>
+<p>具体步骤 <a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">这里</a></p>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><ul>
+<li><p>获取 accesskeys</p>
+<p>  <strong>控制台 -&gt; 账号 -&gt; accesskeys 获取.</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export Ali_Key=&quot;ks****ey&quot;</div><div class="line">export Ali_Secret=&quot;qmMDAqzPJ******Xb1&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>开启 <code>443</code> 端口的访问权限</p>
+<p>  <strong>控制台 –&gt; 云服务器 ESC —&gt; 网络和安全 —&gt; 安全组</strong></p>
+</li>
+</ul>
+<h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /etc/nginx/sites-available</div><div class="line">vim default</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## http www.xxx.com</div><div class="line">server &#123;</div><div class="line">       listen 80 default_server;</div><div class="line">       listen [::]:80 default_server;</div><div class="line">       server_name www.xxx.com;</div><div class="line">    </div><div class="line">       try_files $uri @proxy;</div><div class="line">       location @proxy &#123;</div><div class="line">               proxy_pass http://127.0.0.1:8980;</div><div class="line">               proxy_pass_header Server;</div><div class="line">               proxy_set_header Host $host;</div><div class="line">               proxy_set_header X-Real-IP $remote_addr;</div><div class="line">               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">               proxy_pass_header Server;</div><div class="line">               proxy_connect_timeout 3s;</div><div class="line">               proxy_read_timeout 10s;</div><div class="line">       &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">### http  site.xxx.com</div><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name site.xxx.com; # 更改</div><div class="line">        charset utf-8;</div><div class="line">        root  /var/www/site/dist/;</div><div class="line">        index index.html;</div><div class="line">        location / &#123;</div><div class="line">                try_files $uri $uri/ @rewrites;</div><div class="line">        &#125;</div><div class="line">        location @rewrites &#123;</div><div class="line">                rewrite ^(.+)$ /index.html last;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># http api.xxx.com, 需要给子域名添加解析</div><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    server_name api.xxx.com; # 更改</div><div class="line">    return 301 https://$server_name$request_uri;  # 重写</div><div class="line">&#125;</div><div class="line"></div><div class="line"># https api.xxx.com</div><div class="line">server &#123;</div><div class="line">    listen 443 ssl;</div><div class="line">    server_name api.xxx.com; # 更改</div><div class="line">    ssl on;</div><div class="line">    ssl_certificate ssl/fullchain.cer;</div><div class="line">    ssl_certificate_key ssl/api.twicebook.top.key;</div><div class="line">    try_files $uri @proxy;</div><div class="line">        location @proxy &#123;</div><div class="line">                proxy_pass http://127.0.0.1:8980;</div><div class="line">                proxy_pass_header Server;</div><div class="line">                proxy_set_header Host $host;</div><div class="line">                proxy_set_header X-Real-IP $remote_addr;</div><div class="line">                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">                proxy_pass_header Server;</div><div class="line">                proxy_connect_timeout 3s;</div><div class="line">                proxy_read_timeout 10s;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总体来说 https 的配置流程还是比较简单的， 但是还是有很多细节，所以总体配下来到可以正确访问到 https api, 花了一下午时间。 运维的工作需要的是耐心和细致。希望经过这次配置，自己以后可以非常<br>容易的完成这项配置。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/16/tmux-工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1366,7 +1552,7 @@
 <p>可以把这些<code>Dispose</code>对象存放到一个容器中。</p>
 <h3 id="扩展-Disposables"><a href="#扩展-Disposables" class="headerlink" title="扩展 Disposables"></a>扩展 <code>Disposables</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Disposables</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> diposes: [<span class="type">Disposable</span>] = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> dis: Disposable)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.diposes.append(dis)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Disposable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">(by: Disposables)</span></span> &#123;</div><div class="line">        by.add(<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用代码</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-\(user)"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-\(user)"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有没有发现这个 <code>.dispose(by: dispose)</code> 跟 <code>RxSwift</code> 的很像。😆</p>
 
           
@@ -1824,7 +2010,7 @@
 <li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
 </ul>
 <p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(selement)</span> -- <span class="subst">\(element)</span>"</span>)</div></pre></td></tr></table></figure>
 <p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
 <ul>
 <li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
@@ -1838,153 +2024,6 @@
 <li><a href="https://lincode.github.io/Swift-Lazy" target="_blank" rel="noopener">Swift 函数式编程－惰性计算</a></li>
 <li><a href="http://www.bijishequ.com/detail/266436?p=" target="_blank" rel="noopener">Swift函数式编程(二)：惰性求值与无穷数据流</a></li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/27/Vapor2-之数据库迁移/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/27/Vapor2-之数据库迁移/" itemprop="url">Vapor2 之数据库迁移</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T15:28:24+08:00">
-                2017-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/27/Vapor2-之数据库迁移/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/Vapor2-之数据库迁移/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/27/Vapor2-之数据库迁移/" class="leancloud_visitors" data-flag-title="Vapor2 之数据库迁移">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>之前一直不知道如何处理 vapor 如何实现对原表的修改，今天终于明白了！顿时感觉自己好傻</p>
-<blockquote>
-<p>Preparations相当于迁移，因为它允许修改已经创建的模式</p>
-</blockquote>
-<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>一般一个模型对应一张表，那么如果这个模型已建立好，并且改表已生成，但在未来的某一天，表中的结构需要更改，你只需要创建一个遵守  Preparation 协议的类或结构体：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddFooToBar</span>: <span class="title">Preparation</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="comment">/// bar 是表名</span></div><div class="line">        <span class="keyword">try</span> database.modify(<span class="type">Bar</span>.<span class="keyword">self</span>, closure: &#123; bar <span class="keyword">in</span></div><div class="line">            bar.string(<span class="string">"foo"</span>, length: <span class="number">150</span>, <span class="keyword">optional</span>: <span class="literal">false</span>, unique: <span class="literal">false</span>, <span class="keyword">default</span>: <span class="literal">nil</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">revert</span><span class="params">(<span class="number">_</span> database: Database)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后记得 <code>drop.preparations.append(AddFooToBar.self)</code></p>
 
           
         
@@ -2072,7 +2111,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
