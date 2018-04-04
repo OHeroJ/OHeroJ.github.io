@@ -249,6 +249,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/04/04/iOS-之-UIView-的-clipsTobounds/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/04/iOS-之-UIView-的-clipsTobounds/" itemprop="url">iOS 之 UIView 的 clipsTobounds</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T14:15:05+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/04/iOS-之-UIView-的-clipsTobounds/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/04/iOS-之-UIView-的-clipsTobounds/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/04/iOS-之-UIView-的-clipsTobounds/" class="leancloud_visitors" data-flag-title="iOS 之 UIView 的 clipsTobounds">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在做一个类似 PageViewController 的控件，但是头部滑块的时候，因为有个向下的箭头<br>发现一个问题</p>
+<p>平常情况下如果子 View 的 frame 即使超过父控件，也能显示出来。但是今天死活不出来</p>
+<p>查了下： <code>clipsToBounds</code> 决定了子视图的显示范围</p>
+<p>当它取值为 <code>true</code> 的时候， 裁剪超出父视图的子视图部分， 反之则不裁剪。</p>
+<p>默认值为 <code>false</code>, <strong>但是 <code>UIScrollView</code> 中， 它的默认值为 <code>true</code></strong></p>
+<p>so !</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/04/02/算法的时间复杂度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1760,182 +1906,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/如何用-SwiftPM-桥接-C-库/" itemprop="url">如何用 SwiftPM 桥接 C 库</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T09:48:49+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/如何用-SwiftPM-桥接-C-库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/01/如何用-SwiftPM-桥接-C-库/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/01/如何用-SwiftPM-桥接-C-库/" class="leancloud_visitors" data-flag-title="如何用 SwiftPM 桥接 C 库">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># swift --version</div><div class="line">Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)</div><div class="line">Target: x86_64-apple-macosx10.9</div><div class="line"></div><div class="line"># swift package --version</div><div class="line">Apple Swift Package Manager - Swift 4.0.0-dev (swiftpm-13752)</div></pre></td></tr></table></figure>
-<h2 id="用-cmark-制作-Swift-SwiftPM-库"><a href="#用-cmark-制作-Swift-SwiftPM-库" class="headerlink" title="用 cmark 制作 Swift SwiftPM 库"></a>用 cmark 制作 Swift SwiftPM 库</h2><p><code>[cmark](https://github.com/commonmark/cmark)</code> 是 <code>CommonMark</code>  C 的一个解析库。</p>
-<blockquote>
-<p>CommonMark parsing and rendering library and program in C</p>
-</blockquote>
-<h3 id="Installing-cmark"><a href="#Installing-cmark" class="headerlink" title="Installing cmark"></a>Installing cmark</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install cmark</div></pre></td></tr></table></figure>
-<h3 id="包装-cmark-为一个-module"><a href="#包装-cmark-为一个-module" class="headerlink" title="包装 cmark 为一个 module"></a>包装 cmark 为一个 module</h3><p>swift 是不能直接处理 c 语言的头文件，依赖于模块。</p>
-<h4 id="用-SwiftPM-创建-Ccmark-package"><a href="#用-SwiftPM-创建-Ccmark-package" class="headerlink" title="用 SwiftPM 创建 Ccmark package"></a>用 SwiftPM 创建 Ccmark <code>package</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir Ccmark</div><div class="line">cd Ccmark</div><div class="line">swift package init --type system-module</div></pre></td></tr></table></figure>
-<p>然后查看下目录树, 在终端上键入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tree</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">└── module.modulemap</div></pre></td></tr></table></figure>
-<h4 id="配置-Package-swift"><a href="#配置-Package-swift" class="headerlink" title="配置 Package.swift"></a>配置 <code>Package.swift</code></h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// swift-tools-version:4.0</span></div><div class="line"><span class="comment">// The swift-tools-version declares the minimum version of Swift required to build this package.</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"Ccmark"</span>,</div><div class="line">    pkgConfig: <span class="string">"libcmark"</span>,</div><div class="line">    providers: [</div><div class="line">        .brew([<span class="string">"cmark"</span>])</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
-<ul>
-<li><p><strong><a href="https://zh.wikipedia.org/wiki/Pkg-config" target="_blank" rel="noopener">pkg-config</a></strong></p>
-<p>  参数指出需要倒入库的名字，告诉 <code>SwiftPM</code>在哪里可以找到导入库的头文件以及库的搜索路径。</p>
-</li>
-<li><p><strong>providers</strong> 是非必填</p>
-<p>  如果这个库没有安装，会给用户提示</p>
-</li>
-</ul>
-<h4 id="创建-shim-h"><a href="#创建-shim-h" class="headerlink" title="创建 shim.h"></a>创建 <code>shim.h</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> shim_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmark.h&gt;</span> <span class="comment">// 引入</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* shim_h */</span></span></div></pre></td></tr></table></figure>
-<h4 id="编写-modelu-modulemap"><a href="#编写-modelu-modulemap" class="headerlink" title="编写 modelu.modulemap"></a>编写 modelu.modulemap</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module Ccmark [system] &#123;</div><div class="line">  header &quot;shim.h&quot;</div><div class="line">  link &quot;cmark&quot;</div><div class="line">  export *</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>为什么要创建 <code>shim.h</code> 这个文件呢？</p>
-<p>主要是因为 module maps 必须是绝对路径或者是本地路径。如果你不添加 <code>shim.h</code>, 那么</p>
-<p><code>header</code> 就得写绝对路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/cmark/0.28.3/include/cmark.h</div></pre></td></tr></table></figure>
-<p>作为程序员，我们很讨厌 hadercode 并且把一个库的路径写死会影响一个库的使用的灵活性。</p>
-<p><code>shim.h</code>的添加后， 包管理器会从pkg-config文件搜索正确的路径，并将其添加到编译器调用</p>
-<h4 id="添加版本管理"><a href="#添加版本管理" class="headerlink" title="添加版本管理"></a>添加版本管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git init </div><div class="line">git add .</div><div class="line">git commit -m &quot;Initial commit&quot;</div></pre></td></tr></table></figure>
-<p>如果要上传到 <code>github</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/***/**.git</div></pre></td></tr></table></figure>
-<h2 id="使用这个库"><a href="#使用这个库" class="headerlink" title="使用这个库"></a>使用这个库</h2><h3 id="创建-CmarkExample-package"><a href="#创建-CmarkExample-package" class="headerlink" title="创建 CmarkExample package"></a>创建 CmarkExample package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">mkdir CmarkExample</div><div class="line">cd CmarkExample</div><div class="line">swift package init --type executable</div></pre></td></tr></table></figure>
-<h3 id="编写依赖"><a href="#编写依赖" class="headerlink" title="编写依赖"></a>编写依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import PackageDescription</div><div class="line"></div><div class="line">let package = Package(</div><div class="line">    name: &quot;CmarkExample&quot;,</div><div class="line">    dependencies: [</div><div class="line">        .package(url: &quot;../Ccmark&quot;, .branch(&quot;master&quot;)) </div><div class="line">        // 如果你上传到了 github</div><div class="line">        // .package(url: &quot;https://github.com/***/**.git&quot;, .branch(&quot;master&quot;)) </div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: &quot;CmarkExample&quot;,</div><div class="line">            dependencies: [&quot;Ccmark&quot;]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
-<h3 id="main-swift"><a href="#main-swift" class="headerlink" title="main.swift"></a>main.swift</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Ccmark</div><div class="line"></div><div class="line">let markdown = &quot;*Hello World*&quot;</div><div class="line">let cString = cmark_markdown_to_html(markdown, markdown.utf8.count, 0)!</div><div class="line">defer &#123;</div><div class="line">    free(cString)</div><div class="line">&#125;</div><div class="line">let html = String(cString: cString)</div><div class="line">print(html)</div></pre></td></tr></table></figure>
-<p>运行 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift run</div><div class="line"># &lt;p&gt;&lt;em&gt;Hello World&lt;/em&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
-<h2 id="OK-完成"><a href="#OK-完成" class="headerlink" title="OK,完成"></a>OK,完成</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1988,7 +1958,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
