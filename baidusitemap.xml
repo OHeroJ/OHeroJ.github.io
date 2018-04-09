@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
+    <lastmod>2018-04-09T08:29:49.853Z</lastmod>
+    <data>
+        <display>
+        <title>Docker-gitlab-nginx 自动化</title>
+        <pubTime>2017-08-10T06:50:20.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://loveli.site/2018/04/04/iOS-%E4%B9%8B-UIView-%E7%9A%84-clipsTobounds/</loc>
     <lastmod>2018-04-04T06:20:40.181Z</lastmod>
     <data>
@@ -170,9 +187,9 @@
         <title>Vapor 之 Heroku</title>
         <pubTime>2016-10-16T02:28:18.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -240,9 +257,9 @@
         <title>Swift 之后台 Vapor 初步</title>
         <pubTime>2016-07-10T09:27:32.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -390,23 +407,6 @@
 
     
   <url>
-    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    <lastmod>2018-03-01T07:21:42.091Z</lastmod>
-    <data>
-        <display>
-        <title>Docker+gitlab+nginx 自动化</title>
-        <pubTime>2017-08-10T06:50:20.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://loveli.site/2016/09/04/Cocoapods%20%E9%AB%98%E7%BA%A7%E7%AF%87/</loc>
     <lastmod>2018-03-01T07:21:20.451Z</lastmod>
     <data>
@@ -533,9 +533,9 @@
         <title>全栈后台上线之 Swift Vapor</title>
         <pubTime>2017-10-09T06:34:12.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -786,9 +786,9 @@
         <title>Swift 之 Vapor小试</title>
         <pubTime>2016-12-17T14:53:51.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -839,9 +839,9 @@
         <title>Swift 全栈再书 App</title>
         <pubTime>2017-10-26T06:34:54.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -909,9 +909,9 @@
         <title>Vapor 之 MySql</title>
         <pubTime>2016-10-07T12:27:48.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -928,9 +928,9 @@
         <title>Vapor 七牛上传 Token 生成算法实现</title>
         <pubTime>2017-09-05T09:12:22.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -964,9 +964,9 @@
         <title>Swift Vapor2 在 Ubuntu 1分钟搭建完成</title>
         <pubTime>2017-11-27T05:07:39.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            
@@ -983,9 +983,9 @@
         <title>Vapor2 之数据库迁移</title>
         <pubTime>2017-11-27T07:28:24.000Z</pubTime>
         
-        <tag>Vapor</tag>
-         
         <tag>Swift</tag>
+         
+        <tag>Vapor</tag>
          
          
            

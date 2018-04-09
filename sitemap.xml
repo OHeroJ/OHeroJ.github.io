@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
+    
+    <lastmod>2018-04-09T08:29:49.853Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://loveli.site/2018/04/04/iOS-%E4%B9%8B-UIView-%E7%9A%84-clipsTobounds/</loc>
     
     <lastmod>2018-04-04T06:20:40.181Z</lastmod>
@@ -152,13 +159,6 @@
     <loc>http://loveli.site/2018/01/24/https-%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2018-03-01T07:23:20.616Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://loveli.site/2017/08/10/Docker-Gitlab-Nginx-%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    
-    <lastmod>2018-03-01T07:21:42.091Z</lastmod>
     
   </url>
   
