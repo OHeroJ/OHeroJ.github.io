@@ -249,6 +249,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/SwiftPM-制作自己-C-库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/01/SwiftPM-制作自己-C-库/" itemprop="url">SwiftPM 制作自己 C 库</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T15:26:14+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/01/SwiftPM-制作自己-C-库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/01/SwiftPM-制作自己-C-库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/01/SwiftPM-制作自己-C-库/" class="leancloud_visitors" data-flag-title="SwiftPM 制作自己 C 库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># swift --version</div><div class="line">Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)</div><div class="line">Target: x86_64-apple-macosx10.9</div><div class="line"></div><div class="line"># swift package --version</div><div class="line">Apple Swift Package Manager - Swift 4.0.0-dev (swiftpm-13752)</div></pre></td></tr></table></figure>
+<h2 id="创建-lclib"><a href="#创建-lclib" class="headerlink" title="创建 lclib"></a>创建 lclib</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir lclib</div><div class="line">$ cd lclib</div><div class="line">$ swift package init --type library</div></pre></td></tr></table></figure>
+<p>看下目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ tree</div><div class="line"></div><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── lclib</div><div class="line">│       └── lclib.swift</div><div class="line">└── Tests</div><div class="line">    ├── LinuxMain.swift</div><div class="line">    └── lclibTests</div><div class="line">        └── lclibTests.swift</div></pre></td></tr></table></figure>
+<p>创建 xcode 项目, 便于编写代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift package generate-xcodeproj</div><div class="line">$ open lclib.xcodeproj</div></pre></td></tr></table></figure>
+<p>因为这个是一个 c 库，所以把生成的 <code>lclib.swift</code> 删除</p>
+<h3 id="添加-c-代码"><a href="#添加-c-代码" class="headerlink" title="添加 c 代码"></a>添加 c 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   └── lclib</div><div class="line">│       ├── include</div><div class="line">│       │   └── lclib.h</div><div class="line">│       └── lclib.c</div><div class="line">├── Tests</div><div class="line">│   ├── LinuxMain.swift</div><div class="line">│   └── lclibTests</div><div class="line">│       └── lclibTests.swift</div><div class="line">└── lclib.xcodeproj</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lclib.h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> lclib_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lclib_h</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* lclib_h */</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// lclib.c </div><div class="line">long factorial(int n) &#123;</div><div class="line">    if (n == 0 || n == 1) return 1;</div><div class="line">    return n * factorial(n-1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Package-swift"><a href="#Package-swift" class="headerlink" title="Package.swift"></a>Package.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"lclib"</span>,</div><div class="line">    products: [</div><div class="line">        .library(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            targets: [<span class="string">"lclib"</span>]),</div><div class="line">    ],</div><div class="line">    dependencies: [</div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            path: <span class="string">"./Sources/lclib"</span>),</div><div class="line">        .testTarget(</div><div class="line">            name: <span class="string">"lclibTests"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import XCTest</div><div class="line">@testable import lclib</div><div class="line"></div><div class="line">class lclibTests: XCTestCase &#123;</div><div class="line">    func testExample() &#123;</div><div class="line">        XCTAssertEqual(factorial(0), 1)</div><div class="line">        XCTAssertEqual(factorial(1), 1)</div><div class="line">        XCTAssertEqual(factorial(2), 2)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static var allTests = [</div><div class="line">        (&quot;testExample&quot;, testExample),</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift build</div><div class="line">$ swift test</div></pre></td></tr></table></figure>
+<h2 id="添加版本管理"><a href="#添加版本管理" class="headerlink" title="添加版本管理"></a>添加版本管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;First Init&quot;</div></pre></td></tr></table></figure>
+<h2 id="添加一个可执行的-target"><a href="#添加一个可执行的-target" class="headerlink" title="添加一个可执行的 target"></a>添加一个可执行的 target</h2><p>添加文件到 <code>Sources/App/main.swift</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Package.resolved</div><div class="line">├── Package.swift</div><div class="line">├── README.md</div><div class="line">├── Sources</div><div class="line">│   ├── app</div><div class="line">│   │   └── main.swift</div><div class="line">│   └── lclib</div><div class="line">│       ├── include</div><div class="line">│       │   └── lclib.h</div><div class="line">│       └── lclib.c</div><div class="line">├── Tests</div><div class="line">│   ├── LinuxMain.swift</div><div class="line">│   └── lclibTests</div><div class="line">│       └── lclibTests.swift</div><div class="line">└── lclib.xcodeproj</div></pre></td></tr></table></figure>
+<p>在 <code>main.swift</code> 上： </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.swift</span></div><div class="line"><span class="keyword">import</span> lclib</div><div class="line"><span class="built_in">print</span>(factorial(<span class="number">10</span>))</div></pre></td></tr></table></figure>
+<p>这样能运行么，当然不能，配置一下<code>Package.swift</code>: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PackageDescription</div><div class="line"></div><div class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</div><div class="line">    name: <span class="string">"lclib"</span>,</div><div class="line">    products: [</div><div class="line">        .library(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            targets: [<span class="string">"lclib"</span>]),</div><div class="line">        .executable(</div><div class="line">            name:<span class="string">"app"</span>,</div><div class="line">            targets: [<span class="string">"app"</span>])</div><div class="line"></div><div class="line">    ],</div><div class="line">    dependencies: [</div><div class="line">    ],</div><div class="line">    targets: [</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"lclib"</span>,</div><div class="line">            path: <span class="string">"./Sources/lclib"</span>),</div><div class="line">        .target(</div><div class="line">            name: <span class="string">"app"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">        .testTarget(</div><div class="line">            name: <span class="string">"lclibTests"</span>,</div><div class="line">            dependencies: [<span class="string">"lclib"</span>]),</div><div class="line">    ]</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ swift run </div><div class="line">3628800</div></pre></td></tr></table></figure>
+<p>这样就可以实现一个工程既有 Swift 又有 C.</p>
+<h2 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h2><ul>
+<li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0038-swiftpm-c-language-targets.md" target="_blank" rel="noopener">Build C language targets with SPM</a></li>
+<li><a href="https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md" target="_blank" rel="noopener">SwiftPM Usage</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/02/01/如何用-SwiftPM-桥接-C-库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1910,150 +2077,8 @@
 <p>可以把这些<code>Dispose</code>对象存放到一个容器中。</p>
 <h3 id="扩展-Disposables"><a href="#扩展-Disposables" class="headerlink" title="扩展 Disposables"></a>扩展 <code>Disposables</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Disposables</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> diposes: [<span class="type">Disposable</span>] = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> dis: Disposable)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.diposes.append(dis)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Disposable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">(by: Disposables)</span></span> &#123;</div><div class="line">        by.add(<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用代码</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-\(user)"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-\(user)"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有没有发现这个 <code>.dispose(by: dispose)</code> 跟 <code>RxSwift</code> 的很像。😆</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/12/13/Git-修改历史提交人的邮箱/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/13/Git-修改历史提交人的邮箱/" itemprop="url">Git 修改历史提交人的邮箱</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:57:59+08:00">
-                2017-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/13/Git-修改历史提交人的邮箱/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/13/Git-修改历史提交人的邮箱/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/13/Git-修改历史提交人的邮箱/" class="leancloud_visitors" data-flag-title="Git 修改历史提交人的邮箱">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>change.sh</code>的代码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">git filter-branch --env-filter <span class="string">'</span></div><div class="line"></div><div class="line">OLD_EMAIL="1814345797@qq.com"</div><div class="line">CORRECT_NAME="OHeroJ"</div><div class="line">CORRECT_EMAIL="oheroj@gmail.com"</div><div class="line"></div><div class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</div><div class="line">then</div><div class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</div><div class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</div><div class="line">fi</div><div class="line">' --tag-name-filter cat -- --branches --tags</div></pre></td></tr></table></figure>
 
           
         
@@ -2141,7 +2166,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
