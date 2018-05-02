@@ -249,6 +249,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/16/iOS 之 Cocoapods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/iOS 之 Cocoapods/" itemprop="url">iOS 之 Cocoapods</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T07:06:01+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/16/iOS 之 Cocoapods/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/16/iOS 之 Cocoapods/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/07/16/iOS 之 Cocoapods/" class="leancloud_visitors" data-flag-title="iOS 之 Cocoapods">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>很多东西就不在此啰嗦了， 根据 <a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">这篇博客</a> 就可以很愉快的玩上你的cocoapods了</p>
+</blockquote>
+<p>今天想说的是关于自己在使用上遇到的一些问题：</p>
+<h3 id="1-cocoapods-重装问题"><a href="#1-cocoapods-重装问题" class="headerlink" title="1. cocoapods 重装问题"></a>1. cocoapods 重装问题</h3><h4 id="1-卸载"><a href="#1-卸载" class="headerlink" title="1. 卸载"></a>1. 卸载</h4><pre><code>sudo gem uninstall cocoapods
+
+// 你也可以卸载指定版本的cocoapods
+// sudo gem uninstall cocoapods -v 0.38
+
+// 对于如何查看你安装的版本
+// gem list
+</code></pre><h4 id="2-重装"><a href="#2-重装" class="headerlink" title="2. 重装"></a>2. 重装</h4><pre><code>// 检测你安装的 ruby 的版本是否是该 cocoapods 所支持的
+sudo gem update --system
+sudo gem install cocoapods
+// 或者安装指定版本的
+// sudo gem install cocoapods -v 1.0.0
+</code></pre><h4 id="3-pod-setup"><a href="#3-pod-setup" class="headerlink" title="3. pod setup"></a>3. pod setup</h4><p>这块拎出来讲是有原因的， 主要是在执行上面的 1，2 其实很关键的就是这个 setup 这步，很多东西都依赖于这个。</p>
+<p>那么这部做了什么东西？</p>
+<pre><code>cd ~/.cocoapods/repos/
+</code></pre><p>会有个 <code>master</code> 文件夹，那么这个文件夹的东西就是这个 <code>pod setup</code>生成的。对于这个我们在每次<code>pod install or pod update</code> 的时候，也会牵扯到这个文件夹中的内容。</p>
+<pre><code>// 切刀这个 ~/.cocoapods/repos/
+du -sh *
+
+// 我这边显示的结果是
+779M  master
+</code></pre><p>779M， 这也是为什么 pod setup 这么慢的原因吧(所以在setup 的时候最好是能在比较稳定且快速的网络下进行， 我就因为公司的网络问题， 下了n便，结果没成功)。</p>
+<p>那么如果我们就是 setup 不成功， 那么这个时候我们可以另寻其他的路：我们可以向朋友叫他们 zip 出这个包给你,然后放到这个目录下就好。</p>
+<h4 id="4-可能会有的坑"><a href="#4-可能会有的坑" class="headerlink" title="4. 可能会有的坑"></a>4. 可能会有的坑</h4><h5 id="1-搜索时报错"><a href="#1-搜索时报错" class="headerlink" title="1. 搜索时报错"></a>1. 搜索时报错</h5><pre><code>pod search  AFNetworking
+</code></pre><p>出现了 <code>[!] Unable to find a pod with name, author, summary, or descriptionmatching</code>AFNetworking``</p>
+<p>解决方案是：</p>
+<pre><code>rm ~/Library/Caches/CocoaPods/search_index.json
+
+// 然后
+pod search AFNetworking
+</code></pre><h5 id="2-1-0以上的版本-记得设置-target"><a href="#2-1-0以上的版本-记得设置-target" class="headerlink" title="2. 1.0以上的版本  记得设置 target"></a>2. 1.0以上的版本  记得设置 target</h5><h5 id="3-pod-install-或者-pod-update-很慢"><a href="#3-pod-install-或者-pod-update-很慢" class="headerlink" title="3. pod install 或者 pod update 很慢"></a>3. pod install 或者 pod update 很慢</h5><pre><code>pod install --verbose --no-repo-update
+pod update --verbose --no-repo-update
+</code></pre><p>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少</p>
+<h4 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h4><ol>
+<li><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">用CocoaPods做iOS程序的依赖管理</a></li>
+<li><a href="https://segmentfault.com/a/1190000005011497" target="_blank" rel="noopener">拥抱 CocoaPods 1.0</a></li>
+<li><a href="http://www.jianshu.com/p/f79589c21dc4" target="_blank" rel="noopener">Cocoapods安装使用以及完全卸载</a></li>
+<li><a href="http://my.oschina.net/u/2559341/blog/592738#OSC_h3_10" target="_blank" rel="noopener">CocoaPods详解之—-使用篇 pod install/pod update更新慢的问题</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/10/Swift 之后台 Vapor 初步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1416,7 +1599,7 @@ tags:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1429,7 +1612,7 @@ tags:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

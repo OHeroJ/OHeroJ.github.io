@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/03/Swift-之数据结构-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/03/Swift-之数据结构-List/" itemprop="url">Swift 之数据结构 List</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T11:09:31+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/03/Swift-之数据结构-List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/03/Swift-之数据结构-List/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/03/Swift-之数据结构-List/" class="leancloud_visitors" data-flag-title="Swift 之数据结构 List">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>在 <code>Haskell</code> 的递归类型：用它自己定义自己。 </p>
+<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> <span class="type">List</span> a = <span class="type">Cons</span> a (<span class="type">List</span> <span class="title">a</span>)</span></div><div class="line">            | <span class="type">Nil</span></div><div class="line">            <span class="keyword">deriving</span> (<span class="type">Show</span>)</div></pre></td></tr></table></figure>
+<p>借助这种思想，swift 如何定义类似 <code>List</code>。<br><code>List</code> 的结构特点是，该节点的值和指向下一个节点的指针组成<br>从上面的 List 的定义，用到了模式匹配和递归，那么 <code>swift</code> 的 <code>enum</code> 可符合这种特性。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">List</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Element</span>, <span class="type">List</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line">    <span class="keyword">case</span> end</div><div class="line"></div><div class="line">    <span class="comment">// construction 构建 </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">cons</span><span class="params">(x: Elemet)</span></span> -&gt; <span class="type">List</span>&lt;<span class="type">Element</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> .node(x, <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="字面量初始化"><a href="#字面量初始化" class="headerlink" title="字面量初始化"></a>字面量初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let l: List = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</div></pre></td></tr></table></figure>
+<p>如果要达到上方的目的，那么我们需要实现 <code>ExpressibleByArrayLiteral</code> </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">List</span>: <span class="title">ExpressibleByArrayLiteral</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(arrayLiteral elements: <span class="type">Element</span>...) &#123;</div><div class="line">        <span class="keyword">self</span> = elements.reversed().<span class="built_in">reduce</span>(.end) &#123; (result, ele) -&gt; <span class="type">List</span> <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> result.cons(x: ele)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实现-for…in"><a href="#实现-for…in" class="headerlink" title="实现 for…in"></a>实现 for…in</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">List</span>: <span class="title">Sequence</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeIterator</span><span class="params">()</span></span> -&gt; <span class="type">ListIterator</span>&lt;<span class="type">Element</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">ListIterator</span>(list: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// 迭代器</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListIterator</span>&lt;<span class="title">T</span>&gt;: <span class="title">IteratorProtocol</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> current: <span class="type">List</span>&lt;<span class="type">T</span>&gt;</div><div class="line">    <span class="keyword">init</span>(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;) &#123;</div><div class="line">        <span class="keyword">self</span>.current = list</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span> -&gt; <span class="type">T</span>? &#123;</div><div class="line">        <span class="keyword">switch</span> current &#123;</div><div class="line">        <span class="keyword">case</span> .end: <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(x, next):</div><div class="line">            current = next</div><div class="line">            <span class="keyword">return</span> x</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">这样我们就可以 </div><div class="line"></div><div class="line">```swift </div><div class="line"><span class="keyword">for</span> ele <span class="keyword">in</span> l &#123;</div><div class="line">    <span class="built_in">print</span>(ele)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实现-List-拼接"><a href="#实现-List-拼接" class="headerlink" title="实现 List 拼接"></a>实现 List 拼接</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> +&lt;T&gt;<span class="params">(lhs: List&lt;T&gt;, rhs: List&lt;T&gt;)</span></span> -&gt; <span class="type">List</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">    <span class="keyword">switch</span> lhs &#123;</div><div class="line">    <span class="keyword">case</span> .end: <span class="keyword">return</span> rhs</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .node(x, xs): <span class="keyword">return</span> (xs + rhs).cons(x: x)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> l: <span class="type">List</span> = [<span class="string">"11"</span>, <span class="string">"12"</span>, <span class="string">"13"</span>]</div><div class="line"><span class="keyword">let</span> r: <span class="type">List</span> = [<span class="string">"000"</span>, <span class="string">"0001"</span>]</div><div class="line"><span class="keyword">let</span> result = l + r</div><div class="line"><span class="keyword">for</span> ele <span class="keyword">in</span> result &#123;</div><div class="line">    <span class="built_in">print</span>(ele)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/12/16/iOS-原生分享之链接分享到微信的细节处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1657,147 +1807,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/" itemprop="url">免邀请码注册登入的一种设计邀请奖励机制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T13:16:23+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/27/免邀请码注册登入的一种设计邀请奖励机制/" class="leancloud_visitors" data-flag-title="免邀请码注册登入的一种设计邀请奖励机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://obp26pczx.bkt.clouddn.com/Screen Shot 2017-10-27 at 1.13.41 PM.png" alt="Screen Shot 2017-10-27 at 1.13.41 P"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1850,7 +1859,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1863,7 +1872,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
