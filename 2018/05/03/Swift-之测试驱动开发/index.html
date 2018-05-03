@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Vapor,Swift," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
-<meta name="keywords" content="Vapor,Swift">
+<meta name="description" content="《在修改代码的艺术》中有这么一段话  最为强大的特性添加技术便是测试驱动开发(TDD)  驱动测试开发的过程： 设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。 TDD 算法 编写一个失败测试用例 让它通过编译  让测试通过 消除重复 重复上述">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="全栈后台上线之 Swift Vapor">
-<meta property="og:url" content="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/index.html">
+<meta property="og:title" content="Swift 之测试驱动开发">
+<meta property="og:url" content="http://loveli.site/2018/05/03/Swift-之测试驱动开发/index.html">
 <meta property="og:site_name" content="loveli">
-<meta property="og:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta property="og:description" content="《在修改代码的艺术》中有这么一段话  最为强大的特性添加技术便是测试驱动开发(TDD)  驱动测试开发的过程： 设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。 TDD 算法 编写一个失败测试用例 让它通过编译  让测试通过 消除重复 重复上述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T07:20:01.525Z">
+<meta property="og:updated_time" content="2018-05-03T09:17:06.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全栈后台上线之 Swift Vapor">
-<meta name="twitter:description" content="近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。  上线服务器选择 数据库选择 环境搭建  上线服务器选择一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题">
+<meta name="twitter:title" content="Swift 之测试驱动开发">
+<meta name="twitter:description" content="《在修改代码的艺术》中有这么一段话  最为强大的特性添加技术便是测试驱动开发(TDD)  驱动测试开发的过程： 设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。 TDD 算法 编写一个失败测试用例 让它通过编译  让测试通过 消除重复 重复上述">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/"/>
+  <link rel="canonical" href="http://loveli.site/2018/05/03/Swift-之测试驱动开发/"/>
 
 
 
 
 
-  <title>全栈后台上线之 Swift Vapor | loveli</title>
+  <title>Swift 之测试驱动开发 | loveli</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/05/03/Swift-之测试驱动开发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="loveli">
@@ -270,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">全栈后台上线之 Swift Vapor</h2>
+          <h2 class="post-title" itemprop="name headline">Swift 之测试驱动开发</h2>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T14:34:12+08:00">
-                2017-10-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T15:49:38+08:00">
+                2018-05-03
               </time>
             
 
@@ -301,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/09/全栈后台上线之Swift-Vapor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/09/全栈后台上线之Swift-Vapor/" itemprop="commentsCount"></span>
+                <a href="/2018/05/03/Swift-之测试驱动开发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/03/Swift-之测试驱动开发/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,7 +310,7 @@
 
           
           
-             <span id="/2017/10/09/全栈后台上线之Swift-Vapor/" class="leancloud_visitors" data-flag-title="全栈后台上线之 Swift Vapor">
+             <span id="/2018/05/03/Swift-之测试驱动开发/" class="leancloud_visitors" data-flag-title="Swift 之测试驱动开发">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,25 +341,25 @@
       
 
       
-        <p>近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。</p>
-<ul>
-<li>上线服务器选择</li>
-<li>数据库选择</li>
-<li>环境搭建</li>
-</ul>
-<h2 id="上线服务器选择"><a href="#上线服务器选择" class="headerlink" title="上线服务器选择"></a>上线服务器选择</h2><p>一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题，买了个 32位的 ubuntu 服务器。 我只能说我就是个傻帽。在安装 swift 的时候，发现了不能编译通过，坑了整整3百。这个时候我想既然做不了 swift 后台，那我绑定一下自己的域名，发现需要备案，…。 也不知道备案是毛，然后进行备案，发现要填很多条条框框的东西，下来到最后一步需要上传文件，…..</p>
-<p>各种坑的到来，使我的身心严重受挫，此路不能走，那我就走其他路，然后通过知乎，对比一些推荐的国外的云主机，我最后选择了搬瓦工的，果然国外的东西用起来没这么啰嗦，果断选了个，发现不仅可以自己更换操作系统，还可以直接绑定域名，当然我是在阿里云买的，还需要进行域名的相关设置，但是这比备案，那是简单的不能简单了。然后很愉快的就用这个服务器了。鉴于阿里云买了一年的服务器，我这次在搬瓦工仅买了一个月的，体验一下再看看。</p>
-<h2 id="数据库选择"><a href="#数据库选择" class="headerlink" title="数据库选择"></a>数据库选择</h2><p>期初我的项目是跑在 heroku 上的，但是慢慢发现免费的终究有很多限制，并且它仅仅免费提供 postgresql. 其实 vapor 官方是提供的 mysql 支持的， postgresql 是社区进行维护的，其实两者在 vapor 层面基本上行是没啥大的区别。在怂恿 postgresql 的时候有个命令  “vapor prepare” 这个命令还存在问题。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>登入服务器是用 ssh，代码托管采用 github . 所以服务器上安装 git, swift , cmysql，vapor 相关工具。<br>代码+环境准备好后，就运行项目，“vapor run”, 我们本地进行访问成功，但是当我把 ssh 的链接终端关闭，我的服务器就不能访问了， how ?</p>
-<p>转到vapor 的官方文档，问题的解决方案就找到了 <a href="https://docs.vapor.codes/2.0/deploy/supervisor/" target="_blank" rel="noopener">Supervisor</a>。</p>
-<p>为了解决端口不显示暴露，采用了 <a href="https://docs.vapor.codes/2.0/deploy/nginx/" target="_blank" rel="noopener">nginx</a></p>
-<p>很多遇到的问题官方文档上都可以找到相应的解决方案。</p>
-<h2 id="Vapor使用过程的不爽之处"><a href="#Vapor使用过程的不爽之处" class="headerlink" title="Vapor使用过程的不爽之处"></a>Vapor使用过程的不爽之处</h2><p>更改model的相关属性，数据库并没有随之更改。</p>
-<h2 id="相关的命令参考"><a href="#相关的命令参考" class="headerlink" title="相关的命令参考"></a>相关的命令参考</h2><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>服务开启</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service mysql start</div><div class="line">service mysql stop</div><div class="line">service mysql start</div></pre></td></tr></table></figure>
-<p>utf8 问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 修改 mysql.conf</div><div class="line">[mysqld]</div><div class="line">character-set-server=utf8</div><div class="line"></div><div class="line">[client]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">[mysql]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">//修改表</div><div class="line">alter table book_classifys convert to character set utf8;</div></pre></td></tr></table></figure>
-<h3 id="nginx-supervisor"><a href="#nginx-supervisor" class="headerlink" title="nginx supervisor"></a>nginx supervisor</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo supervisorctl stop twicebook</div><div class="line">sudo supervisorctl start twicebook</div></pre></td></tr></table></figure>
+        <p>《在修改代码的艺术》中有这么一段话</p>
+<blockquote>
+<p>最为强大的特性添加技术便是测试驱动开发(TDD)</p>
+</blockquote>
+<p>驱动测试开发的过程：</p>
+<p>设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，<br>但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。</p>
+<h2 id="TDD-算法"><a href="#TDD-算法" class="headerlink" title="TDD 算法"></a>TDD 算法</h2><ol>
+<li>编写一个失败测试用例</li>
+<li>让它通过编译 </li>
+<li>让测试通过</li>
+<li>消除重复</li>
+<li>重复上述步骤</li>
+</ol>
+<h2 id="如何在-Swift-上实现"><a href="#如何在-Swift-上实现" class="headerlink" title="如何在 Swift 上实现"></a>如何在 Swift 上实现</h2><h3 id="编写一个失败的测试用例"><a href="#编写一个失败的测试用例" class="headerlink" title="编写一个失败的测试用例"></a>编写一个失败的测试用例</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTests</span>: <span class="title">XCTestCase</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">test_asDictionary</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> todo = <span class="type">DoTest</span>(id: <span class="number">5</span>)</div><div class="line">        <span class="keyword">let</span> dict = todo.asDictionary()</div><div class="line">        <span class="type">XCTAssertEqual</span>(dict[<span class="string">"id"</span>] <span class="keyword">as</span>? <span class="type">Int</span>, <span class="number">5</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> allTests = [</div><div class="line">        (<span class="string">"test_asDictionary"</span>, test_asDictionary)</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="让它编译通过"><a href="#让它编译通过" class="headerlink" title="让它编译通过"></a>让它编译通过</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.id = id</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 测试驱动开发</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">asDictionary</span><span class="params">()</span></span> -&gt; [<span class="type">String</span>: <span class="type">Any</span>] &#123;</div><div class="line">        <span class="keyword">return</span> [<span class="type">String</span>: <span class="type">Any</span>]() </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="让测试通过"><a href="#让测试通过" class="headerlink" title="让测试通过"></a>让测试通过</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.id = id</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 测试驱动开发</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">asDictionary</span><span class="params">()</span></span> -&gt; [<span class="type">String</span>: <span class="type">Any</span>] &#123;</div><div class="line">        <span class="keyword">return</span> [<span class="string">"id"</span>: id]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常情况下我们的步骤要细得多，但是方法雷同</p>
+<h3 id="消除重复"><a href="#消除重复" class="headerlink" title="消除重复"></a>消除重复</h3><p>上面的例子中没有重复代码，所以，我们继续</p>
+<p>然后重复上述步骤，完善这个类的功能</p>
 
       
     </div>
@@ -377,8 +377,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Vapor/" rel="tag"># Vapor</a>
-          
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
@@ -392,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/05/Vapor-七牛上传-token-生成算法实现/" rel="next" title="Vapor 七牛上传 Token 生成算法实现">
-                <i class="fa fa-chevron-left"></i> Vapor 七牛上传 Token 生成算法实现
+              <a href="/2018/05/02/RPC-初识/" rel="next" title="RPC 初识">
+                <i class="fa fa-chevron-left"></i> RPC 初识
               </a>
             
           </div>
@@ -401,10 +399,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/26/Swift-全栈再书App/" rel="prev" title="Swift 全栈再书 App">
-                Swift 全栈再书 App <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -546,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上线服务器选择"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;" class="headerlink" title="&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;"></a>&#x4E0A;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库选择"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;"></a>&#x6570;&#x636E;&#x5E93;&#x9009;&#x62E9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;&#x642D;&#x5EFA;" class="headerlink" title="&#x73AF;&#x5883;&#x642D;&#x5EFA;"></a>&#x73AF;&#x5883;&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vapor使用过程的不爽之处"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;" class="headerlink" title="Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;"></a>Vapor&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x7684;&#x4E0D;&#x723D;&#x4E4B;&#x5904;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关的命令参考"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;" class="headerlink" title="&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;"></a>&#x76F8;&#x5173;&#x7684;&#x547D;&#x4EE4;&#x53C2;&#x8003;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-supervisor"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#nginx-supervisor" class="headerlink" title="nginx supervisor"></a>nginx supervisor</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TDD-算法"><span class="nav-number">1.</span> <span class="nav-text"><a href="#TDD-&#x7B97;&#x6CD5;" class="headerlink" title="TDD &#x7B97;&#x6CD5;"></a>TDD &#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在-Swift-上实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5728;-Swift-&#x4E0A;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;"></a>&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写一个失败的测试用例"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;" class="headerlink" title="&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"></a>&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让它编译通过"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让测试通过"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消除重复"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x6D88;&#x9664;&#x91CD;&#x590D;" class="headerlink" title="&#x6D88;&#x9664;&#x91CD;&#x590D;"></a>&#x6D88;&#x9664;&#x91CD;&#x590D;</span></a></li></ol></li></ol></div>
             
 
           </div>

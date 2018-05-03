@@ -249,6 +249,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/03/Swift-之数据结构-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/03/Swift-之数据结构-Tree/" itemprop="url">Swift 之数据结构 Tree</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T11:39:49+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/03/Swift-之数据结构-Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/03/Swift-之数据结构-Tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/03/Swift-之数据结构-Tree/" class="leancloud_visitors" data-flag-title="Swift 之数据结构 Tree">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p><code>Haskell</code> 是如何定义 <code>Tree</code>：</p>
+<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a (<span class="type">Tree</span> <span class="title">a</span>) (<span class="type">Tree</span> <span class="title">a</span>)</span></div><div class="line">            | <span class="type">Empty</span></div><div class="line">            <span class="keyword">deriving</span> (<span class="type">Show</span>)</div></pre></td></tr></table></figure>
+<p><strong>二叉树</strong>： 该节点有两个子节点， 这个子节点要么也是二叉树，要么是空节点。</p>
+<p><code>swift</code> 定义: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">Tree</span>&lt;<span class="title">Element</span>: <span class="title">Comparable</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Element</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="红黑二叉树"><a href="#红黑二叉树" class="headerlink" title="红黑二叉树"></a>红黑二叉树</h2><p><a href="https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="noopener">红黑树</a>, 是最常用的持久数据结构。</p>
+<p>1）每个结点要么是红的，要么是黑的。<br>2）根结点是黑的。<br>3）每个叶结点（叶结点即指树尾端NIL指针或NULL结点）是黑的。<br>4）如果一个结点是红的，那么它的俩个儿子都是黑的。<br>5）对于任一结点而言，其到叶结点树尾端NIL指针的每一条路径都包含相同数目的黑结点。  </p>
+<p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/1.png" alt=""></p>
+<h3 id="树的旋转"><a href="#树的旋转" class="headerlink" title="树的旋转"></a>树的旋转</h3><h4 id="左旋"><a href="#左旋" class="headerlink" title="左旋"></a>左旋</h4><p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/2.jpg" alt=""></p>
+<p>当某个节点 pivot 上，做左旋操作时， 假设它的右孩子 Y 不是 Nil， pivot 可以为任何不是 nil 的左孩子节点。 </p>
+<p>左旋以 <code>pivot</code> 到 <code>Y</code>之间的链为 <code>支轴</code>, 它使 Y 成为该孩子树新的根， 而 Y 的左孩子 b 则为 pivot 的右孩子。</p>
+<p>以某一个 pivot 为指点进行左旋，其变为其右边孩子的左孩子，其右孩子的左孩子变为为 pivot 的右孩子</p>
+<h4 id="右旋"><a href="#右旋" class="headerlink" title="右旋"></a>右旋</h4><p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/3.jpg" alt=""></p>
+<p>pivot 为其左孩子的右孩子， 其左孩子为他右孩子的的右孩子</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">Tree</span>&lt;<span class="title">Element</span>: <span class="title">Comparable</span>&gt; </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Color</span> </span>&#123;<span class="keyword">case</span> red, black&#125;</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Color</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;, <span class="type">Element</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line"></div><div class="line">    <span class="keyword">init</span>() &#123;<span class="keyword">self</span> = .empty&#125;</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> x: <span class="type">Element</span>,</div><div class="line">         color: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;.<span class="type">Color</span> = .black,</div><div class="line">         <span class="keyword">left</span>: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt; = .empty,</div><div class="line">         <span class="keyword">right</span>: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt; = .empty) &#123;</div><div class="line">        <span class="keyword">self</span> = .node(color, <span class="keyword">left</span>, x, <span class="keyword">right</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Tree</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">contains</span><span class="params">(<span class="number">_</span> x: Element)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="number">_</span>, <span class="keyword">left</span>, y, <span class="keyword">right</span>) = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">false</span>&#125;</div><div class="line">        <span class="keyword">if</span> x &lt; y &#123;<span class="keyword">return</span> <span class="keyword">left</span>.<span class="built_in">contains</span>(x)&#125;</div><div class="line">        <span class="keyword">if</span> x &gt; y &#123;<span class="keyword">return</span> <span class="keyword">right</span>.<span class="built_in">contains</span>(x)&#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(x: Element)</span></span> -&gt; <span class="type">Tree</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="number">_</span>, l, y, r) = ins(into: <span class="keyword">self</span>, x) <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">fatalError</span>(<span class="string">"ins should never return an empty tree"</span>)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> .node(.red, l, y, r)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">ins</span>&lt;T&gt;<span class="params">(into: Tree&lt;T&gt;, <span class="number">_</span> x: T)</span></span> -&gt; <span class="type">Tree</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="built_in">c</span>, l, y, r) = into <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(x, color: .red)&#125;</div><div class="line">        <span class="keyword">if</span> x &lt; y &#123; <span class="keyword">return</span> balance(tree: <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(y, color: <span class="built_in">c</span>, <span class="keyword">left</span>: ins(into:l, x), <span class="keyword">right</span>: r))&#125;</div><div class="line">        <span class="keyword">if</span> x &gt; y &#123; <span class="keyword">return</span> balance(tree: <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(y, color: <span class="built_in">c</span>, <span class="keyword">left</span>: l, <span class="keyword">right</span>: ins(into: r, x)))&#125;</div><div class="line">        <span class="keyword">return</span> into</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">balance</span>&lt;T&gt;<span class="params">(tree: Tree&lt;T&gt;)</span></span> -&gt; <span class="type">Tree</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">switch</span> tree &#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, .node(.red, .node(.red, a, x, b), y, <span class="built_in">c</span>), z, d):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>,z,d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, .node(.red, a, x, .node(.red, b, y, <span class="built_in">c</span>)), z,d):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, a, x, .node(.red, .node(.red, b, y, <span class="built_in">c</span>), z, d)):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, a, x, .node(.red, b, y, .node(.red, <span class="built_in">c</span>, z, d))):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> tree</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/03/Swift-之数据结构-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -691,7 +846,7 @@
 <p>可以把这些<code>Dispose</code>对象存放到一个容器中。</p>
 <h3 id="扩展-Disposables"><a href="#扩展-Disposables" class="headerlink" title="扩展 Disposables"></a>扩展 <code>Disposables</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Disposables</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> diposes: [<span class="type">Disposable</span>] = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> dis: Disposable)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.diposes.append(dis)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Disposable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispose</span><span class="params">(by: Disposables)</span></span> &#123;</div><div class="line">        by.add(<span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用代码</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-<span class="subst">\(user)</span>"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line">    <span class="keyword">let</span> user = <span class="type">Observable</span>(<span class="type">User</span>())</div><div class="line"></div><div class="line">    <span class="keyword">let</span> dispose = <span class="type">Disposables</span>()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        user.addObserver &#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"1-\(user)"</span>)</div><div class="line">        &#125;.dispose(by: dispose)</div><div class="line"></div><div class="line">        user.addObserver(&#123; (user) <span class="keyword">in</span></div><div class="line">            <span class="built_in">print</span>(<span class="string">"2-\(user)"</span>)</div><div class="line">        &#125;).dispose(by: dispose)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.doChange()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doChange</span><span class="params">()</span></span> &#123;</div><div class="line">        user.value = <span class="type">User</span>(name: <span class="string">"hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有没有发现这个 <code>.dispose(by: dispose)</code> 跟 <code>RxSwift</code> 的很像。😆</p>
 
           
@@ -1149,7 +1304,7 @@
 <li>减少计算量, 例如，寻找数组中符合条件的某个值</li>
 </ul>
 <p>swift 默认<code>严格求值</code>, 也提供了相关的惰性求值的机制</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(selement)</span> -- <span class="subst">\(element)</span>"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>]</div><div class="line"><span class="keyword">let</span> selement = array.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;)[<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> element = array.<span class="built_in">lazy</span>.<span class="built_in">map</span>(&#123;$<span class="number">0</span> * <span class="number">2</span> &#125;)[<span class="number">3</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(selement) -- \(element)"</span>)</div></pre></td></tr></table></figure>
 <p>上面代码中， 计算出 <code>selement</code> 花了 <code>7</code> 次， 计算 <code>element</code> 花了 <code>2</code> 次</p>
 <ul>
 <li>对于 <code>7</code>：将 array 每个元素分别取出 <code>* 2</code>，然后在这些数据中取出第4个元素, 6+1=7</li>
@@ -1656,157 +1811,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/11/01/LaunchScreen-storyboard-换图的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/01/LaunchScreen-storyboard-换图的问题/" itemprop="url">LaunchScreen.storyboard 换图的问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T13:29:52+08:00">
-                2017-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/01/LaunchScreen-storyboard-换图的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/01/LaunchScreen-storyboard-换图的问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/01/LaunchScreen-storyboard-换图的问题/" class="leancloud_visitors" data-flag-title="LaunchScreen.storyboard 换图的问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>之前设置了<code>LaunchScreen.storyboard</code>，在这个storyboard中加了一个imageView，里面设置了一张图片launch.png，今天需要更换这个启动<br>图片，我就直接去工程里面，把launch.png,launch@2x.png,launch@3x.png这三张图片直接用其他图片覆盖了<br>，然后打开这个storyboard，这个storyboard里面的imageView的确变了，但是运行工程，并没有改变，显示的还是原来的图片</p>
-</blockquote>
-<p>有人提出这两种办法:</p>
-<ol>
-<li>删除重新安装，删除driverData，但是并没有卵用，老图片还是顽固的存在</li>
-<li>把这个storyboard的Use as launch Screen选项取消掉，然后再重新选择</li>
-</ol>
-<p>但是，并没有卵用。</p>
-<p>正确的解决办法是 <code>Assets.xcassets</code> 替换图片的时候，把图片名字也替换掉。然后在 <code>LaunchScreen.storyboard</code> 更换用新的图片名字即可。</p>
-<p>如果上面方法依旧不行，那就将图片拖入工程，不放到 <code>Assets.xcassets</code> 中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1859,7 +1863,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -249,6 +249,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift-设计模式之策略模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/01/Swift-设计模式之策略模式/" itemprop="url">Swift 设计模式之策略模式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T13:51:54+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/Swift-设计模式之策略模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/01/Swift-设计模式之策略模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/01/Swift-设计模式之策略模式/" class="leancloud_visitors" data-flag-title="Swift 设计模式之策略模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>策略模式(Strategy Pattern): 定义一系列算法类，将每一个算法封装起来，并让它们可以相互替换，策略模式让算法独立于使用它的客户而变化，也称为政策模式(Policy)。策略模式是一种对象行为型模式。<br>策略模式提供了一种可插入式(Pluggable)算法的实现方案</p>
+</blockquote>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><blockquote>
+<p>Sunny软件公司为某电影院开发了一套影院售票系统，在该系统中需要为不同类型的用户提供不同的电影票打折方式，具体打折方案如下：<br> (1) 学生凭学生证可享受票价8折优惠；<br> (2) 年龄在10周岁及以下的儿童可享受每张票减免10元的优惠（原始票价需大于等于20元）；<br> (3) 影院VIP用户除享受票价半价优惠外还可进行积分，积分累计到一定额度可换取电影院赠送的奖品。<br> 该系统在将来可能还要根据需要引入新的打折方式。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieTicket</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">let</span> price: <span class="type">Double</span></div><div class="line">    <span class="keyword">var</span> discount: <span class="type">Discount</span>?</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(price: <span class="type">Double</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.price = price</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> discountPrice: <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> discount = discount <span class="keyword">else</span> &#123;<span class="keyword">return</span> price&#125;</div><div class="line">        <span class="keyword">return</span> discount.caculate(price: price)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.8</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildrenDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price - <span class="number">10</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIPDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.5</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> mv = <span class="type">MovieTicket</span>(price: <span class="number">60</span>)</div><div class="line"><span class="keyword">let</span> discount = <span class="type">ChildrenDiscount</span>()</div><div class="line">mv.discount = discount</div><div class="line"><span class="built_in">print</span>(mv.discountPrice)</div></pre></td></tr></table></figure>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li>对“开闭原则”的完美支持，可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为</li>
+<li>提供了一种可以替换继承关系的办法。</li>
+<li>提供了一种算法的复用机制</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>产生很多策略类 </li>
+<li>策略模式只适用于客户端知道所有的算法或行为的情况</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift-设计模式之访问者模式练习实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -344,7 +500,7 @@
             <blockquote>
 <p>Sunny软件公司欲为某高校开发一套奖励审批系统，该系统可以实现教师奖励和学生奖励的审批(Award Check)，如果教师发表论文数超过10篇或者学生论文超过2篇可以评选科研奖，如果教师教学反馈分大于等于90分或者学生平均成绩大于等于90分可以评选成绩优秀奖。试使用访问者模式设计该系统，以判断候选人集合中的教师或学生是否符合某种获奖要求。</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Teacher</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> feedback: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, feedback: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.feedback = feedback</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> score: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, score: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.score = score</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Award</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Category</span>: <span class="title">String</span> </span>&#123;</div><div class="line">        <span class="keyword">case</span> cientific = <span class="string">"科研奖"</span><span class="comment">// 科研奖</span></div><div class="line">        <span class="keyword">case</span> excellent = <span class="string">"优秀奖"</span><span class="comment">// 优秀奖</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">none</span> = <span class="string">"无"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> award: <span class="type">String</span> &#123; <span class="keyword">return</span> type.rawValue &#125;</div><div class="line">    <span class="keyword">let</span> type: <span class="type">Category</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, type: <span class="type">Category</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.type = type</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">output</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Teacher: <span class="subst">\(name)</span> ---- <span class="subst">\(award)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CientificAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">2</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">10</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcellentAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.feedback &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.score &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> tearch1 = <span class="type">Teacher</span>(name: <span class="string">"李老师"</span>, paperCount: <span class="number">5</span>, feedback: <span class="number">91</span>)</div><div class="line"><span class="keyword">let</span> tearch2 = <span class="type">Teacher</span>(name: <span class="string">"张老师"</span>, paperCount: <span class="number">12</span>, feedback: <span class="number">80</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> student1 = <span class="type">Student</span>(name: <span class="string">"小明"</span>, paperCount: <span class="number">1</span>, score: <span class="number">95</span>)</div><div class="line"><span class="keyword">let</span> student2 = <span class="type">Student</span>(name: <span class="string">"小华"</span>, paperCount: <span class="number">2</span>, score: <span class="number">88</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> ccheck = <span class="type">CientificAwardCheck</span>()</div><div class="line"><span class="keyword">let</span> echeck = <span class="type">ExcellentAwardCheck</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> allTeacher = [tearch1, tearch2]</div><div class="line"><span class="keyword">let</span> allStudent = [student1, student2]</div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: stu)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: stu)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Teacher</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> feedback: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, feedback: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.feedback = feedback</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>: <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> paperCount: <span class="type">Int</span></div><div class="line">    <span class="keyword">let</span> score: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, paperCount: <span class="type">Int</span>, score: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.paperCount = paperCount</div><div class="line">        <span class="keyword">self</span>.score = score</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span> &#123;</div><div class="line">        awardCheck.check(awardCheckable: <span class="keyword">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheckable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">accept</span><span class="params">(awardCheck: AwardCheck)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Award</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Category</span>: <span class="title">String</span> </span>&#123;</div><div class="line">        <span class="keyword">case</span> cientific = <span class="string">"科研奖"</span><span class="comment">// 科研奖</span></div><div class="line">        <span class="keyword">case</span> excellent = <span class="string">"优秀奖"</span><span class="comment">// 优秀奖</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">none</span> = <span class="string">"无"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> award: <span class="type">String</span> &#123; <span class="keyword">return</span> type.rawValue &#125;</div><div class="line">    <span class="keyword">let</span> type: <span class="type">Category</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, type: <span class="type">Category</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">        <span class="keyword">self</span>.type = type</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">output</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Teacher: \(name) ---- \(award)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CientificAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">2</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.paperCount &gt; <span class="number">10</span> ? .cientific : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcellentAwardCheck</span>: <span class="title">AwardCheck</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Teacher)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.feedback &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(awardCheckable: Student)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> type: <span class="type">Award</span>.<span class="type">Category</span> = awardCheckable.score &gt; <span class="number">90</span> ? .excellent : .<span class="keyword">none</span></div><div class="line">        <span class="keyword">let</span> award = <span class="type">Award</span>(name: awardCheckable.name, type: type)</div><div class="line">        award.output()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> tearch1 = <span class="type">Teacher</span>(name: <span class="string">"李老师"</span>, paperCount: <span class="number">5</span>, feedback: <span class="number">91</span>)</div><div class="line"><span class="keyword">let</span> tearch2 = <span class="type">Teacher</span>(name: <span class="string">"张老师"</span>, paperCount: <span class="number">12</span>, feedback: <span class="number">80</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> student1 = <span class="type">Student</span>(name: <span class="string">"小明"</span>, paperCount: <span class="number">1</span>, score: <span class="number">95</span>)</div><div class="line"><span class="keyword">let</span> student2 = <span class="type">Student</span>(name: <span class="string">"小华"</span>, paperCount: <span class="number">2</span>, score: <span class="number">88</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> ccheck = <span class="type">CientificAwardCheck</span>()</div><div class="line"><span class="keyword">let</span> echeck = <span class="type">ExcellentAwardCheck</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> allTeacher = [tearch1, tearch2]</div><div class="line"><span class="keyword">let</span> allStudent = [student1, student2]</div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    ccheck.check(awardCheckable: stu)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">allTeacher.forEach &#123; (teach) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: teach)</div><div class="line">&#125;</div><div class="line"></div><div class="line">allStudent.forEach &#123; (stu) <span class="keyword">in</span></div><div class="line">    echeck.check(awardCheckable: stu)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -1951,161 +2107,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/01/03/Swift-之数据结构-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/03/Swift-之数据结构-Tree/" itemprop="url">Swift 之数据结构 Tree</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T11:39:49+08:00">
-                2018-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/03/Swift-之数据结构-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/03/Swift-之数据结构-Tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/01/03/Swift-之数据结构-Tree/" class="leancloud_visitors" data-flag-title="Swift 之数据结构 Tree">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p><code>Haskell</code> 是如何定义 <code>Tree</code>：</p>
-<figure class="highlight hs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a (<span class="type">Tree</span> <span class="title">a</span>) (<span class="type">Tree</span> <span class="title">a</span>)</span></div><div class="line">            | <span class="type">Empty</span></div><div class="line">            <span class="keyword">deriving</span> (<span class="type">Show</span>)</div></pre></td></tr></table></figure>
-<p><strong>二叉树</strong>： 该节点有两个子节点， 这个子节点要么也是二叉树，要么是空节点。</p>
-<p><code>swift</code> 定义: </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">Tree</span>&lt;<span class="title">Element</span>: <span class="title">Comparable</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Element</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="红黑二叉树"><a href="#红黑二叉树" class="headerlink" title="红黑二叉树"></a>红黑二叉树</h2><p><a href="https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="noopener">红黑树</a>, 是最常用的持久数据结构。</p>
-<p>1）每个结点要么是红的，要么是黑的。<br>2）根结点是黑的。<br>3）每个叶结点（叶结点即指树尾端NIL指针或NULL结点）是黑的。<br>4）如果一个结点是红的，那么它的俩个儿子都是黑的。<br>5）对于任一结点而言，其到叶结点树尾端NIL指针的每一条路径都包含相同数目的黑结点。  </p>
-<p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/1.png" alt=""></p>
-<h3 id="树的旋转"><a href="#树的旋转" class="headerlink" title="树的旋转"></a>树的旋转</h3><h4 id="左旋"><a href="#左旋" class="headerlink" title="左旋"></a>左旋</h4><p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/2.jpg" alt=""></p>
-<p>当某个节点 pivot 上，做左旋操作时， 假设它的右孩子 Y 不是 Nil， pivot 可以为任何不是 nil 的左孩子节点。 </p>
-<p>左旋以 <code>pivot</code> 到 <code>Y</code>之间的链为 <code>支轴</code>, 它使 Y 成为该孩子树新的根， 而 Y 的左孩子 b 则为 pivot 的右孩子。</p>
-<p>以某一个 pivot 为指点进行左旋，其变为其右边孩子的左孩子，其右孩子的左孩子变为为 pivot 的右孩子</p>
-<h4 id="右旋"><a href="#右旋" class="headerlink" title="右旋"></a>右旋</h4><p><img src="https://github.com/julycoding/The-Art-Of-Programming-By-July/raw/master/ebook/images/rbtree/3.jpg" alt=""></p>
-<p>pivot 为其左孩子的右孩子， 其左孩子为他右孩子的的右孩子</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">Tree</span>&lt;<span class="title">Element</span>: <span class="title">Comparable</span>&gt; </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Color</span> </span>&#123;<span class="keyword">case</span> red, black&#125;</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">    <span class="keyword">case</span> node(<span class="type">Color</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;, <span class="type">Element</span>, <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line"></div><div class="line">    <span class="keyword">init</span>() &#123;<span class="keyword">self</span> = .empty&#125;</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> x: <span class="type">Element</span>,</div><div class="line">         color: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt;.<span class="type">Color</span> = .black,</div><div class="line">         <span class="keyword">left</span>: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt; = .empty,</div><div class="line">         <span class="keyword">right</span>: <span class="type">Tree</span>&lt;<span class="type">Element</span>&gt; = .empty) &#123;</div><div class="line">        <span class="keyword">self</span> = .node(color, <span class="keyword">left</span>, x, <span class="keyword">right</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Tree</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">contains</span><span class="params">(<span class="number">_</span> x: Element)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="number">_</span>, <span class="keyword">left</span>, y, <span class="keyword">right</span>) = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">false</span>&#125;</div><div class="line">        <span class="keyword">if</span> x &lt; y &#123;<span class="keyword">return</span> <span class="keyword">left</span>.<span class="built_in">contains</span>(x)&#125;</div><div class="line">        <span class="keyword">if</span> x &gt; y &#123;<span class="keyword">return</span> <span class="keyword">right</span>.<span class="built_in">contains</span>(x)&#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(x: Element)</span></span> -&gt; <span class="type">Tree</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="number">_</span>, l, y, r) = ins(into: <span class="keyword">self</span>, x) <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">fatalError</span>(<span class="string">"ins should never return an empty tree"</span>)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> .node(.red, l, y, r)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">ins</span>&lt;T&gt;<span class="params">(into: Tree&lt;T&gt;, <span class="number">_</span> x: T)</span></span> -&gt; <span class="type">Tree</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(<span class="built_in">c</span>, l, y, r) = into <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(x, color: .red)&#125;</div><div class="line">        <span class="keyword">if</span> x &lt; y &#123; <span class="keyword">return</span> balance(tree: <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(y, color: <span class="built_in">c</span>, <span class="keyword">left</span>: ins(into:l, x), <span class="keyword">right</span>: r))&#125;</div><div class="line">        <span class="keyword">if</span> x &gt; y &#123; <span class="keyword">return</span> balance(tree: <span class="type">Tree</span>&lt;<span class="type">T</span>&gt;(y, color: <span class="built_in">c</span>, <span class="keyword">left</span>: l, <span class="keyword">right</span>: ins(into: r, x)))&#125;</div><div class="line">        <span class="keyword">return</span> into</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">balance</span>&lt;T&gt;<span class="params">(tree: Tree&lt;T&gt;)</span></span> -&gt; <span class="type">Tree</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">switch</span> tree &#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, .node(.red, .node(.red, a, x, b), y, <span class="built_in">c</span>), z, d):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>,z,d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, .node(.red, a, x, .node(.red, b, y, <span class="built_in">c</span>)), z,d):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, a, x, .node(.red, .node(.red, b, y, <span class="built_in">c</span>), z, d)):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .node(.black, a, x, .node(.red, b, y, .node(.red, <span class="built_in">c</span>, z, d))):</div><div class="line">            <span class="keyword">return</span> .node(.red, .node(.black, a, x, b), y, .node(.black, <span class="built_in">c</span>, z, d))</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> tree</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2158,7 +2159,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

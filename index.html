@@ -249,6 +249,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/05/03/Swift-之测试驱动开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/Swift-之测试驱动开发/" itemprop="url">Swift 之测试驱动开发</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T15:49:38+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/03/Swift-之测试驱动开发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/03/Swift-之测试驱动开发/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/03/Swift-之测试驱动开发/" class="leancloud_visitors" data-flag-title="Swift 之测试驱动开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>《在修改代码的艺术》中有这么一段话</p>
+<blockquote>
+<p>最为强大的特性添加技术便是测试驱动开发(TDD)</p>
+</blockquote>
+<p>驱动测试开发的过程：</p>
+<p>设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，<br>但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。</p>
+<h2 id="TDD-算法"><a href="#TDD-算法" class="headerlink" title="TDD 算法"></a>TDD 算法</h2><ol>
+<li>编写一个失败测试用例</li>
+<li>让它通过编译 </li>
+<li>让测试通过</li>
+<li>消除重复</li>
+<li>重复上述步骤</li>
+</ol>
+<h2 id="如何在-Swift-上实现"><a href="#如何在-Swift-上实现" class="headerlink" title="如何在 Swift 上实现"></a>如何在 Swift 上实现</h2><h3 id="编写一个失败的测试用例"><a href="#编写一个失败的测试用例" class="headerlink" title="编写一个失败的测试用例"></a>编写一个失败的测试用例</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTests</span>: <span class="title">XCTestCase</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">test_asDictionary</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> todo = <span class="type">DoTest</span>(id: <span class="number">5</span>)</div><div class="line">        <span class="keyword">let</span> dict = todo.asDictionary()</div><div class="line">        <span class="type">XCTAssertEqual</span>(dict[<span class="string">"id"</span>] <span class="keyword">as</span>? <span class="type">Int</span>, <span class="number">5</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> allTests = [</div><div class="line">        (<span class="string">"test_asDictionary"</span>, test_asDictionary)</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="让它编译通过"><a href="#让它编译通过" class="headerlink" title="让它编译通过"></a>让它编译通过</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.id = id</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 测试驱动开发</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">asDictionary</span><span class="params">()</span></span> -&gt; [<span class="type">String</span>: <span class="type">Any</span>] &#123;</div><div class="line">        <span class="keyword">return</span> [<span class="type">String</span>: <span class="type">Any</span>]() </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="让测试通过"><a href="#让测试通过" class="headerlink" title="让测试通过"></a>让测试通过</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(id: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.id = id</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 测试驱动开发</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">asDictionary</span><span class="params">()</span></span> -&gt; [<span class="type">String</span>: <span class="type">Any</span>] &#123;</div><div class="line">        <span class="keyword">return</span> [<span class="string">"id"</span>: id]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常情况下我们的步骤要细得多，但是方法雷同</p>
+<h3 id="消除重复"><a href="#消除重复" class="headerlink" title="消除重复"></a>消除重复</h3><p>上面的例子中没有重复代码，所以，我们继续</p>
+<p>然后重复上述步骤，完善这个类的功能</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/05/02/RPC-初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1289,7 +1448,7 @@
 </ul>
 <p>所以： </p>
 <p>我只用一个定时器，我只用数据驱动 <code>TableView</code> 的显示, 下面我只写一下我封装的<br>定时器的倒计时功能</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCountDown</span> </span>&#123;</div><div class="line">        <span class="keyword">typealias</span> <span class="type">Time</span> = (start: <span class="type">Date</span>, end: <span class="type">Date</span>)</div><div class="line">        <span class="keyword">typealias</span> <span class="type">HMS</span> = (hour: <span class="type">String</span>, minute: <span class="type">String</span>, second: <span class="type">String</span>)</div><div class="line">        <span class="keyword">private</span> <span class="keyword">var</span> timer: <span class="type">DispatchSourceTimer</span>?</div><div class="line"></div><div class="line">        <span class="keyword">init</span>(times: [<span class="type">Time</span>], complete: @escaping ([<span class="type">HMS</span>]) -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            setup(times: times, complete: complete)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">setup</span><span class="params">(times: [Time] ,complete: @escaping <span class="params">([HMS])</span></span></span> -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            timer = <span class="type">DispatchSource</span>.makeTimerSource(flags: .strict, queue: .global())</div><div class="line">            timer?.schedule(deadline: .now(), repeating: .seconds(<span class="number">1</span>))</div><div class="line">            <span class="keyword">var</span> items: [<span class="type">HMS</span>] = <span class="type">Array</span>.<span class="keyword">init</span>(repeating: (<span class="string">"00"</span>, <span class="string">"00"</span>, <span class="string">"00"</span>), <span class="built_in">count</span>: times.<span class="built_in">count</span>)</div><div class="line">            <span class="keyword">var</span> intervals: [<span class="type">TimeInterval</span>] = times.<span class="built_in">map</span> &#123; (time) -&gt; <span class="type">TimeInterval</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">return</span> time.end.timeIntervalSince(time.start)</div><div class="line">            &#125;</div><div class="line">            timer?.setEventHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">                <span class="keyword">guard</span> <span class="keyword">let</span> `<span class="keyword">self</span>` = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</div><div class="line">                <span class="keyword">for</span> (index, <span class="number">_</span>) <span class="keyword">in</span> times.enumerated() &#123;</div><div class="line">                    <span class="keyword">let</span> timeout = intervals[index]</div><div class="line">                    <span class="keyword">if</span> timeout &lt;= <span class="number">0</span> &#123;</div><div class="line">                        items[index] = (<span class="string">"00"</span>,<span class="string">"00"</span>,<span class="string">"00"</span>)</div><div class="line">                        <span class="keyword">if</span> times.<span class="built_in">count</span> == <span class="number">1</span> &#123; <span class="comment">// 如果只有一个的话就进行暂停</span></div><div class="line">                            <span class="keyword">self</span>.timer?.cancel()</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">let</span> hours = <span class="type">Int</span>(timeout) / <span class="number">3600</span></div><div class="line">                        <span class="keyword">let</span> minute = (<span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> ) / <span class="number">60</span></div><div class="line">                        <span class="keyword">let</span> second = <span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> - minute * <span class="number">60</span></div><div class="line">                        items[index] = (<span class="keyword">self</span>.panZero(item: hours), <span class="keyword">self</span>.panZero(item: minute), <span class="keyword">self</span>.panZero(item: second))</div><div class="line">                    &#125;</div><div class="line">                    intervals[index] = timeout - <span class="number">1</span></div><div class="line">                &#125;</div><div class="line">                <span class="type">DispatchQueue</span>.main.async &#123;</div><div class="line">                    complete(items)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            timer?.resume()</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">panZero</span><span class="params">(item: Int)</span></span> -&gt; <span class="type">String</span> &#123;</div><div class="line">            <span class="keyword">return</span> item &lt; <span class="number">10</span> ? <span class="string">"0"</span>+<span class="string">"<span class="subst">\(item)</span>"</span> : <span class="string">"<span class="subst">\(item)</span>"</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">deinit</span> &#123;</div><div class="line">            log.debug(<span class="string">"TimeCountDown deinit"</span>)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">func</span> <span class="title">stopTimer</span><span class="params">()</span></span> &#123;</div><div class="line">            timer?.cancel()</div><div class="line">            timer = <span class="literal">nil</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCountDown</span> </span>&#123;</div><div class="line">        <span class="keyword">typealias</span> <span class="type">Time</span> = (start: <span class="type">Date</span>, end: <span class="type">Date</span>)</div><div class="line">        <span class="keyword">typealias</span> <span class="type">HMS</span> = (hour: <span class="type">String</span>, minute: <span class="type">String</span>, second: <span class="type">String</span>)</div><div class="line">        <span class="keyword">private</span> <span class="keyword">var</span> timer: <span class="type">DispatchSourceTimer</span>?</div><div class="line"></div><div class="line">        <span class="keyword">init</span>(times: [<span class="type">Time</span>], complete: @escaping ([<span class="type">HMS</span>]) -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            setup(times: times, complete: complete)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">setup</span><span class="params">(times: [Time] ,complete: @escaping <span class="params">([HMS])</span></span></span> -&gt; <span class="type">Void</span>) &#123;</div><div class="line">            timer = <span class="type">DispatchSource</span>.makeTimerSource(flags: .strict, queue: .global())</div><div class="line">            timer?.schedule(deadline: .now(), repeating: .seconds(<span class="number">1</span>))</div><div class="line">            <span class="keyword">var</span> items: [<span class="type">HMS</span>] = <span class="type">Array</span>.<span class="keyword">init</span>(repeating: (<span class="string">"00"</span>, <span class="string">"00"</span>, <span class="string">"00"</span>), <span class="built_in">count</span>: times.<span class="built_in">count</span>)</div><div class="line">            <span class="keyword">var</span> intervals: [<span class="type">TimeInterval</span>] = times.<span class="built_in">map</span> &#123; (time) -&gt; <span class="type">TimeInterval</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">return</span> time.end.timeIntervalSince(time.start)</div><div class="line">            &#125;</div><div class="line">            timer?.setEventHandler &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">                <span class="keyword">guard</span> <span class="keyword">let</span> `<span class="keyword">self</span>` = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</div><div class="line">                <span class="keyword">for</span> (index, <span class="number">_</span>) <span class="keyword">in</span> times.enumerated() &#123;</div><div class="line">                    <span class="keyword">let</span> timeout = intervals[index]</div><div class="line">                    <span class="keyword">if</span> timeout &lt;= <span class="number">0</span> &#123;</div><div class="line">                        items[index] = (<span class="string">"00"</span>,<span class="string">"00"</span>,<span class="string">"00"</span>)</div><div class="line">                        <span class="keyword">if</span> times.<span class="built_in">count</span> == <span class="number">1</span> &#123; <span class="comment">// 如果只有一个的话就进行暂停</span></div><div class="line">                            <span class="keyword">self</span>.timer?.cancel()</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">let</span> hours = <span class="type">Int</span>(timeout) / <span class="number">3600</span></div><div class="line">                        <span class="keyword">let</span> minute = (<span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> ) / <span class="number">60</span></div><div class="line">                        <span class="keyword">let</span> second = <span class="type">Int</span>(timeout) - hours * <span class="number">3600</span> - minute * <span class="number">60</span></div><div class="line">                        items[index] = (<span class="keyword">self</span>.panZero(item: hours), <span class="keyword">self</span>.panZero(item: minute), <span class="keyword">self</span>.panZero(item: second))</div><div class="line">                    &#125;</div><div class="line">                    intervals[index] = timeout - <span class="number">1</span></div><div class="line">                &#125;</div><div class="line">                <span class="type">DispatchQueue</span>.main.async &#123;</div><div class="line">                    complete(items)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            timer?.resume()</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">panZero</span><span class="params">(item: Int)</span></span> -&gt; <span class="type">String</span> &#123;</div><div class="line">            <span class="keyword">return</span> item &lt; <span class="number">10</span> ? <span class="string">"0"</span>+<span class="string">"\(item)"</span> : <span class="string">"\(item)"</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">deinit</span> &#123;</div><div class="line">            log.debug(<span class="string">"TimeCountDown deinit"</span>)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">func</span> <span class="title">stopTimer</span><span class="params">()</span></span> &#123;</div><div class="line">            timer?.cancel()</div><div class="line">            timer = <span class="literal">nil</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>使用的代码 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class UserInfoViewController: UIViewController &#123;</div><div class="line">    </div><div class="line"></div><div class="line">    // 属性，依赖个人倾向作为属性</div><div class="line">    var down: LimitTimeViewController.TimeCountDown?</div><div class="line"></div><div class="line">    override func viewDidLoad() &#123;</div><div class="line">        super.viewDidLoad()</div><div class="line">        view.backgroundColor = .white</div><div class="line">        self.title = Strings.s115.s</div><div class="line">        setup()</div><div class="line"></div><div class="line">        down = LimitTimeViewController.TimeCountDown(times: [(Date(), Date().addingTimeInterval(10))]) &#123; (times) in</div><div class="line">            print(times)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>这个倒计时你可以不用管是否引用问题。</p>
@@ -1695,163 +1854,7 @@
 </table>
 <p>为将来能够模拟更多种类的飞机，试采用策略模式设计该飞机模拟系统。</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AirplaneContext</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> airplane: <span class="type">Aircraftable</span></div><div class="line">    <span class="keyword">init</span>(airplane: <span class="type">Aircraftable</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.airplane = airplane</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flayAction</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.airplane.flay()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> -&gt; <span class="type">Void</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Helicopter</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"VerticalTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SubSonicFly"</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Helicopter"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(typesOfFlight)</span> -- <span class="subst">\(takeofCharacteristics)</span> -- <span class="subst">\(flyingCharacteristics)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AirPlane</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"LongDistanceTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SubSonicFly"</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"AirPlane"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(typesOfFlight)</span> -- <span class="subst">\(takeofCharacteristics)</span> -- <span class="subst">\(flyingCharacteristics)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fighter</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Fighter"</span>&#125;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"LongDistanceTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SuperSonicFly"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(typesOfFlight)</span> -- <span class="subst">\(takeofCharacteristics)</span> -- <span class="subst">\(flyingCharacteristics)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Harrier</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Harrier"</span>&#125;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"VerticalTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SuperSonicFly"</span>&#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(typesOfFlight)</span> -- <span class="subst">\(takeofCharacteristics)</span> -- <span class="subst">\(flyingCharacteristics)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> air = <span class="type">AirplaneContext</span>(airplane: <span class="type">Harrier</span>())</div><div class="line">air.flayAction()</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2018/03/01/Swift-设计模式之策略模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/01/Swift-设计模式之策略模式/" itemprop="url">Swift 设计模式之策略模式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T13:51:54+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/01/Swift-设计模式之策略模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/01/Swift-设计模式之策略模式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/01/Swift-设计模式之策略模式/" class="leancloud_visitors" data-flag-title="Swift 设计模式之策略模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>策略模式(Strategy Pattern): 定义一系列算法类，将每一个算法封装起来，并让它们可以相互替换，策略模式让算法独立于使用它的客户而变化，也称为政策模式(Policy)。策略模式是一种对象行为型模式。<br>策略模式提供了一种可插入式(Pluggable)算法的实现方案</p>
-</blockquote>
-<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><blockquote>
-<p>Sunny软件公司为某电影院开发了一套影院售票系统，在该系统中需要为不同类型的用户提供不同的电影票打折方式，具体打折方案如下：<br> (1) 学生凭学生证可享受票价8折优惠；<br> (2) 年龄在10周岁及以下的儿童可享受每张票减免10元的优惠（原始票价需大于等于20元）；<br> (3) 影院VIP用户除享受票价半价优惠外还可进行积分，积分累计到一定额度可换取电影院赠送的奖品。<br> 该系统在将来可能还要根据需要引入新的打折方式。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieTicket</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">let</span> price: <span class="type">Double</span></div><div class="line">    <span class="keyword">var</span> discount: <span class="type">Discount</span>?</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(price: <span class="type">Double</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.price = price</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> discountPrice: <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> discount = discount <span class="keyword">else</span> &#123;<span class="keyword">return</span> price&#125;</div><div class="line">        <span class="keyword">return</span> discount.caculate(price: price)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.8</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildrenDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price - <span class="number">10</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIPDiscount</span>: <span class="title">Discount</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">caculate</span><span class="params">(price: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.5</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> mv = <span class="type">MovieTicket</span>(price: <span class="number">60</span>)</div><div class="line"><span class="keyword">let</span> discount = <span class="type">ChildrenDiscount</span>()</div><div class="line">mv.discount = discount</div><div class="line"><span class="built_in">print</span>(mv.discountPrice)</div></pre></td></tr></table></figure>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
-<li>对“开闭原则”的完美支持，可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为</li>
-<li>提供了一种可以替换继承关系的办法。</li>
-<li>提供了一种算法的复用机制</li>
-</ol>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
-<li>产生很多策略类 </li>
-<li>策略模式只适用于客户端知道所有的算法或行为的情况</li>
-</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AirplaneContext</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> airplane: <span class="type">Aircraftable</span></div><div class="line">    <span class="keyword">init</span>(airplane: <span class="type">Aircraftable</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.airplane = airplane</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flayAction</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.airplane.flay()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">get</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> -&gt; <span class="type">Void</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Helicopter</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"VerticalTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SubSonicFly"</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Helicopter"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(typesOfFlight) -- \(takeofCharacteristics) -- \(flyingCharacteristics)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AirPlane</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"LongDistanceTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SubSonicFly"</span>&#125;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"AirPlane"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(typesOfFlight) -- \(takeofCharacteristics) -- \(flyingCharacteristics)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fighter</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Fighter"</span>&#125;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"LongDistanceTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SuperSonicFly"</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(typesOfFlight) -- \(takeofCharacteristics) -- \(flyingCharacteristics)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Harrier</span>: <span class="title">Aircraftable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> typesOfFlight: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"Harrier"</span>&#125;</div><div class="line">    <span class="keyword">var</span> takeofCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"VerticalTakeOff"</span>&#125;</div><div class="line">    <span class="keyword">var</span> flyingCharacteristics: <span class="type">String</span> &#123;<span class="keyword">return</span> <span class="string">"SuperSonicFly"</span>&#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flay</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(typesOfFlight) -- \(takeofCharacteristics) -- \(flyingCharacteristics)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> air = <span class="type">AirplaneContext</span>(airplane: <span class="type">Harrier</span>())</div><div class="line">air.flayAction()</div></pre></td></tr></table></figure>
 
           
         
@@ -1939,7 +1942,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
