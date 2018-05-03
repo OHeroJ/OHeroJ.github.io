@@ -88,7 +88,7 @@
 <meta property="og:description" content="RPC (Remote Procedure Call) RPC 是一个计算机通信协议，该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程。RPC是一个分布式计算的 CS 模式，总是由 Client 向 Server 发出一个执行若干过程请求，Server 接受请求，使用客户端提供的参数，计算完成之后将结果返回给客户端。RPC 的协议有很多，比如最早的 C">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xkbey.com1.z0.glb.clouddn.com/RPC%E5%8E%9F%E7%90%86.png">
-<meta property="og:updated_time" content="2018-05-02T09:55:18.136Z">
+<meta property="og:updated_time" content="2018-05-03T01:29:49.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RPC 初识">
 <meta name="twitter:description" content="RPC (Remote Procedure Call) RPC 是一个计算机通信协议，该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程。RPC是一个分布式计算的 CS 模式，总是由 Client 向 Server 发出一个执行若干过程请求，Server 接受请求，使用客户端提供的参数，计算完成之后将结果返回给客户端。RPC 的协议有很多，比如最早的 C">
@@ -369,6 +369,27 @@
 <p>所以为什么要用rpc调用？</p>
 <p>因为良好的rpc调用是面向服务的封装，针对服务的可用性和效率等都做了优化。单纯使用http调用则缺少了这些特性。</p>
 <p>rpc字面意思就是远程过程调用，只是对不同应用间相互调用的一种描述。实现方式可以是tcp和http。</p>
+<h3 id="为什么要用RPC"><a href="#为什么要用RPC" class="headerlink" title="为什么要用RPC"></a>为什么要用RPC</h3><ol>
+<li><p>可以做到分布式，现代化的微服务</p>
+</li>
+<li><p>部署灵活</p>
+</li>
+<li><p>解耦服务</p>
+</li>
+<li><p>扩展性强</p>
+</li>
+</ol>
+<p>RPC的目的是让你在本地调用远程的方法，而对你来说这个调用是透明的，你并不知道这个调用的方法是部署哪里。通过RPC能解耦服务，这才是使用RPC的真正目的。</p>
+<h3 id="RPC-与-REST-的区别"><a href="#RPC-与-REST-的区别" class="headerlink" title="RPC 与 REST 的区别"></a>RPC 与 REST 的区别</h3><ol>
+<li>RPC 是面向动作的(方法调用)</li>
+<li>REST 是面向资源的(URL 表示资源，HTTP 动词表示动作)</li>
+<li>RPC 的编程模型是比较重量级， REST 的编程模型更轻量 </li>
+</ol>
+<h2 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h2><ul>
+<li><a href="https://blog.csdn.net/lablenet/article/details/60769066" target="_blank" rel="noopener">BE - 唠叨下 Restful 与 RPC-JSON 基于HTTP的API接口设计</a></li>
+<li><a href="https://blog.csdn.net/u013628152/article/details/47669797" target="_blank" rel="noopener">RPC与REST的区别</a></li>
+<li><a href="https://blog.csdn.net/ITer_ZC/article/details/39341983" target="_blank" rel="noopener">几种分布式调用技术的比较 – RPC VS REST</a></li>
+</ul>
 
       
     </div>
@@ -549,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC-Remote-Procedure-Call"><span class="nav-number">1.</span> <span class="nav-text"><a href="#RPC-Remote-Procedure-Call" class="headerlink" title="RPC (Remote Procedure Call)"></a>RPC (Remote Procedure Call)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thrift"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Thrift" class="headerlink" title="Thrift"></a><a href="https://thrift.apache.org/" target="_blank" rel="noopener">Thrift</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gRPC"><span class="nav-number">3.</span> <span class="nav-text"><a href="#gRPC" class="headerlink" title="gRPC"></a><a href="http://www.grpc.io/" target="_blank" rel="noopener">gRPC</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有-RPC"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;-RPC" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709; RPC"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709; RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景1"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x573A;&#x666F;1" class="headerlink" title="&#x573A;&#x666F;1"></a>&#x573A;&#x666F;1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#既然有http-请求，为什么还要用rpc调用？"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x65E2;&#x7136;&#x6709;http-&#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;" class="headerlink" title="&#x65E2;&#x7136;&#x6709;http &#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;"></a>&#x65E2;&#x7136;&#x6709;http &#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC-Remote-Procedure-Call"><span class="nav-number">1.</span> <span class="nav-text"><a href="#RPC-Remote-Procedure-Call" class="headerlink" title="RPC (Remote Procedure Call)"></a>RPC (Remote Procedure Call)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thrift"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Thrift" class="headerlink" title="Thrift"></a><a href="https://thrift.apache.org/" target="_blank" rel="noopener">Thrift</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gRPC"><span class="nav-number">3.</span> <span class="nav-text"><a href="#gRPC" class="headerlink" title="gRPC"></a><a href="http://www.grpc.io/" target="_blank" rel="noopener">gRPC</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有-RPC"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;-RPC" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709; RPC"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709; RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景1"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x573A;&#x666F;1" class="headerlink" title="&#x573A;&#x666F;1"></a>&#x573A;&#x666F;1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#既然有http-请求，为什么还要用rpc调用？"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x65E2;&#x7136;&#x6709;http-&#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;" class="headerlink" title="&#x65E2;&#x7136;&#x6709;http &#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;"></a>&#x65E2;&#x7136;&#x6709;http &#x8BF7;&#x6C42;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x8981;&#x7528;rpc&#x8C03;&#x7528;&#xFF1F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用RPC"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;RPC" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;RPC"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC-与-REST-的区别"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#RPC-&#x4E0E;-REST-&#x7684;&#x533A;&#x522B;" class="headerlink" title="RPC &#x4E0E; REST &#x7684;&#x533A;&#x522B;"></a>RPC &#x4E0E; REST &#x7684;&#x533A;&#x522B;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参阅"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x9605;" class="headerlink" title="&#x53C2;&#x9605;"></a>&#x53C2;&#x9605;</span></a></li></ol></div>
             
 
           </div>
