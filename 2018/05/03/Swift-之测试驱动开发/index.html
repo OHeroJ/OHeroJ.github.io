@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="loveli">
 <meta property="og:description" content="《在修改代码的艺术》中有这么一段话  最为强大的特性添加技术便是测试驱动开发(TDD)  驱动测试开发的过程： 设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。 TDD 算法 编写一个失败测试用例 让它通过编译  让测试通过 消除重复 重复上述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-03T09:17:06.084Z">
+<meta property="og:updated_time" content="2018-05-03T09:21:58.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 之测试驱动开发">
 <meta name="twitter:description" content="《在修改代码的艺术》中有这么一段话  最为强大的特性添加技术便是测试驱动开发(TDD)  驱动测试开发的过程： 设想有这么一个方法，能够帮我们解决问题的某个部分; 接下来我们为这个设想中的方法编写一个失败的测试用例。此时方法尚未存在，但既然我们能够为它编写测试，我们就对接下来要编写的代码做什么事情有一个确定的认识。 TDD 算法 编写一个失败测试用例 让它通过编译  让测试通过 消除重复 重复上述">
@@ -360,6 +360,18 @@
 <p>通常情况下我们的步骤要细得多，但是方法雷同</p>
 <h3 id="消除重复"><a href="#消除重复" class="headerlink" title="消除重复"></a>消除重复</h3><p>上面的例子中没有重复代码，所以，我们继续</p>
 <p>然后重复上述步骤，完善这个类的功能</p>
+<h2 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h2><p>测试驱动开发的它使得我们可以在同一个时间之关注一件事情，要么在编码，那么在重构<br>在编写一些新代码之后，我们便可以通过重构来消除新旧代码之间的任何重复。</p>
+<p>在遗留代码的工作场景下，步骤可扩展</p>
+<blockquote>
+<ol>
+<li>将想要的修改的类置于测试之下</li>
+<li>编写一个失败的测试用例 </li>
+<li>让它通过编译</li>
+<li>让测试通过（尽量不要改动既有代码）</li>
+<li>消除重复</li>
+<li>重复上述步骤</li>
+</ol>
+</blockquote>
 
       
     </div>
@@ -540,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TDD-算法"><span class="nav-number">1.</span> <span class="nav-text"><a href="#TDD-&#x7B97;&#x6CD5;" class="headerlink" title="TDD &#x7B97;&#x6CD5;"></a>TDD &#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在-Swift-上实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5728;-Swift-&#x4E0A;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;"></a>&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写一个失败的测试用例"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;" class="headerlink" title="&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"></a>&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让它编译通过"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让测试通过"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消除重复"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x6D88;&#x9664;&#x91CD;&#x590D;" class="headerlink" title="&#x6D88;&#x9664;&#x91CD;&#x590D;"></a>&#x6D88;&#x9664;&#x91CD;&#x590D;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TDD-算法"><span class="nav-number">1.</span> <span class="nav-text"><a href="#TDD-&#x7B97;&#x6CD5;" class="headerlink" title="TDD &#x7B97;&#x6CD5;"></a>TDD &#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在-Swift-上实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5728;-Swift-&#x4E0A;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;"></a>&#x5982;&#x4F55;&#x5728; Swift &#x4E0A;&#x5B9E;&#x73B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写一个失败的测试用例"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;" class="headerlink" title="&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"></a>&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让它编译通过"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x5B83;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让测试通过"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;" class="headerlink" title="&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;"></a>&#x8BA9;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消除重复"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x6D88;&#x9664;&#x91CD;&#x590D;" class="headerlink" title="&#x6D88;&#x9664;&#x91CD;&#x590D;"></a>&#x6D88;&#x9664;&#x91CD;&#x590D;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提醒"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x63D0;&#x9192;" class="headerlink" title="&#x63D0;&#x9192;"></a>&#x63D0;&#x9192;</span></a></li></ol></div>
             
 
           </div>
