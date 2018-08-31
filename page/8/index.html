@@ -249,6 +249,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/05/25/Swift-模式匹配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/05/25/Swift-模式匹配/" itemprop="url">Swift 模式匹配</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-25T09:15:52+08:00">
+                2016-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/25/Swift-模式匹配/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/05/25/Swift-模式匹配/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/05/25/Swift-模式匹配/" class="leancloud_visitors" data-flag-title="Swift 模式匹配">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="模式匹配进阶"><a href="#模式匹配进阶" class="headerlink" title="模式匹配进阶"></a>模式匹配进阶</h3><ol>
+<li><p>通配符模式</p>
+<p> 通配符模式会忽略需要匹配的值， <code>_</code></p>
+</li>
+<li><p>标示模式</p>
+<p> 匹配具体的值</p>
+</li>
+<li><p>值绑定模式</p>
+<pre><code>switch (4, 5) {
+    case let (x, y): print(&quot;\(x) \(y)&quot;)
+}
+</code></pre></li>
+<li><p>元组模式</p>
+<pre><code>let age = 23
+let job: String? = &quot;Operator&quot;
+let payload: AnyObject = NSDictionary()
+
+switch (age, job, payload) {
+  case (let age, _?, _ as NSDictionary):
+  print(age)
+  default: ()
+}
+</code></pre></li>
+<li><p>枚举Case模式</p>
+</li>
+<li><p>类型转换模式</p>
+<ul>
+<li>is 类型：匹配右手边内容的运行时类型（或者类型的子类）。它会做类型转换但是不关注返回值。所以你的 case 块不知道所匹配的类型是什么。</li>
+<li><p>模式 as 类型：和 is 模式做同样的匹配操作，但是如果成功的话会把类型转换到左侧指定的模式中。</p>
+<p>  let a: Any = 5<br>  switch a {</p>
+<pre><code>// 这会失败因为它的类型仍然是 `Any`
+// 错误: binary operator &apos;+&apos; cannot be applied to operands of type &apos;Any&apos; and &apos;Int&apos;
+case is Int: print (a + 1)
+// 有效并返回 &apos;6&apos;
+case let n as Int: print (n + 1)
+default: ()
+</code></pre><p>  }</p>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/05/24/Hexo-Use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -446,7 +627,7 @@ tags:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -459,7 +640,7 @@ tags:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
