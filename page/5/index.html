@@ -257,6 +257,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/10/09/全栈后台上线之Swift-Vapor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/09/全栈后台上线之Swift-Vapor/" itemprop="url">全栈后台上线之 Swift Vapor</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T14:34:12+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/全栈后台上线之Swift-Vapor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/09/全栈后台上线之Swift-Vapor/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/09/全栈后台上线之Swift-Vapor/" class="leancloud_visitors" data-flag-title="全栈后台上线之 Swift Vapor">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近期做了个 App《再书》，即将上线，独立开发，不管后期产品如何，还是来总结一下后台方面的一些问题，以免下次犯错。</p>
+<ul>
+<li>上线服务器选择</li>
+<li>数据库选择</li>
+<li>环境搭建</li>
+</ul>
+<h2 id="上线服务器选择"><a href="#上线服务器选择" class="headerlink" title="上线服务器选择"></a>上线服务器选择</h2><p>一开始的时候，鉴于资金有限，且是第一个独立的 App, 我首先在网上搜集了一些资源，初期基本上对这块云服务不是很了解，通过简单的了解，以及公司的服务器采用的借鉴，我买了个阿里云的云服务其 ECS ， 然后当时并没有注意到一个问题，买了个 32位的 ubuntu 服务器。 我只能说我就是个傻帽。在安装 swift 的时候，发现了不能编译通过，坑了整整3百。这个时候我想既然做不了 swift 后台，那我绑定一下自己的域名，发现需要备案，…。 也不知道备案是毛，然后进行备案，发现要填很多条条框框的东西，下来到最后一步需要上传文件，…..</p>
+<p>各种坑的到来，使我的身心严重受挫，此路不能走，那我就走其他路，然后通过知乎，对比一些推荐的国外的云主机，我最后选择了搬瓦工的，果然国外的东西用起来没这么啰嗦，果断选了个，发现不仅可以自己更换操作系统，还可以直接绑定域名，当然我是在阿里云买的，还需要进行域名的相关设置，但是这比备案，那是简单的不能简单了。然后很愉快的就用这个服务器了。鉴于阿里云买了一年的服务器，我这次在搬瓦工仅买了一个月的，体验一下再看看。</p>
+<h2 id="数据库选择"><a href="#数据库选择" class="headerlink" title="数据库选择"></a>数据库选择</h2><p>期初我的项目是跑在 heroku 上的，但是慢慢发现免费的终究有很多限制，并且它仅仅免费提供 postgresql. 其实 vapor 官方是提供的 mysql 支持的， postgresql 是社区进行维护的，其实两者在 vapor 层面基本上行是没啥大的区别。在怂恿 postgresql 的时候有个命令  “vapor prepare” 这个命令还存在问题。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>登入服务器是用 ssh，代码托管采用 github . 所以服务器上安装 git, swift , cmysql，vapor 相关工具。<br>代码+环境准备好后，就运行项目，“vapor run”, 我们本地进行访问成功，但是当我把 ssh 的链接终端关闭，我的服务器就不能访问了， how ?</p>
+<p>转到vapor 的官方文档，问题的解决方案就找到了 <a href="https://docs.vapor.codes/2.0/deploy/supervisor/" target="_blank" rel="noopener">Supervisor</a>。</p>
+<p>为了解决端口不显示暴露，采用了 <a href="https://docs.vapor.codes/2.0/deploy/nginx/" target="_blank" rel="noopener">nginx</a></p>
+<p>很多遇到的问题官方文档上都可以找到相应的解决方案。</p>
+<h2 id="Vapor使用过程的不爽之处"><a href="#Vapor使用过程的不爽之处" class="headerlink" title="Vapor使用过程的不爽之处"></a>Vapor使用过程的不爽之处</h2><p>更改model的相关属性，数据库并没有随之更改。</p>
+<h2 id="相关的命令参考"><a href="#相关的命令参考" class="headerlink" title="相关的命令参考"></a>相关的命令参考</h2><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>服务开启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service mysql start</div><div class="line">service mysql stop</div><div class="line">service mysql start</div></pre></td></tr></table></figure>
+<p>utf8 问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 修改 mysql.conf</div><div class="line">[mysqld]</div><div class="line">character-set-server=utf8</div><div class="line"></div><div class="line">[client]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">[mysql]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">//修改表</div><div class="line">alter table book_classifys convert to character set utf8;</div></pre></td></tr></table></figure>
+<h3 id="nginx-supervisor"><a href="#nginx-supervisor" class="headerlink" title="nginx supervisor"></a>nginx supervisor</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo supervisorctl stop twicebook</div><div class="line">sudo supervisorctl start twicebook</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/09/05/Vapor-七牛上传-token-生成算法实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1452,13 +1611,13 @@
 <blockquote>
 <p>摘自 <a href="http://huziketang.com/books/react/lesson6" target="_blank" rel="noopener">《React.js 小书》</a></p>
 </blockquote>
-<h2 id="关于事件中的-this"><a href="#关于事件中的-this" class="headerlink" title="关于事件中的 this"></a>关于事件中的 this</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// =&gt; null or undefined</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="关于事件中的-this"><a href="#关于事件中的-this" class="headerlink" title="关于事件中的 this"></a>关于事件中的 this</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// =&gt; null or undefined</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClickOnTitle&#125;</span>&gt;</span>React 小书<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>一般在某个类的实例方法里面的 this 指的是这个实例本身。但是你在上面的 handleClickOnTitle 中把 this 打印出来，你会看到 this 是 null 或者 undefined。</p>
 <p>这是因为 React.js 调用你所传给它的方法的时候，并不是通过对象方法的方式调用（this.handleClickOnTitle），而是直接通过函数调用 （handleClickOnTitle），所以事件监听函数内并不能通过 this 获取到实例。</p>
 <p>如果你想在事件函数当中使用当前的实例，你需要手动地将实例方法 bind 到当前实例上再传入给 React.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this)&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClickOnTitle.bind(this)&#125;</span>&gt;</span>React 小书<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>你也可以在 bind 的时候给事件监听函数传入一些参数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (word, e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>, word)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this, 'Hello')&#125;&gt;React 小书&lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleClickOnTitle (word, e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>, word)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClickOnTitle.bind(this,</span> '<span class="attr">Hello</span>')&#125;&gt;</span>React 小书<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>React.js 会给每个事件监听传入一个 event 对象，这个对象提供的功能和浏览器提供的功能一致，而且它是兼容所有浏览器的。</p>
 <p>React.js 的事件监听方法需要手动 bind 到当前实例，这种模式在 React.js 中非常常用。</p>
 
@@ -1646,153 +1805,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2017/03/26/Swift-自定义对象数据序列化成JSON-串/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/" itemprop="url">Swift 自定义对象数据序列化成 JSON 串</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T10:43:03+08:00">
-                2017-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/26/Swift-自定义对象数据序列化成JSON-串/" class="leancloud_visitors" data-flag-title="Swift 自定义对象数据序列化成 JSON 串">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Mirror"><a href="#Mirror" class="headerlink" title="Mirror"></a>Mirror</h2><p>一个对象反射出来的 Mirror ， 它所包含的信息是完备的。 可以在运行时通过 Mirror 的手段了解一个 Swift 类型。</p>
-<p><strong>应用一</strong></p>
-<p>为任意的 model 对象生成对应的 JSON 描述。对 Mirror 的值进行深度优先访问，并按照属性的 ValueType 将它们归类到不同的格式化中。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> nickname: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> age: <span class="type">Int</span>?</div><div class="line">    <span class="keyword">var</span> emails:[<span class="type">String</span>]?</div><div class="line">    <span class="keyword">var</span> tels:[<span class="type">Telephone</span>]?</div><div class="line">    <span class="keyword">var</span> createTime: <span class="type">Date</span> = <span class="type">Date</span>()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Telephone</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> title: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> number: <span class="type">String</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将自定义数据转化成 JSON 串</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>?</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">JSON</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">if</span> mirror.children.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</div><div class="line">            <span class="keyword">var</span> result: [<span class="type">String</span>: <span class="type">Any</span>] = [:]</div><div class="line"></div><div class="line">            <span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">let</span> (lable?, value) <span class="keyword">in</span> mirror.children &#123;</div><div class="line">                <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line"></div><div class="line">                    result[lable] = jsonValue.toJSONModel()</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> result <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">AnyObject</span>?</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONString</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">        <span class="keyword">let</span> jsonModel = <span class="keyword">self</span>.toJSONModel()</div><div class="line">        <span class="keyword">let</span> data: <span class="type">Data</span>! = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.data(withJSONObject: jsonModel!, options: [])</div><div class="line">        <span class="keyword">let</span> str = <span class="type">String</span>(data: data, encoding: .utf8)</div><div class="line">        <span class="keyword">return</span> str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Optional</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> x = <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> value = x <span class="keyword">as</span>? <span class="type">JSON</span> &#123;</div><div class="line">                <span class="keyword">return</span> value.toJSONModel()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展 swift 的基本数据类型</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Bool</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Dictionary</span>: <span class="title">JSON</span> </span>&#123; &#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="comment">//将数据转成可用的JSON模型</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">var</span> result: [<span class="type">Any</span>] = []</div><div class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> jsonValue = value <span class="keyword">as</span>? <span class="type">JSON</span> ,</div><div class="line">               <span class="keyword">let</span> jsonModel = jsonValue.toJSONModel()&#123;</div><div class="line"></div><div class="line">                result.append(jsonModel)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span>: <span class="title">JSON</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toJSONModel</span><span class="params">()</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">        <span class="keyword">let</span> dformatter = <span class="type">DateFormatter</span>()</div><div class="line">        dformatter.dateFormat = <span class="string">"yyyy 年 MM 月 dd 日 HH:mm:ss"</span></div><div class="line">        <span class="keyword">let</span> datestr = dformatter.string(from: <span class="keyword">self</span>)</div><div class="line">        <span class="keyword">return</span> datestr</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span> : <span class="title">JSON</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Telephone</span>: <span class="title">CustomDebugStringConvertible</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> debugDescription: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> toJSONString() ?? <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 扩展自定义类型，使其遵守 JSON 协议</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> user = <span class="type">User</span>()</div><div class="line">user.name = <span class="string">"hange"</span></div><div class="line">user.age = <span class="number">100</span></div><div class="line">user.emails = [<span class="string">"hagn@hagnge.com"</span>, <span class="string">"system@hagn.com"</span>]</div><div class="line"><span class="keyword">let</span> tel = <span class="type">Telephone</span>(title: <span class="string">"手机"</span>, number: <span class="string">"12333"</span>)</div><div class="line"><span class="keyword">let</span> tel1 = <span class="type">Telephone</span>(title: <span class="string">"公司座机"</span>, number: <span class="string">"001-0358"</span>)</div><div class="line">user.tels = [tel1, tel]</div><div class="line"></div><div class="line"><span class="built_in">print</span>(user)</div></pre></td></tr></table></figure>
-<p><strong>应用二</strong></p>
-<p>取值</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xiaoMing = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> mirror.children.startIndex..&lt;mirror.children.endIndex &#123;</div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = mirror.children[i]</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoMing, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过 key 得到值: <span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1845,7 +1857,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1858,7 +1870,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

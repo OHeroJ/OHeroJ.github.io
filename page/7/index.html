@@ -257,6 +257,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/31/设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="loveli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="loveli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/31/设计/" itemprop="url">设计</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-31T21:54:58+08:00">
+                2016-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/31/设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/08/31/设计/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/31/设计/" class="leancloud_visitors" data-flag-title="设计">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在做<code>iOS</code>的组件化功能， 造轮子。有些方面对我在写代码影响很大的方面今天在这里记录一下：</p>
+<h3 id="OO原则"><a href="#OO原则" class="headerlink" title="OO原则"></a>OO原则</h3><ol>
+<li>针对接口编程，不针对实现编程</li>
+<li>多用组合，少用继承</li>
+<li>松耦合设计</li>
+<li>封装变化</li>
+<li>依赖抽象，不依赖具体类</li>
+<li>对扩展开放，对修改关闭</li>
+<li>封装变化</li>
+</ol>
+<h3 id="常用模式"><a href="#常用模式" class="headerlink" title="常用模式"></a>常用模式</h3><ol>
+<li>代理</li>
+<li>适配器</li>
+<li>MVC</li>
+<li>组合模式</li>
+<li>观察者模式</li>
+<li>装饰器</li>
+</ol>
+<h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><h4 id="适配器-代理-外观的区别？"><a href="#适配器-代理-外观的区别？" class="headerlink" title="适配器|代理|外观的区别？"></a>适配器|代理|外观的区别？</h4><ul>
+<li>原理上：<ul>
+<li>代理：为其他对象提供一种代理一控制对这个对象的访问。起到一个中介的目的</li>
+<li>适配器：包装样式，一个适配器使得因接口不兼容而不能再一起工作的类工作在一起，讲一个类的接口转换成客户希望的另外一个接口</li>
+<li>外观：为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，这个接口使得这一子系统更加容易使用</li>
+</ul>
+</li>
+<li><p>设计模式总是通过增加层来进行解耦，提高扩展性，从抽象维度去看一个模式的内涵。<br>适配器因为兼容问题，代理的作用是不把实现暴露。</p>
+</li>
+<li><p>代理模式，代理者保存一个被代理的一个对象；适配器模式，保存了一个被适配的对象；而外观模式，就保存了各个子系统对象，然后根据实际逻辑组合。</p>
+</li>
+</ul>
+<h5 id="外观模式（Facade）举例："><a href="#外观模式（Facade）举例：" class="headerlink" title="外观模式（Facade）举例："></a>外观模式（Facade）举例：</h5><p>vc 请求数据： 有网的时候请求网络，无网的时候请求本地</p>
+<p>DataAlbumManager是vc操作的对象，他持有NetAlbumDataManager，DataAlbumManager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (id)init</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        persistencyManager = [[DatabaseAlbumDataManager alloc] init];</div><div class="line">        httpClient = [[NetAlbumDataManager alloc] init];</div><div class="line">        isOnline = NO;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在实现 DataAlbumManager 的方法的时候：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (NSArray*)getAlbums</div><div class="line">&#123;</div><div class="line">    return [persistencyManager getAlbums];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)addAlbum:(Album*)album atIndex:(int)index</div><div class="line">&#123;</div><div class="line">    [persistencyManager addAlbum:album atIndex:index];</div><div class="line">    if (isOnline)</div><div class="line">    &#123;</div><div class="line">        [httpClient postRequest:@&quot;/api/addAlbum&quot; body:[album description]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)deleteAlbumAtIndex:(int)index</div><div class="line">&#123;</div><div class="line">    [persistencyManager deleteAlbumAtIndex:index];</div><div class="line">    if (isOnline)</div><div class="line">    &#123;</div><div class="line">        [httpClient postRequest:@&quot;/api/deleteAlbum&quot; body:[@(index) description]];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>DataAlbumManager这个类中还可以做很多防御性的操作</p>
+</blockquote>
+<h4 id="装饰器？"><a href="#装饰器？" class="headerlink" title="装饰器？"></a>装饰器？</h4><p>装饰器模式可以在不修改代码的情况下灵活的为一对象添加行为和职责。当你要修改一个被其它类包含的类的行为时，它可以代替子类化方法。</p>
+<p>在OC中实现的模式： 分类(Category)和委托(Delegation)</p>
+<h4 id="策略模式？"><a href="#策略模式？" class="headerlink" title="策略模式？"></a>策略模式？</h4><p>定义一组算法，将每个算法都封装起来，并且是它们之间可以互换。</p>
+<ul>
+<li>策略模式优点<ul>
+<li>算法可以自由切换。</li>
+<li>避免使用多重条件判断。</li>
+<li>扩展性良好。</li>
+</ul>
+</li>
+<li>策略模式缺点<ul>
+<li>策略类数量增多 每一个策略都是一个类，复用的可能性很小，类数量增多。</li>
+<li>所有的策略类都需要对外暴露 上层模块必须知道有哪些策略，然后才能决定使用哪一个策略，这与<code>迪米特法则</code>是相违背的。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">@protocol TransportStrategy &lt;NSObject&gt;</div><div class="line">- (void)travelling;</div><div class="line">@end</div><div class="line"></div><div class="line">@interface Car : NSObject&lt;TransportStrategy&gt;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Car</div><div class="line"></div><div class="line">- (void)travelling</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;travelling by car.&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@interface Bicycle : NSObject&lt;TransportStrategy&gt;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Bicycle</div><div class="line"></div><div class="line">- (void)travelling</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;travelling by bicycle.&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@interface Train : NSObject&lt;TransportStrategy&gt;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Train</div><div class="line"></div><div class="line">- (void)travelling</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;travelling by train.&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">/// =================</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line"></div><div class="line">- (void)travel:(id&lt;TransportStrategy&gt;)transport;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Person</div><div class="line"></div><div class="line">- (void)travel:(id&lt;TransportStrategy&gt;)transport</div><div class="line">&#123;</div><div class="line">    [transport travelling];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">////========= 使用 ============</div><div class="line">int main(int argc, const char * argv[])</div><div class="line">&#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        Car *car = [[Car alloc]init];</div><div class="line">        Bicycle *bicycle = [[Bicycle alloc]init];</div><div class="line">        Train *train = [[Train alloc]init];</div><div class="line">        Person *person = [[Person alloc]init];</div><div class="line"></div><div class="line">        [person travel:car];</div><div class="line">        [person travel:bicycle];</div><div class="line">        [person travel:train];</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/08/24/iOS 开发技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1826,297 +2021,6 @@ drop.start()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://loveli.site/2016/07/02/iOS 直播 Tutorials/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="loveli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="loveli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/02/iOS 直播 Tutorials/" itemprop="url">iOS 直播 Tutorials</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-02T20:05:33+08:00">
-                2016-07-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/07/02/iOS 直播 Tutorials/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/02/iOS 直播 Tutorials/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/07/02/iOS 直播 Tutorials/" class="leancloud_visitors" data-flag-title="iOS 直播 Tutorials">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-直播相关基本知识"><a href="#1-直播相关基本知识" class="headerlink" title="1.直播相关基本知识"></a>1.直播相关基本知识</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>* 目前主流采用 服务器基于`nginx`，并且使用模块[nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)模块来增加对HLS的支持。
-</code></pre><h3 id="协议"><a href="#协议" class="headerlink" title="协议:"></a>协议:</h3><p>国内常见公开的直播协议有几个：RTMP、HLS、HDL（HTTP-FLV）、RTP， 我们主要介绍 RTMP 和 HLS</p>
-<ul>
-<li><p><code>RTMP</code>(<a href="http://www.adobe.com/cn/devnet/rtmp.html" target="_blank" rel="noopener">Real Time Messaging Protocol</a>) 协议</p>
-<p>  Adobe公司为Flash播放器和服务器之间音、视频及数据传输开发的实时消息传送协议。协议中，视频必须是H264编码，音频必须是AAC或MP3编码，且多以flv格式封包</p>
-<ol>
-<li>开源软件和开源库的支持稳定完整。如斗鱼主播常用的OBS软件，开源的librtmp库，服务端有nginx-rtmp插件。</li>
-<li>播放端安装率高。只要浏览器支持FlashPlayer就能非常简易的播放RTMP的直播，协议详解可以Google了解。相对其他协议而言，RTMP协议初次建立连接的时候握手过程过于复杂（底层基于TCP，这里说的是RTMP协议本身的交互），视不同的网络状况会带来给首开带来100ms以上的延迟。基于RTMP的直播一般内容延迟在2~5秒。</li>
-</ol>
-</li>
-<li><p><code>HLS</code>(<a href="https://developer.apple.com/streaming/" target="_blank" rel="noopener">HTTP Live Streaming</a>) 协议</p>
-<p>  是由Apple公司定义的基于HTTP的流媒体实时传输协议。它的原理是将整个流分为一个一个小的文件来下载，每次只下载若干个。传输内容包括两部分：一是<code>M3U8</code>描述文件，二是<code>TS</code>媒体文件。TS媒体文件中的视频必须是<code>H264</code>编码,音频必须是<code>AAC</code>或<code>MP3</code>编码。</p>
-<p>  HLS协议在服务器端将直播数据流存储为连续的、很短时长的媒体文件（MPEG-TS格式），而客户端则不断的下载并播放这些小文件，因为服务器端总是会将最新的直播数据生成新的小文件，这样客户端只要不停的按顺序播放从服务器获取到的文件，就实现了直播。由此可见，基本上可以认为，HLS是以点播的技术方式来实现直播。由于数据通过HTTP协议传输，所以完全不用考虑防火墙或者代理的问题，而且分段文件的时长很短，客户端可以很快的选择和切换码率，以适应不同带宽条件下的播放。不过HLS的这种技术特点，决定了它的延迟一般总是会高于普通的流媒体直播协议。</p>
-<p>  HLS有一个非常大的<code>优点</code>：HTML5可以直接打开播放；这个意味着可以把一个直播链接通过微信等转发分享，不需要安装任何独立的APP，有浏览器即可，所以流行度很高。社交直播APP，HLS可以说是刚需</p>
-</li>
-</ul>
-<h2 id="2-步骤："><a href="#2-步骤：" class="headerlink" title="2.步骤："></a>2.步骤：</h2><h3 id="音视频的采集"><a href="#音视频的采集" class="headerlink" title="音视频的采集"></a>音视频的采集</h3><p>使用AVFoundation.framework的AVCaptureSession即可获得原始的CMSampleBufferRef格式音视频数据</p>
-<h3 id="对视频进行H264编码，对音频进行AAC编码"><a href="#对视频进行H264编码，对音频进行AAC编码" class="headerlink" title="对视频进行H264编码，对音频进行AAC编码"></a>对视频进行H264编码，对音频进行AAC编码</h3><p>将原始视频编码过程中，有两种方案：</p>
-<ol>
-<li>利用第三方库 <a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="noopener">FFmpeg</a> 进行编码</li>
-<li>利用iOS自身的AVAssetWriter 或VideoToolBox.framework的VTCompressionSession进行编码。</li>
-</ol>
-<h3 id="编码："><a href="#编码：" class="headerlink" title="编码："></a>编码：</h3><ol>
-<li>RTMP上推直播视频: 对编码后的音、视频数据进行FLV封包；</li>
-<li>HTTP Live Streaming直播: 视频和音频数据封装为MPEG-TS包</li>
-</ol>
-<h3 id="上推到服务端。"><a href="#上推到服务端。" class="headerlink" title="上推到服务端。"></a>上推到服务端。</h3><ol>
-<li>基于RTMP进行推流的话：需要建立RTMP连接，</li>
-<li>HTTP Live Streaming直播: 直接http进行数据传输</li>
-</ol>
-<h3 id="播放端-拉流-解密"><a href="#播放端-拉流-解密" class="headerlink" title="播放端 拉流 解密"></a>播放端 拉流 解密</h3><h2 id="3-IOS手机直播Demo流程"><a href="#3-IOS手机直播Demo流程" class="headerlink" title="3.IOS手机直播Demo流程"></a>3.IOS手机直播Demo流程</h2><h3 id="搭建本地测试服务器【Mac-os-10-11】"><a href="#搭建本地测试服务器【Mac-os-10-11】" class="headerlink" title="搭建本地测试服务器【Mac os 10.11】"></a>搭建本地测试服务器【Mac os 10.11】</h3><h4 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h4><p>打开终端</p>
-<pre><code>brew update
-brew install nginx-full --with-rtmp-module
-</code></pre><p>如果你的mac之前安装了nginx, 那么这个时候先输入这个:</p>
-<pre><code>brew unlink nginx
-</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>如果你本机上安装了atom,那么在terminal上输入：</p>
-<pre><code>atom /usr/local/etc/nginx
-</code></pre><p>将配置文件修改为：</p>
-<pre><code>#user  nobody;
-worker_processes  1;
-
-#error_log  logs/error.log debug;
-#error_log       /usr/local/var/log/nginx/error.log warn;
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    sendfile        on;
-    keepalive_timeout  65;
-
-    server {
-        listen       8080;
-        server_name  localhost;
-
-        location /stat {
-            rtmp_stat all;
-            rtmp_stat_stylesheet stat.xsl;
-        }
-
-         # 这个路径一定要改
-        location /stat.xsl {
-            # you can move stat.xsl to a different location
-            root /usr/local/Cellar/rtmp-nginx-module/1.1.7.10/share/rtmp-nginx-module;
-        }
-
-        # rtmp control
-        location /control {
-            rtmp_control all;
-        }
-
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
-    }
-}
-
-rtmp {
-    server {
-        listen 1935;
-        ping 30s;
-        notify_method get;
-
-        application myapp {
-            live on;
-
-            # sample play/publish handlers
-            #on_play http://localhost:8080/on_play;
-            #on_publish http://localhost:8080/on_publish;
-
-            # sample recorder
-            #recorder rec1 {
-            #    record all;
-            #    record_interval 30s;
-            #    record_path /tmp;
-            #    record_unique on;
-            #}
-
-            # sample HLS
-            #hls on;
-            #hls_path /tmp/hls;
-            #hls_sync 100ms;
-
-        }
-
-        application hls {
-            live on;
-            hls on;
-            hls_path /tmp/hls;
-            hls_fragment 5s;
-        }
-
-        # Video on demand
-        #application vod {
-        #    play /var/Videos;
-        #}
-
-        # Video on demand over HTTP
-        #application vod_http {
-        #    play http://localhost:8080/vod/;
-        #}
-    }
-}
-</code></pre><blockquote>
-<p>注意： location /stat.xsl  { } 这个root的路径记得要改。 主要是改一下“1.1.7.10”，<br>跟你的rtmp-nginx-module这个版本有关系吧， 可以 <code>cd /usr/local/Cellar/rtmp-nginx-module/</code> 来查看</p>
-</blockquote>
-<h4 id="编辑好后，-进行-sudo-nginx-s-reload"><a href="#编辑好后，-进行-sudo-nginx-s-reload" class="headerlink" title="编辑好后， 进行  sudo nginx -s reload"></a>编辑好后， 进行  sudo nginx -s reload</h4><h3 id="采集音视频"><a href="#采集音视频" class="headerlink" title="采集音视频"></a>采集音视频</h3><p>用到是第三方的 <a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></p>
-<p>这边的话主要是改一下推流的url, 那么怎么样让手机访问的这个mac的本地服务器呢？</p>
-<ol>
-<li>mac 和手机在同一局域网(共连一个wifi)</li>
-<li>然后打开本机的偏好设置-&gt;网络(Network), 看下你的wifi的status有个ip地址。或者你也可以用ipconfig进行才看 内网的ip地址。我的是192.168.1.100</li>
-<li><p>更改LiveVideoCoreSDK上demo</p>
-<pre><code>_RtmpUrlTextField.text = @&quot;rtmp://192.168.1.100:1935/myapp/mystream&quot;;
-</code></pre></li>
-<li><p>真机运行demo</p>
-</li>
-</ol>
-<h3 id="播放端"><a href="#播放端" class="headerlink" title="播放端"></a>播放端</h3><p>安装ffplay：</p>
-<pre><code>brew unlink ffmpeg
-brew install ffmpeg --with-ffplay
-</code></pre><h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4.参考文献"></a>4.参考文献</h2><ol>
-<li><a href="http://www.cocoachina.com/ios/20150818/13081.html" target="_blank" rel="noopener">HTTP Live Streaming直播(iOS直播)技术分析与实现</a></li>
-<li><a href="http://blog.ucloud.cn/?p=796" target="_blank" rel="noopener"> 《关于直播，所有的技术细节都在这里了》 系列</a></li>
-<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42658139" target="_blank" rel="noopener">FFmpeg相关资料 专栏文章</a></li>
-<li><a href="https://github.com/runner365/LiveVideoCoreSDK" target="_blank" rel="noopener">LiveVideoCoreSDK</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2169,7 +2073,7 @@ brew install ffmpeg --with-ffplay
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2182,7 +2086,7 @@ brew install ffmpeg --with-ffplay
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
